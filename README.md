@@ -1,13 +1,77 @@
-# ASIL
+# ASIL: Replacing Screenshot-and-Click with Structured State and Semantic Actions
 
-ASIL (Agent-Software Interaction Layer) is the inference and evaluation
-framework for replacing screenshot-and-click software control with structured
-state observations and code-executable semantic actions.
+<p align="center">
+  <strong>Agent-Software Interaction Layer</strong><br>
+  Structured state observations and code-executable semantic actions for
+  software-operating agents.
+</p>
 
-This camera-ready release contains the runtime protocol, 15-application
-benchmark adapters, GUI and native-interface baselines, independent raw-state
-validation, Docker/Singularity environments, and the assisted software
-onboarding framework described in the paper.
+<p align="center">
+  <a href="docs/ASIL_EMNLP_2026_Findings.pdf"><img src="https://img.shields.io/badge/Paper-PDF-b31b1b.svg" alt="Paper PDF"></a>
+  <a href="https://huggingface.co/collections/sharryXR/asil-models-6a1e9faf39fe6ce4eb4626e1"><img src="https://img.shields.io/badge/Hugging%20Face-Models%20%26%20Data-FFD21E?logo=huggingface&amp;logoColor=000" alt="Hugging Face models and data"></a>
+  <a href="https://huggingface.co/datasets/sharryXR/asil-benchmark"><img src="https://img.shields.io/badge/Benchmark-380%20Tasks-2F6FEB" alt="ASIL benchmark"></a>
+  <a href="https://github.com/sharryXR/ASIL"><img src="https://img.shields.io/badge/GitHub-Code-181717?logo=github" alt="GitHub code"></a>
+  <a href="#license-and-contact"><img src="https://img.shields.io/badge/License-Apache%202.0-2E8B57.svg" alt="Apache 2.0 license"></a>
+</p>
+
+<p align="center">
+  <strong>News:</strong> ASIL has been accepted to
+  <strong>Findings of EMNLP 2026</strong>.
+</p>
+
+<p align="center">
+  <a href="docs/ASIL_EMNLP_2026_Findings.pdf">Paper</a> |
+  <a href="#overview">Overview</a> |
+  <a href="#headline-results">Results</a> |
+  <a href="#install">Install</a> |
+  <a href="#benchmark">Benchmark</a> |
+  <a href="#assisted-software-onboarding">Software Onboarding</a> |
+  <a href="#public-resources">Resources</a> |
+  <a href="#citation">Citation</a>
+</p>
+
+---
+
+## Overview
+
+Powerful code agents can execute scripts, call tools, and manage files, yet
+many important applications remain accessible primarily through graphical user
+interfaces. ASIL replaces the screenshot-and-click loop with an agent-native
+interface that exposes software through structured JSON observations and
+code-executable semantic actions, realized through the deepest feasible access
+path for each application.
+
+We instantiate ASIL across 15 applications and a benchmark of 300
+single-application and 80 multi-application tasks. The same task definitions,
+initial artifacts, and software-state validators are shared across ASIL and GUI
+control, isolating the effect of the observation-action interface. Structured
+observations and semantic actions also provide compact, verifiable traces for
+SFT and evaluator-backed on-policy RL.
+
+This release contains the runtime protocol, 15-application adapters, GUI and
+native-interface baselines, independent raw-state validation,
+Docker/Singularity environments, and the assisted software onboarding
+framework described in the paper. The Paper link currently serves the accepted
+camera-ready PDF and will be updated to arXiv after the preprint is released.
+
+## Headline Results
+
+Main 380-task benchmark scores from the accepted paper:
+
+| Model | ASIL | Screenshot GUI | ASIL - GUI |
+| --- | ---: | ---: | ---: |
+| Kimi K2.5 | **84.8** | 4.9 | +79.9 |
+| GPT-5.4 | 81.6 | 8.4 | +73.2 |
+| sonnet4.6 | 81.2 | 5.6 | +75.6 |
+| Qwen3.6-plus | 81.1 | 2.9 | +78.2 |
+| Qwen3.5-27B | 75.8 | 4.7 | +71.1 |
+
+Small-scale training under the ASIL modality:
+
+| Model | Base | SFT | RL |
+| --- | ---: | ---: | ---: |
+| Qwen3.5-2B | 58.0 | 72.1 | **74.4** |
+| Qwen3.5-9B | 66.6 | 80.4 | **82.2** |
 
 ## Repository Scope
 
@@ -172,6 +236,19 @@ provenance. Sanitized evidence is under `examples/softwaregen/`.
 
 Per-task run artifacts such as screenshots, trajectories, and score files are
 not part of the public release.
+
+## Citation
+
+If you find ASIL useful, please cite the accepted paper:
+
+```bibtex
+@inproceedings{xie2026asil,
+  title={{ASIL}: Replacing Screenshot-and-Click with Structured State and Semantic Actions},
+  author={Xie, Rui and Chen, Lu},
+  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2026},
+  year={2026}
+}
+```
 
 ## License And Contact
 

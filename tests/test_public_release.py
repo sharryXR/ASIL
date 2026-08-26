@@ -156,3 +156,26 @@ def test_validator_source_does_not_match_its_pattern_definitions(tmp_path: Path)
     report = validate_public_release(tmp_path)
 
     assert report["ok"] is True
+
+
+def test_repository_readme_has_publication_links_and_citation() -> None:
+    root = Path(__file__).resolve().parents[1]
+    readme = (root / "README.md").read_text(encoding="utf-8")
+    required_fragments = (
+        "ASIL: Replacing Screenshot-and-Click with Structured State and Semantic Actions",
+        "Findings of EMNLP 2026",
+        "docs/ASIL_EMNLP_2026_Findings.pdf",
+        "https://huggingface.co/datasets/sharryXR/asil-benchmark",
+        "https://huggingface.co/datasets/sharryXR/asil-benchmark-images",
+        "https://huggingface.co/sharryXR/asil-qwen35-2b-sft",
+        "https://huggingface.co/sharryXR/asil-qwen35-2b-rl",
+        "https://huggingface.co/sharryXR/asil-qwen35-9b-sft",
+        "https://huggingface.co/sharryXR/asil-qwen35-9b-rl",
+        "https://huggingface.co/collections/sharryXR/asil-models-6a1e9faf39fe6ce4eb4626e1",
+        "@inproceedings{xie2026asil",
+    )
+
+    missing = [fragment for fragment in required_fragments if fragment not in readme]
+
+    assert missing == []
+    assert (root / "docs/ASIL_EMNLP_2026_Findings.pdf").is_file()
