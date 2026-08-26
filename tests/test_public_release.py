@@ -71,6 +71,29 @@ def test_rejects_internal_path(tmp_path: Path) -> None:
     assert "forbidden_path" in _codes(report)
 
 
+def test_accepts_versioned_public_paper_pdf(tmp_path: Path) -> None:
+    _write_minimal_public_tree(tmp_path)
+    path = tmp_path / "docs/ASIL_EMNLP_2026_Findings.pdf"
+    path.parent.mkdir(parents=True)
+    path.write_bytes(b"%PDF-1.7\n")
+
+    report = validate_public_release(tmp_path)
+
+    assert report["ok"] is True
+
+
+def test_rejects_unapproved_pdf(tmp_path: Path) -> None:
+    _write_minimal_public_tree(tmp_path)
+    path = tmp_path / "docs/internal_results.pdf"
+    path.parent.mkdir(parents=True)
+    path.write_bytes(b"%PDF-1.7\n")
+
+    report = validate_public_release(tmp_path)
+
+    assert report["ok"] is False
+    assert "forbidden_path" in _codes(report)
+
+
 def test_rejects_wrong_contributor_marker(tmp_path: Path) -> None:
     _write_minimal_public_tree(tmp_path)
     (tmp_path / "README.md").write_text(

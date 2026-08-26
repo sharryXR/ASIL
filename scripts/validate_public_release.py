@@ -30,6 +30,9 @@ REQUIRED_DIRECTORIES = (
     "tests",
     "evaluation_examples/examples",
 )
+ALLOWED_RELEASE_ARTIFACTS = {
+    "docs/ASIL_EMNLP_2026_Findings.pdf",
+}
 FORBIDDEN_DIRECTORY_NAMES = {
     "build",
     "dist",
@@ -127,6 +130,12 @@ def _validate_paths(root: Path) -> list[dict[str, str]]:
     findings: list[dict[str, str]] = []
     for path in _release_files(root):
         relative = path.relative_to(root).as_posix()
+        if (
+            relative in ALLOWED_RELEASE_ARTIFACTS
+            and path.is_file()
+            and not path.is_symlink()
+        ):
+            continue
         parts = set(path.relative_to(root).parts)
         lower = relative.lower()
         if path.is_symlink():
