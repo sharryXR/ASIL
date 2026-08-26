@@ -1,0 +1,205 @@
+{
+  "id": "libreoffice_09",
+  "instruction": "Create an inventory tracking sheet with headers Item, SKU, Qty, Price. Enter exactly this row: Widget A | WGT-001 | 150 | 9.99.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "libreoffice_calc_default",
+  "config": [],
+  "related_apps": [
+    "libreoffice"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "libreoffice_09_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "libreoffice_09_1",
+            "weight": 0.125,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A1",
+                "key": null,
+                "expected": "Item"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_09_2",
+            "weight": 0.125,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B1",
+                "key": null,
+                "expected": "SKU"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_09_3",
+            "weight": 0.125,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C1",
+                "key": null,
+                "expected": "Qty"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_09_4",
+            "weight": 0.125,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D1",
+                "key": null,
+                "expected": "Price"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_09_5",
+            "weight": 0.125,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A2",
+                "key": null,
+                "expected": "Widget A"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_09_6",
+            "weight": 0.125,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B2",
+                "key": null,
+                "expected": "WGT-001"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_09_7",
+            "weight": 0.125,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C2",
+                "key": null,
+                "expected": "150"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_09_8",
+            "weight": 0.125,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D2",
+                "key": null,
+                "expected": "9.99"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "libreoffice",
+    "difficulty": "complex",
+    "description": "Create inventory tracking sheet",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{ods_path}}",
+        "params": {
+          "operations": [
+            {
+              "sheet": "Sheet1",
+              "cell": "A1",
+              "value": "Item",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B1",
+              "value": "SKU",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C1",
+              "value": "Qty",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D1",
+              "value": "Price",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A2",
+              "value": "Widget A",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B2",
+              "value": "WGT-001",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C2",
+              "value": "150",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D2",
+              "value": "9.99",
+              "value_type": "float"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "Sheet1!D2",
+        "key": null,
+        "expected": "9.99"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "spreadsheet",
+    "visible_change_summary": "Create an inventory tracking sheet with headers Item, SKU, Qty, Price. Enter exactly this row: Widget A | WGT-001 | 150 | 9.99.",
+    "checkpoint_visibility": {
+      "libreoffice_09_1": "visible_in_sheet",
+      "libreoffice_09_2": "visible_in_sheet",
+      "libreoffice_09_3": "visible_in_sheet",
+      "libreoffice_09_4": "visible_in_sheet",
+      "libreoffice_09_5": "visible_in_sheet",
+      "libreoffice_09_6": "visible_in_sheet",
+      "libreoffice_09_7": "visible_in_sheet",
+      "libreoffice_09_8": "visible_in_sheet"
+    }
+  }
+}

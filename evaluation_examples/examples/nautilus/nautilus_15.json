@@ -1,0 +1,14 @@
+{
+  "id": "nautilus_15",
+  "instruction": "Send `old-invoice.txt` from `Archive` to `Trash`, then open `Trash`.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "nautilus_workspace_default",
+  "config": [],
+  "related_apps": ["nautilus"],
+  "evaluator": {"selection": "best_score", "paths": [{"path_id": "nautilus_15_primary_path", "exclusive_group": "success_paths", "checkpoints": [{"id": "nautilus_15_location", "weight": 0.5, "gui_visible_required": true, "rule": {"element_value": {"id": "location", "key": "path", "expected": "Trash"}}}, {"id": "nautilus_15_entry", "weight": 0.5, "gui_visible_required": true, "rule": {"any_element_matches": {"type": "directory_entry", "value": {"path": "Trash/old-invoice.txt"}}}}]}]},
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {"software": "nautilus", "difficulty": "medium", "description": "Move old-invoice.txt into the Trash folder and open Trash.", "actions": [{"action_type": "invoke_function", "target": "nautilus", "params": {"operations": [{"action": "trash_entry", "path": "old-invoice.txt"}, {"action": "open_directory", "path": "../Trash"}]}}], "validation": {"conditions": [{"element_value": {"id": "location", "key": "path", "expected": "Trash"}}, {"any_element_matches": {"type": "directory_entry", "value": {"path": "Trash/old-invoice.txt"}}}]}, "initial_state": "archive"},
+  "gui_expectations": {"success_surface": "file_list", "visible_change_summary": "The Trash folder is open and shows old-invoice.txt.", "checkpoint_visibility": {"nautilus_15_location": "visible_in_location_bar", "nautilus_15_entry": "visible_in_file_list"}}
+}

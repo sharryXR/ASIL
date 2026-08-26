@@ -1,0 +1,466 @@
+{
+  "id": "inkscape_18",
+  "instruction": "Create a labeled pie chart titled '2024年销售区域分布' with 4 sectors using SVG path arcs centered at (400,310), r=130: 华东 38% (id=pie_east, fill=#2196f3), 华南 27% (id=pie_south, fill=#ff9800), 华北 22% (id=pie_north, fill=#4caf50), 西部 13% (id=pie_west, fill=#f44336). Add a text label near each sector showing region name and percentage. Add chart title (id=chart_title, y=50). Add a legend group (id=legend) with 4 color squares + text at bottom.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_18_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_18_01",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "chart_title",
+                "key": "text_content",
+                "expected": "2024年销售区域分布"
+              }
+            }
+          },
+          {
+            "id": "inkscape_18_02",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "pie_east",
+                "key": "style",
+                "expected": "fill:#2196f3"
+              }
+            }
+          },
+          {
+            "id": "inkscape_18_03",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "pie_south",
+                "key": "style",
+                "expected": "fill:#ff9800"
+              }
+            }
+          },
+          {
+            "id": "inkscape_18_04",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "pie_north",
+                "key": "style",
+                "expected": "fill:#4caf50"
+              }
+            }
+          },
+          {
+            "id": "inkscape_18_05",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "pie_west",
+                "key": "style",
+                "expected": "fill:#f44336"
+              }
+            }
+          },
+          {
+            "id": "inkscape_18_06",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "label_east",
+                "key": "text_content",
+                "expected": "华东 38%"
+              }
+            }
+          },
+          {
+            "id": "inkscape_18_07",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "label_south",
+                "key": "text_content",
+                "expected": "华南 27%"
+              }
+            }
+          },
+          {
+            "id": "inkscape_18_08",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "label_north",
+                "key": "text_content",
+                "expected": "华北 22%"
+              }
+            }
+          },
+          {
+            "id": "inkscape_18_09",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "label_west",
+                "key": "text_content",
+                "expected": "西部 13%"
+              }
+            }
+          },
+          {
+            "id": "inkscape_18_10",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "legend",
+                "key": "child_count",
+                "expected": 8
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "complex",
+    "description": "Create a labeled pie chart titled '2024年销售区域分布' with 4 sectors using SVG path arcs centered at (400,310), r=130: 华东 38% (id=pie_east, fill=#2196f3), 华南 27% (id=pie_south, fill=#ff9800), 华北 22% (id=pie_north, fill=#4caf50), 西部 13% (id=pie_west, fill=#f44336). Add a text label near each sector showing region name and percentage. Add chart title (id=chart_title, y=50). Add a legend group (id=legend) with 4 color squares + text at bottom.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "g",
+              "attributes": {
+                "id": "pie_chart"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='pie_chart']",
+              "tag": "text",
+              "attributes": {
+                "id": "chart_title",
+                "x": "400",
+                "y": "50",
+                "style": "font-size:18px;font-weight:bold;text-anchor:middle;font-family:sans-serif;fill:#333",
+                "text_content": "2024年销售区域分布"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='pie_chart']",
+              "tag": "path",
+              "attributes": {
+                "id": "pie_east",
+                "d": "M 400,310 L 400,180 A 130,130 0 0,1 523,375 Z",
+                "style": "fill:#2196f3"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='pie_chart']",
+              "tag": "path",
+              "attributes": {
+                "id": "pie_south",
+                "d": "M 400,310 L 523,375 A 130,130 0 0,1 395,440 Z",
+                "style": "fill:#ff9800"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='pie_chart']",
+              "tag": "path",
+              "attributes": {
+                "id": "pie_north",
+                "d": "M 400,310 L 395,440 A 130,130 0 0,1 277,375 Z",
+                "style": "fill:#4caf50"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='pie_chart']",
+              "tag": "path",
+              "attributes": {
+                "id": "pie_west",
+                "d": "M 400,310 L 277,375 A 130,130 0 0,1 400,180 Z",
+                "style": "fill:#f44336"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='pie_chart']",
+              "tag": "text",
+              "attributes": {
+                "id": "label_east",
+                "x": "490",
+                "y": "250",
+                "style": "font-size:13px;font-family:sans-serif;fill:#333",
+                "text_content": "华东 38%"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='pie_chart']",
+              "tag": "text",
+              "attributes": {
+                "id": "label_south",
+                "x": "510",
+                "y": "390",
+                "style": "font-size:13px;font-family:sans-serif;fill:#333",
+                "text_content": "华南 27%"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='pie_chart']",
+              "tag": "text",
+              "attributes": {
+                "id": "label_north",
+                "x": "290",
+                "y": "450",
+                "style": "font-size:13px;font-family:sans-serif;fill:#333",
+                "text_content": "华北 22%"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='pie_chart']",
+              "tag": "text",
+              "attributes": {
+                "id": "label_west",
+                "x": "220",
+                "y": "270",
+                "style": "font-size:13px;font-family:sans-serif;fill:#333",
+                "text_content": "西部 13%"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='pie_chart']",
+              "tag": "g",
+              "attributes": {
+                "id": "legend"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='legend']",
+              "tag": "rect",
+              "attributes": {
+                "id": "legend_swatch_east",
+                "x": "300",
+                "y": "500",
+                "width": "12",
+                "height": "12",
+                "style": "fill:#2196f3"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='legend']",
+              "tag": "text",
+              "attributes": {
+                "id": "legend_text_east",
+                "x": "320",
+                "y": "510",
+                "style": "font-size:12px;font-family:sans-serif;fill:#333",
+                "text_content": "华东 38%"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='legend']",
+              "tag": "rect",
+              "attributes": {
+                "id": "legend_swatch_south",
+                "x": "400",
+                "y": "500",
+                "width": "12",
+                "height": "12",
+                "style": "fill:#ff9800"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='legend']",
+              "tag": "text",
+              "attributes": {
+                "id": "legend_text_south",
+                "x": "420",
+                "y": "510",
+                "style": "font-size:12px;font-family:sans-serif;fill:#333",
+                "text_content": "华南 27%"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='legend']",
+              "tag": "rect",
+              "attributes": {
+                "id": "legend_swatch_north",
+                "x": "500",
+                "y": "500",
+                "width": "12",
+                "height": "12",
+                "style": "fill:#4caf50"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='legend']",
+              "tag": "text",
+              "attributes": {
+                "id": "legend_text_north",
+                "x": "520",
+                "y": "510",
+                "style": "font-size:12px;font-family:sans-serif;fill:#333",
+                "text_content": "华北 22%"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='legend']",
+              "tag": "rect",
+              "attributes": {
+                "id": "legend_swatch_west",
+                "x": "600",
+                "y": "500",
+                "width": "12",
+                "height": "12",
+                "style": "fill:#f44336"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='legend']",
+              "tag": "text",
+              "attributes": {
+                "id": "legend_text_west",
+                "x": "620",
+                "y": "510",
+                "style": "font-size:12px;font-family:sans-serif;fill:#333",
+                "text_content": "西部 13%"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "chart_title",
+            "key": "text_content",
+            "expected": "2024年销售区域分布"
+          }
+        },
+        {
+          "element_value": {
+            "id": "pie_east",
+            "key": "style",
+            "expected": "fill:#2196f3"
+          }
+        },
+        {
+          "element_value": {
+            "id": "pie_south",
+            "key": "style",
+            "expected": "fill:#ff9800"
+          }
+        },
+        {
+          "element_value": {
+            "id": "pie_north",
+            "key": "style",
+            "expected": "fill:#4caf50"
+          }
+        },
+        {
+          "element_value": {
+            "id": "pie_west",
+            "key": "style",
+            "expected": "fill:#f44336"
+          }
+        },
+        {
+          "element_value": {
+            "id": "label_east",
+            "key": "text_content",
+            "expected": "华东 38%"
+          }
+        },
+        {
+          "element_value": {
+            "id": "label_south",
+            "key": "text_content",
+            "expected": "华南 27%"
+          }
+        },
+        {
+          "element_value": {
+            "id": "label_north",
+            "key": "text_content",
+            "expected": "华北 22%"
+          }
+        },
+        {
+          "element_value": {
+            "id": "label_west",
+            "key": "text_content",
+            "expected": "西部 13%"
+          }
+        },
+        {
+          "element_value": {
+            "id": "legend",
+            "key": "child_count",
+            "expected": 8
+          }
+        }
+      ]
+    },
+    "initial_state": "blank"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Create a labeled pie chart with four sectors, four labels, a title, and a legend.",
+    "checkpoint_visibility": {
+      "inkscape_18_01": "visible_on_canvas",
+      "inkscape_18_02": "visible_on_canvas",
+      "inkscape_18_03": "visible_on_canvas",
+      "inkscape_18_04": "visible_on_canvas",
+      "inkscape_18_05": "visible_on_canvas",
+      "inkscape_18_06": "visible_on_canvas",
+      "inkscape_18_07": "visible_on_canvas",
+      "inkscape_18_08": "visible_on_canvas",
+      "inkscape_18_09": "visible_on_canvas",
+      "inkscape_18_10": "visible_on_canvas"
+    }
+  }
+}

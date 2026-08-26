@@ -1,0 +1,73 @@
+{
+  "software": "libreoffice_writer",
+  "description": "Structured Writer document editing through ODT-backed operations.",
+  "supported_action_types": ["modify_file", "set_value"],
+  "target": "Document path of the active .odt file",
+  "actions": [
+    {
+      "name": "modify_file",
+      "description": "Apply one or more Writer document operations to headings and paragraphs.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "set_paragraph_text | set_heading_text | add_paragraph | add_heading",
+            "index": 1,
+            "text": "New visible text",
+            "level": 1
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Replace the first paragraph text",
+          "action": {
+            "action_type": "modify_file",
+            "target": "writer.odt",
+            "params": {
+              "operations": [
+                {
+                  "action": "set_paragraph_text",
+                  "index": 1,
+                  "text": "Updated planning note."
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Append a new heading and paragraph",
+          "action": {
+            "action_type": "modify_file",
+            "target": "writer.odt",
+            "params": {
+              "operations": [
+                {
+                  "action": "add_heading",
+                  "text": "Timeline",
+                  "level": 2
+                },
+                {
+                  "action": "add_paragraph",
+                  "text": "Draft the next milestone list."
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "done_action": {
+    "description": "Return when the document already satisfies the task requirements.",
+    "example": {
+      "action_type": "done",
+      "target": "writer.odt",
+      "params": {}
+    }
+  },
+  "tips": [
+    "Prefer visible heading and paragraph changes over hidden metadata edits.",
+    "Use explicit text that matches the task instruction and success criteria.",
+    "Stop immediately when the current document already satisfies all checkpoints."
+  ]
+}

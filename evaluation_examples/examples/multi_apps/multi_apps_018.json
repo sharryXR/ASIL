@@ -1,0 +1,126 @@
+{
+  "id": "multi_apps_018",
+  "software": "multi_apps",
+  "source": "asil_multi_apps_generated",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: add a Writer paragraph containing 'MA-018 narrative release note'; add an Impress slide titled 'MA-018 launch slide'.",
+  "related_apps": [
+    "libreoffice_writer",
+    "libreoffice_impress"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "libreoffice_writer_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "libreoffice_writer",
+                "rule": {
+                  "any_element_matches": {
+                    "type": "paragraph",
+                    "value": {
+                      "text_content": "MA-018 narrative release note"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "libreoffice_impress_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "libreoffice_impress",
+                "rule": {
+                  "any_element_matches": {
+                    "type": "slide_title",
+                    "value": {
+                      "text_content": "MA-018 launch slide"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "libreoffice_writer_checkpoint": "visible_in_libreoffice_writer",
+      "libreoffice_impress_checkpoint": "visible_in_libreoffice_impress"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "medium",
+    "description": "Docs Slides cross-app task for libreoffice_writer, libreoffice_impress.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "libreoffice_writer": "default",
+      "libreoffice_impress": "default"
+    },
+    "primary_app": "libreoffice_writer",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "libreoffice_writer",
+              "action": {
+                "action_type": "modify_file",
+                "target": "document",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_paragraph",
+                      "text": "MA-018 narrative release note"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "libreoffice_impress",
+              "action": {
+                "action_type": "modify_file",
+                "target": "presentation",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_slide",
+                      "title": "MA-018 launch slide",
+                      "body": [
+                        "Cross-app proof for MA-018"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "docs_slides"
+  }
+}

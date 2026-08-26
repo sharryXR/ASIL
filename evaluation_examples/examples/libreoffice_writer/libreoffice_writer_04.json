@@ -1,0 +1,58 @@
+{
+  "id": "libreoffice_writer_04",
+  "software": "libreoffice_writer",
+  "difficulty": "simple",
+  "description": "Append a paragraph that says \"Action items assigned to the design team.\".",
+  "instruction": "Append a paragraph that says \"Action items assigned to the design team.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odt_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "add_paragraph",
+            "text": "Action items assigned to the design team."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "snapshot": "writer_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "document_page",
+    "visible_change_summary": "A new paragraph appears with the action item sentence.",
+    "checkpoint_visibility": {
+      "paragraph_added": "visible_on_page"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "paragraph_added",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "paragraph",
+                "value": {
+                  "text_content": "Action items assigned to the design team."
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "jupyterlab_15",
+  "software": "jupyterlab",
+  "difficulty": "medium",
+  "description": "Refresh the metrics CSV filename and contents.",
+  "instruction": "Create data/metrics_latest.csv with \"metric,value\\nprofit,24\\n\". Delete data/metrics.csv and open the new CSV file.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {"action": "create_file", "path": "data/metrics_latest.csv", "content": "metric,value\nprofit,24\n"},
+          {"action": "delete_path", "path": "data/metrics.csv"},
+          {"action": "open_file", "path": "data/metrics_latest.csv"}
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": ["jupyterlab"],
+  "snapshot": "jupyterlab_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "The new metrics_latest.csv file is open with a profit row.",
+    "checkpoint_visibility": {
+      "new_csv": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "new_csv",
+            "weight": 0.7,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "editor:data/metrics_latest.csv",
+                "key": "content",
+                "expected": "profit,24"
+              }
+            }
+          },
+          {
+            "id": "old_csv_removed",
+            "weight": 0.3,
+            "gui_visible_required": false,
+            "rule": {
+              "element_not_exists": "file:data/metrics.csv"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "jupyterlab",
+    "difficulty": "medium",
+    "description": "Refresh the metrics CSV filename and contents.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {"action": "create_file", "path": "data/metrics_latest.csv", "content": "metric,value\nprofit,24\n"},
+            {"action": "delete_path", "path": "data/metrics.csv"},
+            {"action": "open_file", "path": "data/metrics_latest.csv"}
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

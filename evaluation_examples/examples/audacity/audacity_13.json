@@ -1,0 +1,98 @@
+{
+  "id": "audacity_13",
+  "instruction": "Add a new track named Ambient Bed and remove the Voiceover track.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "audacity_default_project",
+  "config": [],
+  "related_apps": [
+    "audacity"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "audacity_13_main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "ambient_added",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "track",
+                "id": "track:track_ambient_bed",
+                "value": {
+                  "name": "Ambient Bed"
+                }
+              }
+            }
+          },
+          {
+            "id": "voice_removed",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "no_element_matches": {
+                "type": "track",
+                "id": "track:track_voice"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "audacity",
+    "difficulty": "simple",
+    "description": "Add a new track named Ambient Bed and remove the Voiceover track.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_track",
+              "track_id": "track_ambient_bed",
+              "name": "Ambient Bed",
+              "kind": "audio",
+              "mute": false,
+              "solo": false,
+              "gain_db": 0.0,
+              "pan": 0.0,
+              "height_px": 132,
+              "clips": []
+            },
+            {
+              "action": "delete_track",
+              "track_id": "track_voice"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "any_element_matches": {
+        "type": "track",
+        "id": "track:track_ambient_bed",
+        "value": {
+          "name": "Ambient Bed"
+        }
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "multitrack_timeline",
+    "visible_change_summary": "Ambient Bed appears while the original Voiceover track disappears.",
+    "checkpoint_visibility": {
+      "ambient_added": "visible_in_track_headers",
+      "voice_removed": "visible_in_track_headers"
+    }
+  }
+}

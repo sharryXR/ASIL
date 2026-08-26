@@ -1,0 +1,144 @@
+{
+  "id": "gitea_19",
+  "instruction": "Create a milestone 'Sprint 1', create issue 'Implement login page' linked to it, then close the issue",
+  "source": "asil_benchmark_v1",
+  "snapshot": "gitea_instance_default",
+  "config": [],
+  "related_apps": [
+    "gitea"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "gitea_19_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "gitea_19_1",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_value": {
+                "type": "milestone",
+                "key": "title",
+                "expected": "Sprint 1"
+              }
+            }
+          },
+          {
+            "id": "gitea_19_2",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_contains": {
+                "type": "issue",
+                "key": "title",
+                "expected": "Implement login page"
+              }
+            }
+          },
+          {
+            "id": "gitea_19_3",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_value": {
+                "type": "issue",
+                "key": "milestone",
+                "expected": "Sprint 1"
+              }
+            }
+          },
+          {
+            "id": "gitea_19_4",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_value": {
+                "type": "issue",
+                "key": "state",
+                "expected": "closed"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gitea",
+    "difficulty": "complex",
+    "description": "Create a milestone 'Sprint 1', create issue 'Implement login page' linked to it, then close the issue",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/milestones",
+          "body": {
+            "title": "Sprint 1",
+            "description": "First sprint tasks"
+          }
+        }
+      },
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+          "body": {
+            "title": "Implement login page",
+            "body": "Build the login UI.",
+            "milestone": 1
+          }
+        }
+      },
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "PATCH",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues/1",
+          "body": {
+            "state": "closed"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "any_element_value": {
+            "type": "milestone",
+            "key": "title",
+            "expected": "Sprint 1"
+          }
+        },
+        {
+          "element_value": {
+            "id": "issue:1",
+            "key": "state",
+            "expected": "closed"
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "web_page",
+    "visible_change_summary": "Create a milestone 'Sprint 1', create issue 'Implement login page' linked to it, then close the issue",
+    "checkpoint_visibility": {
+      "gitea_19_1": "visible_on_web_page",
+      "gitea_19_2": "visible_on_web_page",
+      "gitea_19_3": "visible_on_web_page",
+      "gitea_19_4": "visible_on_web_page"
+    }
+  }
+}

@@ -1,0 +1,1385 @@
+{
+  "id": "libreoffice_realwork_hard_002",
+  "instruction": "Create a payroll sheet with columns (ID, Name, Department, Base Salary, Position Allowance, Performance Bonus, Insurance, Tax, Net Pay). Use any realistic sample data for exactly 10 complete employee rows. Keep IDs non-empty and unique. Use non-negative numeric values in the salary-related columns. Net Pay should equal Base Salary + Position Allowance + Performance Bonus - Insurance - Tax for each row.",
+  "source": "asil_realwork_hard_mixed_v2",
+  "snapshot": "libreoffice_calc_default",
+  "config": [],
+  "related_apps": [
+    "libreoffice"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "libreoffice_19_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "libreoffice_19_headers",
+            "weight": 0.166667,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_headers": {
+                "sheet": "Sheet1",
+                "row": 1,
+                "expected": [
+                  "ID",
+                  "Name",
+                  "Department",
+                  "Base Salary",
+                  "Position Allowance",
+                  "Performance Bonus",
+                  "Insurance",
+                  "Tax",
+                  "Net Pay"
+                ]
+              }
+            }
+          },
+          {
+            "id": "libreoffice_19_rows",
+            "weight": 0.166667,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_complete_rows": {
+                "sheet": "Sheet1",
+                "columns": [
+                  "A",
+                  "B",
+                  "C",
+                  "D",
+                  "E",
+                  "F",
+                  "G",
+                  "H",
+                  "I"
+                ],
+                "start_row": 2,
+                "expected_rows": 10
+              }
+            }
+          },
+          {
+            "id": "libreoffice_19_unique_ids",
+            "weight": 0.166667,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_column_unique": {
+                "sheet": "Sheet1",
+                "column": "A",
+                "start_row": 2,
+                "end_row": 11
+              }
+            }
+          },
+          {
+            "id": "libreoffice_19_text_cols",
+            "weight": 0.166667,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_column_type": {
+                "sheet": "Sheet1",
+                "columns": [
+                  "B",
+                  "C"
+                ],
+                "start_row": 2,
+                "end_row": 11,
+                "expected": "text"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_19_numeric_cols",
+            "weight": 0.166667,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_column_type": {
+                "sheet": "Sheet1",
+                "columns": [
+                  "D",
+                  "E",
+                  "F",
+                  "G",
+                  "H",
+                  "I"
+                ],
+                "start_row": 2,
+                "end_row": 11,
+                "expected": "number",
+                "min": 0
+              }
+            }
+          },
+          {
+            "id": "libreoffice_19_net_pay_relation",
+            "weight": 0.166665,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_row_numeric_relation": {
+                "sheet": "Sheet1",
+                "start_row": 2,
+                "end_row": 11,
+                "target_column": "I",
+                "add_columns": [
+                  "D",
+                  "E",
+                  "F"
+                ],
+                "subtract_columns": [
+                  "G",
+                  "H"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "libreoffice",
+    "difficulty": "complex",
+    "description": "Hard-suite variant of libreoffice_19: Create a payroll sheet: columns (ID, Name, Department, Base Salary, Position Allowance, Performance Bonus, Insurance, Tax, Net Pay) for 10 employees",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{ods_path}}",
+        "params": {
+          "operations": [
+            {
+              "sheet": "Sheet1",
+              "cell": "A1",
+              "value": "ID",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B1",
+              "value": "Name",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C1",
+              "value": "Department",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D1",
+              "value": "Base Salary",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E1",
+              "value": "Position Allowance",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F1",
+              "value": "Performance Bonus",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "G1",
+              "value": "Insurance",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "H1",
+              "value": "Tax",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "I1",
+              "value": "Net Pay",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A2",
+              "value": "E001",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B2",
+              "value": "Zhang Wei",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C2",
+              "value": "Engineering",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D2",
+              "value": "15000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E2",
+              "value": "3000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F2",
+              "value": "2000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "G2",
+              "value": "1800",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "H2",
+              "value": "1200",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "I2",
+              "value": "17000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A3",
+              "value": "E002",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B3",
+              "value": "Li Na",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C3",
+              "value": "Marketing",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D3",
+              "value": "12000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E3",
+              "value": "2500",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F3",
+              "value": "1500",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "G3",
+              "value": "1440",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "H3",
+              "value": "800",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "I3",
+              "value": "13760",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A4",
+              "value": "E003",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B4",
+              "value": "Wang Fang",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C4",
+              "value": "Sales",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D4",
+              "value": "10000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E4",
+              "value": "2000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F4",
+              "value": "4500",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "G4",
+              "value": "1200",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "H4",
+              "value": "900",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "I4",
+              "value": "14400",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A5",
+              "value": "E004",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B5",
+              "value": "Chen Ming",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C5",
+              "value": "Engineering",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D5",
+              "value": "18000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E5",
+              "value": "4000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F5",
+              "value": "3000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "G5",
+              "value": "2160",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "H5",
+              "value": "1800",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "I5",
+              "value": "21040",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A6",
+              "value": "E005",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B6",
+              "value": "Liu Yang",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C6",
+              "value": "HR",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D6",
+              "value": "11000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E6",
+              "value": "2000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F6",
+              "value": "1000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "G6",
+              "value": "1320",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "H6",
+              "value": "700",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "I6",
+              "value": "11980",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A7",
+              "value": "E006",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B7",
+              "value": "Zhao Jing",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C7",
+              "value": "Finance",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D7",
+              "value": "14000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E7",
+              "value": "3000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F7",
+              "value": "1800",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "G7",
+              "value": "1680",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "H7",
+              "value": "1100",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "I7",
+              "value": "16020",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A8",
+              "value": "E007",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B8",
+              "value": "Sun Lei",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C8",
+              "value": "Engineering",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D8",
+              "value": "16000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E8",
+              "value": "3500",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F8",
+              "value": "2500",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "G8",
+              "value": "1920",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "H8",
+              "value": "1400",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "I8",
+              "value": "18680",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A9",
+              "value": "E008",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B9",
+              "value": "Xu Ting",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C9",
+              "value": "Design",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D9",
+              "value": "13000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E9",
+              "value": "2500",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F9",
+              "value": "1500",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "G9",
+              "value": "1560",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "H9",
+              "value": "950",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "I9",
+              "value": "14490",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A10",
+              "value": "E009",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B10",
+              "value": "Huang Bo",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C10",
+              "value": "Sales",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D10",
+              "value": "9500",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E10",
+              "value": "1500",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F10",
+              "value": "5000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "G10",
+              "value": "1140",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "H10",
+              "value": "850",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "I10",
+              "value": "14010",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A11",
+              "value": "E010",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B11",
+              "value": "Ma Yun",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C11",
+              "value": "Management",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D11",
+              "value": "25000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E11",
+              "value": "5000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F11",
+              "value": "5000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "G11",
+              "value": "3000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "H11",
+              "value": "3500",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "I11",
+              "value": "28500",
+              "value_type": "float"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "Sheet1!I11",
+        "key": null,
+        "expected": "28500"
+      }
+    },
+    "initial_state": "default",
+    "category": "realwork_hard",
+    "source_task_id": "libreoffice_19",
+    "workflow_complexity": {
+      "meaningful_actions": 1,
+      "suite_family": "office_diagrams",
+      "copied_from_main_benchmark": true
+    }
+  },
+  "gui_expectations": {
+    "success_surface": "spreadsheet",
+    "visible_change_summary": "Create a payroll sheet with columns (ID, Name, Department, Base Salary, Position Allowance, Performance Bonus, Insurance, Tax, Net Pay). Use any realistic sample data for exactly 10 complete employee rows. Keep IDs non-empty and unique. Use non-negative numeric values in the salary-related columns. Net Pay should equal Base Salary + Position Allowance + Performance Bonus - Insurance - Tax for each row.",
+    "checkpoint_visibility": {
+      "libreoffice_19_headers": "visible_in_sheet",
+      "libreoffice_19_rows": "visible_in_sheet",
+      "libreoffice_19_unique_ids": "visible_in_sheet",
+      "libreoffice_19_text_cols": "visible_in_sheet",
+      "libreoffice_19_numeric_cols": "visible_in_sheet",
+      "libreoffice_19_net_pay_relation": "visible_in_sheet"
+    }
+  },
+  "difficulty": "complex",
+  "description": "Hard-suite variant of libreoffice_19: Create a payroll sheet: columns (ID, Name, Department, Base Salary, Position Allowance, Performance Bonus, Insurance, Tax, Net Pay) for 10 employees",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{ods_path}}",
+      "params": {
+        "operations": [
+          {
+            "sheet": "Sheet1",
+            "cell": "A1",
+            "value": "ID",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "B1",
+            "value": "Name",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "C1",
+            "value": "Department",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "D1",
+            "value": "Base Salary",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "E1",
+            "value": "Position Allowance",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "F1",
+            "value": "Performance Bonus",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "G1",
+            "value": "Insurance",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "H1",
+            "value": "Tax",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "I1",
+            "value": "Net Pay",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "A2",
+            "value": "E001",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "B2",
+            "value": "Zhang Wei",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "C2",
+            "value": "Engineering",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "D2",
+            "value": "15000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "E2",
+            "value": "3000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "F2",
+            "value": "2000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "G2",
+            "value": "1800",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "H2",
+            "value": "1200",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "I2",
+            "value": "17000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "A3",
+            "value": "E002",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "B3",
+            "value": "Li Na",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "C3",
+            "value": "Marketing",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "D3",
+            "value": "12000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "E3",
+            "value": "2500",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "F3",
+            "value": "1500",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "G3",
+            "value": "1440",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "H3",
+            "value": "800",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "I3",
+            "value": "13760",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "A4",
+            "value": "E003",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "B4",
+            "value": "Wang Fang",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "C4",
+            "value": "Sales",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "D4",
+            "value": "10000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "E4",
+            "value": "2000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "F4",
+            "value": "4500",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "G4",
+            "value": "1200",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "H4",
+            "value": "900",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "I4",
+            "value": "14400",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "A5",
+            "value": "E004",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "B5",
+            "value": "Chen Ming",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "C5",
+            "value": "Engineering",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "D5",
+            "value": "18000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "E5",
+            "value": "4000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "F5",
+            "value": "3000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "G5",
+            "value": "2160",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "H5",
+            "value": "1800",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "I5",
+            "value": "21040",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "A6",
+            "value": "E005",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "B6",
+            "value": "Liu Yang",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "C6",
+            "value": "HR",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "D6",
+            "value": "11000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "E6",
+            "value": "2000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "F6",
+            "value": "1000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "G6",
+            "value": "1320",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "H6",
+            "value": "700",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "I6",
+            "value": "11980",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "A7",
+            "value": "E006",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "B7",
+            "value": "Zhao Jing",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "C7",
+            "value": "Finance",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "D7",
+            "value": "14000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "E7",
+            "value": "3000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "F7",
+            "value": "1800",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "G7",
+            "value": "1680",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "H7",
+            "value": "1100",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "I7",
+            "value": "16020",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "A8",
+            "value": "E007",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "B8",
+            "value": "Sun Lei",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "C8",
+            "value": "Engineering",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "D8",
+            "value": "16000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "E8",
+            "value": "3500",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "F8",
+            "value": "2500",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "G8",
+            "value": "1920",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "H8",
+            "value": "1400",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "I8",
+            "value": "18680",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "A9",
+            "value": "E008",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "B9",
+            "value": "Xu Ting",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "C9",
+            "value": "Design",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "D9",
+            "value": "13000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "E9",
+            "value": "2500",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "F9",
+            "value": "1500",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "G9",
+            "value": "1560",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "H9",
+            "value": "950",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "I9",
+            "value": "14490",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "A10",
+            "value": "E009",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "B10",
+            "value": "Huang Bo",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "C10",
+            "value": "Sales",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "D10",
+            "value": "9500",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "E10",
+            "value": "1500",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "F10",
+            "value": "5000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "G10",
+            "value": "1140",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "H10",
+            "value": "850",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "I10",
+            "value": "14010",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "A11",
+            "value": "E010",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "B11",
+            "value": "Ma Yun",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "C11",
+            "value": "Management",
+            "value_type": "string"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "D11",
+            "value": "25000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "E11",
+            "value": "5000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "F11",
+            "value": "5000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "G11",
+            "value": "3000",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "H11",
+            "value": "3500",
+            "value_type": "float"
+          },
+          {
+            "sheet": "Sheet1",
+            "cell": "I11",
+            "value": "28500",
+            "value_type": "float"
+          }
+        ]
+      }
+    }
+  ]
+}

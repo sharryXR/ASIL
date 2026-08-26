@@ -1,0 +1,94 @@
+{
+  "id": "drawio_03",
+  "software": "drawio",
+  "difficulty": "simple",
+  "description": "Add a Pending step below Review.",
+  "instruction": "Add a rectangle Pending at x=300 y=280 width=150 height=80 with fill #e0f2fe and stroke #0284c7.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "diagram",
+      "params": {
+        "operations": [
+          {
+            "action": "add_shape",
+            "id": "pending",
+            "label": "Pending",
+            "shape_kind": "rectangle",
+            "x": 300,
+            "y": 280,
+            "width": 150,
+            "height": 80,
+            "fill": "#e0f2fe",
+            "stroke": "#0284c7"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "drawio"
+  ],
+  "snapshot": "drawio_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "diagram_canvas",
+    "visible_change_summary": "A new Pending rectangle appears below Review.",
+    "checkpoint_visibility": {
+      "pending_shape": "visible_on_diagram"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "pending_shape",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:pending",
+                "key": "label",
+                "expected": "Pending"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "drawio",
+    "difficulty": "simple",
+    "description": "Add a Pending step below Review.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "diagram",
+        "params": {
+          "operations": [
+            {
+              "action": "add_shape",
+              "id": "pending",
+              "label": "Pending",
+              "shape_kind": "rectangle",
+              "x": 300,
+              "y": 280,
+              "width": 150,
+              "height": 80,
+              "fill": "#e0f2fe",
+              "stroke": "#0284c7"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

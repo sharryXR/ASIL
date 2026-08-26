@@ -1,0 +1,51 @@
+# Sensitive files
+.env
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Testing / caches
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+
+# Results (regenerable)
+results.json
+results/
+release/build/
+release/arxiv/
+.worktrees/
+
+# Managed parallel task-set shards
+evaluation_examples/.generated/
+evaluation_examples/.generated*.json
+
+# Singularity build/runtime outputs
+singularity/images/
+singularity/*.sif
+results/.singularity-runtime/
+
+# Large release artifacts belong on Hugging Face/Zenodo, not in git
+*.sif
+*.sif.gz
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.tar.gz
+*.zip
+*.parquet

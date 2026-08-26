@@ -1,0 +1,66 @@
+{
+  "id": "blender_13",
+  "instruction": "Set render engine to EEVEE",
+  "source": "asil_benchmark_v1",
+  "snapshot": "blender_default_scene",
+  "config": [],
+  "related_apps": [
+    "blender"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+      "path_id": "blender_13_primary_path",
+      "exclusive_group": "success_paths",
+      "checkpoints": [
+        {
+          "id": "render_engine_eevee",
+          "weight": 1.0,
+          "gui_visible_required": true,
+          "rule": {
+            "render_setting": {
+              "key": "engine",
+              "expected": "BLENDER_EEVEE"
+            }
+          }
+        }
+      ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "blender",
+    "difficulty": "medium",
+    "description": "Set render engine to EEVEE",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "bpy",
+        "params": {
+          "script": [
+            "import bpy",
+            "bpy.context.scene.render.engine = 'BLENDER_EEVEE'"
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "render_setting": {
+        "key": "engine",
+        "expected": "BLENDER_EEVEE"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "render_properties",
+    "visible_change_summary": "The Render Properties panel shows EEVEE as the active engine.",
+    "checkpoint_visibility": {
+      "render_engine_eevee": "visible_in_render_properties"
+    }
+  }
+}

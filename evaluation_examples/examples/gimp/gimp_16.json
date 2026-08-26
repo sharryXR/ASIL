@@ -1,0 +1,256 @@
+{
+  "id": "gimp_16",
+  "software": "gimp",
+  "difficulty": "complex",
+  "description": "Create a two-layer sale sticker.",
+  "instruction": "On a blank canvas, add a red ellipse Sale Sticker at x=120 y=120 width=180 height=180 fill #cc4444, add a white text layer Sticker Copy with text \"SALE\" at x=162 y=188 font size 40, then update the ellipse opacity to 0.8.",
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_layer",
+            "id": "sale_sticker",
+            "label": "Sale Sticker",
+            "kind": "ellipse",
+            "x": 120,
+            "y": 120,
+            "width": 180,
+            "height": 180,
+            "fill": "#cc4444"
+          },
+          {
+            "action": "add_text_layer",
+            "id": "sticker_copy",
+            "label": "Sticker Copy",
+            "text": "SALE",
+            "x": 162,
+            "y": 188,
+            "font_size": 40,
+            "color": "#ffffff"
+          },
+          {
+            "action": "update_layer",
+            "id": "sale_sticker",
+            "changes": {
+              "opacity": 0.8
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "gimp"
+  ],
+  "snapshot": "gimp_default",
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "A semi-transparent red sale sticker with white SALE text appears.",
+    "checkpoint_visibility": {
+      "sticker_fill": "visible_on_canvas",
+      "sticker_x": "visible_on_canvas",
+      "sticker_y": "visible_on_canvas",
+      "sticker_width": "visible_on_canvas",
+      "sticker_height": "visible_on_canvas",
+      "sticker_opacity": "visible_on_canvas",
+      "sticker_text": "visible_on_canvas",
+      "sticker_text_x": "visible_on_canvas",
+      "sticker_text_y": "visible_on_canvas",
+      "sticker_text_font": "visible_on_canvas",
+      "sticker_text_color": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "sticker_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "sale_sticker",
+                "key": "fill",
+                "expected": "#cc4444"
+              }
+            }
+          },
+          {
+            "id": "sticker_x",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "sale_sticker",
+                "key": "x",
+                "expected": 120
+              }
+            }
+          },
+          {
+            "id": "sticker_y",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "sale_sticker",
+                "key": "y",
+                "expected": 120
+              }
+            }
+          },
+          {
+            "id": "sticker_width",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "sale_sticker",
+                "key": "width",
+                "expected": 180
+              }
+            }
+          },
+          {
+            "id": "sticker_height",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "sale_sticker",
+                "key": "height",
+                "expected": 180
+              }
+            }
+          },
+          {
+            "id": "sticker_opacity",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "sale_sticker",
+                "key": "opacity",
+                "expected": 0.8
+              }
+            }
+          },
+          {
+            "id": "sticker_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "sticker_copy",
+                "key": "text",
+                "expected": "SALE"
+              }
+            }
+          },
+          {
+            "id": "sticker_text_x",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "sticker_copy",
+                "key": "x",
+                "expected": 162
+              }
+            }
+          },
+          {
+            "id": "sticker_text_y",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "sticker_copy",
+                "key": "y",
+                "expected": 188
+              }
+            }
+          },
+          {
+            "id": "sticker_text_font",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "sticker_copy",
+                "key": "font_size",
+                "expected": 40
+              }
+            }
+          },
+          {
+            "id": "sticker_text_color",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "sticker_copy",
+                "key": "color",
+                "expected": "#ffffff"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "complex",
+    "description": "Create a two-layer sale sticker.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_layer",
+              "id": "sale_sticker",
+              "label": "Sale Sticker",
+              "kind": "ellipse",
+              "x": 120,
+              "y": 120,
+              "width": 180,
+              "height": 180,
+              "fill": "#cc4444"
+            },
+            {
+              "action": "add_text_layer",
+              "id": "sticker_copy",
+              "label": "Sticker Copy",
+              "text": "SALE",
+              "x": 162,
+              "y": 188,
+              "font_size": 40,
+              "color": "#ffffff"
+            },
+            {
+              "action": "update_layer",
+              "id": "sale_sticker",
+              "changes": {
+                "opacity": 0.8
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank"
+  }
+}

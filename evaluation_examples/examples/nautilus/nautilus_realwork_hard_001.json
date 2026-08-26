@@ -1,0 +1,133 @@
+{
+  "id": "nautilus_realwork_hard_001",
+  "instruction": "Rename `todo.txt` to `sprint-todo.txt` and copy `Inbox/june-notes.txt` to the Home view.",
+  "source": "asil_realwork_hard_mixed_v2",
+  "snapshot": "nautilus_workspace_default",
+  "config": [],
+  "related_apps": [
+    "nautilus"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "nautilus_20_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "nautilus_20_renamed",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "directory_entry",
+                "value": {
+                  "path": "sprint-todo.txt"
+                }
+              }
+            }
+          },
+          {
+            "id": "nautilus_20_copied",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "directory_entry",
+                "value": {
+                  "path": "june-notes.txt"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "nautilus",
+    "difficulty": "complex",
+    "description": "Hard-suite variant of nautilus_20: Rename the Home todo file and copy a note from Inbox into Home.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "nautilus",
+        "params": {
+          "operations": [
+            {
+              "action": "rename_entry",
+              "path": "todo.txt",
+              "new_name": "sprint-todo.txt"
+            },
+            {
+              "action": "copy_entry",
+              "path": "Inbox/june-notes.txt",
+              "destination_dir": "."
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "any_element_matches": {
+            "type": "directory_entry",
+            "value": {
+              "path": "sprint-todo.txt"
+            }
+          }
+        },
+        {
+          "any_element_matches": {
+            "type": "directory_entry",
+            "value": {
+              "path": "june-notes.txt"
+            }
+          }
+        }
+      ]
+    },
+    "initial_state": "default",
+    "category": "realwork_hard",
+    "source_task_id": "nautilus_20",
+    "workflow_complexity": {
+      "meaningful_actions": 1,
+      "suite_family": "files_communication",
+      "copied_from_main_benchmark": true
+    }
+  },
+  "gui_expectations": {
+    "success_surface": "file_list",
+    "visible_change_summary": "Home shows sprint-todo.txt and a copied june-notes.txt file.",
+    "checkpoint_visibility": {
+      "nautilus_20_renamed": "visible_in_file_list",
+      "nautilus_20_copied": "visible_in_file_list"
+    }
+  },
+  "difficulty": "complex",
+  "description": "Hard-suite variant of nautilus_20: Rename the Home todo file and copy a note from Inbox into Home.",
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "nautilus",
+      "params": {
+        "operations": [
+          {
+            "action": "rename_entry",
+            "path": "todo.txt",
+            "new_name": "sprint-todo.txt"
+          },
+          {
+            "action": "copy_entry",
+            "path": "Inbox/june-notes.txt",
+            "destination_dir": "."
+          }
+        ]
+      }
+    }
+  ]
+}

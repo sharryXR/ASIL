@@ -1,0 +1,122 @@
+{
+  "id": "drawio_07",
+  "software": "drawio",
+  "difficulty": "medium",
+  "description": "Add a Reject branch.",
+  "instruction": "Add a rectangle Reject at x=520 y=280 fill #fee2e2, and connect Review to Reject with label rejected.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "diagram",
+      "params": {
+        "operations": [
+          {
+            "action": "add_shape",
+            "id": "reject",
+            "label": "Reject",
+            "shape_kind": "rectangle",
+            "x": 520,
+            "y": 280,
+            "width": 150,
+            "height": 80,
+            "fill": "#fee2e2",
+            "stroke": "#dc2626"
+          },
+          {
+            "action": "add_connector",
+            "id": "flow_reject",
+            "source": "review",
+            "target": "reject",
+            "label": "rejected",
+            "stroke": "#dc2626"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "drawio"
+  ],
+  "snapshot": "drawio_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "diagram_canvas",
+    "visible_change_summary": "A Reject branch appears below Review.",
+    "checkpoint_visibility": {
+      "reject": "visible_on_diagram",
+      "reject_flow": "visible_on_diagram"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "reject",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "shape:reject"
+            }
+          },
+          {
+            "id": "reject_flow",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Review",
+                  "target_label": "Reject",
+                  "label": "rejected"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "drawio",
+    "difficulty": "medium",
+    "description": "Add a Reject branch.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "diagram",
+        "params": {
+          "operations": [
+            {
+              "action": "add_shape",
+              "id": "reject",
+              "label": "Reject",
+              "shape_kind": "rectangle",
+              "x": 520,
+              "y": 280,
+              "width": 150,
+              "height": 80,
+              "fill": "#fee2e2",
+              "stroke": "#dc2626"
+            },
+            {
+              "action": "add_connector",
+              "id": "flow_reject",
+              "source": "review",
+              "target": "reject",
+              "label": "rejected",
+              "stroke": "#dc2626"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

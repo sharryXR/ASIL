@@ -1,0 +1,134 @@
+{
+  "software": "jupyterlab",
+  "supported_action_types": ["modify_file", "navigate"],
+  "target": "workspace",
+  "description": "Manipulates a notebook-first JupyterLab workspace with a left file browser, notebook cells, and basic text file editing. Use modify_file for edits and navigate to switch the active tab.",
+  "actions": [
+    {
+      "name": "modify_workspace",
+      "description": "Apply one or more JupyterLab workspace operations in sequence.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "open_file | create_file | set_file_text | append_text | replace_text | set_cell_source | set_cell_output | insert_cell | delete_cell | rename_path | delete_path",
+            "path": "relative/path/from/workspace",
+            "content": "new file contents",
+            "text": "text to append",
+            "old": "existing text",
+            "new": "replacement text",
+            "cell_index": "zero-based notebook cell index",
+            "source": "new notebook cell source",
+            "output": "visible cell output text",
+            "execution_count": "execution count shown for a code cell",
+            "cell_type": "markdown | code | raw",
+            "position": "zero-based insert position for a new notebook cell",
+            "new_path": "new/relative/path"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Open the main analysis notebook",
+          "action": {
+            "action_type": "modify_file",
+            "target": "workspace",
+            "params": {
+              "operations": [
+                {
+                  "action": "open_file",
+                  "path": "notebooks/analysis.ipynb"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Update a notebook code cell and visible output",
+          "action": {
+            "action_type": "modify_file",
+            "target": "workspace",
+            "params": {
+              "operations": [
+                {
+                  "action": "set_cell_source",
+                  "path": "notebooks/analysis.ipynb",
+                  "cell_index": 1,
+                  "source": "total = 21 * 2"
+                },
+                {
+                  "action": "set_cell_output",
+                  "path": "notebooks/analysis.ipynb",
+                  "cell_index": 1,
+                  "output": "42",
+                  "execution_count": 5
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Create and open a markdown note",
+          "action": {
+            "action_type": "modify_file",
+            "target": "workspace",
+            "params": {
+              "operations": [
+                {
+                  "action": "create_file",
+                  "path": "notes/findings.md",
+                  "content": "# Findings\n- Result is 42\n"
+                },
+                {
+                  "action": "open_file",
+                  "path": "notes/findings.md"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Insert a new markdown notebook cell",
+          "action": {
+            "action_type": "modify_file",
+            "target": "workspace",
+            "params": {
+              "operations": [
+                {
+                  "action": "insert_cell",
+                  "path": "notebooks/analysis.ipynb",
+                  "cell_type": "markdown",
+                  "source": "## Next Steps",
+                  "position": 2
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Switch tabs using navigate",
+          "action": {
+            "action_type": "navigate",
+            "target": "src/helpers.py",
+            "params": {}
+          }
+        }
+      ]
+    }
+  ],
+  "done_action": {
+    "description": "Return this action when the task is fully complete.",
+    "example": {
+      "action_type": "done",
+      "target": "",
+      "params": {}
+    }
+  },
+  "tips": [
+    "All paths are relative to the workspace root.",
+    "Open the file or notebook you want visible in the final JupyterLab state.",
+    "Notebook checkpoints can target either the notebook summary element or specific cell elements.",
+    "Use set_cell_output when the success condition depends on visible rendered output.",
+    "Treat notebook position values as zero-based indices unless the task text explicitly says otherwise.",
+    "Plain .py and .md files behave like simple text editors backed by the file browser."
+  ]
+}

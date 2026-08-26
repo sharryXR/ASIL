@@ -1,0 +1,93 @@
+{
+  "id": "gimp_10",
+  "software": "gimp",
+  "difficulty": "medium",
+  "description": "Resize the image to a smaller canvas.",
+  "instruction": "Resize the default image to width=320 and height=240.",
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "resize_image",
+            "width": 320,
+            "height": 240
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "gimp"
+  ],
+  "snapshot": "gimp_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "The document shrinks to a 320x240 canvas.",
+    "checkpoint_visibility": {
+      "canvas_width": "visible_on_canvas",
+      "canvas_height": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "canvas_width",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "image",
+                "key": "width",
+                "expected": 320
+              }
+            }
+          },
+          {
+            "id": "canvas_height",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "image",
+                "key": "height",
+                "expected": 240
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "medium",
+    "description": "Resize the image to a smaller canvas.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "resize_image",
+              "width": 320,
+              "height": 240
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

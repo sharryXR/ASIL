@@ -1,0 +1,213 @@
+{
+  "id": "inkscape_15",
+  "instruction": "Create a realistic traffic light graphic: a dark gray (#37474f) rounded rectangle frame (id=traffic_frame, 80x230, rx=16) at (360,80), 3 circular lights stacked vertically — red (id=light_red, fill=#f44336), yellow (id=light_yellow, fill=#ffeb3b), green (id=light_green, fill=#4caf50) — each with r=25, cx=400, spaced 76px apart starting at cy=148. Add a 'STOP' text label (id=stop_label) below in red when light_red is active.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_15_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_15_01",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "traffic_frame",
+                "key": "style",
+                "expected": "fill:#37474f"
+              }
+            }
+          },
+          {
+            "id": "inkscape_15_02",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "light_red",
+                "key": "style",
+                "expected": "fill:#f44336"
+              }
+            }
+          },
+          {
+            "id": "inkscape_15_03",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "light_yellow",
+                "key": "style",
+                "expected": "fill:#ffeb3b"
+              }
+            }
+          },
+          {
+            "id": "inkscape_15_04",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "light_green",
+                "key": "style",
+                "expected": "fill:#4caf50"
+              }
+            }
+          },
+          {
+            "id": "inkscape_15_05",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "stop_label",
+                "key": "text_content",
+                "expected": "STOP"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "medium",
+    "description": "Create a realistic traffic light graphic: a dark gray (#37474f) rounded rectangle frame (id=traffic_frame, 80x230, rx=16) at (360,80), 3 circular lights stacked vertically — red (id=light_red, fill=#f44336), yellow (id=light_yellow, fill=#ffeb3b), green (id=light_green, fill=#4caf50) — each with r=25, cx=400, spaced 76px apart starting at cy=148. Add a 'STOP' text label (id=stop_label) below in red when light_red is active.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "rect",
+              "attributes": {
+                "id": "traffic_frame",
+                "x": "360",
+                "y": "80",
+                "width": "80",
+                "height": "230",
+                "rx": "16",
+                "ry": "16",
+                "style": "fill:#37474f"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "circle",
+              "attributes": {
+                "id": "light_red",
+                "cx": "400",
+                "cy": "148",
+                "r": "25",
+                "style": "fill:#f44336"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "circle",
+              "attributes": {
+                "id": "light_yellow",
+                "cx": "400",
+                "cy": "224",
+                "r": "25",
+                "style": "fill:#ffeb3b"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "circle",
+              "attributes": {
+                "id": "light_green",
+                "cx": "400",
+                "cy": "300",
+                "r": "25",
+                "style": "fill:#4caf50"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "text",
+              "attributes": {
+                "id": "stop_label",
+                "x": "400",
+                "y": "340",
+                "style": "font-size:14px;fill:#f44336;text-anchor:middle;font-family:sans-serif;font-weight:bold",
+                "text_content": "STOP"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "traffic_frame",
+            "key": "style",
+            "expected": "fill:#37474f"
+          }
+        },
+        {
+          "element_value": {
+            "id": "light_red",
+            "key": "style",
+            "expected": "fill:#f44336"
+          }
+        },
+        {
+          "element_value": {
+            "id": "light_yellow",
+            "key": "style",
+            "expected": "fill:#ffeb3b"
+          }
+        },
+        {
+          "element_value": {
+            "id": "light_green",
+            "key": "style",
+            "expected": "fill:#4caf50"
+          }
+        },
+        {
+          "element_value": {
+            "id": "stop_label",
+            "key": "text_content",
+            "expected": "STOP"
+          }
+        }
+      ]
+    },
+    "initial_state": "blank"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Create a traffic light with three stacked lights and a red STOP label.",
+    "checkpoint_visibility": {
+      "inkscape_15_01": "visible_on_canvas",
+      "inkscape_15_02": "visible_on_canvas",
+      "inkscape_15_03": "visible_on_canvas",
+      "inkscape_15_04": "visible_on_canvas",
+      "inkscape_15_05": "visible_on_canvas"
+    }
+  }
+}

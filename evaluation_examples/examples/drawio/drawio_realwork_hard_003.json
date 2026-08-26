@@ -1,0 +1,437 @@
+{
+  "id": "drawio_realwork_hard_003",
+  "software": "drawio",
+  "difficulty": "complex",
+  "description": "Hard-suite variant of drawio_20: Create a six-node release planning diagram.",
+  "instruction": "On a blank canvas, add Idea, Draft, Review, Approve, Release, and Measure with connectors in sequence from Idea to Measure.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "diagram",
+      "params": {
+        "operations": [
+          {
+            "action": "add_shape",
+            "id": "idea",
+            "label": "Idea",
+            "shape_kind": "ellipse",
+            "x": 40,
+            "y": 220,
+            "width": 110,
+            "height": 70,
+            "fill": "#dbeafe",
+            "stroke": "#2563eb"
+          },
+          {
+            "action": "add_shape",
+            "id": "draft",
+            "label": "Draft",
+            "shape_kind": "rectangle",
+            "x": 200,
+            "y": 210,
+            "width": 130,
+            "height": 80,
+            "fill": "#e0f2fe",
+            "stroke": "#0284c7"
+          },
+          {
+            "action": "add_shape",
+            "id": "review",
+            "label": "Review",
+            "shape_kind": "rectangle",
+            "x": 380,
+            "y": 210,
+            "width": 140,
+            "height": 80,
+            "fill": "#fef3c7",
+            "stroke": "#d97706"
+          },
+          {
+            "action": "add_shape",
+            "id": "approve",
+            "label": "Approve",
+            "shape_kind": "rectangle",
+            "x": 570,
+            "y": 210,
+            "width": 150,
+            "height": 80,
+            "fill": "#dcfce7",
+            "stroke": "#16a34a"
+          },
+          {
+            "action": "add_shape",
+            "id": "release",
+            "label": "Release",
+            "shape_kind": "rectangle",
+            "x": 770,
+            "y": 210,
+            "width": 150,
+            "height": 80,
+            "fill": "#ede9fe",
+            "stroke": "#7c3aed"
+          },
+          {
+            "action": "add_shape",
+            "id": "measure",
+            "label": "Measure",
+            "shape_kind": "rectangle",
+            "x": 980,
+            "y": 210,
+            "width": 150,
+            "height": 80,
+            "fill": "#fee2e2",
+            "stroke": "#dc2626"
+          },
+          {
+            "action": "add_connector",
+            "id": "r1",
+            "source": "idea",
+            "target": "draft",
+            "label": "capture"
+          },
+          {
+            "action": "add_connector",
+            "id": "r2",
+            "source": "draft",
+            "target": "review",
+            "label": "share"
+          },
+          {
+            "action": "add_connector",
+            "id": "r3",
+            "source": "review",
+            "target": "approve",
+            "label": "ready"
+          },
+          {
+            "action": "add_connector",
+            "id": "r4",
+            "source": "approve",
+            "target": "release",
+            "label": "go"
+          },
+          {
+            "action": "add_connector",
+            "id": "r5",
+            "source": "release",
+            "target": "measure",
+            "label": "observe"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "drawio"
+  ],
+  "snapshot": "drawio_default",
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "diagram_canvas",
+    "visible_change_summary": "A six-node release planning flow stretches across the diagram.",
+    "checkpoint_visibility": {
+      "idea": "visible_on_diagram",
+      "draft": "visible_on_diagram",
+      "review": "visible_on_diagram",
+      "approve": "visible_on_diagram",
+      "release": "visible_on_diagram",
+      "measure": "visible_on_diagram",
+      "r1": "visible_on_diagram",
+      "r2": "visible_on_diagram",
+      "r3": "visible_on_diagram",
+      "r4": "visible_on_diagram",
+      "r5": "visible_on_diagram"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "idea",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:idea",
+                "key": "label",
+                "expected": "Idea"
+              }
+            }
+          },
+          {
+            "id": "draft",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:draft",
+                "key": "label",
+                "expected": "Draft"
+              }
+            }
+          },
+          {
+            "id": "review",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:review",
+                "key": "label",
+                "expected": "Review"
+              }
+            }
+          },
+          {
+            "id": "approve",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:approve",
+                "key": "label",
+                "expected": "Approve"
+              }
+            }
+          },
+          {
+            "id": "release",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:release",
+                "key": "label",
+                "expected": "Release"
+              }
+            }
+          },
+          {
+            "id": "measure",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:measure",
+                "key": "label",
+                "expected": "Measure"
+              }
+            }
+          },
+          {
+            "id": "r1",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Idea",
+                  "target_label": "Draft",
+                  "label": "capture"
+                }
+              }
+            }
+          },
+          {
+            "id": "r2",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Draft",
+                  "target_label": "Review",
+                  "label": "share"
+                }
+              }
+            }
+          },
+          {
+            "id": "r3",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Review",
+                  "target_label": "Approve",
+                  "label": "ready"
+                }
+              }
+            }
+          },
+          {
+            "id": "r4",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Approve",
+                  "target_label": "Release",
+                  "label": "go"
+                }
+              }
+            }
+          },
+          {
+            "id": "r5",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Release",
+                  "target_label": "Measure",
+                  "label": "observe"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "drawio",
+    "difficulty": "complex",
+    "description": "Hard-suite variant of drawio_20: Create a six-node release planning diagram.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "diagram",
+        "params": {
+          "operations": [
+            {
+              "action": "add_shape",
+              "id": "idea",
+              "label": "Idea",
+              "shape_kind": "ellipse",
+              "x": 40,
+              "y": 220,
+              "width": 110,
+              "height": 70,
+              "fill": "#dbeafe",
+              "stroke": "#2563eb"
+            },
+            {
+              "action": "add_shape",
+              "id": "draft",
+              "label": "Draft",
+              "shape_kind": "rectangle",
+              "x": 200,
+              "y": 210,
+              "width": 130,
+              "height": 80,
+              "fill": "#e0f2fe",
+              "stroke": "#0284c7"
+            },
+            {
+              "action": "add_shape",
+              "id": "review",
+              "label": "Review",
+              "shape_kind": "rectangle",
+              "x": 380,
+              "y": 210,
+              "width": 140,
+              "height": 80,
+              "fill": "#fef3c7",
+              "stroke": "#d97706"
+            },
+            {
+              "action": "add_shape",
+              "id": "approve",
+              "label": "Approve",
+              "shape_kind": "rectangle",
+              "x": 570,
+              "y": 210,
+              "width": 150,
+              "height": 80,
+              "fill": "#dcfce7",
+              "stroke": "#16a34a"
+            },
+            {
+              "action": "add_shape",
+              "id": "release",
+              "label": "Release",
+              "shape_kind": "rectangle",
+              "x": 770,
+              "y": 210,
+              "width": 150,
+              "height": 80,
+              "fill": "#ede9fe",
+              "stroke": "#7c3aed"
+            },
+            {
+              "action": "add_shape",
+              "id": "measure",
+              "label": "Measure",
+              "shape_kind": "rectangle",
+              "x": 980,
+              "y": 210,
+              "width": 150,
+              "height": 80,
+              "fill": "#fee2e2",
+              "stroke": "#dc2626"
+            },
+            {
+              "action": "add_connector",
+              "id": "r1",
+              "source": "idea",
+              "target": "draft",
+              "label": "capture"
+            },
+            {
+              "action": "add_connector",
+              "id": "r2",
+              "source": "draft",
+              "target": "review",
+              "label": "share"
+            },
+            {
+              "action": "add_connector",
+              "id": "r3",
+              "source": "review",
+              "target": "approve",
+              "label": "ready"
+            },
+            {
+              "action": "add_connector",
+              "id": "r4",
+              "source": "approve",
+              "target": "release",
+              "label": "go"
+            },
+            {
+              "action": "add_connector",
+              "id": "r5",
+              "source": "release",
+              "target": "measure",
+              "label": "observe"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank",
+    "category": "realwork_hard",
+    "source_task_id": "drawio_20",
+    "workflow_complexity": {
+      "meaningful_actions": 1,
+      "suite_family": "office_diagrams",
+      "copied_from_main_benchmark": true
+    }
+  },
+  "source": "asil_realwork_hard_mixed_v2"
+}

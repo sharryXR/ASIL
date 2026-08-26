@@ -1,0 +1,97 @@
+{
+  "id": "code_server_06",
+  "software": "code_server",
+  "difficulty": "medium",
+  "description": "Create a launch banner text file.",
+  "instruction": "Create src/banner.txt with the content \"Launch Day\nAll systems go.\n\" and open it.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {
+            "action": "create_file",
+            "path": "src/banner.txt",
+            "content": "Launch Day\nAll systems go.\n"
+          },
+          {
+            "action": "open_file",
+            "path": "src/banner.txt"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "code_server"
+  ],
+  "snapshot": "code_server_default",
+  "initial_state": "src_focus",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "A new banner.txt file is created and visible in the editor.",
+    "checkpoint_visibility": {
+      "file_exists": "visible_in_editor",
+      "content": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "file_exists",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "file:src/banner.txt"
+            }
+          },
+          {
+            "id": "content",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "editor:src/banner.txt",
+                "key": "content",
+                "expected": "All systems go."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "code_server",
+    "difficulty": "medium",
+    "description": "Create a launch banner text file.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {
+              "action": "create_file",
+              "path": "src/banner.txt",
+              "content": "Launch Day\nAll systems go.\n"
+            },
+            {
+              "action": "open_file",
+              "path": "src/banner.txt"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "src_focus"
+  }
+}

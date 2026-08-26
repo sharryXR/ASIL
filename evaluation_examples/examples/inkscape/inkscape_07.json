@@ -1,0 +1,100 @@
+{
+  "id": "inkscape_07",
+  "instruction": "Move rect2 to position (50, 50)",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_07_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_07_1",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "rect2",
+                "key": "x",
+                "expected": "50"
+              }
+            }
+          },
+          {
+            "id": "inkscape_07_2",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "rect2",
+                "key": "y",
+                "expected": "50"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "medium",
+    "description": "Move rect2 to position (50, 50)",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "xpath": "//*[@id='rect2']",
+              "attribute": "x",
+              "value": "50"
+            },
+            {
+              "xpath": "//*[@id='rect2']",
+              "attribute": "y",
+              "value": "50"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "rect2",
+            "key": "x",
+            "expected": "50"
+          }
+        },
+        {
+          "element_value": {
+            "id": "rect2",
+            "key": "y",
+            "expected": "50"
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Move rect2 to (50, 50).",
+    "checkpoint_visibility": {
+      "inkscape_07_1": "visible_on_canvas",
+      "inkscape_07_2": "visible_on_canvas"
+    }
+  }
+}

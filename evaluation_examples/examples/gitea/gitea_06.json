@@ -1,0 +1,102 @@
+{
+  "id": "gitea_06",
+  "instruction": "Create a pull request from 'feature/login-fix' to 'main'",
+  "source": "asil_benchmark_v1",
+  "snapshot": "gitea_instance_default",
+  "config": [],
+  "related_apps": [
+    "gitea"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "gitea_06_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "gitea_06_1",
+            "weight": 0.3333333333333333,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_contains": {
+                "type": "pull_request",
+                "key": "head",
+                "expected": "feature/login-fix"
+              }
+            }
+          },
+          {
+            "id": "gitea_06_2",
+            "weight": 0.3333333333333333,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_contains": {
+                "type": "pull_request",
+                "key": "base",
+                "expected": "main"
+              }
+            }
+          },
+          {
+            "id": "gitea_06_3",
+            "weight": 0.3333333333333333,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_value": {
+                "type": "pull_request",
+                "key": "state",
+                "expected": "open"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gitea",
+    "difficulty": "medium",
+    "description": "Create a pull request from 'feature/login-fix' to 'main'",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/pulls",
+          "body": {
+            "title": "Fix login on mobile",
+            "body": "This PR resolves the mobile login bug reported in issue #1.",
+            "head": "feature/login-fix",
+            "base": "main"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_contains": {
+            "id": "pr:1",
+            "key": "head",
+            "expected": "feature/login-fix"
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "web_page",
+    "visible_change_summary": "Create a pull request from 'feature/login-fix' to 'main'",
+    "checkpoint_visibility": {
+      "gitea_06_1": "visible_on_web_page",
+      "gitea_06_2": "visible_on_web_page",
+      "gitea_06_3": "visible_on_web_page"
+    }
+  }
+}

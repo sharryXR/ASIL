@@ -1,0 +1,106 @@
+{
+  "id": "blender_09",
+  "instruction": "Create a scene with cube, sphere, plane, camera, and sun light",
+  "source": "asil_benchmark_v1",
+  "snapshot": "blender_default_scene",
+  "config": [],
+  "related_apps": [
+    "blender"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "blender_09_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "three_mesh_objects",
+            "weight": 0.4,
+            "gui_visible_required": true,
+            "rule": {
+              "count_elements_matching": {
+                "type": "mesh",
+                "expected": 3
+              }
+            }
+          },
+          {
+            "id": "one_camera",
+            "weight": 0.3,
+            "gui_visible_required": true,
+            "rule": {
+              "count_elements_matching": {
+                "type": "camera",
+                "expected": 1
+              }
+            }
+          },
+          {
+            "id": "one_sun_light",
+            "weight": 0.3,
+            "gui_visible_required": true,
+            "rule": {
+              "count_elements_matching": {
+                "type": "light",
+                "value": {
+                  "light_type": "SUN"
+                },
+                "expected": 1
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "blender",
+    "difficulty": "complex",
+    "description": "Create a scene with cube, sphere, plane, camera, and sun light",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "bpy",
+        "params": {
+          "script": [
+            "import bpy",
+            "bpy.ops.object.select_all(action='SELECT')",
+            "bpy.ops.object.delete()",
+            "bpy.ops.mesh.primitive_plane_add(size=10, location=(0, 0, 0))",
+            "bpy.ops.mesh.primitive_cube_add(location=(0, 0, 1))",
+            "bpy.ops.mesh.primitive_uv_sphere_add(location=(3, 0, 1))",
+            "bpy.ops.object.camera_add(location=(7, -7, 5))",
+            "cam = bpy.context.object",
+            "cam.rotation_euler = (1.1, 0, 0.785)",
+            "bpy.context.scene.camera = cam",
+            "bpy.ops.object.light_add(type='SUN', location=(5, 5, 10))"
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "object_type_exists": "CAMERA"
+    },
+    "initial_state": "blank"
+  },
+  "gui_expectations": {
+    "success_surface": "viewport",
+    "visible_change_summary": "Create a scene with cube, sphere, plane, camera, and sun light",
+    "checkpoint_visibility": {
+      "floor_plane_exists": "visible_in_viewport",
+      "floor_plane_at_origin": "visible_in_viewport",
+      "cube_at_center": "visible_in_viewport",
+      "sphere_at_position": "visible_in_viewport",
+      "camera_position": "visible_in_viewport",
+      "sun_light_position": "visible_in_viewport",
+      "scene_object_count_5": "visible_in_viewport",
+      "three_mesh_objects": "visible_in_viewport",
+      "one_camera": "visible_in_viewport",
+      "one_sun_light": "visible_in_viewport"
+    }
+  }
+}

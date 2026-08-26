@@ -1,0 +1,77 @@
+{
+  "id": "libreoffice_writer_05",
+  "software": "libreoffice_writer",
+  "difficulty": "simple",
+  "description": "Append a heading \"Milestones\" and a paragraph \"Prototype review on May 3.\".",
+  "instruction": "Append a heading \"Milestones\" and a paragraph \"Prototype review on May 3.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odt_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "add_heading",
+            "text": "Milestones",
+            "level": 2
+          },
+          {
+            "action": "add_paragraph",
+            "text": "Prototype review on May 3."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "snapshot": "writer_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "document_page",
+    "visible_change_summary": "A Milestones heading and a review paragraph appear near the end of the document.",
+    "checkpoint_visibility": {
+      "heading_added": "visible_on_page",
+      "paragraph_added": "visible_on_page"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "heading_added",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "heading",
+                "value": {
+                  "text_content": "Milestones"
+                }
+              }
+            }
+          },
+          {
+            "id": "paragraph_added",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "paragraph",
+                "value": {
+                  "text_content": "Prototype review on May 3."
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

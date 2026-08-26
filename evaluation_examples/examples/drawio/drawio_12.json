@@ -1,0 +1,91 @@
+{
+  "id": "drawio_12",
+  "software": "drawio",
+  "difficulty": "medium",
+  "description": "Delete Review and its incoming connector.",
+  "instruction": "Delete the Review shape and the submit connector flow_1.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "diagram",
+      "params": {
+        "operations": [
+          {
+            "action": "delete_element",
+            "id": "review"
+          },
+          {
+            "action": "delete_element",
+            "id": "flow_1"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "drawio"
+  ],
+  "snapshot": "drawio_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "diagram_canvas",
+    "visible_change_summary": "The Review node and incoming connector are removed.",
+    "checkpoint_visibility": {
+      "review_removed": "visible_on_diagram",
+      "flow_removed": "visible_on_diagram"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "review_removed",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_not_exists": "shape:review"
+            }
+          },
+          {
+            "id": "flow_removed",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_not_exists": "connector:flow_1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "drawio",
+    "difficulty": "medium",
+    "description": "Delete Review and its incoming connector.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "diagram",
+        "params": {
+          "operations": [
+            {
+              "action": "delete_element",
+              "id": "review"
+            },
+            {
+              "action": "delete_element",
+              "id": "flow_1"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

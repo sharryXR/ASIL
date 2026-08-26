@@ -1,0 +1,88 @@
+{
+  "id": "gitea_02",
+  "instruction": "Create an issue titled 'Bug: login fails on mobile'",
+  "source": "asil_benchmark_v1",
+  "snapshot": "gitea_instance_default",
+  "config": [],
+  "related_apps": [
+    "gitea"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "gitea_02_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "gitea_02_1",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "issue:1",
+                "key": "title",
+                "expected": "Bug: login fails on mobile"
+              }
+            }
+          },
+          {
+            "id": "gitea_02_2",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "issue:1",
+                "key": "body",
+                "expected": "Users report that logging in via mobile browser results in a 500 error."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gitea",
+    "difficulty": "simple",
+    "description": "Create an issue titled 'Bug: login fails on mobile'",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+          "body": {
+            "title": "Bug: login fails on mobile",
+            "body": "Users report that logging in via mobile browser results in a 500 error.",
+            "type": "issue"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_contains": {
+            "id": "issue:1",
+            "key": "title",
+            "expected": "Bug: login fails on mobile"
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "web_page",
+    "visible_change_summary": "Create an issue titled 'Bug: login fails on mobile'",
+    "checkpoint_visibility": {
+      "gitea_02_1": "visible_on_web_page",
+      "gitea_02_2": "visible_on_web_page"
+    }
+  }
+}

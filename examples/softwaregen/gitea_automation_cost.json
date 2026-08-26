@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "software_id": "gitea",
+  "measured_on": "2026-07-11",
+  "scope": "One qualified, evidence-complete Gitea REST profile; measured cost begins after the profile exists.",
+  "source_artifacts": {
+    "profile": "examples/softwaregen/gitea_profile.json",
+    "deployment_evidence": "examples/softwaregen/gitea_deployment_evidence.json"
+  },
+  "measured_post_profile_run": {
+    "profile_lines": 97,
+    "profile_bytes": 4926,
+    "evidence_items": 4,
+    "model": "gpt-5.4",
+    "model_api_calls": 1,
+    "generation_elapsed_s": 24.83277502655983,
+    "observation_views": 1,
+    "semantic_operations": 2,
+    "static_audit": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "generated_artifacts_hashed": 3,
+    "generated_stages": [
+      "interface plan",
+      "extension bundle",
+      "action schema",
+      "adapter wrapper"
+    ],
+    "host_probe_reports": {
+      "passed": 3,
+      "total": 3
+    },
+    "docker_probe_reports": {
+      "passed": 3,
+      "total": 3
+    },
+    "host_element_counts": [2, 3, 2],
+    "docker_element_counts": [2, 3, 2],
+    "validated_state_transition": "repository count 2 -> 3 -> 2 in both host and Docker probes"
+  },
+  "excluded_from_cost_estimate": {
+    "open_interface_discovery_and_profile_authoring": "unmeasured",
+    "custom_bridge_work_when_required": "unmeasured",
+    "task_and_evaluator_design": "unmeasured",
+    "gui_synchronization_and_rendering": "unmeasured",
+    "historical_total_person_hours_for_15_apps": "unmeasured"
+  },
+  "catalog_context": {
+    "applications": 15,
+    "access_path_counts": {
+      "file_backed": 6,
+      "native_script": 4,
+      "service_api": 5
+    },
+    "interpretation": "The catalog demonstrates recurring qualified access-path families; it is not retrospective proof that all 15 adapters were produced by the current generator."
+  },
+  "claim_boundary": {
+    "post_profile_stage_automated": true,
+    "all_15_historical_adapters_auto_generated": false,
+    "generation_elapsed_is_total_asilization_time": false
+  }
+}

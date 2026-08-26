@@ -1,0 +1,95 @@
+{
+  "id": "libreoffice_writer_17",
+  "software": "libreoffice_writer",
+  "difficulty": "complex",
+  "description": "Append a heading \"Owners\" and paragraphs \"Design: Priya\" and \"Engineering: Mateo\".",
+  "instruction": "Append a heading \"Owners\" and paragraphs \"Design: Priya\" and \"Engineering: Mateo\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odt_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "add_heading",
+            "text": "Owners",
+            "level": 2
+          },
+          {
+            "action": "add_paragraph",
+            "text": "Design: Priya"
+          },
+          {
+            "action": "add_paragraph",
+            "text": "Engineering: Mateo"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "snapshot": "writer_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "document_page",
+    "visible_change_summary": "An Owners section appears with both named owner paragraphs.",
+    "checkpoint_visibility": {
+      "heading": "visible_on_page",
+      "owner1": "visible_on_page",
+      "owner2": "visible_on_page"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "heading",
+            "weight": 0.34,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "heading",
+                "value": {
+                  "text_content": "Owners"
+                }
+              }
+            }
+          },
+          {
+            "id": "owner1",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "paragraph",
+                "value": {
+                  "text_content": "Design: Priya"
+                }
+              }
+            }
+          },
+          {
+            "id": "owner2",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "paragraph",
+                "value": {
+                  "text_content": "Engineering: Mateo"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

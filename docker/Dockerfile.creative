@@ -1,0 +1,15 @@
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    inkscape \
+    libreoffice-calc \
+    blender \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Verify installations
+RUN inkscape --version && libreoffice --version && blender --version
+
+WORKDIR /task-data

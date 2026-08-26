@@ -1,0 +1,68 @@
+{
+  "id": "obs_03",
+  "instruction": "Enable Studio Mode",
+  "source": "asil_benchmark_v1",
+  "snapshot": "obs_studio_default",
+  "config": [],
+  "related_apps": [
+    "obs"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "obs_03_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "obs_03_studio_mode_enabled",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "studio_mode",
+                "key": "enabled",
+                "expected": true
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "obs",
+    "difficulty": "simple",
+    "description": "Enable Studio Mode",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "SetStudioModeEnabled",
+          "args": {
+            "studioModeEnabled": true
+          }
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "studio_mode",
+        "key": "enabled",
+        "expected": true
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "studio_controls",
+    "visible_change_summary": "Studio Mode becomes enabled in the OBS workspace.",
+    "checkpoint_visibility": {
+      "obs_03_studio_mode_enabled": "visible_in_studio_controls"
+    }
+  }
+}

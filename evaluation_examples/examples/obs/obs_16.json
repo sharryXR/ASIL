@@ -1,0 +1,60 @@
+{
+  "id": "obs_16",
+  "instruction": "Switch scene collection to 'Podcast'",
+  "source": "asil_benchmark_v1",
+  "snapshot": "obs_default_scene",
+  "config": [],
+  "related_apps": [
+    "obs"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "obs_16_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "obs_16_collection_podcast",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "scene_collection": "Podcast"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "obs",
+    "difficulty": "medium",
+    "description": "Switch scene collection to 'Podcast'",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "SetCurrentSceneCollection",
+          "args": {
+            "sceneCollectionName": "Podcast"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "scene_collection": "Podcast"
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "workspace_controls",
+    "visible_change_summary": "Scene collection switches to Podcast.",
+    "checkpoint_visibility": {
+      "obs_16_collection_podcast": "visible_in_obs_ui"
+    }
+  }
+}

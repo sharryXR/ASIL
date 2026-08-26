@@ -1,0 +1,100 @@
+{
+  "id": "kdenlive_17",
+  "instruction": "Add a new video track named 'Review Layer' and lock it.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "kdenlive_default_project",
+  "config": [],
+  "related_apps": ["kdenlive"],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "kdenlive_17_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "kdenlive_17_new_track",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "track:video_review",
+                "key": "name",
+                "expected": "Review Layer"
+              }
+            }
+          },
+          {
+            "id": "kdenlive_17_track_locked",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "track:video_review",
+                "key": "locked",
+                "expected": true
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "kdenlive",
+    "difficulty": "medium",
+    "description": "Add a new video track named 'Review Layer' and lock it.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "/kdenliveProject/timeline",
+              "tag": "track",
+              "attributes": {
+                "id": "video_review",
+                "kind": "video",
+                "name": "Review Layer",
+                "muted": "0",
+                "locked": "1"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "all_of": [
+        {
+          "element_value": {
+            "id": "track:video_review",
+            "key": "name",
+            "expected": "Review Layer"
+          }
+        },
+        {
+          "element_value": {
+            "id": "track:video_review",
+            "key": "locked",
+            "expected": true
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "timeline",
+    "visible_change_summary": "A new locked video track labeled 'Review Layer' appears in the track stack.",
+    "checkpoint_visibility": {
+      "kdenlive_17_new_track": "visible_in_track_header",
+      "kdenlive_17_track_locked": "visible_in_track_header"
+    }
+  }
+}

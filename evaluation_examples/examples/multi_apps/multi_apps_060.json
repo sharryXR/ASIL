@@ -1,0 +1,122 @@
+{
+  "id": "multi_apps_060",
+  "software": "multi_apps",
+  "source": "asil_multi_apps_generated",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: save reports/multi_060_analysis.md with the analysis note; open a Gitea issue titled 'MA-060 release coordination'. Use these exact checkpoint text values where applicable: jupyterlab: 'MA-060 notebook analysis saved'.",
+  "related_apps": [
+    "jupyterlab",
+    "gitea"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "jupyterlab_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "jupyterlab",
+                "rule": {
+                  "element_contains": {
+                    "id": "file:reports/multi_060_analysis.md",
+                    "key": "content",
+                    "expected": "MA-060 notebook analysis saved"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "gitea_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "gitea",
+                "rule": {
+                  "any_element_contains": {
+                    "type": "issue",
+                    "key": "title",
+                    "expected": "MA-060 release coordination"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "jupyterlab_checkpoint": "visible_in_jupyterlab",
+      "gitea_checkpoint": "visible_in_gitea"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "medium",
+    "description": "Coordination cross-app task for jupyterlab, gitea.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "jupyterlab": "readme_focus",
+      "gitea": "default"
+    },
+    "primary_app": "jupyterlab",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "jupyterlab",
+              "action": {
+                "action_type": "modify_file",
+                "target": "workspace",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "create_file",
+                      "path": "reports/multi_060_analysis.md",
+                      "content": "MA-060 notebook analysis saved\n"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "gitea",
+              "action": {
+                "action_type": "api_call",
+                "target": "gitea-api",
+                "params": {
+                  "method": "POST",
+                  "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+                  "body": {
+                    "title": "MA-060 release coordination",
+                    "body": "Track cross-app completion for MA-060."
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "coordination"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "id": "gimp_09",
+  "software": "gimp",
+  "difficulty": "medium",
+  "description": "Crop the image to focus on the center.",
+  "instruction": "Crop the default image from x=20 y=20 to width=400 height=300.",
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "crop_image",
+            "x": 20,
+            "y": 20,
+            "width": 400,
+            "height": 300
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "gimp"
+  ],
+  "snapshot": "gimp_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "The canvas becomes a tighter 400x300 crop.",
+    "checkpoint_visibility": {
+      "canvas_width": "visible_on_canvas",
+      "canvas_height": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "canvas_width",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "image",
+                "key": "width",
+                "expected": 400
+              }
+            }
+          },
+          {
+            "id": "canvas_height",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "image",
+                "key": "height",
+                "expected": 300
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "medium",
+    "description": "Crop the image to focus on the center.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "crop_image",
+              "x": 20,
+              "y": 20,
+              "width": 400,
+              "height": 300
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

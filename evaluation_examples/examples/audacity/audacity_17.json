@@ -1,0 +1,109 @@
+{
+  "id": "audacity_17",
+  "instruction": "Add new tracks named Backup VO and Backup Music.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "audacity_default_project",
+  "config": [],
+  "related_apps": [
+    "audacity"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "audacity_17_main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "backup_vo",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "track",
+                "id": "track:track_backup_vo",
+                "value": {
+                  "name": "Backup VO"
+                }
+              }
+            }
+          },
+          {
+            "id": "backup_music",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "track",
+                "id": "track:track_backup_music",
+                "value": {
+                  "name": "Backup Music"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "audacity",
+    "difficulty": "simple",
+    "description": "Add new tracks named Backup VO and Backup Music.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_track",
+              "track_id": "track_backup_vo",
+              "name": "Backup VO",
+              "kind": "audio",
+              "mute": false,
+              "solo": false,
+              "gain_db": 0.0,
+              "pan": 0.0,
+              "height_px": 132,
+              "clips": []
+            },
+            {
+              "action": "add_track",
+              "track_id": "track_backup_music",
+              "name": "Backup Music",
+              "kind": "audio",
+              "mute": false,
+              "solo": false,
+              "gain_db": 0.0,
+              "pan": 0.0,
+              "height_px": 132,
+              "clips": []
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "any_element_matches": {
+        "type": "track",
+        "id": "track:track_backup_vo",
+        "value": {
+          "name": "Backup VO"
+        }
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "multitrack_timeline",
+    "visible_change_summary": "Backup VO and Backup Music both appear as new tracks.",
+    "checkpoint_visibility": {
+      "backup_vo": "visible_in_track_headers",
+      "backup_music": "visible_in_track_headers"
+    }
+  }
+}

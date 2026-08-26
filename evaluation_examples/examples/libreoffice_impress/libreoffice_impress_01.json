@@ -1,0 +1,64 @@
+{
+  "id": "libreoffice_impress_01",
+  "software": "libreoffice_impress",
+  "difficulty": "simple",
+  "description": "Rename the first slide title to \"Launch Readiness\".",
+  "instruction": "Rename the first slide title to \"Launch Readiness\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_slide_title",
+            "slide_index": 1,
+            "text": "Launch Readiness"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "The first slide title reads Launch Readiness.",
+    "checkpoint_visibility": {
+      "slide1_title": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "slide1_title",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:1:title",
+                "key": "text_content",
+                "expected": "Launch Readiness"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "single_slide",
+    "slide_indices": [
+      1
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "id": "libreoffice_writer_06",
+  "software": "libreoffice_writer",
+  "difficulty": "medium",
+  "description": "Rename the title to \"Weekly Update\" and set the first paragraph to \"Engineering blockers resolved.\".",
+  "instruction": "Rename the title to \"Weekly Update\" and set the first paragraph to \"Engineering blockers resolved.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odt_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_heading_text",
+            "index": 1,
+            "text": "Weekly Update"
+          },
+          {
+            "action": "set_paragraph_text",
+            "index": 1,
+            "text": "Engineering blockers resolved."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "snapshot": "writer_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "document_page",
+    "visible_change_summary": "The title changes to Weekly Update and the first paragraph shows the resolved blockers sentence.",
+    "checkpoint_visibility": {
+      "title_updated": "visible_on_page",
+      "paragraph_updated": "visible_on_page"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "title_updated",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "heading:1",
+                "key": "text_content",
+                "expected": "Weekly Update"
+              }
+            }
+          },
+          {
+            "id": "paragraph_updated",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "paragraph:1",
+                "key": "text_content",
+                "expected": "Engineering blockers resolved."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

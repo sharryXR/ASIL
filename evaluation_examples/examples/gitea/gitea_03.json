@@ -1,0 +1,71 @@
+{
+  "id": "gitea_03",
+  "instruction": "List all repositories for the authenticated user",
+  "source": "asil_benchmark_v1",
+  "snapshot": "gitea_instance_default",
+  "config": [],
+  "related_apps": [
+    "gitea"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "gitea_03_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "gitea_03_1",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_view": "explore/repos"
+            }
+          },
+          {
+            "id": "gitea_03_2",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "count_elements_matching": {
+                "type": "repository",
+                "expected": 2
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gitea",
+    "difficulty": "simple",
+    "description": "List all repositories for the authenticated user",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "GET",
+          "endpoint": "/api/v1/repos/search?limit=50",
+          "body": {}
+        }
+      }
+    ],
+    "validation": {
+      "count_at_least": 1
+    },
+    "initial_state": "with_extra_repo"
+  },
+  "gui_expectations": {
+    "success_surface": "web_page",
+    "visible_change_summary": "List all repositories for the authenticated user",
+    "checkpoint_visibility": {
+      "gitea_03_1": "visible_on_web_page",
+      "gitea_03_2": "visible_on_web_page"
+    }
+  }
+}

@@ -1,0 +1,155 @@
+# syntax=docker/dockerfile:1
+FROM ubuntu:22.04@sha256:0e0a0fc6d18feda9db1590da249ac93e8d5abfea8f4c3c0c849ce512b5ef8982
+
+ARG ASIL_GIT_COMMIT=unknown
+ARG ASIL_CONSTRAINTS_SHA256=unknown
+ARG ASIL_SOURCE_SHA256=unknown
+ARG PLAYWRIGHT_DOWNLOAD_CONNECTION_TIMEOUT=120000
+ARG PLAYWRIGHT_DOWNLOAD_TOTAL_TIMEOUT=180s
+ARG PLAYWRIGHT_FALLBACK_HOST=https://npmmirror.com/mirrors/chrome-for-testing
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+# Base runtime and X11 tooling. Keep this layer separate so large GUI-app
+# downloads do not force a full restart when the Ubuntu mirror flakes.
+RUN apt-get -o Acquire::Retries=5 update \
+    && apt-get install -y --no-install-recommends \
+    -o Acquire::Retries=5 \
+    -o Acquire::http::Timeout=30 \
+    --fix-missing \
+    python3.11 python3.11-dev python3-pip \
+    pulseaudio \
+    pulseaudio-utils \
+    alsa-utils \
+    poppler-utils \
+    wkhtmltopdf \
+    xvfb \
+    openbox \
+    xdotool \
+    xclip \
+    wmctrl \
+    x11-utils \
+    tesseract-ocr \
+    imagemagick \
+    dbus-x11 \
+    curl wget git \
+    libgl1-mesa-glx libglib2.0-0
+
+# Graphics / document apps.
+RUN apt-get -o Acquire::Retries=5 update \
+    && (apt-get install -y --no-install-recommends \
+        -o Acquire::Retries=5 \
+        -o Acquire::http::Timeout=30 \
+        --fix-missing \
+        inkscape \
+        libreoffice-calc \
+        libreoffice-writer \
+        libreoffice-impress \
+        blender \
+        gimp \
+        || (apt-get -o Acquire::Retries=5 update \
+            && apt-get install -y --no-install-recommends \
+            -o Acquire::Retries=5 \
+            -o Acquire::http::Timeout=30 \
+            --fix-missing \
+            inkscape \
+            libreoffice-calc \
+            libreoffice-writer \
+            libreoffice-impress \
+            blender \
+            gimp))
+
+# Media / communication / browser-adjacent desktop apps.
+RUN apt-get -o Acquire::Retries=5 update \
+    && (apt-get install -y --no-install-recommends \
+        -o Acquire::Retries=5 \
+        -o Acquire::http::Timeout=30 \
+        --fix-missing \
+        thunderbird \
+        nautilus \
+        celluloid \
+        vlc \
+        audacity \
+        obs-studio \
+        obs-websocket \
+        kdenlive \
+        mediainfo \
+        frei0r-plugins \
+        || (apt-get -o Acquire::Retries=5 update \
+            && apt-get install -f -y \
+            -o Acquire::Retries=5 \
+            -o Acquire::http::Timeout=30 \
+            --fix-missing \
+            && apt-get install -y --no-install-recommends \
+            -o Acquire::Retries=5 \
+            -o Acquire::http::Timeout=30 \
+            --fix-missing \
+            thunderbird \
+            nautilus \
+            celluloid \
+            vlc \
+            audacity \
+            obs-studio \
+            obs-websocket \
+            kdenlive \
+            mediainfo \
+            frei0r-plugins)) \
+    && rm -rf /var/lib/apt/lists/*
+
+# Make python3.11 the default python3
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1 \
+    && update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1
+
+RUN useradd -m -s /bin/bash asilgui
+
+WORKDIR /app
+
+# Install ASIL and dependencies
+COPY pyproject.toml .
+COPY constraints-host.txt .
+COPY src/ src/
+RUN pip install --default-timeout=300 --retries 10 --no-cache-dir \
+        -c constraints-host.txt -e ".[dev,eval]" \
+    && python -c 'from importlib.metadata import version; assert version("playwright") == "1.58.0", version("playwright")'
+RUN python -m playwright install-deps chromium \
+    && (PLAYWRIGHT_DOWNLOAD_CONNECTION_TIMEOUT="$PLAYWRIGHT_DOWNLOAD_CONNECTION_TIMEOUT" \
+          timeout "$PLAYWRIGHT_DOWNLOAD_TOTAL_TIMEOUT" python -m playwright install chromium \
+        || PLAYWRIGHT_DOWNLOAD_CONNECTION_TIMEOUT="$PLAYWRIGHT_DOWNLOAD_CONNECTION_TIMEOUT" \
+           PLAYWRIGHT_CHROMIUM_DOWNLOAD_HOST="$PLAYWRIGHT_FALLBACK_HOST" \
+          timeout "$PLAYWRIGHT_DOWNLOAD_TOTAL_TIMEOUT" python -m playwright install chromium)
+
+# Copy evaluation scripts and task definitions
+COPY scripts/ scripts/
+COPY evaluation_examples/ evaluation_examples/
+
+# Verify tool installations
+RUN inkscape --version \
+    && libreoffice --version \
+    && blender --version \
+    && python -c "from asil.adapters.inkscape import InkscapeAdapter; print('inkscape adapter OK')" \
+    && python -c "from asil.adapters.libreoffice import LibreOfficeAdapter; print('libreoffice adapter OK')" \
+    && python -c "from asil.adapters.blender import BlenderAdapter; print('blender adapter OK')"
+RUN python - <<'PY'
+import asyncio
+from playwright.async_api import async_playwright
+
+async def check() -> None:
+    async with async_playwright() as playwright:
+        browser = await playwright.chromium.launch(headless=True, args=["--no-sandbox"])
+        await browser.close()
+
+asyncio.run(check())
+PY
+
+# Keep mutable checkout provenance at the end so a new commit does not
+# invalidate the large, version-pinned desktop and browser dependency layers.
+LABEL org.asil.git-commit="$ASIL_GIT_COMMIT" \
+      org.asil.constraints-sha256="$ASIL_CONSTRAINTS_SHA256" \
+      org.asil.source-sha256="$ASIL_SOURCE_SHA256"
+
+# Results output directory
+RUN mkdir -p /results
+
+WORKDIR /app

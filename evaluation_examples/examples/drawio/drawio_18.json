@@ -1,0 +1,327 @@
+{
+  "id": "drawio_18",
+  "software": "drawio",
+  "difficulty": "complex",
+  "description": "Build a feedback loop diagram.",
+  "instruction": "On a blank canvas, add Collect, Review, Update, and Publish with connectors Collect->Review, Review->Update, Update->Publish, and Publish->Collect labeled loop.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "diagram",
+      "params": {
+        "operations": [
+          {
+            "action": "add_shape",
+            "id": "collect",
+            "label": "Collect",
+            "shape_kind": "ellipse",
+            "x": 120,
+            "y": 120,
+            "width": 120,
+            "height": 70,
+            "fill": "#dbeafe",
+            "stroke": "#2563eb"
+          },
+          {
+            "action": "add_shape",
+            "id": "review",
+            "label": "Review",
+            "shape_kind": "rectangle",
+            "x": 340,
+            "y": 120,
+            "width": 150,
+            "height": 80,
+            "fill": "#fef3c7",
+            "stroke": "#d97706"
+          },
+          {
+            "action": "add_shape",
+            "id": "update",
+            "label": "Update",
+            "shape_kind": "rectangle",
+            "x": 560,
+            "y": 120,
+            "width": 150,
+            "height": 80,
+            "fill": "#ede9fe",
+            "stroke": "#7c3aed"
+          },
+          {
+            "action": "add_shape",
+            "id": "publish",
+            "label": "Publish",
+            "shape_kind": "rectangle",
+            "x": 340,
+            "y": 300,
+            "width": 150,
+            "height": 80,
+            "fill": "#dcfce7",
+            "stroke": "#16a34a"
+          },
+          {
+            "action": "add_connector",
+            "id": "c1",
+            "source": "collect",
+            "target": "review",
+            "label": "send"
+          },
+          {
+            "action": "add_connector",
+            "id": "c2",
+            "source": "review",
+            "target": "update",
+            "label": "change"
+          },
+          {
+            "action": "add_connector",
+            "id": "c3",
+            "source": "update",
+            "target": "publish",
+            "label": "ready"
+          },
+          {
+            "action": "add_connector",
+            "id": "c4",
+            "source": "publish",
+            "target": "collect",
+            "label": "loop",
+            "stroke": "#2563eb"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "drawio"
+  ],
+  "snapshot": "drawio_default",
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "diagram_canvas",
+    "visible_change_summary": "A feedback loop links Publish back to Collect.",
+    "checkpoint_visibility": {
+      "collect": "visible_on_diagram",
+      "review": "visible_on_diagram",
+      "update": "visible_on_diagram",
+      "publish": "visible_on_diagram",
+      "c1": "visible_on_diagram",
+      "c2": "visible_on_diagram",
+      "c3": "visible_on_diagram",
+      "c4": "visible_on_diagram"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "collect",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:collect",
+                "key": "label",
+                "expected": "Collect"
+              }
+            }
+          },
+          {
+            "id": "review",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:review",
+                "key": "label",
+                "expected": "Review"
+              }
+            }
+          },
+          {
+            "id": "update",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:update",
+                "key": "label",
+                "expected": "Update"
+              }
+            }
+          },
+          {
+            "id": "publish",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:publish",
+                "key": "label",
+                "expected": "Publish"
+              }
+            }
+          },
+          {
+            "id": "c1",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Collect",
+                  "target_label": "Review",
+                  "label": "send"
+                }
+              }
+            }
+          },
+          {
+            "id": "c2",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Review",
+                  "target_label": "Update",
+                  "label": "change"
+                }
+              }
+            }
+          },
+          {
+            "id": "c3",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Update",
+                  "target_label": "Publish",
+                  "label": "ready"
+                }
+              }
+            }
+          },
+          {
+            "id": "c4",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Publish",
+                  "target_label": "Collect",
+                  "label": "loop"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "drawio",
+    "difficulty": "complex",
+    "description": "Build a feedback loop diagram.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "diagram",
+        "params": {
+          "operations": [
+            {
+              "action": "add_shape",
+              "id": "collect",
+              "label": "Collect",
+              "shape_kind": "ellipse",
+              "x": 120,
+              "y": 120,
+              "width": 120,
+              "height": 70,
+              "fill": "#dbeafe",
+              "stroke": "#2563eb"
+            },
+            {
+              "action": "add_shape",
+              "id": "review",
+              "label": "Review",
+              "shape_kind": "rectangle",
+              "x": 340,
+              "y": 120,
+              "width": 150,
+              "height": 80,
+              "fill": "#fef3c7",
+              "stroke": "#d97706"
+            },
+            {
+              "action": "add_shape",
+              "id": "update",
+              "label": "Update",
+              "shape_kind": "rectangle",
+              "x": 560,
+              "y": 120,
+              "width": 150,
+              "height": 80,
+              "fill": "#ede9fe",
+              "stroke": "#7c3aed"
+            },
+            {
+              "action": "add_shape",
+              "id": "publish",
+              "label": "Publish",
+              "shape_kind": "rectangle",
+              "x": 340,
+              "y": 300,
+              "width": 150,
+              "height": 80,
+              "fill": "#dcfce7",
+              "stroke": "#16a34a"
+            },
+            {
+              "action": "add_connector",
+              "id": "c1",
+              "source": "collect",
+              "target": "review",
+              "label": "send"
+            },
+            {
+              "action": "add_connector",
+              "id": "c2",
+              "source": "review",
+              "target": "update",
+              "label": "change"
+            },
+            {
+              "action": "add_connector",
+              "id": "c3",
+              "source": "update",
+              "target": "publish",
+              "label": "ready"
+            },
+            {
+              "action": "add_connector",
+              "id": "c4",
+              "source": "publish",
+              "target": "collect",
+              "label": "loop",
+              "stroke": "#2563eb"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank"
+  }
+}

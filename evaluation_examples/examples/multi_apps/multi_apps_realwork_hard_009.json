@@ -1,0 +1,193 @@
+{
+  "id": "multi_apps_realwork_hard_009",
+  "software": "multi_apps",
+  "source": "asil_realwork_hard_mixed_v2",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: create a Blender object using material MultiMat044; add a GIMP text layer containing 'MA-044 asset'.",
+  "related_apps": [
+    "blender",
+    "gimp"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "blender_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "blender",
+                "rule": {
+                  "material_exists": "MultiMat044"
+                }
+              }
+            }
+          },
+          {
+            "id": "gimp_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "gimp",
+                "rule": {
+                  "element_contains": {
+                    "id": "gimp_multi_044",
+                    "key": "text",
+                    "expected": "MA-044 asset"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "blender_checkpoint": "visible_in_blender",
+      "gimp_checkpoint": "visible_in_gimp"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "complex",
+    "description": "Hard-suite variant of multi_apps_044: Design Assets cross-app task for blender, gimp.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "blender": "default",
+      "gimp": "default"
+    },
+    "primary_app": "blender",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "blender",
+              "action": {
+                "action_type": "invoke_function",
+                "target": "blender",
+                "params": {
+                  "script": [
+                    "import bpy",
+                    "bpy.ops.mesh.primitive_uv_sphere_add(radius=1, location=(0, 0, 0))",
+                    "mat = bpy.data.materials.new(name='MultiMat044')",
+                    "bpy.context.object.data.materials.append(mat)"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "gimp",
+              "action": {
+                "action_type": "invoke_function",
+                "target": "gimp",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_text_layer",
+                      "id": "gimp_multi_044",
+                      "label": "MA-044 asset",
+                      "text": "MA-044 asset",
+                      "x": 84,
+                      "y": 94,
+                      "font_size": 26,
+                      "color": "#0f766e"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "realwork_hard",
+    "source_task_id": "multi_apps_044",
+    "workflow_complexity": {
+      "meaningful_actions": 2,
+      "suite_family": "multi_app_hard",
+      "copied_from_main_benchmark": true
+    }
+  },
+  "difficulty": "complex",
+  "description": "Hard-suite variant of multi_apps_044: Design Assets cross-app task for blender, gimp.",
+  "actions": [
+    {
+      "action_type": "batch",
+      "target": "multi_apps",
+      "params": {
+        "actions": [
+          {
+            "app": "blender",
+            "action": {
+              "action_type": "invoke_function",
+              "target": "blender",
+              "params": {
+                "script": [
+                  "import bpy",
+                  "bpy.ops.mesh.primitive_uv_sphere_add(radius=1, location=(0, 0, 0))",
+                  "mat = bpy.data.materials.new(name='MultiMat044')",
+                  "bpy.context.object.data.materials.append(mat)"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "batch",
+      "target": "multi_apps",
+      "params": {
+        "actions": [
+          {
+            "app": "gimp",
+            "action": {
+              "action_type": "invoke_function",
+              "target": "gimp",
+              "params": {
+                "operations": [
+                  {
+                    "action": "add_text_layer",
+                    "id": "gimp_multi_044",
+                    "label": "MA-044 asset",
+                    "text": "MA-044 asset",
+                    "x": 84,
+                    "y": 94,
+                    "font_size": 26,
+                    "color": "#0f766e"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

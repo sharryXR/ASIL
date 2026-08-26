@@ -1,0 +1,94 @@
+{
+  "id": "libreoffice_writer_16",
+  "software": "libreoffice_writer",
+  "difficulty": "complex",
+  "description": "Change the title to \"Planning Memo\", update the second paragraph to \"Dependencies were reviewed in detail.\", and append a paragraph \"Final approval remains outstanding.\".",
+  "instruction": "Change the title to \"Planning Memo\", update the second paragraph to \"Dependencies were reviewed in detail.\", and append a paragraph \"Final approval remains outstanding.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odt_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_heading_text",
+            "index": 1,
+            "text": "Planning Memo"
+          },
+          {
+            "action": "set_paragraph_text",
+            "index": 2,
+            "text": "Dependencies were reviewed in detail."
+          },
+          {
+            "action": "add_paragraph",
+            "text": "Final approval remains outstanding."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "snapshot": "writer_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "document_page",
+    "visible_change_summary": "The title changes to Planning Memo, the second paragraph is updated, and a final approval note is appended.",
+    "checkpoint_visibility": {
+      "title": "visible_on_page",
+      "p2": "visible_on_page",
+      "new_para": "visible_on_page"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "title",
+            "weight": 0.34,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "heading:1",
+                "key": "text_content",
+                "expected": "Planning Memo"
+              }
+            }
+          },
+          {
+            "id": "p2",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "paragraph:2",
+                "key": "text_content",
+                "expected": "Dependencies were reviewed in detail."
+              }
+            }
+          },
+          {
+            "id": "new_para",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "paragraph",
+                "value": {
+                  "text_content": "Final approval remains outstanding."
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

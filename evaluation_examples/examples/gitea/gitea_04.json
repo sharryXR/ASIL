@@ -1,0 +1,68 @@
+{
+  "id": "gitea_04",
+  "instruction": "Delete the repository 'old-project'",
+  "source": "asil_benchmark_v1",
+  "snapshot": "gitea_instance_default",
+  "config": [],
+  "related_apps": [
+    "gitea"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "gitea_04_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "gitea_04_1",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_not_exists": "repo:asil_admin/old-project"
+            }
+          },
+          {
+            "id": "gitea_04_2",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "count_at_least": 1
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gitea",
+    "difficulty": "simple",
+    "description": "Delete the repository 'old-project'",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "DELETE",
+          "endpoint": "/api/v1/repos/{{owner}}/old-project",
+          "body": {}
+        }
+      }
+    ],
+    "validation": {
+      "element_not_exists": "repo:asil_admin/old-project"
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "web_page",
+    "visible_change_summary": "Delete the repository 'old-project'",
+    "checkpoint_visibility": {
+      "gitea_04_1": "visible_on_web_page",
+      "gitea_04_2": "visible_on_web_page"
+    }
+  }
+}

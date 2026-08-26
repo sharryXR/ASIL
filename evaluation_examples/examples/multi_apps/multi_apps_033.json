@@ -1,0 +1,131 @@
+{
+  "id": "multi_apps_033",
+  "software": "multi_apps",
+  "source": "asil_multi_apps_generated",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: add a GIMP text layer containing 'MA-033 asset'; add an Inkscape text object labeled MA-033.",
+  "related_apps": [
+    "gimp",
+    "inkscape"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "gimp_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "gimp",
+                "rule": {
+                  "element_contains": {
+                    "id": "gimp_multi_033",
+                    "key": "text",
+                    "expected": "MA-033 asset"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "inkscape_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "inkscape",
+                "rule": {
+                  "element_exists": "ink_multi_033"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "gimp_checkpoint": "visible_in_gimp",
+      "inkscape_checkpoint": "visible_in_inkscape"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "medium",
+    "description": "Design Assets cross-app task for gimp, inkscape.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "gimp": "default",
+      "inkscape": "default"
+    },
+    "primary_app": "gimp",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "gimp",
+              "action": {
+                "action_type": "invoke_function",
+                "target": "gimp",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_text_layer",
+                      "id": "gimp_multi_033",
+                      "label": "MA-033 asset",
+                      "text": "MA-033 asset",
+                      "x": 73,
+                      "y": 83,
+                      "font_size": 26,
+                      "color": "#0f766e"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "inkscape",
+              "action": {
+                "action_type": "modify_file",
+                "target": "test.svg",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_element",
+                      "parent_xpath": "//svg:g[@id='layer1']",
+                      "tag": "text",
+                      "attributes": {
+                        "id": "ink_multi_033",
+                        "x": "113",
+                        "y": "123",
+                        "style": "font-size:24px;fill:#0f766e",
+                        "text_content": "MA-033"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "design_assets"
+  }
+}

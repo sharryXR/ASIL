@@ -1,0 +1,153 @@
+{
+  "id": "gitea_10",
+  "instruction": "Create milestone 'v2.0', create two issues linked to it ('Add dark mode' and 'Fix pagination bug'), verify milestone has open issues",
+  "source": "asil_benchmark_v1",
+  "snapshot": "gitea_instance_default",
+  "config": [],
+  "related_apps": [
+    "gitea"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "gitea_10_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "gitea_10_1",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "milestone:1",
+                "key": "title",
+                "expected": "v2.0"
+              }
+            }
+          },
+          {
+            "id": "gitea_10_2",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "issue:1",
+                "key": "title",
+                "expected": "Add dark mode"
+              }
+            }
+          },
+          {
+            "id": "gitea_10_3",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "issue:2",
+                "key": "title",
+                "expected": "Fix pagination bug"
+              }
+            }
+          },
+          {
+            "id": "gitea_10_4",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_value": {
+                "type": "milestone",
+                "key": "open_issues",
+                "expected": 2
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gitea",
+    "difficulty": "complex",
+    "description": "Create milestone 'v2.0', create two issues linked to it ('Add dark mode' and 'Fix pagination bug'), verify milestone has open issues",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/milestones",
+          "body": {
+            "title": "v2.0",
+            "description": "Second release milestone"
+          }
+        }
+      },
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+          "body": {
+            "title": "Add dark mode",
+            "body": "Implement dark mode toggle in settings.",
+            "milestone": 1
+          }
+        }
+      },
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+          "body": {
+            "title": "Fix pagination bug",
+            "body": "Page 2 returns duplicate results.",
+            "milestone": 1
+          }
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "milestone:1",
+            "key": "title",
+            "expected": "v2.0"
+          }
+        },
+        {
+          "element_contains": {
+            "id": "issue:1",
+            "key": "title",
+            "expected": "Add dark mode"
+          }
+        },
+        {
+          "element_contains": {
+            "id": "issue:2",
+            "key": "title",
+            "expected": "Fix pagination bug"
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "web_page",
+    "visible_change_summary": "Create milestone 'v2.0', create two issues linked to it ('Add dark mode' and 'Fix pagination bug'), verify milestone has open issues",
+    "checkpoint_visibility": {
+      "gitea_10_1": "visible_on_web_page",
+      "gitea_10_2": "visible_on_web_page",
+      "gitea_10_3": "visible_on_web_page",
+      "gitea_10_4": "visible_on_web_page"
+    }
+  }
+}

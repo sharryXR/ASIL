@@ -1,0 +1,68 @@
+{
+  "id": "audacity_06",
+  "instruction": "Remove the Voiceover track.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "audacity_default_project",
+  "config": [],
+  "related_apps": [
+    "audacity"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "audacity_06_main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "voice_removed",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "no_element_matches": {
+                "type": "track",
+                "id": "track:track_voice"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "audacity",
+    "difficulty": "simple",
+    "description": "Remove the Voiceover track.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "delete_track",
+              "track_id": "track_voice"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "no_element_matches": {
+        "type": "track",
+        "id": "track:track_voice"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "multitrack_timeline",
+    "visible_change_summary": "The Voiceover track disappears from the timeline.",
+    "checkpoint_visibility": {
+      "voice_removed": "visible_in_track_headers"
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "id": "libreoffice_writer_08",
+  "software": "libreoffice_writer",
+  "difficulty": "medium",
+  "description": "Change the first paragraph to \"Quarterly planning finalized.\" and append a paragraph \"Slides will be shared after approval.\".",
+  "instruction": "Change the first paragraph to \"Quarterly planning finalized.\" and append a paragraph \"Slides will be shared after approval.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odt_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_paragraph_text",
+            "index": 1,
+            "text": "Quarterly planning finalized."
+          },
+          {
+            "action": "add_paragraph",
+            "text": "Slides will be shared after approval."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "snapshot": "writer_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "document_page",
+    "visible_change_summary": "The opening paragraph changes and a new approval paragraph appears at the end.",
+    "checkpoint_visibility": {
+      "first_para": "visible_on_page",
+      "new_para": "visible_on_page"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "first_para",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "paragraph:1",
+                "key": "text_content",
+                "expected": "Quarterly planning finalized."
+              }
+            }
+          },
+          {
+            "id": "new_para",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "paragraph",
+                "value": {
+                  "text_content": "Slides will be shared after approval."
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

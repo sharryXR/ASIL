@@ -1,0 +1,123 @@
+{
+  "id": "multi_apps_017",
+  "software": "multi_apps",
+  "source": "asil_multi_apps_generated",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: write 'MA-017 spreadsheet signoff' in Sheet1 D10; add a Writer paragraph containing 'MA-017 narrative release note'.",
+  "related_apps": [
+    "libreoffice",
+    "libreoffice_writer"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "libreoffice_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "libreoffice",
+                "rule": {
+                  "element_value": {
+                    "id": "Sheet1!D10",
+                    "expected": "MA-017 spreadsheet signoff"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "libreoffice_writer_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "libreoffice_writer",
+                "rule": {
+                  "any_element_matches": {
+                    "type": "paragraph",
+                    "value": {
+                      "text_content": "MA-017 narrative release note"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "libreoffice_checkpoint": "visible_in_libreoffice",
+      "libreoffice_writer_checkpoint": "visible_in_libreoffice_writer"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "medium",
+    "description": "Docs Slides cross-app task for libreoffice, libreoffice_writer.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "libreoffice": "default",
+      "libreoffice_writer": "default"
+    },
+    "primary_app": "libreoffice",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "libreoffice",
+              "action": {
+                "action_type": "modify_file",
+                "target": "spreadsheet",
+                "params": {
+                  "operations": [
+                    {
+                      "sheet": "Sheet1",
+                      "cell": "D10",
+                      "value": "MA-017 spreadsheet signoff",
+                      "value_type": "string"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "libreoffice_writer",
+              "action": {
+                "action_type": "modify_file",
+                "target": "document",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_paragraph",
+                      "text": "MA-017 narrative release note"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "docs_slides"
+  }
+}

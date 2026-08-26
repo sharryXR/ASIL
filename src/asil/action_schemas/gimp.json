@@ -1,0 +1,345 @@
+{
+  "software": "GIMP",
+  "supported_action_types": ["invoke_function"],
+  "target": "gimp",
+  "description": "Runs lightweight GIMP-style document operations against the active raster image. Operations execute sequentially within one action.",
+  "actions": [
+    {
+      "name": "add_image_layer",
+      "description": "Add a real raster photo/image layer from an asset path, with optional crop, size, opacity, and filters.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "add_image_layer",
+            "id": "photo_layer",
+            "label": "Photo Layer",
+            "asset_path": "evaluation_examples/assets/realwork_images/coffee_street_960.jpg",
+            "x": 0,
+            "y": 0,
+            "width": 800,
+            "height": 600,
+            "crop": {
+              "x": 0,
+              "y": 0,
+              "width": 960,
+              "height": 720
+            },
+            "filters": {
+              "brightness": 0.9,
+              "contrast": 1.15,
+              "saturation": 0.85
+            },
+            "opacity": 1.0,
+            "visible": true,
+            "blend_mode": "normal"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Place a real coffee street photo as the background",
+          "action": {
+            "action_type": "invoke_function",
+            "target": "gimp",
+            "params": {
+              "operations": [
+                {
+                  "action": "add_image_layer",
+                  "id": "street_photo",
+                  "label": "Street Photo",
+                  "asset_path": "evaluation_examples/assets/realwork_images/coffee_street_960.jpg",
+                  "x": 0,
+                  "y": 0,
+                  "width": 800,
+                  "height": 600
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "add_layer",
+      "description": "Add a visible shape layer. Supported kinds are rectangle and ellipse.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "add_layer",
+            "id": "layer_id",
+            "label": "Layer Label",
+            "kind": "rectangle",
+            "x": 40,
+            "y": 40,
+            "width": 200,
+            "height": 120,
+            "fill": "#1f5eff",
+            "opacity": 1.0,
+            "visible": true,
+            "blend_mode": "normal"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Add a blue banner rectangle",
+          "action": {
+            "action_type": "invoke_function",
+            "target": "gimp",
+            "params": {
+              "operations": [
+                {
+                  "action": "add_layer",
+                  "id": "blue_banner",
+                  "label": "Blue Banner",
+                  "kind": "rectangle",
+                  "x": 40,
+                  "y": 40,
+                  "width": 260,
+                  "height": 100,
+                  "fill": "#1f5eff"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "apply_filter",
+      "description": "Apply or update simple photo filters on an existing image layer.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "apply_filter",
+            "id": "photo_layer",
+            "filters": {
+              "brightness": 1.05,
+              "contrast": 1.2,
+              "saturation": 0.8,
+              "grayscale": false,
+              "blur_radius": 0,
+              "sharpen": true
+            }
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Increase contrast and reduce saturation on a photo layer",
+          "action": {
+            "action_type": "invoke_function",
+            "target": "gimp",
+            "params": {
+              "operations": [
+                {
+                  "action": "apply_filter",
+                  "id": "street_photo",
+                  "filters": {
+                    "contrast": 1.2,
+                    "saturation": 0.75
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "add_text_layer",
+      "description": "Add a text layer with a text string, color, and font size.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "add_text_layer",
+            "id": "headline",
+            "label": "Headline",
+            "text": "Launch Day",
+            "x": 80,
+            "y": 90,
+            "font_size": 36,
+            "color": "#ffffff",
+            "opacity": 1.0,
+            "visible": true,
+            "blend_mode": "normal"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Add a white SALE text layer",
+          "action": {
+            "action_type": "invoke_function",
+            "target": "gimp",
+            "params": {
+              "operations": [
+                {
+                  "action": "add_text_layer",
+                  "id": "sale_text",
+                  "label": "Sale Text",
+                  "text": "SALE",
+                  "x": 80,
+                  "y": 80,
+                  "font_size": 42,
+                  "color": "#ffffff"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "update_layer",
+      "description": "Modify properties on an existing layer by id.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "update_layer",
+            "id": "logo_block",
+            "changes": {
+              "x": 520,
+              "y": 380,
+              "fill": "#123d7a",
+              "opacity": 0.75,
+              "visible": true
+            }
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Recolor the existing logo block",
+          "action": {
+            "action_type": "invoke_function",
+            "target": "gimp",
+            "params": {
+              "operations": [
+                {
+                  "action": "update_layer",
+                  "id": "logo_block",
+                  "changes": {
+                    "fill": "#123d7a"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "delete_layer",
+      "description": "Delete a layer entirely.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "delete_layer",
+            "id": "accent_circle"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Delete the accent circle layer",
+          "action": {
+            "action_type": "invoke_function",
+            "target": "gimp",
+            "params": {
+              "operations": [
+                {
+                  "action": "delete_layer",
+                  "id": "accent_circle"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "crop_image",
+      "description": "Crop the document canvas and shift all layers by the crop offset.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "crop_image",
+            "x": 20,
+            "y": 20,
+            "width": 640,
+            "height": 480
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Crop the image to 640x480 from the top-left inset",
+          "action": {
+            "action_type": "invoke_function",
+            "target": "gimp",
+            "params": {
+              "operations": [
+                {
+                  "action": "crop_image",
+                  "x": 20,
+                  "y": 20,
+                  "width": 640,
+                  "height": 480
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "resize_image",
+      "description": "Resize the image canvas and proportionally scale layer geometry.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "resize_image",
+            "width": 1024,
+            "height": 768
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Resize the image to 1024x768",
+          "action": {
+            "action_type": "invoke_function",
+            "target": "gimp",
+            "params": {
+              "operations": [
+                {
+                  "action": "resize_image",
+                  "width": 1024,
+                  "height": 768
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "done_action": {
+    "description": "Return this action when the task is fully complete.",
+    "example": {
+      "action_type": "done",
+      "target": "",
+      "params": {}
+    }
+  },
+  "tips": [
+    "Use `target: \"gimp\"` for every executable action.",
+    "Bundle related edits into one action by listing them in `params.operations` in execution order.",
+    "Use `add_image_layer` for real photo/image assets, `add_layer` for filled rectangles and ellipses, and `add_text_layer` for labels or headings.",
+    "Use `apply_filter` for brightness, contrast, saturation, grayscale, blur, and sharpen edits on image layers.",
+    "Use `update_layer` to move, recolor, hide, or rename an existing layer.",
+    "Use 6-digit hex colors like `#1f5eff`.",
+    "After the observation matches the success criteria, return the done action."
+  ]
+}

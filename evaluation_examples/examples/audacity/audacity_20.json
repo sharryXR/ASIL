@@ -1,0 +1,126 @@
+{
+  "id": "audacity_20",
+  "instruction": "Add new tracks named CTA FX and Credits Bed, and rename Voiceover to Host Narration.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "audacity_default_project",
+  "config": [],
+  "related_apps": [
+    "audacity"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "audacity_20_main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "cta_added",
+            "weight": 0.34,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "track",
+                "id": "track:track_cta_fx",
+                "value": {
+                  "name": "CTA FX"
+                }
+              }
+            }
+          },
+          {
+            "id": "credits_added",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "track",
+                "id": "track:track_credits_bed",
+                "value": {
+                  "name": "Credits Bed"
+                }
+              }
+            }
+          },
+          {
+            "id": "voice_renamed",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "track:track_voice",
+                "key": "name",
+                "expected": "Host Narration"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "audacity",
+    "difficulty": "simple",
+    "description": "Add new tracks named CTA FX and Credits Bed, and rename Voiceover to Host Narration.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_track",
+              "track_id": "track_cta_fx",
+              "name": "CTA FX",
+              "kind": "audio",
+              "mute": false,
+              "solo": false,
+              "gain_db": 0.0,
+              "pan": 0.0,
+              "height_px": 132,
+              "clips": []
+            },
+            {
+              "action": "add_track",
+              "track_id": "track_credits_bed",
+              "name": "Credits Bed",
+              "kind": "audio",
+              "mute": false,
+              "solo": false,
+              "gain_db": 0.0,
+              "pan": 0.0,
+              "height_px": 132,
+              "clips": []
+            },
+            {
+              "action": "set_track_value",
+              "track_id": "track_voice",
+              "field": "name",
+              "value": "Host Narration"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "track:track_voice",
+        "key": "name",
+        "expected": "Host Narration"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "multitrack_timeline",
+    "visible_change_summary": "CTA FX and Credits Bed appear while Voiceover is renamed to Host Narration.",
+    "checkpoint_visibility": {
+      "cta_added": "visible_in_track_headers",
+      "credits_added": "visible_in_track_headers",
+      "voice_renamed": "visible_in_track_headers"
+    }
+  }
+}

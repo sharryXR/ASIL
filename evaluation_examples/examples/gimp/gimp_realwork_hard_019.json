@@ -1,0 +1,587 @@
+{
+  "id": "gimp_realwork_hard_019",
+  "software": "gimp",
+  "difficulty": "complex",
+  "description": "Create a real-photo community event briefing card from the cafe storefront image.",
+  "instruction": "Create an 800x600 community event briefing card from the real cafe storefront photo. Complete it as a production workflow: place and crop the photo, apply the final color treatment, add the main information panel, add the accent strip, add the approval badge, add the headline 'EVENT READY 019', add the detail 'CHECK-IN PLAN 019', add the owner/status line 'OWNER: FIELD OPS', and add the CTA 'POST BY 4 PM'.",
+  "source": "asil_realwork_hard_v2",
+  "snapshot": "gimp_default",
+  "config": [],
+  "related_apps": [
+    "gimp"
+  ],
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_image_layer",
+            "id": "hard_photo_019",
+            "label": "Hard Photo 019",
+            "asset_path": "evaluation_examples/assets/realwork_images/coffee_street_960.jpg",
+            "x": 0,
+            "y": 0,
+            "width": 800,
+            "height": 600,
+            "crop": {
+              "x": 45,
+              "y": 24,
+              "width": 850,
+              "height": 638
+            },
+            "filters": {
+              "brightness": 0.98,
+              "contrast": 1.08,
+              "saturation": 0.86
+            }
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "apply_filter",
+            "id": "hard_photo_019",
+            "filters": {
+              "brightness": 1.06,
+              "contrast": 1.19,
+              "saturation": 0.88,
+              "sharpen": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_layer",
+            "id": "hard_panel_019",
+            "label": "Information Panel",
+            "kind": "rectangle",
+            "x": 430,
+            "y": 0,
+            "width": 370,
+            "height": 600,
+            "fill": "#263238",
+            "opacity": 0.9
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_layer",
+            "id": "hard_accent_019",
+            "label": "Accent Strip",
+            "kind": "rectangle",
+            "x": 430,
+            "y": 0,
+            "width": 12,
+            "height": 600,
+            "fill": "#80cbc4",
+            "opacity": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_layer",
+            "id": "hard_badge_019",
+            "label": "Approval Badge",
+            "kind": "rectangle",
+            "x": 472,
+            "y": 56,
+            "width": 220,
+            "height": 48,
+            "fill": "#f1f5f9",
+            "opacity": 0.94
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_text_layer",
+            "id": "hard_title_019",
+            "label": "Headline",
+            "text": "EVENT READY 019",
+            "x": 470,
+            "y": 146,
+            "font_size": 32,
+            "color": "#ffffff"
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_text_layer",
+            "id": "hard_detail_019",
+            "label": "Detail",
+            "text": "CHECK-IN PLAN 019",
+            "x": 472,
+            "y": 230,
+            "font_size": 24,
+            "color": "#80cbc4"
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_text_layer",
+            "id": "hard_meta_019",
+            "label": "Owner Line",
+            "text": "OWNER: FIELD OPS",
+            "x": 474,
+            "y": 316,
+            "font_size": 20,
+            "color": "#e2e8f0"
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_text_layer",
+            "id": "hard_cta_019",
+            "label": "CTA",
+            "text": "POST BY 4 PM",
+            "x": 494,
+            "y": 69,
+            "font_size": 18,
+            "color": "#263238"
+          }
+        ]
+      }
+    }
+  ],
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "The real cafe storefront photo is turned into a finished community event briefing card with a treated photo, information panel, badge, and four production text layers.",
+    "checkpoint_visibility": {
+      "canvas_size": "visible_on_canvas",
+      "layer_count": "visible_on_canvas",
+      "photo_asset": "visible_on_canvas",
+      "photo_filters": "visible_on_canvas",
+      "panel_fill": "visible_on_canvas",
+      "panel_position": "visible_on_canvas",
+      "accent_fill": "visible_on_canvas",
+      "badge_fill": "visible_on_canvas",
+      "title_text": "visible_on_canvas",
+      "detail_text": "visible_on_canvas",
+      "meta_text": "visible_on_canvas",
+      "cta_text": "visible_on_canvas",
+      "rendered_panel_region": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "canvas_size",
+            "weight": 0.8,
+            "gui_visible_required": true,
+            "rule": {
+              "image_size": {
+                "width": 800,
+                "height": 600
+              }
+            }
+          },
+          {
+            "id": "layer_count",
+            "weight": 0.8,
+            "gui_visible_required": true,
+            "rule": {
+              "count_elements_matching": {
+                "type": "layer",
+                "expected": 8
+              }
+            }
+          },
+          {
+            "id": "photo_asset",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_photo_019",
+                "key": "asset_path",
+                "expected": "evaluation_examples/assets/realwork_images/coffee_street_960.jpg"
+              }
+            }
+          },
+          {
+            "id": "photo_filters",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_photo_019",
+                "key": "filters",
+                "expected": {
+                  "brightness": 1.06,
+                  "contrast": 1.19,
+                  "saturation": 0.88,
+                  "sharpen": false
+                }
+              }
+            }
+          },
+          {
+            "id": "panel_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_panel_019",
+                "key": "fill",
+                "expected": "#263238"
+              }
+            }
+          },
+          {
+            "id": "panel_position",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_panel_019",
+                "key": "x",
+                "expected": 430
+              }
+            }
+          },
+          {
+            "id": "accent_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_accent_019",
+                "key": "fill",
+                "expected": "#80cbc4"
+              }
+            }
+          },
+          {
+            "id": "badge_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_badge_019",
+                "key": "fill",
+                "expected": "#f1f5f9"
+              }
+            }
+          },
+          {
+            "id": "title_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_title_019",
+                "key": "text",
+                "expected": "EVENT READY 019"
+              }
+            }
+          },
+          {
+            "id": "detail_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_detail_019",
+                "key": "text",
+                "expected": "CHECK-IN PLAN 019"
+              }
+            }
+          },
+          {
+            "id": "meta_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_meta_019",
+                "key": "text",
+                "expected": "OWNER: FIELD OPS"
+              }
+            }
+          },
+          {
+            "id": "cta_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_cta_019",
+                "key": "text",
+                "expected": "POST BY 4 PM"
+              }
+            }
+          },
+          {
+            "id": "rendered_panel_region",
+            "weight": 0.8,
+            "gui_visible_required": true,
+            "rule": {
+              "image_region_stat": {
+                "box": [
+                  455,
+                  120,
+                  320,
+                  420
+                ],
+                "metric": "luminance",
+                "min": 10,
+                "max": 175
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "complex",
+    "category": "realwork_hard",
+    "description": "Create a real-photo community event briefing card from the cafe storefront image.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_image_layer",
+              "id": "hard_photo_019",
+              "label": "Hard Photo 019",
+              "asset_path": "evaluation_examples/assets/realwork_images/coffee_street_960.jpg",
+              "x": 0,
+              "y": 0,
+              "width": 800,
+              "height": 600,
+              "crop": {
+                "x": 45,
+                "y": 24,
+                "width": 850,
+                "height": 638
+              },
+              "filters": {
+                "brightness": 0.98,
+                "contrast": 1.08,
+                "saturation": 0.86
+              }
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "apply_filter",
+              "id": "hard_photo_019",
+              "filters": {
+                "brightness": 1.06,
+                "contrast": 1.19,
+                "saturation": 0.88,
+                "sharpen": false
+              }
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_layer",
+              "id": "hard_panel_019",
+              "label": "Information Panel",
+              "kind": "rectangle",
+              "x": 430,
+              "y": 0,
+              "width": 370,
+              "height": 600,
+              "fill": "#263238",
+              "opacity": 0.9
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_layer",
+              "id": "hard_accent_019",
+              "label": "Accent Strip",
+              "kind": "rectangle",
+              "x": 430,
+              "y": 0,
+              "width": 12,
+              "height": 600,
+              "fill": "#80cbc4",
+              "opacity": 1.0
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_layer",
+              "id": "hard_badge_019",
+              "label": "Approval Badge",
+              "kind": "rectangle",
+              "x": 472,
+              "y": 56,
+              "width": 220,
+              "height": 48,
+              "fill": "#f1f5f9",
+              "opacity": 0.94
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_text_layer",
+              "id": "hard_title_019",
+              "label": "Headline",
+              "text": "EVENT READY 019",
+              "x": 470,
+              "y": 146,
+              "font_size": 32,
+              "color": "#ffffff"
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_text_layer",
+              "id": "hard_detail_019",
+              "label": "Detail",
+              "text": "CHECK-IN PLAN 019",
+              "x": 472,
+              "y": 230,
+              "font_size": 24,
+              "color": "#80cbc4"
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_text_layer",
+              "id": "hard_meta_019",
+              "label": "Owner Line",
+              "text": "OWNER: FIELD OPS",
+              "x": 474,
+              "y": 316,
+              "font_size": 20,
+              "color": "#e2e8f0"
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_text_layer",
+              "id": "hard_cta_019",
+              "label": "CTA",
+              "text": "POST BY 4 PM",
+              "x": 494,
+              "y": 69,
+              "font_size": 18,
+              "color": "#263238"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank",
+    "workflow_complexity": {
+      "meaningful_actions": 9,
+      "uses_real_image_asset": true,
+      "layout": "side"
+    }
+  }
+}

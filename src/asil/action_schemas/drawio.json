@@ -1,0 +1,44 @@
+{
+  "software": "drawio",
+  "supported_action_types": ["modify_file"],
+  "target": "diagram",
+  "description": "Manipulates a draw.io-style workflow diagram with shapes, connectors, and canvas sizing.",
+  "actions": [
+    {
+      "name": "edit_diagram",
+      "description": "Apply one or more diagram operations in sequence.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "add_shape | update_shape | add_connector | update_connector | delete_element | resize_canvas",
+            "id": "node_id",
+            "label": "Visible label",
+            "shape_kind": "rectangle",
+            "source": "start",
+            "target": "review",
+            "x": 120,
+            "y": 80,
+            "width": 140,
+            "height": 70,
+            "fill": "#dbeafe",
+            "stroke": "#2563eb",
+            "changes": {}
+          }
+        ]
+      }
+    }
+  ],
+  "done_action": {
+    "description": "Return this action when the diagram already satisfies the task.",
+    "example": {
+      "action_type": "done",
+      "target": "",
+      "params": {}
+    }
+  },
+  "tips": [
+    "Use target `diagram` for all executable actions.",
+    "Bundle related shape and connector edits into one action.",
+    "Prefer visible label, position, and connector changes over hidden metadata."
+  ]
+}

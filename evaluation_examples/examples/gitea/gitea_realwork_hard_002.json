@@ -1,0 +1,143 @@
+{
+  "id": "gitea_realwork_hard_002",
+  "instruction": "Create a pull request from 'feature/login-fix' to 'main', then merge it",
+  "source": "asil_realwork_hard_mixed_v2",
+  "snapshot": "gitea_instance_default",
+  "config": [],
+  "related_apps": [
+    "gitea"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "gitea_18_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "gitea_18_1",
+            "weight": 0.3333333333333333,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_contains": {
+                "type": "pull_request",
+                "key": "head",
+                "expected": "feature/login-fix"
+              }
+            }
+          },
+          {
+            "id": "gitea_18_2",
+            "weight": 0.3333333333333333,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_value": {
+                "type": "pull_request",
+                "key": "merged",
+                "expected": true
+              }
+            }
+          },
+          {
+            "id": "gitea_18_3",
+            "weight": 0.3333333333333333,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_value": {
+                "type": "pull_request",
+                "key": "state",
+                "expected": "closed"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gitea",
+    "difficulty": "complex",
+    "description": "Hard-suite variant of gitea_18: Create a pull request from 'feature/login-fix' to 'main', then merge it",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/pulls",
+          "body": {
+            "title": "Fix: resolve mobile login issue",
+            "head": "feature/login-fix",
+            "base": "main",
+            "body": "Fixes the mobile login bug."
+          }
+        }
+      },
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/pulls/1/merge",
+          "body": {
+            "Do": "merge",
+            "MergeMessageField": "Merge fix: resolve mobile login issue"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "element_not_exists": "pr:1"
+    },
+    "initial_state": "default",
+    "category": "realwork_hard",
+    "source_task_id": "gitea_18",
+    "workflow_complexity": {
+      "meaningful_actions": 2,
+      "suite_family": "developer_workflows",
+      "copied_from_main_benchmark": true
+    }
+  },
+  "gui_expectations": {
+    "success_surface": "web_page",
+    "visible_change_summary": "Create a pull request from 'feature/login-fix' to 'main', then merge it",
+    "checkpoint_visibility": {
+      "gitea_18_1": "visible_on_web_page",
+      "gitea_18_2": "visible_on_web_page",
+      "gitea_18_3": "visible_on_web_page"
+    }
+  },
+  "difficulty": "complex",
+  "description": "Hard-suite variant of gitea_18: Create a pull request from 'feature/login-fix' to 'main', then merge it",
+  "actions": [
+    {
+      "action_type": "api_call",
+      "target": "gitea_rest",
+      "params": {
+        "method": "POST",
+        "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/pulls",
+        "body": {
+          "title": "Fix: resolve mobile login issue",
+          "head": "feature/login-fix",
+          "base": "main",
+          "body": "Fixes the mobile login bug."
+        }
+      }
+    },
+    {
+      "action_type": "api_call",
+      "target": "gitea_rest",
+      "params": {
+        "method": "POST",
+        "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/pulls/1/merge",
+        "body": {
+          "Do": "merge",
+          "MergeMessageField": "Merge fix: resolve mobile login issue"
+        }
+      }
+    }
+  ]
+}

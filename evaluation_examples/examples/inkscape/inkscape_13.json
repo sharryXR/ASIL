@@ -1,0 +1,158 @@
+{
+  "id": "inkscape_13",
+  "instruction": "Create a user avatar component for user 'Alex': a 100px-radius circle background (id=avatar_bg, fill=#3f51b5), a centered white letter 'A' in 64px bold font (id=avatar_initial, text='A'), and a thin 4px-stroke border ring (id=avatar_ring, r=108, fill=none, stroke=#3f51b5). Center everything at (400, 300).",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_13_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_13_01",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "avatar_bg",
+                "key": "style",
+                "expected": "fill:#3f51b5"
+              }
+            }
+          },
+          {
+            "id": "inkscape_13_02",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "avatar_initial",
+                "key": "text_content",
+                "expected": "A"
+              }
+            }
+          },
+          {
+            "id": "inkscape_13_03",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "avatar_ring",
+                "key": "style",
+                "expected": "fill:none;stroke:#3f51b5;stroke-width:4"
+              }
+            }
+          },
+          {
+            "id": "inkscape_13_04",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "avatar_ring"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "medium",
+    "description": "Create a user avatar component for user 'Alex': a 100px-radius circle background (id=avatar_bg, fill=#3f51b5), a centered white letter 'A' in 64px bold font (id=avatar_initial, text='A'), and a thin 4px-stroke border ring (id=avatar_ring, r=108, fill=none, stroke=#3f51b5). Center everything at (400, 300).",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "circle",
+              "attributes": {
+                "id": "avatar_bg",
+                "cx": "400",
+                "cy": "300",
+                "r": "100",
+                "style": "fill:#3f51b5"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "text",
+              "attributes": {
+                "id": "avatar_initial",
+                "x": "400",
+                "y": "330",
+                "style": "font-size:80px;fill:#ffffff;text-anchor:middle;font-family:sans-serif;font-weight:bold",
+                "text_content": "A"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "circle",
+              "attributes": {
+                "id": "avatar_ring",
+                "cx": "400",
+                "cy": "300",
+                "r": "108",
+                "style": "fill:none;stroke:#3f51b5;stroke-width:4"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "avatar_bg",
+            "key": "style",
+            "expected": "fill:#3f51b5"
+          }
+        },
+        {
+          "element_value": {
+            "id": "avatar_initial",
+            "key": "text_content",
+            "expected": "A"
+          }
+        },
+        {
+          "element_value": {
+            "id": "avatar_ring",
+            "key": "style",
+            "expected": "fill:none;stroke:#3f51b5;stroke-width:4"
+          }
+        },
+        {
+          "element_exists": "avatar_ring"
+        }
+      ]
+    },
+    "initial_state": "blank"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Create a centered avatar with a blue background, white A, and a thin border ring.",
+    "checkpoint_visibility": {
+      "inkscape_13_01": "visible_on_canvas",
+      "inkscape_13_02": "visible_on_canvas",
+      "inkscape_13_03": "visible_on_canvas",
+      "inkscape_13_04": "visible_on_canvas"
+    }
+  }
+}

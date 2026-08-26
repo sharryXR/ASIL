@@ -1,0 +1,109 @@
+{
+  "id": "audacity_10",
+  "instruction": "Add new tracks named Sponsor Read and Stinger FX.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "audacity_default_project",
+  "config": [],
+  "related_apps": [
+    "audacity"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "audacity_10_main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "sponsor_added",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "track",
+                "id": "track:track_sponsor_read",
+                "value": {
+                  "name": "Sponsor Read"
+                }
+              }
+            }
+          },
+          {
+            "id": "stinger_added",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "track",
+                "id": "track:track_stinger_fx",
+                "value": {
+                  "name": "Stinger FX"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "audacity",
+    "difficulty": "simple",
+    "description": "Add new tracks named Sponsor Read and Stinger FX.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_track",
+              "track_id": "track_sponsor_read",
+              "name": "Sponsor Read",
+              "kind": "audio",
+              "mute": false,
+              "solo": false,
+              "gain_db": 0.0,
+              "pan": 0.0,
+              "height_px": 132,
+              "clips": []
+            },
+            {
+              "action": "add_track",
+              "track_id": "track_stinger_fx",
+              "name": "Stinger FX",
+              "kind": "audio",
+              "mute": false,
+              "solo": false,
+              "gain_db": 0.0,
+              "pan": 0.0,
+              "height_px": 132,
+              "clips": []
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "any_element_matches": {
+        "type": "track",
+        "id": "track:track_sponsor_read",
+        "value": {
+          "name": "Sponsor Read"
+        }
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "multitrack_timeline",
+    "visible_change_summary": "Two new tracks, Sponsor Read and Stinger FX, appear in the timeline.",
+    "checkpoint_visibility": {
+      "sponsor_added": "visible_in_track_headers",
+      "stinger_added": "visible_in_track_headers"
+    }
+  }
+}

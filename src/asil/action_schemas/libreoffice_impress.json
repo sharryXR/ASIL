@@ -1,0 +1,71 @@
+{
+  "software": "libreoffice_impress",
+  "description": "Structured slide editing through ODP-backed operations.",
+  "supported_action_types": ["modify_file", "set_value"],
+  "target": "Document path of the active .odp file",
+  "actions": [
+    {
+      "name": "modify_file",
+      "description": "Apply one or more slide operations to titles, body paragraphs, and slide additions.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "set_slide_title | set_slide_body | append_slide_body | add_slide",
+            "slide_index": 1,
+            "body_index": 1,
+            "text": "Updated visible text",
+            "title": "New slide title",
+            "body": ["First bullet", "Second bullet"]
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Replace the title of the first slide",
+          "action": {
+            "action_type": "modify_file",
+            "target": "slides.odp",
+            "params": {
+              "operations": [
+                {
+                  "action": "set_slide_title",
+                  "slide_index": 1,
+                  "text": "Launch Readiness"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Append a final recap slide",
+          "action": {
+            "action_type": "modify_file",
+            "target": "slides.odp",
+            "params": {
+              "operations": [
+                {
+                  "action": "add_slide",
+                  "title": "Executive Recap",
+                  "body": ["Revenue plan approved.", "Hiring review pending."]
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "done_action": {
+    "description": "Return when the current deck already satisfies the task requirements.",
+    "example": {
+      "action_type": "done",
+      "target": "slides.odp",
+      "params": {}
+    }
+  },
+  "tips": [
+    "Prefer visible slide title and body changes over hidden metadata edits.",
+    "When adding a slide, include the exact title and bullet text requested by the task.",
+    "Stop immediately when the presentation already satisfies all checkpoints."
+  ]
+}

@@ -1,0 +1,4 @@
+services:
+  gitea:
+    ports:
+      - "127.0.0.1:${SOFTWAREGEN_GITEA_PORT:-39030}:3000"

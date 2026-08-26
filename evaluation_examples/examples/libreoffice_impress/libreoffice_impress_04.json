@@ -1,0 +1,64 @@
+{
+  "id": "libreoffice_impress_04",
+  "software": "libreoffice_impress",
+  "difficulty": "simple",
+  "description": "Add a second body line on slide 2 saying \"Share the checklist with stakeholders.\".",
+  "instruction": "Add a second body line on slide 2 that says \"Share the checklist with stakeholders.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "append_slide_body",
+            "slide_index": 2,
+            "text": "Share the checklist with stakeholders."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "Slide 2 shows a new second body line with the stakeholder checklist note.",
+    "checkpoint_visibility": {
+      "slide2_body2": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "slide2_body2",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:body:2",
+                "key": "text_content",
+                "expected": "Share the checklist with stakeholders."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "single_slide",
+    "slide_indices": [
+      2
+    ]
+  }
+}

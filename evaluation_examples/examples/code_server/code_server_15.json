@@ -1,0 +1,97 @@
+{
+  "id": "code_server_15",
+  "software": "code_server",
+  "difficulty": "complex",
+  "description": "Rename the status utility file and keep it open.",
+  "instruction": "Rename src/utils.py to src/status.py and open src/status.py.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {
+            "action": "rename_path",
+            "path": "src/utils.py",
+            "new_path": "src/status.py"
+          },
+          {
+            "action": "open_file",
+            "path": "src/status.py"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "code_server"
+  ],
+  "snapshot": "code_server_default",
+  "initial_state": "src_focus",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "The renamed status.py file is visible and active in the editor.",
+    "checkpoint_visibility": {
+      "new_exists": "visible_in_editor",
+      "tab_active": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "new_exists",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "file:src/status.py"
+            }
+          },
+          {
+            "id": "tab_active",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "tab:src/status.py",
+                "key": "active",
+                "expected": true
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "code_server",
+    "difficulty": "complex",
+    "description": "Rename the status utility file and keep it open.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {
+              "action": "rename_path",
+              "path": "src/utils.py",
+              "new_path": "src/status.py"
+            },
+            {
+              "action": "open_file",
+              "path": "src/status.py"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "src_focus"
+  }
+}

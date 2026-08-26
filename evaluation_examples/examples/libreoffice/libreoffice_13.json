@@ -1,0 +1,889 @@
+{
+  "id": "libreoffice_13",
+  "instruction": "Create a product price list with headers SKU, Product, Unit Price, Stock. Enter exactly these 10 rows: SKU-001 | Wireless Mouse | 29.99 | 150; SKU-002 | Mechanical Keyboard | 89.99 | 75; SKU-003 | USB-C Hub | 49.99 | 200; SKU-004 | 27\" Monitor | 349.99 | 30; SKU-005 | Webcam HD | 59.99 | 120; SKU-006 | Headset Pro | 129.99 | 60; SKU-007 | Laptop Stand | 39.99 | 90; SKU-008 | Desk Lamp LED | 44.99 | 110; SKU-009 | Cable Management Kit | 19.99 | 300; SKU-010 | Ergonomic Chair | 499.99 | 15.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "libreoffice_calc_default",
+  "config": [],
+  "related_apps": [
+    "libreoffice"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "libreoffice_13_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "libreoffice_13_1",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A1",
+                "key": null,
+                "expected": "SKU"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_2",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B1",
+                "key": null,
+                "expected": "Product"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_3",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C1",
+                "key": null,
+                "expected": "Unit Price"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_4",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D1",
+                "key": null,
+                "expected": "Stock"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_5",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A2",
+                "key": null,
+                "expected": "SKU-001"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_6",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B2",
+                "key": null,
+                "expected": "Wireless Mouse"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_7",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C2",
+                "key": null,
+                "expected": "29.99"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_8",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D2",
+                "key": null,
+                "expected": "150"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_9",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A3",
+                "key": null,
+                "expected": "SKU-002"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_10",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B3",
+                "key": null,
+                "expected": "Mechanical Keyboard"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_11",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C3",
+                "key": null,
+                "expected": "89.99"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_12",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D3",
+                "key": null,
+                "expected": "75"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_13",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A4",
+                "key": null,
+                "expected": "SKU-003"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_14",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B4",
+                "key": null,
+                "expected": "USB-C Hub"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_15",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C4",
+                "key": null,
+                "expected": "49.99"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_16",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D4",
+                "key": null,
+                "expected": "200"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_17",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A5",
+                "key": null,
+                "expected": "SKU-004"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_18",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B5",
+                "key": null,
+                "expected": "27\" Monitor"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_19",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C5",
+                "key": null,
+                "expected": "349.99"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_20",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D5",
+                "key": null,
+                "expected": "30"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_21",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A6",
+                "key": null,
+                "expected": "SKU-005"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_22",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B6",
+                "key": null,
+                "expected": "Webcam HD"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_23",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C6",
+                "key": null,
+                "expected": "59.99"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_24",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D6",
+                "key": null,
+                "expected": "120"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_25",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A7",
+                "key": null,
+                "expected": "SKU-006"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_26",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B7",
+                "key": null,
+                "expected": "Headset Pro"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_27",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C7",
+                "key": null,
+                "expected": "129.99"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_28",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D7",
+                "key": null,
+                "expected": "60"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_29",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A8",
+                "key": null,
+                "expected": "SKU-007"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_30",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B8",
+                "key": null,
+                "expected": "Laptop Stand"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_31",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C8",
+                "key": null,
+                "expected": "39.99"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_32",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D8",
+                "key": null,
+                "expected": "90"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_33",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A9",
+                "key": null,
+                "expected": "SKU-008"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_34",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B9",
+                "key": null,
+                "expected": "Desk Lamp LED"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_35",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C9",
+                "key": null,
+                "expected": "44.99"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_36",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D9",
+                "key": null,
+                "expected": "110"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_37",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A10",
+                "key": null,
+                "expected": "SKU-009"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_38",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B10",
+                "key": null,
+                "expected": "Cable Management Kit"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_39",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C10",
+                "key": null,
+                "expected": "19.99"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_40",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D10",
+                "key": null,
+                "expected": "300"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_41",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A11",
+                "key": null,
+                "expected": "SKU-010"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_42",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B11",
+                "key": null,
+                "expected": "Ergonomic Chair"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_43",
+            "weight": 0.022727,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C11",
+                "key": null,
+                "expected": "499.99"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_13_44",
+            "weight": 0.022739,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D11",
+                "key": null,
+                "expected": "15"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "libreoffice",
+    "difficulty": "medium",
+    "description": "Create a product price list: columns (SKU, Product, Unit Price, Stock) and 10 product rows",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{ods_path}}",
+        "params": {
+          "operations": [
+            {
+              "sheet": "Sheet1",
+              "cell": "A1",
+              "value": "SKU",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B1",
+              "value": "Product",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C1",
+              "value": "Unit Price",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D1",
+              "value": "Stock",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A2",
+              "value": "SKU-001",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B2",
+              "value": "Wireless Mouse",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C2",
+              "value": "29.99",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D2",
+              "value": "150",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A3",
+              "value": "SKU-002",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B3",
+              "value": "Mechanical Keyboard",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C3",
+              "value": "89.99",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D3",
+              "value": "75",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A4",
+              "value": "SKU-003",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B4",
+              "value": "USB-C Hub",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C4",
+              "value": "49.99",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D4",
+              "value": "200",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A5",
+              "value": "SKU-004",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B5",
+              "value": "27\" Monitor",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C5",
+              "value": "349.99",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D5",
+              "value": "30",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A6",
+              "value": "SKU-005",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B6",
+              "value": "Webcam HD",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C6",
+              "value": "59.99",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D6",
+              "value": "120",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A7",
+              "value": "SKU-006",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B7",
+              "value": "Headset Pro",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C7",
+              "value": "129.99",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D7",
+              "value": "60",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A8",
+              "value": "SKU-007",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B8",
+              "value": "Laptop Stand",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C8",
+              "value": "39.99",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D8",
+              "value": "90",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A9",
+              "value": "SKU-008",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B9",
+              "value": "Desk Lamp LED",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C9",
+              "value": "44.99",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D9",
+              "value": "110",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A10",
+              "value": "SKU-009",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B10",
+              "value": "Cable Management Kit",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C10",
+              "value": "19.99",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D10",
+              "value": "300",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A11",
+              "value": "SKU-010",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B11",
+              "value": "Ergonomic Chair",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C11",
+              "value": "499.99",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D11",
+              "value": "15",
+              "value_type": "float"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "Sheet1!D11",
+        "key": null,
+        "expected": "15"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "spreadsheet",
+    "visible_change_summary": "Create a product price list with headers SKU, Product, Unit Price, Stock. Enter exactly these 10 rows: SKU-001 | Wireless Mouse | 29.99 | 150; SKU-002 | Mechanical Keyboard | 89.99 | 75; SKU-003 | USB-C Hub | 49.99 | 200; SKU-004 | 27\" Monitor | 349.99 | 30; SKU-005 | Webcam HD | 59.99 | 120; SKU-006 | Headset Pro | 129.99 | 60; SKU-007 | Laptop Stand | 39.99 | 90; SKU-008 | Desk Lamp LED | 44.99 | 110; SKU-009 | Cable Management Kit | 19.99 | 300; SKU-010 | Ergonomic Chair | 499.99 | 15.",
+    "checkpoint_visibility": {
+      "libreoffice_13_1": "visible_in_sheet",
+      "libreoffice_13_2": "visible_in_sheet",
+      "libreoffice_13_3": "visible_in_sheet",
+      "libreoffice_13_4": "visible_in_sheet",
+      "libreoffice_13_5": "visible_in_sheet",
+      "libreoffice_13_6": "visible_in_sheet",
+      "libreoffice_13_7": "visible_in_sheet",
+      "libreoffice_13_8": "visible_in_sheet",
+      "libreoffice_13_9": "visible_in_sheet",
+      "libreoffice_13_10": "visible_in_sheet",
+      "libreoffice_13_11": "visible_in_sheet",
+      "libreoffice_13_12": "visible_in_sheet",
+      "libreoffice_13_13": "visible_in_sheet",
+      "libreoffice_13_14": "visible_in_sheet",
+      "libreoffice_13_15": "visible_in_sheet",
+      "libreoffice_13_16": "visible_in_sheet",
+      "libreoffice_13_17": "visible_in_sheet",
+      "libreoffice_13_18": "visible_in_sheet",
+      "libreoffice_13_19": "visible_in_sheet",
+      "libreoffice_13_20": "visible_in_sheet",
+      "libreoffice_13_21": "visible_in_sheet",
+      "libreoffice_13_22": "visible_in_sheet",
+      "libreoffice_13_23": "visible_in_sheet",
+      "libreoffice_13_24": "visible_in_sheet",
+      "libreoffice_13_25": "visible_in_sheet",
+      "libreoffice_13_26": "visible_in_sheet",
+      "libreoffice_13_27": "visible_in_sheet",
+      "libreoffice_13_28": "visible_in_sheet",
+      "libreoffice_13_29": "visible_in_sheet",
+      "libreoffice_13_30": "visible_in_sheet",
+      "libreoffice_13_31": "visible_in_sheet",
+      "libreoffice_13_32": "visible_in_sheet",
+      "libreoffice_13_33": "visible_in_sheet",
+      "libreoffice_13_34": "visible_in_sheet",
+      "libreoffice_13_35": "visible_in_sheet",
+      "libreoffice_13_36": "visible_in_sheet",
+      "libreoffice_13_37": "visible_in_sheet",
+      "libreoffice_13_38": "visible_in_sheet",
+      "libreoffice_13_39": "visible_in_sheet",
+      "libreoffice_13_40": "visible_in_sheet",
+      "libreoffice_13_41": "visible_in_sheet",
+      "libreoffice_13_42": "visible_in_sheet",
+      "libreoffice_13_43": "visible_in_sheet",
+      "libreoffice_13_44": "visible_in_sheet"
+    }
+  }
+}

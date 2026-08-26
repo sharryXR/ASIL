@@ -1,0 +1,4 @@
+FROM linuxserver/obs-studio:latest
+
+# obs-websocket is included in OBS Studio 28+
+EXPOSE 4455

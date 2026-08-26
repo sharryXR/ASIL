@@ -1,0 +1,193 @@
+{
+  "id": "multi_apps_realwork_hard_025",
+  "software": "multi_apps",
+  "source": "asil_realwork_hard_mixed_v2",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: create a Blender object using material MultiMat037; add an Inkscape text object labeled MA-037.",
+  "related_apps": [
+    "blender",
+    "inkscape"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "blender_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "blender",
+                "rule": {
+                  "material_exists": "MultiMat037"
+                }
+              }
+            }
+          },
+          {
+            "id": "inkscape_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "inkscape",
+                "rule": {
+                  "element_exists": "ink_multi_037"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "blender_checkpoint": "visible_in_blender",
+      "inkscape_checkpoint": "visible_in_inkscape"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "complex",
+    "description": "Hard-suite variant of multi_apps_037: Design Assets cross-app task for blender, inkscape.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "blender": "default",
+      "inkscape": "default"
+    },
+    "primary_app": "blender",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "blender",
+              "action": {
+                "action_type": "invoke_function",
+                "target": "blender",
+                "params": {
+                  "script": [
+                    "import bpy",
+                    "bpy.ops.mesh.primitive_uv_sphere_add(radius=1, location=(0, 0, 0))",
+                    "mat = bpy.data.materials.new(name='MultiMat037')",
+                    "bpy.context.object.data.materials.append(mat)"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "inkscape",
+              "action": {
+                "action_type": "modify_file",
+                "target": "test.svg",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_element",
+                      "parent_xpath": "//svg:g[@id='layer1']",
+                      "tag": "text",
+                      "attributes": {
+                        "id": "ink_multi_037",
+                        "x": "117",
+                        "y": "127",
+                        "style": "font-size:24px;fill:#0f766e",
+                        "text_content": "MA-037"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "realwork_hard",
+    "source_task_id": "multi_apps_037",
+    "workflow_complexity": {
+      "meaningful_actions": 2,
+      "suite_family": "multi_app_hard",
+      "copied_from_main_benchmark": true
+    }
+  },
+  "difficulty": "complex",
+  "description": "Hard-suite variant of multi_apps_037: Design Assets cross-app task for blender, inkscape.",
+  "actions": [
+    {
+      "action_type": "batch",
+      "target": "multi_apps",
+      "params": {
+        "actions": [
+          {
+            "app": "blender",
+            "action": {
+              "action_type": "invoke_function",
+              "target": "blender",
+              "params": {
+                "script": [
+                  "import bpy",
+                  "bpy.ops.mesh.primitive_uv_sphere_add(radius=1, location=(0, 0, 0))",
+                  "mat = bpy.data.materials.new(name='MultiMat037')",
+                  "bpy.context.object.data.materials.append(mat)"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "batch",
+      "target": "multi_apps",
+      "params": {
+        "actions": [
+          {
+            "app": "inkscape",
+            "action": {
+              "action_type": "modify_file",
+              "target": "test.svg",
+              "params": {
+                "operations": [
+                  {
+                    "action": "add_element",
+                    "parent_xpath": "//svg:g[@id='layer1']",
+                    "tag": "text",
+                    "attributes": {
+                      "id": "ink_multi_037",
+                      "x": "117",
+                      "y": "127",
+                      "style": "font-size:24px;fill:#0f766e",
+                      "text_content": "MA-037"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

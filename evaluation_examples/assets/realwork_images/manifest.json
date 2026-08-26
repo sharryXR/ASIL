@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "id": "coffee_street_960",
+      "path": "coffee_street_960.jpg",
+      "description": "Street view outside Public Domain Coffee in Portland, Oregon.",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Public_Domain_Coffee.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Public_Domain_Coffee.jpg/960px-Public_Domain_Coffee.jpg",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "author": "Visitor7",
+      "sha256": "0b97758bccf1bef36de5a92f9b20ea89b92dba0e6c27bc03e56c6e192572f183",
+      "width": 960,
+      "height": 768
+    },
+    {
+      "id": "coast_960",
+      "path": "coast_960.jpg",
+      "description": "Coastal landscape photo from the Free for Commercial Use Flickr collection.",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Free_high-resolution_pictures_you_can_use_on_your_personal_and_commercial_projects._(14355368395).jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Free_high-resolution_pictures_you_can_use_on_your_personal_and_commercial_projects._%2814355368395%29.jpg",
+      "license": "CC0 1.0 / CC BY-SA 2.0 metadata on Commons",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Free for Commercial Use",
+      "sha256": "564eae1d29a433194569dd2111a7a2e82ad26f17c6d53540064366c1424c10a8",
+      "width": 960,
+      "height": 720,
+      "derived_from_original": true
+    },
+    {
+      "id": "office_desk_960",
+      "path": "office_desk_960.jpg",
+      "description": "A real office desk photo from the Wiki Education Foundation.",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Office_Desk.jpg",
+      "download_url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Office%20Desk.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "author": "Eryk (Wiki Ed)",
+      "sha256": "a0c7862809ef06f6fcf604cd1809daf78df4ec6dccbf1685c2fba3e18a3da25e",
+      "width": 507,
+      "height": 720,
+      "derived_from_original": true
+    },
+    {
+      "id": "farmers_market_960",
+      "path": "farmers_market_960.jpg",
+      "description": "Fruits and vegetables at a farmers market.",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Fruits_and_Vegetables_at_a_Farmers_Market.jpg",
+      "download_url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Fruits%20and%20Vegetables%20at%20a%20Farmers%20Market.jpg",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Alabama Extension",
+      "sha256": "202395977c406e4b96a6c1447b76b870cc64b69c843841691b8bc8d2567b6655",
+      "width": 480,
+      "height": 720,
+      "derived_from_original": true
+    }
+  ]
+}

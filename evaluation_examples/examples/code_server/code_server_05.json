@@ -1,0 +1,90 @@
+{
+  "id": "code_server_05",
+  "software": "code_server",
+  "difficulty": "simple",
+  "description": "Turn on autosave in settings.",
+  "instruction": "Open config/settings.json and change autosave from false to true.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {
+            "action": "open_file",
+            "path": "config/settings.json"
+          },
+          {
+            "action": "replace_text",
+            "path": "config/settings.json",
+            "old": "\"autosave\": false",
+            "new": "\"autosave\": true"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "code_server"
+  ],
+  "snapshot": "code_server_default",
+  "initial_state": "config_focus",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "The settings editor now shows autosave enabled.",
+    "checkpoint_visibility": {
+      "settings_content": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "settings_content",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "file:config/settings.json",
+                "key": "content",
+                "expected": "\"autosave\": true"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "code_server",
+    "difficulty": "simple",
+    "description": "Turn on autosave in settings.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {
+              "action": "open_file",
+              "path": "config/settings.json"
+            },
+            {
+              "action": "replace_text",
+              "path": "config/settings.json",
+              "old": "\"autosave\": false",
+              "new": "\"autosave\": true"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "config_focus"
+  }
+}

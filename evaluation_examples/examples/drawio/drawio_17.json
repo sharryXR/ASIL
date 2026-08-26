@@ -1,0 +1,176 @@
+{
+  "id": "drawio_17",
+  "software": "drawio",
+  "difficulty": "complex",
+  "description": "Rename Start and Review, then connect to Done.",
+  "instruction": "Update Start to Intake, Review to Validate, add Done at x=760 y=140, and connect Validate to Done with label finish.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "diagram",
+      "params": {
+        "operations": [
+          {
+            "action": "update_shape",
+            "id": "start",
+            "changes": {
+              "label": "Intake"
+            }
+          },
+          {
+            "action": "update_shape",
+            "id": "review",
+            "changes": {
+              "label": "Validate"
+            }
+          },
+          {
+            "action": "add_shape",
+            "id": "done",
+            "label": "Done",
+            "shape_kind": "ellipse",
+            "x": 760,
+            "y": 140,
+            "width": 120,
+            "height": 70,
+            "fill": "#dcfce7",
+            "stroke": "#16a34a"
+          },
+          {
+            "action": "add_connector",
+            "id": "flow_done",
+            "source": "review",
+            "target": "done",
+            "label": "finish",
+            "stroke": "#16a34a"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "drawio"
+  ],
+  "snapshot": "drawio_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "diagram_canvas",
+    "visible_change_summary": "The flow is relabeled Intake -> Validate -> Done.",
+    "checkpoint_visibility": {
+      "start_label": "visible_on_diagram",
+      "review_label": "visible_on_diagram",
+      "done": "visible_on_diagram",
+      "done_flow": "visible_on_diagram"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "start_label",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:start",
+                "key": "label",
+                "expected": "Intake"
+              }
+            }
+          },
+          {
+            "id": "review_label",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:review",
+                "key": "label",
+                "expected": "Validate"
+              }
+            }
+          },
+          {
+            "id": "done",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "shape:done"
+            }
+          },
+          {
+            "id": "done_flow",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Validate",
+                  "target_label": "Done",
+                  "label": "finish"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "drawio",
+    "difficulty": "complex",
+    "description": "Rename Start and Review, then connect to Done.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "diagram",
+        "params": {
+          "operations": [
+            {
+              "action": "update_shape",
+              "id": "start",
+              "changes": {
+                "label": "Intake"
+              }
+            },
+            {
+              "action": "update_shape",
+              "id": "review",
+              "changes": {
+                "label": "Validate"
+              }
+            },
+            {
+              "action": "add_shape",
+              "id": "done",
+              "label": "Done",
+              "shape_kind": "ellipse",
+              "x": 760,
+              "y": 140,
+              "width": 120,
+              "height": 70,
+              "fill": "#dcfce7",
+              "stroke": "#16a34a"
+            },
+            {
+              "action": "add_connector",
+              "id": "flow_done",
+              "source": "review",
+              "target": "done",
+              "label": "finish",
+              "stroke": "#16a34a"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

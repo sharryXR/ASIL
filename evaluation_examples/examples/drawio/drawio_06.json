@@ -1,0 +1,228 @@
+{
+  "id": "drawio_06",
+  "software": "drawio",
+  "difficulty": "medium",
+  "description": "Create a three-step approval flow.",
+  "instruction": "On a blank canvas, add Start, Review, and Deploy shapes from left to right, with connectors Start->Review and Review->Deploy.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "diagram",
+      "params": {
+        "operations": [
+          {
+            "action": "add_shape",
+            "id": "start",
+            "label": "Start",
+            "shape_kind": "ellipse",
+            "x": 60,
+            "y": 160,
+            "width": 120,
+            "height": 70,
+            "fill": "#dbeafe",
+            "stroke": "#2563eb"
+          },
+          {
+            "action": "add_shape",
+            "id": "review",
+            "label": "Review",
+            "shape_kind": "rectangle",
+            "x": 280,
+            "y": 150,
+            "width": 150,
+            "height": 80,
+            "fill": "#fef3c7",
+            "stroke": "#d97706"
+          },
+          {
+            "action": "add_shape",
+            "id": "deploy",
+            "label": "Deploy",
+            "shape_kind": "rectangle",
+            "x": 520,
+            "y": 150,
+            "width": 150,
+            "height": 80,
+            "fill": "#d1fae5",
+            "stroke": "#059669"
+          },
+          {
+            "action": "add_connector",
+            "id": "flow_1",
+            "source": "start",
+            "target": "review",
+            "label": "submit"
+          },
+          {
+            "action": "add_connector",
+            "id": "flow_2",
+            "source": "review",
+            "target": "deploy",
+            "label": "approved"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "drawio"
+  ],
+  "snapshot": "drawio_default",
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "diagram_canvas",
+    "visible_change_summary": "A three-step approval flow appears across the canvas.",
+    "checkpoint_visibility": {
+      "start": "visible_on_diagram",
+      "review": "visible_on_diagram",
+      "deploy": "visible_on_diagram",
+      "flow_1": "visible_on_diagram",
+      "flow_2": "visible_on_diagram"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "start",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:start",
+                "key": "label",
+                "expected": "Start"
+              }
+            }
+          },
+          {
+            "id": "review",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:review",
+                "key": "label",
+                "expected": "Review"
+              }
+            }
+          },
+          {
+            "id": "deploy",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:deploy",
+                "key": "label",
+                "expected": "Deploy"
+              }
+            }
+          },
+          {
+            "id": "flow_1",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Start",
+                  "target_label": "Review",
+                  "label": "submit"
+                }
+              }
+            }
+          },
+          {
+            "id": "flow_2",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Review",
+                  "target_label": "Deploy",
+                  "label": "approved"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "drawio",
+    "difficulty": "medium",
+    "description": "Create a three-step approval flow.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "diagram",
+        "params": {
+          "operations": [
+            {
+              "action": "add_shape",
+              "id": "start",
+              "label": "Start",
+              "shape_kind": "ellipse",
+              "x": 60,
+              "y": 160,
+              "width": 120,
+              "height": 70,
+              "fill": "#dbeafe",
+              "stroke": "#2563eb"
+            },
+            {
+              "action": "add_shape",
+              "id": "review",
+              "label": "Review",
+              "shape_kind": "rectangle",
+              "x": 280,
+              "y": 150,
+              "width": 150,
+              "height": 80,
+              "fill": "#fef3c7",
+              "stroke": "#d97706"
+            },
+            {
+              "action": "add_shape",
+              "id": "deploy",
+              "label": "Deploy",
+              "shape_kind": "rectangle",
+              "x": 520,
+              "y": 150,
+              "width": 150,
+              "height": 80,
+              "fill": "#d1fae5",
+              "stroke": "#059669"
+            },
+            {
+              "action": "add_connector",
+              "id": "flow_1",
+              "source": "start",
+              "target": "review",
+              "label": "submit"
+            },
+            {
+              "action": "add_connector",
+              "id": "flow_2",
+              "source": "review",
+              "target": "deploy",
+              "label": "approved"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank"
+  }
+}

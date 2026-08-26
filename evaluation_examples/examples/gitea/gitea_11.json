@@ -1,0 +1,82 @@
+{
+  "id": "gitea_11",
+  "instruction": "Add a comment 'Confirmed on iOS 16' to issue #1",
+  "source": "asil_benchmark_v1",
+  "snapshot": "gitea_instance_default",
+  "config": [],
+  "related_apps": [
+    "gitea"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "gitea_11_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "gitea_11_1",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_contains": {
+                "type": "comment",
+                "key": "body",
+                "expected": "Confirmed on iOS 16"
+              }
+            }
+          },
+          {
+            "id": "gitea_11_2",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "issue:1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gitea",
+    "difficulty": "simple",
+    "description": "Add a comment 'Confirmed on iOS 16' to issue #1",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues/1/comments",
+          "body": {
+            "body": "Confirmed on iOS 16"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "any_element_contains": {
+            "type": "comment",
+            "key": "body",
+            "expected": "Confirmed on iOS 16"
+          }
+        }
+      ]
+    },
+    "initial_state": "with_issues"
+  },
+  "gui_expectations": {
+    "success_surface": "web_page",
+    "visible_change_summary": "Add a comment 'Confirmed on iOS 16' to issue #1",
+    "checkpoint_visibility": {
+      "gitea_11_1": "visible_on_web_page",
+      "gitea_11_2": "visible_on_web_page"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "gimp": [
+    "gimp_realwork_hard_001",
+    "gimp_realwork_hard_002",
+    "gimp_realwork_hard_007",
+    "gimp_realwork_hard_008"
+  ],
+  "multi_apps": [
+    "multi_apps_realwork_hard_001",
+    "multi_apps_realwork_hard_002"
+  ],
+  "drawio": [
+    "drawio_realwork_hard_001"
+  ],
+  "code_server": [
+    "code_server_realwork_hard_001"
+  ],
+  "thunderbird": [
+    "thunderbird_realwork_hard_001"
+  ]
+}

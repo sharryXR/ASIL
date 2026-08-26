@@ -1,0 +1,140 @@
+{
+  "id": "code_server_20",
+  "software": "code_server",
+  "difficulty": "complex",
+  "description": "Turn the workspace into a launch plan set.",
+  "instruction": "Open README.md and replace \"Ship the slice\" with \"Ship the launch plan\". Then create docs/launch-plan.md with \"# Launch Plan\n- Confirm owners\n- Publish the runbook\n\", open it, and create src/plan.py with \"PLAN_NAME = \"Launch Plan\"\n\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {
+            "action": "open_file",
+            "path": "README.md"
+          },
+          {
+            "action": "replace_text",
+            "path": "README.md",
+            "old": "Ship the slice",
+            "new": "Ship the launch plan"
+          },
+          {
+            "action": "create_file",
+            "path": "docs/launch-plan.md",
+            "content": "# Launch Plan\n- Confirm owners\n- Publish the runbook\n"
+          },
+          {
+            "action": "open_file",
+            "path": "docs/launch-plan.md"
+          },
+          {
+            "action": "create_file",
+            "path": "src/plan.py",
+            "content": "PLAN_NAME = \"Launch Plan\"\n"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "code_server"
+  ],
+  "snapshot": "code_server_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "The workspace shows a launch-plan document and supporting plan.py file.",
+    "checkpoint_visibility": {
+      "readme_update": "visible_in_editor",
+      "launch_doc": "visible_in_editor",
+      "plan_file": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "readme_update",
+            "weight": 0.34,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "file:README.md",
+                "key": "content",
+                "expected": "Ship the launch plan"
+              }
+            }
+          },
+          {
+            "id": "launch_doc",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "editor:docs/launch-plan.md",
+                "key": "content",
+                "expected": "Publish the runbook"
+              }
+            }
+          },
+          {
+            "id": "plan_file",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "file:src/plan.py"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "code_server",
+    "difficulty": "complex",
+    "description": "Turn the workspace into a launch plan set.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {
+              "action": "open_file",
+              "path": "README.md"
+            },
+            {
+              "action": "replace_text",
+              "path": "README.md",
+              "old": "Ship the slice",
+              "new": "Ship the launch plan"
+            },
+            {
+              "action": "create_file",
+              "path": "docs/launch-plan.md",
+              "content": "# Launch Plan\n- Confirm owners\n- Publish the runbook\n"
+            },
+            {
+              "action": "open_file",
+              "path": "docs/launch-plan.md"
+            },
+            {
+              "action": "create_file",
+              "path": "src/plan.py",
+              "content": "PLAN_NAME = \"Launch Plan\"\n"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

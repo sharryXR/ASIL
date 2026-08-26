@@ -1,0 +1,14 @@
+{
+  "id": "nautilus_08",
+  "instruction": "Add `Projects/alpha` to the sidebar bookmarks.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "nautilus_workspace_default",
+  "config": [],
+  "related_apps": ["nautilus"],
+  "evaluator": {"selection": "best_score", "paths": [{"path_id": "nautilus_08_primary_path", "exclusive_group": "success_paths", "checkpoints": [{"id": "nautilus_08_bookmark", "weight": 1.0, "gui_visible_required": true, "rule": {"any_element_matches": {"type": "bookmark", "value": {"path": "Projects/alpha"}}}}]}]},
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {"software": "nautilus", "difficulty": "simple", "description": "Add the alpha project folder to the Nautilus sidebar bookmarks.", "actions": [{"action_type": "invoke_function", "target": "nautilus", "params": {"operations": [{"action": "add_bookmark", "path": "Projects/alpha"}]}}], "validation": {"any_element_matches": {"type": "bookmark", "value": {"path": "Projects/alpha"}}}, "initial_state": "default"},
+  "gui_expectations": {"success_surface": "sidebar_bookmarks", "visible_change_summary": "The sidebar bookmarks now include Projects/alpha.", "checkpoint_visibility": {"nautilus_08_bookmark": "visible_in_sidebar"}}
+}

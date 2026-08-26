@@ -1,0 +1,99 @@
+{
+  "id": "gimp_06",
+  "software": "gimp",
+  "difficulty": "medium",
+  "description": "Make the watermark fully visible and darker.",
+  "instruction": "Update the watermark_text layer so the text stays DRAFT but the color becomes #5c5c5c and opacity becomes 0.9.",
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "update_layer",
+            "id": "watermark_text",
+            "changes": {
+              "color": "#5c5c5c",
+              "opacity": 0.9
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "gimp"
+  ],
+  "snapshot": "gimp_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "The DRAFT watermark becomes darker and more visible.",
+    "checkpoint_visibility": {
+      "watermark_color": "visible_on_canvas",
+      "watermark_opacity": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "watermark_color",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "watermark_text",
+                "key": "color",
+                "expected": "#5c5c5c"
+              }
+            }
+          },
+          {
+            "id": "watermark_opacity",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "watermark_text",
+                "key": "opacity",
+                "expected": 0.9
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "medium",
+    "description": "Make the watermark fully visible and darker.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "update_layer",
+              "id": "watermark_text",
+              "changes": {
+                "color": "#5c5c5c",
+                "opacity": 0.9
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

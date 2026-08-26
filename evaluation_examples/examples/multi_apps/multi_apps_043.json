@@ -1,0 +1,132 @@
+{
+  "id": "multi_apps_043",
+  "software": "multi_apps",
+  "source": "asil_multi_apps_generated",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: add a draw.io shape labeled 'MA-043 flow'; add an Inkscape text object labeled MA-043.",
+  "related_apps": [
+    "drawio",
+    "inkscape"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "drawio_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "drawio",
+                "rule": {
+                  "element_contains": {
+                    "id": "shape:draw_multi_043",
+                    "key": "label",
+                    "expected": "MA-043 flow"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "inkscape_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "inkscape",
+                "rule": {
+                  "element_exists": "ink_multi_043"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "drawio_checkpoint": "visible_in_drawio",
+      "inkscape_checkpoint": "visible_in_inkscape"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "medium",
+    "description": "Design Assets cross-app task for drawio, inkscape.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "drawio": "default",
+      "inkscape": "default"
+    },
+    "primary_app": "drawio",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "drawio",
+              "action": {
+                "action_type": "modify_file",
+                "target": "diagram",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_shape",
+                      "id": "draw_multi_043",
+                      "label": "MA-043 flow",
+                      "shape_kind": "rounded",
+                      "x": 123,
+                      "y": 163,
+                      "width": 150,
+                      "height": 70,
+                      "fill": "#d1fae5"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "inkscape",
+              "action": {
+                "action_type": "modify_file",
+                "target": "test.svg",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_element",
+                      "parent_xpath": "//svg:g[@id='layer1']",
+                      "tag": "text",
+                      "attributes": {
+                        "id": "ink_multi_043",
+                        "x": "123",
+                        "y": "133",
+                        "style": "font-size:24px;fill:#0f766e",
+                        "text_content": "MA-043"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "design_assets"
+  }
+}

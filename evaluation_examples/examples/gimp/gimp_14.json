@@ -1,0 +1,186 @@
+{
+  "id": "gimp_14",
+  "software": "gimp",
+  "difficulty": "complex",
+  "description": "Create a compact social card.",
+  "instruction": "Crop the default image from x=10 y=10 to width=500 height=300, resize it to width=250 height=150, then recolor logo_block to #0047ab.",
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "crop_image",
+            "x": 10,
+            "y": 10,
+            "width": 500,
+            "height": 300
+          },
+          {
+            "action": "resize_image",
+            "width": 250,
+            "height": 150
+          },
+          {
+            "action": "update_layer",
+            "id": "logo_block",
+            "changes": {
+              "fill": "#0047ab"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "gimp"
+  ],
+  "snapshot": "gimp_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "The image becomes a compact 250x150 social card with a blue logo block.",
+    "checkpoint_visibility": {
+      "image_width": "visible_on_canvas",
+      "image_height": "visible_on_canvas",
+      "logo_fill": "visible_on_canvas",
+      "logo_x": "visible_on_canvas",
+      "logo_y": "visible_on_canvas",
+      "logo_width": "visible_on_canvas",
+      "logo_height": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "image_width",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "image",
+                "key": "width",
+                "expected": 250
+              }
+            }
+          },
+          {
+            "id": "image_height",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "image",
+                "key": "height",
+                "expected": 150
+              }
+            }
+          },
+          {
+            "id": "logo_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "logo_block",
+                "key": "fill",
+                "expected": "#0047ab"
+              }
+            }
+          },
+          {
+            "id": "logo_x",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "logo_block",
+                "key": "x",
+                "expected": 15
+              }
+            }
+          },
+          {
+            "id": "logo_y",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "logo_block",
+                "key": "y",
+                "expected": 15
+              }
+            }
+          },
+          {
+            "id": "logo_width",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "logo_block",
+                "key": "width",
+                "expected": 70
+              }
+            }
+          },
+          {
+            "id": "logo_height",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "logo_block",
+                "key": "height",
+                "expected": 45
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "complex",
+    "description": "Create a compact social card.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "crop_image",
+              "x": 10,
+              "y": 10,
+              "width": 500,
+              "height": 300
+            },
+            {
+              "action": "resize_image",
+              "width": 250,
+              "height": 150
+            },
+            {
+              "action": "update_layer",
+              "id": "logo_block",
+              "changes": {
+                "fill": "#0047ab"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

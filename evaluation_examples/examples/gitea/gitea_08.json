@@ -1,0 +1,101 @@
+{
+  "id": "gitea_08",
+  "instruction": "Create a milestone named 'v1.0' with due date 2026-06-30",
+  "source": "asil_benchmark_v1",
+  "snapshot": "gitea_instance_default",
+  "config": [],
+  "related_apps": [
+    "gitea"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "gitea_08_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "gitea_08_1",
+            "weight": 0.3333,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_value": {
+                "type": "milestone",
+                "key": "title",
+                "expected": "v1.0"
+              }
+            }
+          },
+          {
+            "id": "gitea_08_2",
+            "weight": 0.3333,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_contains": {
+                "type": "milestone",
+                "key": "description",
+                "expected": "Initial release milestone"
+              }
+            }
+          },
+          {
+            "id": "gitea_08_3",
+            "weight": 0.3333,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_contains": {
+                "type": "milestone",
+                "key": "due_on",
+                "expected": "2026-06-30"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gitea",
+    "difficulty": "medium",
+    "description": "Create a milestone named 'v1.0' with due date 2026-06-30",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/milestones",
+          "body": {
+            "title": "v1.0",
+            "description": "Initial release milestone",
+            "due_on": "2026-06-30T00:00:00Z"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "any_element_value": {
+            "type": "milestone",
+            "key": "title",
+            "expected": "v1.0"
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "web_page",
+    "visible_change_summary": "Create a milestone named 'v1.0' with due date 2026-06-30",
+    "checkpoint_visibility": {
+      "gitea_08_1": "visible_on_web_page",
+      "gitea_08_2": "visible_on_web_page",
+      "gitea_08_3": "visible_on_web_page"
+    }
+  }
+}

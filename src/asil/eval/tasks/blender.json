@@ -1,0 +1,450 @@
+{
+  "software": "blender",
+  "tasks": [
+    {
+      "id": "blender_01",
+      "software": "blender",
+      "difficulty": "simple",
+      "description": "Create a default cube at the origin",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.ops.mesh.primitive_cube_add(location=(0, 0, 0))"
+            ]
+          }
+        }
+      ],
+      "validation": {"object_exists": "Cube"}
+    },
+    {
+      "id": "blender_02",
+      "software": "blender",
+      "difficulty": "simple",
+      "description": "Create a UV sphere at position (2, 0, 0)",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.ops.mesh.primitive_uv_sphere_add(location=(2, 0, 0))"
+            ]
+          }
+        }
+      ],
+      "validation": {"object_exists": "Sphere"}
+    },
+    {
+      "id": "blender_03",
+      "software": "blender",
+      "difficulty": "simple",
+      "description": "Create a cylinder with radius 0.5 and height 2",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.ops.mesh.primitive_cylinder_add(radius=0.5, depth=2, location=(0, 0, 0))"
+            ]
+          }
+        }
+      ],
+      "validation": {"object_exists": "Cylinder"}
+    },
+    {
+      "id": "blender_04",
+      "software": "blender",
+      "difficulty": "simple",
+      "description": "Delete all default objects from the scene",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.ops.object.select_all(action='SELECT')",
+              "bpy.ops.object.delete()"
+            ]
+          }
+        }
+      ],
+      "validation": {"scene_object_count": 0}
+    },
+    {
+      "id": "blender_05",
+      "software": "blender",
+      "difficulty": "simple",
+      "description": "Create a plane and scale it to 5x5",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.ops.mesh.primitive_plane_add(location=(0, 0, 0))",
+              "bpy.context.object.scale = (5, 5, 1)"
+            ]
+          }
+        }
+      ],
+      "validation": {"object_exists": "Plane"}
+    },
+    {
+      "id": "blender_06",
+      "software": "blender",
+      "difficulty": "medium",
+      "description": "Add a red diffuse material to the default cube",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.ops.mesh.primitive_cube_add(location=(0, 0, 0))",
+              "mat = bpy.data.materials.new(name='RedMaterial')",
+              "mat.use_nodes = True",
+              "bsdf = mat.node_tree.nodes['Principled BSDF']",
+              "bsdf.inputs['Base Color'].default_value = (1.0, 0.0, 0.0, 1.0)",
+              "bpy.context.object.data.materials.append(mat)"
+            ]
+          }
+        }
+      ],
+      "validation": {"material_exists": "RedMaterial"}
+    },
+    {
+      "id": "blender_07",
+      "software": "blender",
+      "difficulty": "medium",
+      "description": "Set render resolution to 1920x1080",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.context.scene.render.resolution_x = 1920",
+              "bpy.context.scene.render.resolution_y = 1080",
+              "bpy.context.scene.render.resolution_percentage = 100"
+            ]
+          }
+        }
+      ],
+      "validation": {"render_setting": {"key": "resolution_x", "expected": 1920}}
+    },
+    {
+      "id": "blender_08",
+      "software": "blender",
+      "difficulty": "medium",
+      "description": "Add a point light at position (3, 3, 5) with energy 1000",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.ops.object.light_add(type='POINT', location=(3, 3, 5))",
+              "bpy.context.object.data.energy = 1000"
+            ]
+          }
+        }
+      ],
+      "validation": {"object_type_exists": "LIGHT"}
+    },
+    {
+      "id": "blender_09",
+      "software": "blender",
+      "difficulty": "complex",
+      "description": "Create a scene with cube, sphere, plane, camera, and sun light",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.ops.object.select_all(action='SELECT')",
+              "bpy.ops.object.delete()",
+              "bpy.ops.mesh.primitive_plane_add(size=10, location=(0, 0, 0))",
+              "bpy.ops.mesh.primitive_cube_add(location=(0, 0, 1))",
+              "bpy.ops.mesh.primitive_uv_sphere_add(location=(3, 0, 1))",
+              "bpy.ops.object.camera_add(location=(7, -7, 5))",
+              "cam = bpy.context.object",
+              "cam.rotation_euler = (1.1, 0, 0.785)",
+              "bpy.context.scene.camera = cam",
+              "bpy.ops.object.light_add(type='SUN', location=(5, 5, 10))"
+            ]
+          }
+        }
+      ],
+      "validation": {"object_type_exists": "CAMERA"}
+    },
+    {
+      "id": "blender_10",
+      "software": "blender",
+      "difficulty": "complex",
+      "description": "Set animation keyframes for a cube moving from (0,0,0) to (5,0,0) over 24 frames",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.ops.mesh.primitive_cube_add(location=(0, 0, 0))",
+              "cube = bpy.context.object",
+              "cube.location = (0, 0, 0)",
+              "cube.keyframe_insert(data_path='location', frame=1)",
+              "cube.location = (5, 0, 0)",
+              "cube.keyframe_insert(data_path='location', frame=24)",
+              "bpy.context.scene.frame_start = 1",
+              "bpy.context.scene.frame_end = 24"
+            ]
+          }
+        }
+      ],
+      "validation": {"animation_data_exists": "Cube"}
+    },
+    {
+      "id": "blender_11",
+      "software": "blender",
+      "difficulty": "medium",
+      "description": "Create a torus and add a Subdivision Surface modifier",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.ops.mesh.primitive_torus_add(location=(0, 0, 0))",
+              "bpy.ops.object.modifier_add(type='SUBSURF')"
+            ]
+          }
+        }
+      ],
+      "validation": {"object_exists": "Torus"}
+    },
+    {
+      "id": "blender_12",
+      "software": "blender",
+      "difficulty": "medium",
+      "description": "Create an icosphere and add a blue material",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.ops.mesh.primitive_ico_sphere_add(location=(0, 0, 0))",
+              "mat = bpy.data.materials.new(name='BlueMaterial')",
+              "mat.use_nodes = True",
+              "bsdf = mat.node_tree.nodes['Principled BSDF']",
+              "bsdf.inputs['Base Color'].default_value = (0.0, 0.0, 1.0, 1.0)",
+              "bpy.context.object.data.materials.append(mat)"
+            ]
+          }
+        }
+      ],
+      "validation": {"material_exists": "BlueMaterial"}
+    },
+    {
+      "id": "blender_13",
+      "software": "blender",
+      "difficulty": "medium",
+      "description": "Set render engine to EEVEE",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.context.scene.render.engine = 'BLENDER_EEVEE'"
+            ]
+          }
+        }
+      ],
+      "validation": {"render_setting": {"key": "engine", "expected": "BLENDER_EEVEE"}}
+    },
+    {
+      "id": "blender_14",
+      "software": "blender",
+      "difficulty": "medium",
+      "description": "Create a cone at position (1, 2, 0)",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.ops.mesh.primitive_cone_add(location=(1, 2, 0))"
+            ]
+          }
+        }
+      ],
+      "validation": {"object_exists": "Cone"}
+    },
+    {
+      "id": "blender_15",
+      "software": "blender",
+      "difficulty": "medium",
+      "description": "Set render resolution to 720p (1280x720)",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.context.scene.render.resolution_x = 1280",
+              "bpy.context.scene.render.resolution_y = 720"
+            ]
+          }
+        }
+      ],
+      "validation": {"render_setting": {"key": "resolution_y", "expected": 720}}
+    },
+    {
+      "id": "blender_16",
+      "software": "blender",
+      "difficulty": "medium",
+      "description": "Add a spot light at position (0, 0, 5)",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.ops.object.light_add(type='SPOT', location=(0, 0, 5))"
+            ]
+          }
+        }
+      ],
+      "validation": {"object_type_exists": "LIGHT"}
+    },
+    {
+      "id": "blender_17",
+      "software": "blender",
+      "difficulty": "complex",
+      "description": "Create a monkey head (Suzanne) with a green material and subdivision modifier",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.ops.mesh.primitive_monkey_add(location=(0, 0, 0))",
+              "bpy.ops.object.modifier_add(type='SUBSURF')",
+              "mat = bpy.data.materials.new(name='GreenMaterial')",
+              "mat.use_nodes = True",
+              "bsdf = mat.node_tree.nodes['Principled BSDF']",
+              "bsdf.inputs['Base Color'].default_value = (0.0, 1.0, 0.0, 1.0)",
+              "bpy.context.object.data.materials.append(mat)"
+            ]
+          }
+        }
+      ],
+      "validation": {"material_exists": "GreenMaterial"}
+    },
+    {
+      "id": "blender_18",
+      "software": "blender",
+      "difficulty": "complex",
+      "description": "Build a simple room: floor plane, 4 wall planes, and a camera",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.ops.mesh.primitive_plane_add(size=10, location=(0, 0, 0))",
+              "bpy.ops.mesh.primitive_plane_add(size=10, location=(0, -5, 5))",
+              "bpy.context.object.rotation_euler = (1.5708, 0, 0)",
+              "bpy.ops.mesh.primitive_plane_add(size=10, location=(0, 5, 5))",
+              "bpy.context.object.rotation_euler = (1.5708, 0, 0)",
+              "bpy.ops.mesh.primitive_plane_add(size=10, location=(-5, 0, 5))",
+              "bpy.context.object.rotation_euler = (0, 1.5708, 0)",
+              "bpy.ops.mesh.primitive_plane_add(size=10, location=(5, 0, 5))",
+              "bpy.context.object.rotation_euler = (0, 1.5708, 0)",
+              "bpy.ops.object.camera_add(location=(0, -8, 3))"
+            ]
+          }
+        }
+      ],
+      "validation": {"object_type_exists": "CAMERA"}
+    },
+    {
+      "id": "blender_19",
+      "software": "blender",
+      "difficulty": "complex",
+      "description": "Create two cubes with different materials and animate the first one",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.ops.mesh.primitive_cube_add(location=(0, 0, 0))",
+              "cube1 = bpy.context.object",
+              "mat1 = bpy.data.materials.new(name='Mat_Red')",
+              "cube1.data.materials.append(mat1)",
+              "cube1.keyframe_insert(data_path='location', frame=1)",
+              "cube1.location = (3, 0, 0)",
+              "cube1.keyframe_insert(data_path='location', frame=20)",
+              "bpy.ops.mesh.primitive_cube_add(location=(5, 0, 0))",
+              "cube2 = bpy.context.object",
+              "mat2 = bpy.data.materials.new(name='Mat_Blue')",
+              "cube2.data.materials.append(mat2)"
+            ]
+          }
+        }
+      ],
+      "validation": {"material_exists": "Mat_Red"}
+    },
+    {
+      "id": "blender_20",
+      "software": "blender",
+      "difficulty": "complex",
+      "description": "Create a product visualization scene: object, 3-point lighting, camera, and EEVEE render at 4K",
+      "actions": [
+        {
+          "action_type": "invoke_function",
+          "target": "bpy",
+          "params": {
+            "script": [
+              "import bpy",
+              "bpy.ops.mesh.primitive_uv_sphere_add(location=(0, 0, 0))",
+              "bpy.ops.object.light_add(type='AREA', location=(3, -3, 5))",
+              "bpy.ops.object.light_add(type='AREA', location=(-3, -3, 5))",
+              "bpy.ops.object.light_add(type='AREA', location=(0, 5, 3))",
+              "bpy.ops.object.camera_add(location=(0, -6, 2))",
+              "bpy.context.scene.render.engine = 'BLENDER_EEVEE'",
+              "bpy.context.scene.render.resolution_x = 3840",
+              "bpy.context.scene.render.resolution_y = 2160"
+            ]
+          }
+        }
+      ],
+      "validation": {"render_setting": {"key": "resolution_x", "expected": 3840}}
+    }
+  ]
+}

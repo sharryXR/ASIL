@@ -1,0 +1,87 @@
+{
+  "software": "OBS Studio",
+  "supported_action_types": ["api_call"],
+  "target": "obs-websocket",
+  "description": "Controls OBS Studio via WebSocket JSON-RPC protocol (obs-websocket v5). Each action calls a single WebSocket method.",
+  "actions": [
+    {
+      "name": "call_method",
+      "description": "Call an OBS WebSocket method with arguments. The method name and args dict are sent as a WebSocket request.",
+      "params_schema": {
+        "method": "WebSocket method name",
+        "args": {"key": "value"}
+      },
+      "examples": [
+        {
+          "description": "Switch to a scene",
+          "action": {
+            "action_type": "api_call",
+            "target": "obs-websocket",
+            "params": {
+              "method": "SetCurrentProgramScene",
+              "args": {"sceneName": "Main Scene"}
+            }
+          }
+        },
+        {
+          "description": "Toggle source visibility",
+          "action": {
+            "action_type": "api_call",
+            "target": "obs-websocket",
+            "params": {
+              "method": "SetSceneItemEnabled",
+              "args": {"sceneName": "Main Scene", "sceneItemId": 1, "sceneItemEnabled": false}
+            }
+          }
+        },
+        {
+          "description": "Start streaming",
+          "action": {
+            "action_type": "api_call",
+            "target": "obs-websocket",
+            "params": {
+              "method": "StartStream",
+              "args": {}
+            }
+          }
+        },
+        {
+          "description": "Mute an audio input",
+          "action": {
+            "action_type": "api_call",
+            "target": "obs-websocket",
+            "params": {
+              "method": "SetInputMute",
+              "args": {"inputName": "Desktop Audio", "inputMuted": true}
+            }
+          }
+        },
+        {
+          "description": "Start recording",
+          "action": {
+            "action_type": "api_call",
+            "target": "obs-websocket",
+            "params": {
+              "method": "StartRecord",
+              "args": {}
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "done_action": {
+    "description": "Return this action when the task is fully complete.",
+    "example": {"action_type": "done", "target": "", "params": {}}
+  },
+  "tips": [
+    "Common methods: GetSceneList, SetCurrentProgramScene, GetSceneItemList, SetSceneItemEnabled",
+    "Audio methods: SetInputMute, SetInputVolume, GetInputMute",
+    "Recording: StartRecord, StopRecord, GetRecordStatus",
+    "Streaming: StartStream, StopStream, GetStreamStatus",
+    "Video: SetVideoSettings (fpsNumerator, baseWidth, baseHeight, outputWidth, outputHeight)",
+    "Studio mode: SetStudioModeEnabled, SetCurrentPreviewScene, TriggerStudioModeTransition",
+    "Scene collections: SetCurrentSceneCollection",
+    "Use empty args {} for methods that take no parameters"
+  ]
+}

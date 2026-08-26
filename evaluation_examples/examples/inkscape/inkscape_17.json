@@ -1,0 +1,304 @@
+{
+  "id": "inkscape_17",
+  "instruction": "Design a professional website navigation bar (800x60) for company '启明科技': full-width dark background rect (id=nav_bg, fill=#1a237e, height=60), company logo text '启明科技' on the left (id=nav_logo, x=24, fill=#ffffff, bold), and 4 navigation links at right: '首页'(id=nav_home,x=520), '产品'(id=nav_products,x=600), '关于我们'(id=nav_about,x=670), '联系'(id=nav_contact,x=760), all fill=#b0bec5, font-size=14px. Add a 3px bottom accent line (id=nav_accent, fill=#00e5ff).",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_17_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_17_01",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "nav_bg",
+                "key": "width",
+                "expected": "800"
+              }
+            }
+          },
+          {
+            "id": "inkscape_17_02",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "nav_bg",
+                "key": "style",
+                "expected": "fill:#1a237e"
+              }
+            }
+          },
+          {
+            "id": "inkscape_17_03",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "nav_logo",
+                "key": "text_content",
+                "expected": "启明科技"
+              }
+            }
+          },
+          {
+            "id": "inkscape_17_04",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "nav_home",
+                "key": "text_content",
+                "expected": "首页"
+              }
+            }
+          },
+          {
+            "id": "inkscape_17_05",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "nav_products",
+                "key": "text_content",
+                "expected": "产品"
+              }
+            }
+          },
+          {
+            "id": "inkscape_17_06",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "nav_about",
+                "key": "text_content",
+                "expected": "关于我们"
+              }
+            }
+          },
+          {
+            "id": "inkscape_17_07",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "nav_contact",
+                "key": "text_content",
+                "expected": "联系"
+              }
+            }
+          },
+          {
+            "id": "inkscape_17_08",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "nav_accent",
+                "key": "style",
+                "expected": "fill:#00e5ff"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "complex",
+    "description": "Design a professional website navigation bar (800x60) for company '启明科技': full-width dark background rect (id=nav_bg, fill=#1a237e, height=60), company logo text '启明科技' on the left (id=nav_logo, x=24, fill=#ffffff, bold), and 4 navigation links at right: '首页'(id=nav_home,x=520), '产品'(id=nav_products,x=600), '关于我们'(id=nav_about,x=670), '联系'(id=nav_contact,x=760), all fill=#b0bec5, font-size=14px. Add a 3px bottom accent line (id=nav_accent, fill=#00e5ff).",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "g",
+              "attributes": {
+                "id": "navbar"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='navbar']",
+              "tag": "rect",
+              "attributes": {
+                "id": "nav_bg",
+                "x": "0",
+                "y": "0",
+                "width": "800",
+                "height": "60",
+                "style": "fill:#1a237e"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='navbar']",
+              "tag": "text",
+              "attributes": {
+                "id": "nav_logo",
+                "x": "24",
+                "y": "40",
+                "style": "font-size:20px;fill:#ffffff;font-family:sans-serif;font-weight:bold",
+                "text_content": "启明科技"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='navbar']",
+              "tag": "text",
+              "attributes": {
+                "id": "nav_home",
+                "x": "520",
+                "y": "38",
+                "style": "font-size:14px;fill:#b0bec5;font-family:sans-serif",
+                "text_content": "首页"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='navbar']",
+              "tag": "text",
+              "attributes": {
+                "id": "nav_products",
+                "x": "590",
+                "y": "38",
+                "style": "font-size:14px;fill:#b0bec5;font-family:sans-serif",
+                "text_content": "产品"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='navbar']",
+              "tag": "text",
+              "attributes": {
+                "id": "nav_about",
+                "x": "650",
+                "y": "38",
+                "style": "font-size:14px;fill:#b0bec5;font-family:sans-serif",
+                "text_content": "关于我们"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='navbar']",
+              "tag": "text",
+              "attributes": {
+                "id": "nav_contact",
+                "x": "748",
+                "y": "38",
+                "style": "font-size:14px;fill:#b0bec5;font-family:sans-serif",
+                "text_content": "联系"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='navbar']",
+              "tag": "rect",
+              "attributes": {
+                "id": "nav_accent",
+                "x": "0",
+                "y": "57",
+                "width": "800",
+                "height": "3",
+                "style": "fill:#00e5ff"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "nav_bg",
+            "key": "width",
+            "expected": "800"
+          }
+        },
+        {
+          "element_value": {
+            "id": "nav_bg",
+            "key": "style",
+            "expected": "fill:#1a237e"
+          }
+        },
+        {
+          "element_value": {
+            "id": "nav_logo",
+            "key": "text_content",
+            "expected": "启明科技"
+          }
+        },
+        {
+          "element_value": {
+            "id": "nav_home",
+            "key": "text_content",
+            "expected": "首页"
+          }
+        },
+        {
+          "element_value": {
+            "id": "nav_products",
+            "key": "text_content",
+            "expected": "产品"
+          }
+        },
+        {
+          "element_value": {
+            "id": "nav_about",
+            "key": "text_content",
+            "expected": "关于我们"
+          }
+        },
+        {
+          "element_value": {
+            "id": "nav_contact",
+            "key": "text_content",
+            "expected": "联系"
+          }
+        },
+        {
+          "element_value": {
+            "id": "nav_accent",
+            "key": "style",
+            "expected": "fill:#00e5ff"
+          }
+        }
+      ]
+    },
+    "initial_state": "blank"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Create a dark navigation bar with logo, four links, and a cyan accent line.",
+    "checkpoint_visibility": {
+      "inkscape_17_01": "visible_on_canvas",
+      "inkscape_17_02": "visible_on_canvas",
+      "inkscape_17_03": "visible_on_canvas",
+      "inkscape_17_04": "visible_on_canvas",
+      "inkscape_17_05": "visible_on_canvas",
+      "inkscape_17_06": "visible_on_canvas",
+      "inkscape_17_07": "visible_on_canvas",
+      "inkscape_17_08": "visible_on_canvas"
+    }
+  }
+}

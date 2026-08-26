@@ -1,0 +1,72 @@
+{
+  "id": "jupyterlab_06",
+  "software": "jupyterlab",
+  "difficulty": "medium",
+  "description": "Create a findings note.",
+  "instruction": "Create notes/findings.md with \"# Findings\\n- Variance looks stable\\n\" and open it.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {"action": "create_file", "path": "notes/findings.md", "content": "# Findings\n- Variance looks stable\n"},
+          {"action": "open_file", "path": "notes/findings.md"}
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": ["jupyterlab"],
+  "snapshot": "jupyterlab_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "A new findings note is open with a visible stable variance bullet.",
+    "checkpoint_visibility": {
+      "findings": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "findings",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "editor:notes/findings.md",
+                "key": "content",
+                "expected": "Variance looks stable"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "jupyterlab",
+    "difficulty": "medium",
+    "description": "Create a findings note.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {"action": "create_file", "path": "notes/findings.md", "content": "# Findings\n- Variance looks stable\n"},
+            {"action": "open_file", "path": "notes/findings.md"}
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

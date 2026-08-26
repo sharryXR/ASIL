@@ -1,0 +1,493 @@
+{
+  "id": "inkscape_20",
+  "instruction": "Design a complete professional business card (600x340) for: Name: 张伟 (Zhang Wei), Title: 产品总监, Company: 启明科技有限公司, Phone: +86 138-0013-8000, Email: zhang.wei@qiming.com, Website: www.qiming.com. Layout: white card background with subtle shadow, company logo circle (id=card_logo, fill=#1a237e) with '启' text on left, name in large bold (id=card_name, text='张伟'), title below (id=card_title, text='产品总监'), company name (id=card_company, text='启明科技有限公司'), horizontal divider line (id=card_divider), phone (id=card_phone, text='+86 138-0013-8000'), email (id=card_email, text='zhang.wei@qiming.com'), website (id=card_website, text='www.qiming.com').",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_20_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_20_01",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "card_shadow",
+                "key": "style",
+                "expected": "fill:#00000018"
+              }
+            }
+          },
+          {
+            "id": "inkscape_20_02",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "card_bg",
+                "key": "style",
+                "expected": "fill:#ffffff;stroke:#e0e0e0;stroke-width:1"
+              }
+            }
+          },
+          {
+            "id": "inkscape_20_03",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "card_accent",
+                "key": "style",
+                "expected": "fill:#1a237e"
+              }
+            }
+          },
+          {
+            "id": "inkscape_20_04",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "card_logo",
+                "key": "style",
+                "expected": "fill:#1a237e"
+              }
+            }
+          },
+          {
+            "id": "inkscape_20_05",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "card_logo_text",
+                "key": "text_content",
+                "expected": "启"
+              }
+            }
+          },
+          {
+            "id": "inkscape_20_06",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "card_name",
+                "key": "text_content",
+                "expected": "张伟"
+              }
+            }
+          },
+          {
+            "id": "inkscape_20_07",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "card_title",
+                "key": "text_content",
+                "expected": "产品总监"
+              }
+            }
+          },
+          {
+            "id": "inkscape_20_08",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "card_company",
+                "key": "text_content",
+                "expected": "启明科技有限公司"
+              }
+            }
+          },
+          {
+            "id": "inkscape_20_09",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "card_divider"
+            }
+          },
+          {
+            "id": "inkscape_20_10",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "card_phone",
+                "key": "text_content",
+                "expected": "+86 138-0013-8000"
+              }
+            }
+          },
+          {
+            "id": "inkscape_20_11",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "card_email",
+                "key": "text_content",
+                "expected": "zhang.wei@qiming.com"
+              }
+            }
+          },
+          {
+            "id": "inkscape_20_12",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "card_website",
+                "key": "text_content",
+                "expected": "www.qiming.com"
+              }
+            }
+          },
+          {
+            "id": "inkscape_20_bg_width",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "card_bg",
+                "key": "width",
+                "expected": "600"
+              }
+            }
+          },
+          {
+            "id": "inkscape_20_bg_height",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "card_bg",
+                "key": "height",
+                "expected": "340"
+              }
+            }
+          },
+          {
+            "id": "inkscape_20_logo_cx",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "card_logo",
+                "key": "cx",
+                "expected": "180"
+              }
+            }
+          },
+          {
+            "id": "inkscape_20_logo_cy",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "card_logo",
+                "key": "cy",
+                "expected": "230"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "complex",
+    "description": "Design a complete professional business card (600x340) for: Name: 张伟 (Zhang Wei), Title: 产品总监, Company: 启明科技有限公司, Phone: +86 138-0013-8000, Email: zhang.wei@qiming.com, Website: www.qiming.com. Layout: white card background with subtle shadow, company logo circle (id=card_logo, fill=#1a237e) with '启' text on left, name in large bold (id=card_name, text='张伟'), title below (id=card_title, text='产品总监'), company name (id=card_company, text='启明科技有限公司'), horizontal divider line (id=card_divider), phone (id=card_phone, text='+86 138-0013-8000'), email (id=card_email, text='zhang.wei@qiming.com'), website (id=card_website, text='www.qiming.com').",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "g",
+              "attributes": {
+                "id": "business_card"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='business_card']",
+              "tag": "rect",
+              "attributes": {
+                "id": "card_shadow",
+                "x": "102",
+                "y": "132",
+                "width": "600",
+                "height": "340",
+                "rx": "12",
+                "style": "fill:#00000018"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='business_card']",
+              "tag": "rect",
+              "attributes": {
+                "id": "card_bg",
+                "x": "100",
+                "y": "130",
+                "width": "600",
+                "height": "340",
+                "rx": "12",
+                "style": "fill:#ffffff;stroke:#e0e0e0;stroke-width:1"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='business_card']",
+              "tag": "rect",
+              "attributes": {
+                "id": "card_accent",
+                "x": "100",
+                "y": "130",
+                "width": "8",
+                "height": "340",
+                "rx": "12",
+                "style": "fill:#1a237e"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='business_card']",
+              "tag": "circle",
+              "attributes": {
+                "id": "card_logo",
+                "cx": "180",
+                "cy": "230",
+                "r": "40",
+                "style": "fill:#1a237e"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='business_card']",
+              "tag": "text",
+              "attributes": {
+                "id": "card_logo_text",
+                "x": "180",
+                "y": "248",
+                "style": "font-size:36px;fill:#ffffff;text-anchor:middle;font-family:sans-serif;font-weight:bold",
+                "text_content": "启"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='business_card']",
+              "tag": "text",
+              "attributes": {
+                "id": "card_name",
+                "x": "250",
+                "y": "210",
+                "style": "font-size:28px;font-weight:bold;font-family:sans-serif;fill:#1a237e",
+                "text_content": "张伟"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='business_card']",
+              "tag": "text",
+              "attributes": {
+                "id": "card_title",
+                "x": "250",
+                "y": "240",
+                "style": "font-size:15px;font-family:sans-serif;fill:#546e7a",
+                "text_content": "产品总监"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='business_card']",
+              "tag": "text",
+              "attributes": {
+                "id": "card_company",
+                "x": "250",
+                "y": "265",
+                "style": "font-size:13px;font-family:sans-serif;fill:#78909c",
+                "text_content": "启明科技有限公司"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='business_card']",
+              "tag": "line",
+              "attributes": {
+                "id": "card_divider",
+                "x1": "130",
+                "y1": "300",
+                "x2": "670",
+                "y2": "300",
+                "style": "stroke:#e0e0e0;stroke-width:1"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='business_card']",
+              "tag": "text",
+              "attributes": {
+                "id": "card_phone",
+                "x": "150",
+                "y": "330",
+                "style": "font-size:13px;font-family:sans-serif;fill:#546e7a",
+                "text_content": "+86 138-0013-8000"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='business_card']",
+              "tag": "text",
+              "attributes": {
+                "id": "card_email",
+                "x": "150",
+                "y": "355",
+                "style": "font-size:13px;font-family:sans-serif;fill:#546e7a",
+                "text_content": "zhang.wei@qiming.com"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='business_card']",
+              "tag": "text",
+              "attributes": {
+                "id": "card_website",
+                "x": "150",
+                "y": "380",
+                "style": "font-size:13px;font-family:sans-serif;fill:#1a237e",
+                "text_content": "www.qiming.com"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "card_shadow",
+            "key": "style",
+            "expected": "fill:#00000018"
+          }
+        },
+        {
+          "element_value": {
+            "id": "card_bg",
+            "key": "style",
+            "expected": "fill:#ffffff;stroke:#e0e0e0;stroke-width:1"
+          }
+        },
+        {
+          "element_value": {
+            "id": "card_accent",
+            "key": "style",
+            "expected": "fill:#1a237e"
+          }
+        },
+        {
+          "element_value": {
+            "id": "card_logo",
+            "key": "style",
+            "expected": "fill:#1a237e"
+          }
+        },
+        {
+          "element_value": {
+            "id": "card_logo_text",
+            "key": "text_content",
+            "expected": "启"
+          }
+        },
+        {
+          "element_value": {
+            "id": "card_name",
+            "key": "text_content",
+            "expected": "张伟"
+          }
+        },
+        {
+          "element_value": {
+            "id": "card_title",
+            "key": "text_content",
+            "expected": "产品总监"
+          }
+        },
+        {
+          "element_value": {
+            "id": "card_company",
+            "key": "text_content",
+            "expected": "启明科技有限公司"
+          }
+        },
+        {
+          "element_exists": "card_divider"
+        },
+        {
+          "element_value": {
+            "id": "card_phone",
+            "key": "text_content",
+            "expected": "+86 138-0013-8000"
+          }
+        },
+        {
+          "element_value": {
+            "id": "card_email",
+            "key": "text_content",
+            "expected": "zhang.wei@qiming.com"
+          }
+        },
+        {
+          "element_value": {
+            "id": "card_website",
+            "key": "text_content",
+            "expected": "www.qiming.com"
+          }
+        }
+      ]
+    },
+    "initial_state": "blank"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Create a professional business card with logo, name block, divider, and contact details.",
+    "checkpoint_visibility": {
+      "inkscape_20_01": "visible_on_canvas",
+      "inkscape_20_02": "visible_on_canvas",
+      "inkscape_20_03": "visible_on_canvas",
+      "inkscape_20_04": "visible_on_canvas",
+      "inkscape_20_05": "visible_on_canvas",
+      "inkscape_20_06": "visible_on_canvas",
+      "inkscape_20_07": "visible_on_canvas",
+      "inkscape_20_08": "visible_on_canvas",
+      "inkscape_20_09": "visible_on_canvas",
+      "inkscape_20_10": "visible_on_canvas",
+      "inkscape_20_11": "visible_on_canvas",
+      "inkscape_20_12": "visible_on_canvas",
+      "inkscape_20_bg_width": "visible_on_canvas",
+      "inkscape_20_bg_height": "visible_on_canvas",
+      "inkscape_20_logo_cx": "visible_on_canvas",
+      "inkscape_20_logo_cy": "visible_on_canvas"
+    }
+  }
+}

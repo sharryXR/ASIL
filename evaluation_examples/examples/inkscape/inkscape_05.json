@@ -1,0 +1,77 @@
+{
+  "id": "inkscape_05",
+  "instruction": "Add a second layer named 'Annotations'",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_05_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_05_1",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "layer",
+                "value": {
+                  "label": "Annotations"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "simple",
+    "description": "Add a second layer named 'Annotations'",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "//svg:svg",
+              "tag": "g",
+              "attributes": {
+                "id": "annotations_layer",
+                "inkscape:groupmode": "layer",
+                "inkscape:label": "Annotations"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_exists": "annotations_layer"
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Add a second layer named 'Annotations' to the layers panel.",
+    "checkpoint_visibility": {
+      "inkscape_05_1": "visible_on_canvas"
+    }
+  }
+}

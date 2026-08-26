@@ -1,0 +1,123 @@
+{
+  "id": "kdenlive_10",
+  "instruction": "Add a new video track named 'Lower Third Cue' and place the existing Opening Title clip on it at frame 96 for 48 frames.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "kdenlive_default_project",
+  "config": [],
+  "related_apps": ["kdenlive"],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "kdenlive_10_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "kdenlive_10_new_track",
+            "weight": 0.4,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "track:video_lower_third",
+                "key": "name",
+                "expected": "Lower Third Cue"
+              }
+            }
+          },
+          {
+            "id": "kdenlive_10_clip_block",
+            "weight": 0.6,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "timeline_clip",
+                "id": "timeline_clip:tl_lower_third_title",
+                "value": {
+                  "track_id": "video_lower_third",
+                  "position": 96,
+                  "duration": 48,
+                  "clip_title": "Opening Title"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "kdenlive",
+    "difficulty": "medium",
+    "description": "Add a new video track named 'Lower Third Cue' and place the existing Opening Title clip on it at frame 96 for 48 frames.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "/kdenliveProject/timeline",
+              "tag": "track",
+              "attributes": {
+                "id": "video_lower_third",
+                "kind": "video",
+                "name": "Lower Third Cue",
+                "muted": "0",
+                "locked": "0"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "/kdenliveProject/timeline/track[@id='video_lower_third']",
+              "tag": "clipref",
+              "attributes": {
+                "id": "tl_lower_third_title",
+                "clip_id": "clip_title",
+                "start": "96",
+                "duration": "48",
+                "in": "0",
+                "out": "48"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "all_of": [
+        {
+          "element_value": {
+            "id": "track:video_lower_third",
+            "key": "name",
+            "expected": "Lower Third Cue"
+          }
+        },
+        {
+          "any_element_matches": {
+            "type": "timeline_clip",
+            "id": "timeline_clip:tl_lower_third_title",
+            "value": {
+              "track_id": "video_lower_third",
+              "position": 96,
+              "duration": 48,
+              "clip_title": "Opening Title"
+            }
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "timeline",
+    "visible_change_summary": "A new video track labeled 'Lower Third Cue' appears with an Opening Title block at frame 96.",
+    "checkpoint_visibility": {
+      "kdenlive_10_new_track": "visible_in_track_header",
+      "kdenlive_10_clip_block": "visible_in_timeline_clip_block"
+    }
+  }
+}

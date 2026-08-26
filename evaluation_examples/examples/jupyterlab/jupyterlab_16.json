@@ -1,0 +1,72 @@
+{
+  "id": "jupyterlab_16",
+  "software": "jupyterlab",
+  "difficulty": "medium",
+  "description": "Create a short checklist note.",
+  "instruction": "Create notes/checklist.md with \"# Checklist\\n- Verify cells\\n- Export summary\\n\" and open it.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {"action": "create_file", "path": "notes/checklist.md", "content": "# Checklist\n- Verify cells\n- Export summary\n"},
+          {"action": "open_file", "path": "notes/checklist.md"}
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": ["jupyterlab"],
+  "snapshot": "jupyterlab_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "The checklist note is open with verify and export bullets.",
+    "checkpoint_visibility": {
+      "checklist": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "checklist",
+            "weight": 1.0,
+            "gui_visible_required": true,
+          "rule": {
+            "element_value": {
+              "id": "editor:notes/checklist.md",
+              "key": "content",
+              "expected": "# Checklist\n- Verify cells\n- Export summary\n"
+            }
+          }
+        }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "jupyterlab",
+    "difficulty": "medium",
+    "description": "Create a short checklist note.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {"action": "create_file", "path": "notes/checklist.md", "content": "# Checklist\n- Verify cells\n- Export summary\n"},
+            {"action": "open_file", "path": "notes/checklist.md"}
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

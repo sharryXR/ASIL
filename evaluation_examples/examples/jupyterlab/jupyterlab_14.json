@@ -1,0 +1,76 @@
+{
+  "id": "jupyterlab_14",
+  "software": "jupyterlab",
+  "difficulty": "medium",
+  "description": "Rename helpers.py to analysis_helpers.py.",
+  "instruction": "Rename src/helpers.py to src/analysis_helpers.py and open the renamed file.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {"action": "rename_path", "path": "src/helpers.py", "new_path": "src/analysis_helpers.py"},
+          {"action": "open_file", "path": "src/analysis_helpers.py"}
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": ["jupyterlab"],
+  "snapshot": "jupyterlab_default",
+  "initial_state": "src_focus",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "The renamed analysis_helpers.py file is open in the editor.",
+    "checkpoint_visibility": {
+      "renamed_editor": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "renamed_editor",
+            "weight": 0.6,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "editor:src/analysis_helpers.py"
+            }
+          },
+          {
+            "id": "original_removed",
+            "weight": 0.4,
+            "gui_visible_required": false,
+            "rule": {
+              "element_not_exists": "file:src/helpers.py"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "jupyterlab",
+    "difficulty": "medium",
+    "description": "Rename helpers.py to analysis_helpers.py.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {"action": "rename_path", "path": "src/helpers.py", "new_path": "src/analysis_helpers.py"},
+            {"action": "open_file", "path": "src/analysis_helpers.py"}
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "src_focus"
+  }
+}

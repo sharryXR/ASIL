@@ -1,0 +1,74 @@
+{
+  "id": "code_server_08",
+  "software": "code_server",
+  "difficulty": "medium",
+  "description": "Remove the backlog note.",
+  "instruction": "Delete notes/backlog.md from the workspace.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {
+            "action": "delete_path",
+            "path": "notes/backlog.md"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "code_server"
+  ],
+  "snapshot": "code_server_default",
+  "initial_state": "notes_focus",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "The backlog note disappears from the explorer.",
+    "checkpoint_visibility": {
+      "deleted": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "deleted",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_not_exists": "file:notes/backlog.md"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "code_server",
+    "difficulty": "medium",
+    "description": "Remove the backlog note.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {
+              "action": "delete_path",
+              "path": "notes/backlog.md"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "notes_focus"
+  }
+}

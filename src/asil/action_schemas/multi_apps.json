@@ -1,0 +1,456 @@
+{
+  "software": "multi_apps",
+  "supported_action_types": ["batch"],
+  "target": "multi_apps",
+  "example_limit": 12,
+  "description": "Coordinates 2-3 child applications in one task. Always use a batch action targeted at multi_apps. Each item names the child app and embeds the exact action that child adapter should execute. Use child app names exactly as shown in related_apps and element namespaces, such as code_server, jupyterlab, gitea, libreoffice, libreoffice_writer, libreoffice_impress, nautilus, gimp, inkscape, drawio, blender, audacity, kdenlive, obs, and thunderbird.",
+  "actions": [
+    {
+      "name": "batch",
+      "description": "Execute one or more child-app actions in sequence, then observe the combined multi-app state.",
+      "params_schema": {
+        "actions": [
+          {
+            "app": "child app name from related_apps",
+            "action": {
+              "action_type": "child adapter action_type, for example modify_file, api_call, invoke_function, navigate, or set_value",
+              "target": "child-local target without the app:: namespace",
+              "params": {}
+            }
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Create exact notes in code-server and JupyterLab workspaces",
+          "action": {
+            "action_type": "batch",
+            "target": "multi_apps",
+            "params": {
+              "actions": [
+                {
+                  "app": "code_server",
+                  "action": {
+                    "action_type": "modify_file",
+                    "target": "workspace",
+                    "params": {
+                      "operations": [
+                        {
+                          "action": "create_file",
+                          "path": "reports/multi_001_handoff.md",
+                          "content": "MA-001 code handoff complete\n"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "app": "jupyterlab",
+                  "action": {
+                    "action_type": "modify_file",
+                    "target": "workspace",
+                    "params": {
+                      "operations": [
+                        {
+                          "action": "create_file",
+                          "path": "reports/multi_001_analysis.md",
+                          "content": "MA-001 notebook analysis saved\n"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Rename a file in Nautilus and create a companion workspace note",
+          "action": {
+            "action_type": "batch",
+            "target": "multi_apps",
+            "params": {
+              "actions": [
+                {
+                  "app": "nautilus",
+                  "action": {
+                    "action_type": "invoke_function",
+                    "target": "nautilus",
+                    "params": {
+                      "operations": [
+                        {
+                          "action": "rename_entry",
+                          "path": "meeting-notes.md",
+                          "new_name": "meeting-notes-multi_023.md"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "app": "code_server",
+                  "action": {
+                    "action_type": "modify_file",
+                    "target": "workspace",
+                    "params": {
+                      "operations": [
+                        {
+                          "action": "create_file",
+                          "path": "reports/multi_023_handoff.md",
+                          "content": "MA-023 code handoff complete\n"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Create a workspace file and a Gitea issue",
+          "action": {
+            "action_type": "batch",
+            "target": "multi_apps",
+            "params": {
+              "actions": [
+                {
+                  "app": "code_server",
+                  "action": {
+                    "action_type": "modify_file",
+                    "target": "workspace",
+                    "params": {
+                      "operations": [
+                        {
+                          "action": "create_file",
+                          "path": "reports/release.md",
+                          "content": "Release handoff complete\n"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "app": "gitea",
+                  "action": {
+                    "action_type": "api_call",
+                    "target": "gitea_rest",
+                    "params": {
+                      "method": "POST",
+                      "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+                      "body": {
+                        "title": "Release coordination",
+                        "body": "Tracking issue created from the multi-app task."
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Update LibreOffice Calc and Writer together",
+          "action": {
+            "action_type": "batch",
+            "target": "multi_apps",
+            "params": {
+              "actions": [
+                {
+                  "app": "libreoffice",
+                  "action": {
+                    "action_type": "modify_file",
+                    "target": "document",
+                    "params": {
+                      "operations": [
+                        {
+                          "sheet": "Sheet1",
+                          "cell": "D6",
+                          "value": "MA-013 spreadsheet signoff",
+                          "value_type": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "app": "libreoffice_writer",
+                  "action": {
+                    "action_type": "modify_file",
+                    "target": "document",
+                    "params": {
+                      "operations": [
+                        {
+                          "action": "add_paragraph",
+                          "text": "MA-013 narrative release note"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Add an Impress slide",
+          "action": {
+            "action_type": "batch",
+            "target": "multi_apps",
+            "params": {
+              "actions": [
+                {
+                  "app": "libreoffice_impress",
+                  "action": {
+                    "action_type": "modify_file",
+                    "target": "document",
+                    "params": {
+                      "operations": [
+                        {
+                          "action": "add_slide",
+                          "title": "MA-014 launch slide",
+                          "body": ["Launch summary"]
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Create or update a diagram shape in draw.io",
+          "action": {
+            "action_type": "batch",
+            "target": "multi_apps",
+            "params": {
+              "actions": [
+                {
+                  "app": "drawio",
+                  "action": {
+                    "action_type": "modify_file",
+                    "target": "diagram",
+                    "params": {
+                      "operations": [
+                        {
+                          "action": "add_shape",
+                          "id": "ma_release_box",
+                          "label": "MA release ready",
+                          "shape_kind": "rectangle",
+                          "x": 120,
+                          "y": 100,
+                          "width": 180,
+                          "height": 80,
+                          "fill": "#e0f2fe",
+                          "stroke": "#0369a1"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Add a visible text layer in GIMP",
+          "action": {
+            "action_type": "batch",
+            "target": "multi_apps",
+            "params": {
+              "actions": [
+                {
+                  "app": "gimp",
+                  "action": {
+                    "action_type": "invoke_function",
+                    "target": "gimp",
+                    "params": {
+                      "operations": [
+                        {
+                          "action": "add_text_layer",
+                          "id": "gimp_multi_040",
+                          "label": "MA-040 asset",
+                          "text": "MA-040 asset",
+                          "x": 80,
+                          "y": 90,
+                          "font_size": 26,
+                          "color": "#0f766e"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Add SVG text in Inkscape",
+          "action": {
+            "action_type": "batch",
+            "target": "multi_apps",
+            "params": {
+              "actions": [
+                {
+                  "app": "inkscape",
+                  "action": {
+                    "action_type": "modify_file",
+                    "target": "document",
+                    "params": {
+                      "operations": [
+                        {
+                          "action": "add_element",
+                          "parent_xpath": "/*[local-name()='svg']",
+                          "tag": "text",
+                          "attributes": {
+                            "id": "ma_svg_label",
+                            "x": "80",
+                            "y": "80",
+                            "text_content": "MA vector ready"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Add an Audacity label",
+          "action": {
+            "action_type": "batch",
+            "target": "multi_apps",
+            "params": {
+              "actions": [
+                {
+                  "app": "audacity",
+                  "action": {
+                    "action_type": "modify_file",
+                    "target": "audacity_project",
+                    "params": {
+                      "operations": [
+                        {
+                          "action": "add_label",
+                          "label_id": "aud_multi_045",
+                          "text": "MA-045 audio cue",
+                          "start": 5.5,
+                          "end": 6.5
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Add a Kdenlive marker",
+          "action": {
+            "action_type": "batch",
+            "target": "multi_apps",
+            "params": {
+              "actions": [
+                {
+                  "app": "kdenlive",
+                  "action": {
+                    "action_type": "modify_file",
+                    "target": "project",
+                    "params": {
+                      "operations": [
+                        {
+                          "action": "add_element",
+                          "parent_xpath": "./guides",
+                          "tag": "marker",
+                          "attributes": {
+                            "id": "kd_multi_045",
+                            "frame": "135",
+                            "comment": "MA-045 edit marker",
+                            "color": "#0f766e"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Tag the Thunderbird client follow-up message",
+          "action": {
+            "action_type": "batch",
+            "target": "multi_apps",
+            "params": {
+              "actions": [
+                {
+                  "app": "thunderbird",
+                  "action": {
+                    "action_type": "invoke_function",
+                    "target": "thunderbird",
+                    "params": {
+                      "operations": [
+                        {
+                          "action": "add_tag",
+                          "id": "msg_client_followup",
+                          "tag": "multi-057"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Update an OBS scene through its API adapter",
+          "action": {
+            "action_type": "batch",
+            "target": "multi_apps",
+            "params": {
+              "actions": [
+                {
+                  "app": "obs",
+                  "action": {
+                    "action_type": "api_call",
+                    "target": "obs_websocket",
+                    "params": {
+                      "request_type": "SetCurrentProgramScene",
+                      "request_data": {
+                        "sceneName": "Scene 2"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "done_action": {
+    "description": "Return this action when every involved app visibly satisfies the task.",
+    "example": {
+      "action_type": "done",
+      "target": "",
+      "params": {}
+    }
+  },
+  "tips": [
+    "Prefer one batch containing all required child-app changes when the instruction gives exact target values.",
+    "For Nautilus file-manager tasks, use child action_type invoke_function, target nautilus, and operations such as rename_entry, move_entry, copy_entry, trash_entry, open_directory, and search_entries.",
+    "For code_server and jupyterlab file tasks, use child action_type modify_file, target workspace, and operations such as create_file, set_file_text, append_text, replace_text, rename_path, delete_path, set_cell_source, and set_cell_output.",
+    "For Gitea issue tasks, use api_call with endpoint /api/v1/repos/{{owner}}/{{repo}}/issues and body.title matching the requested issue title exactly.",
+    "For GIMP, use target gimp. For Audacity, use target audacity_project. For Thunderbird, use target thunderbird and operations[].id=msg_client_followup for the client follow-up message.",
+    "For Kdenlive marker tasks, use modify_file target project and add a marker as an add_element operation under parent_xpath ./guides.",
+    "For child-local targets, remove the namespace prefix: use workspace, document, diagram, gitea_rest, audacity_project, thunderbird, or obs_websocket rather than code_server::..., drawio::..., or gitea::....",
+    "Use exact strings from the task instruction. If a required text value is quoted, copy it exactly.",
+    "After the combined observation shows all requested artifacts, return the done action."
+  ]
+}

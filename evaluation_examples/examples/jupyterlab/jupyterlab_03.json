@@ -1,0 +1,72 @@
+{
+  "id": "jupyterlab_03",
+  "software": "jupyterlab",
+  "difficulty": "simple",
+  "description": "Rewrite the summary markdown.",
+  "instruction": "Open notebooks/summary.md and replace its contents with \"# Summary\\n\\nThe KPI notebook is ready for review.\\n\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {"action": "open_file", "path": "notebooks/summary.md"},
+          {"action": "set_file_text", "path": "notebooks/summary.md", "content": "# Summary\n\nThe KPI notebook is ready for review.\n"}
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": ["jupyterlab"],
+  "snapshot": "jupyterlab_default",
+  "initial_state": "summary_focus",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "The summary markdown editor says the KPI notebook is ready for review.",
+    "checkpoint_visibility": {
+      "summary": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "summary",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "editor:notebooks/summary.md",
+                "key": "content",
+                "expected": "ready for review"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "jupyterlab",
+    "difficulty": "simple",
+    "description": "Rewrite the summary markdown.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {"action": "open_file", "path": "notebooks/summary.md"},
+            {"action": "set_file_text", "path": "notebooks/summary.md", "content": "# Summary\n\nThe KPI notebook is ready for review.\n"}
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "summary_focus"
+  }
+}

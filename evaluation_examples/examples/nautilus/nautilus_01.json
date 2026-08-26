@@ -1,0 +1,14 @@
+{
+  "id": "nautilus_01",
+  "instruction": "Open the `Inbox` folder.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "nautilus_workspace_default",
+  "config": [],
+  "related_apps": ["nautilus"],
+  "evaluator": {"selection": "best_score", "paths": [{"path_id": "nautilus_01_primary_path", "exclusive_group": "success_paths", "checkpoints": [{"id": "nautilus_01_location", "weight": 0.5, "gui_visible_required": true, "rule": {"element_value": {"id": "location", "key": "path", "expected": "Inbox"}}}, {"id": "nautilus_01_entry", "weight": 0.5, "gui_visible_required": true, "rule": {"any_element_matches": {"type": "directory_entry", "value": {"path": "Inbox/agenda.txt"}}}}]}]},
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {"software": "nautilus", "difficulty": "simple", "description": "Open the Inbox folder.", "actions": [{"action_type": "invoke_function", "target": "nautilus", "params": {"operations": [{"action": "open_directory", "path": "Inbox"}]}}], "validation": {"conditions": [{"element_value": {"id": "location", "key": "path", "expected": "Inbox"}}, {"any_element_matches": {"type": "directory_entry", "value": {"path": "Inbox/agenda.txt"}}}]}, "initial_state": "default"},
+  "gui_expectations": {"success_surface": "file_list", "visible_change_summary": "The Nautilus window is open to Inbox and shows Inbox files like agenda.txt.", "checkpoint_visibility": {"nautilus_01_location": "visible_in_location_bar", "nautilus_01_entry": "visible_in_file_list"}}
+}

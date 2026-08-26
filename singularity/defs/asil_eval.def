@@ -1,0 +1,104 @@
+Bootstrap: docker
+From: ubuntu:22.04
+
+%environment
+    export DEBIAN_FRONTEND=noninteractive
+    export PYTHONDONTWRITEBYTECODE=1
+    export PYTHONUNBUFFERED=1
+    export PYTHONPATH=/app/src
+
+%files
+    pyproject.toml /app/pyproject.toml
+    src /app/src
+    scripts /app/scripts
+    evaluation_examples /app/evaluation_examples
+
+%post
+    set -e
+    export DEBIAN_FRONTEND=noninteractive
+
+    apt-get -o Acquire::Retries=5 update
+    apt-get install -y --no-install-recommends \
+        -o Acquire::Retries=5 \
+        -o Acquire::http::Timeout=30 \
+        --fix-missing \
+        python3.11 python3.11-dev python3-pip \
+        pulseaudio pulseaudio-utils alsa-utils \
+        poppler-utils wkhtmltopdf \
+        xvfb openbox xdotool xclip wmctrl x11-utils \
+        tesseract-ocr imagemagick dbus-x11 \
+        curl wget git ca-certificates \
+        libgl1-mesa-glx libglib2.0-0
+
+    apt-get -o Acquire::Retries=5 update
+    apt-get install -y --no-install-recommends \
+        -o Acquire::Retries=5 \
+        -o Acquire::http::Timeout=30 \
+        --fix-missing \
+        inkscape \
+        libreoffice-calc \
+        libreoffice-writer \
+        libreoffice-impress \
+        blender \
+        gimp
+
+    apt-get -o Acquire::Retries=5 update
+    apt-get install -y --no-install-recommends \
+        -o Acquire::Retries=5 \
+        -o Acquire::http::Timeout=30 \
+        --fix-missing \
+        thunderbird \
+        nautilus \
+        celluloid \
+        vlc \
+        audacity \
+        obs-studio \
+        obs-websocket \
+        kdenlive \
+        mediainfo \
+        frei0r-plugins
+
+    rm -rf /var/lib/apt/lists/*
+
+    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
+    update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1
+
+    useradd -m -s /bin/bash asilgui || true
+    mkdir -p /app /results /shared /shared-workspaces
+
+    cd /app
+    pip install --default-timeout=300 --retries 10 --no-cache-dir -e ".[dev,eval]"
+    python - <<'PY'
+from pathlib import Path
+import shutil
+import subprocess
+import urllib.request
+import zipfile
+
+version = "147.0.7727.15"
+revision = "1217"
+url = f"https://npmmirror.com/mirrors/chrome-for-testing/{version}/linux64/chrome-linux64.zip"
+archive = Path("/tmp/playwright-chrome-linux64.zip")
+target = Path(f"/root/.cache/ms-playwright/chromium-{revision}")
+
+target.mkdir(parents=True, exist_ok=True)
+urllib.request.urlretrieve(url, archive)
+with zipfile.ZipFile(archive) as zf:
+    zf.extractall(target)
+archive.unlink(missing_ok=True)
+(target / "INSTALLATION_COMPLETE").write_text("", encoding="utf-8")
+chrome = target / "chrome-linux64" / "chrome"
+chrome.chmod(chrome.stat().st_mode | 0o111)
+subprocess.run([str(chrome), "--version"], check=True)
+PY
+
+    inkscape --version
+    libreoffice --version
+    blender --version
+    python -c "from asil.adapters.inkscape import InkscapeAdapter; print('inkscape adapter OK')"
+    python -c "from asil.adapters.libreoffice import LibreOfficeAdapter; print('libreoffice adapter OK')"
+    python -c "from asil.adapters.blender import BlenderAdapter; print('blender adapter OK')"
+
+%runscript
+    cd /app
+    exec "$@"

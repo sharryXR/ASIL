@@ -1,0 +1,85 @@
+{
+  "id": "code_server_03",
+  "software": "code_server",
+  "difficulty": "simple",
+  "description": "Rename the backlog note.",
+  "instruction": "Rename notes/backlog.md to notes/roadmap.md.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {
+            "action": "rename_path",
+            "path": "notes/backlog.md",
+            "new_path": "notes/roadmap.md"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "code_server"
+  ],
+  "snapshot": "code_server_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "The backlog note is renamed to roadmap.md.",
+    "checkpoint_visibility": {
+      "old_removed": "visible_in_editor",
+      "new_exists": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "old_removed",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_not_exists": "file:notes/backlog.md"
+            }
+          },
+          {
+            "id": "new_exists",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "file:notes/roadmap.md"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "code_server",
+    "difficulty": "simple",
+    "description": "Rename the backlog note.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {
+              "action": "rename_path",
+              "path": "notes/backlog.md",
+              "new_path": "notes/roadmap.md"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

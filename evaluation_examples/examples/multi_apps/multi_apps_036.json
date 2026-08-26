@@ -1,0 +1,123 @@
+{
+  "id": "multi_apps_036",
+  "software": "multi_apps",
+  "source": "asil_multi_apps_generated",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: create a Blender object using material MultiMat036; add a GIMP text layer containing 'MA-036 asset'.",
+  "related_apps": [
+    "blender",
+    "gimp"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "blender_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "blender",
+                "rule": {
+                  "material_exists": "MultiMat036"
+                }
+              }
+            }
+          },
+          {
+            "id": "gimp_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "gimp",
+                "rule": {
+                  "element_contains": {
+                    "id": "gimp_multi_036",
+                    "key": "text",
+                    "expected": "MA-036 asset"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "blender_checkpoint": "visible_in_blender",
+      "gimp_checkpoint": "visible_in_gimp"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "medium",
+    "description": "Design Assets cross-app task for blender, gimp.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "blender": "default",
+      "gimp": "default"
+    },
+    "primary_app": "blender",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "blender",
+              "action": {
+                "action_type": "invoke_function",
+                "target": "blender",
+                "params": {
+                  "script": [
+                    "import bpy",
+                    "bpy.ops.mesh.primitive_uv_sphere_add(radius=1, location=(0, 0, 0))",
+                    "mat = bpy.data.materials.new(name='MultiMat036')",
+                    "bpy.context.object.data.materials.append(mat)"
+                  ]
+                }
+              }
+            },
+            {
+              "app": "gimp",
+              "action": {
+                "action_type": "invoke_function",
+                "target": "gimp",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_text_layer",
+                      "id": "gimp_multi_036",
+                      "label": "MA-036 asset",
+                      "text": "MA-036 asset",
+                      "x": 76,
+                      "y": 86,
+                      "font_size": 26,
+                      "color": "#0f766e"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "design_assets"
+  }
+}

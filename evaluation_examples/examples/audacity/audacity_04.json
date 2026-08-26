@@ -1,0 +1,82 @@
+{
+  "id": "audacity_04",
+  "instruction": "Add a new track named Stinger FX.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "audacity_default_project",
+  "config": [],
+  "related_apps": [
+    "audacity"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "audacity_04_main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "stinger_added",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "track",
+                "id": "track:track_stinger_fx",
+                "value": {
+                  "name": "Stinger FX"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "audacity",
+    "difficulty": "simple",
+    "description": "Add a new track named Stinger FX.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_track",
+              "track_id": "track_stinger_fx",
+              "name": "Stinger FX",
+              "kind": "audio",
+              "mute": false,
+              "solo": false,
+              "gain_db": 0.0,
+              "pan": 0.0,
+              "height_px": 132,
+              "clips": []
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "any_element_matches": {
+        "type": "track",
+        "id": "track:track_stinger_fx",
+        "value": {
+          "name": "Stinger FX"
+        }
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "multitrack_timeline",
+    "visible_change_summary": "A new Stinger FX track appears in the timeline.",
+    "checkpoint_visibility": {
+      "stinger_added": "visible_in_track_headers"
+    }
+  }
+}

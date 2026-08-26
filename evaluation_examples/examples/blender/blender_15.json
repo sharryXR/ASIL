@@ -1,0 +1,79 @@
+{
+  "id": "blender_15",
+  "instruction": "Set render resolution to 720p (1280x720)",
+  "source": "asil_benchmark_v1",
+  "snapshot": "blender_default_scene",
+  "config": [],
+  "related_apps": [
+    "blender"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+      "path_id": "blender_15_primary_path",
+      "exclusive_group": "success_paths",
+      "checkpoints": [
+        {
+          "id": "resolution_x_1280",
+          "weight": 0.5,
+          "gui_visible_required": true,
+          "rule": {
+            "render_setting": {
+              "key": "resolution_x",
+              "expected": 1280
+            }
+          }
+        },
+        {
+          "id": "resolution_y_720",
+          "weight": 0.5,
+          "gui_visible_required": true,
+          "rule": {
+            "render_setting": {
+              "key": "resolution_y",
+              "expected": 720
+            }
+          }
+        }
+      ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "blender",
+    "difficulty": "medium",
+    "description": "Set render resolution to 720p (1280x720)",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "bpy",
+        "params": {
+          "script": [
+            "import bpy",
+            "bpy.context.scene.render.resolution_x = 1280",
+            "bpy.context.scene.render.resolution_y = 720"
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "render_setting": {
+        "key": "resolution_y",
+        "expected": 720
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "render_properties",
+    "visible_change_summary": "The Render Properties panel shows the resolution set to 1280 by 720.",
+    "checkpoint_visibility": {
+      "resolution_x_1280": "visible_in_render_properties",
+      "resolution_y_720": "visible_in_render_properties"
+    }
+  }
+}

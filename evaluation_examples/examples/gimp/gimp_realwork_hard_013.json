@@ -1,0 +1,587 @@
+{
+  "id": "gimp_realwork_hard_013",
+  "software": "gimp",
+  "difficulty": "complex",
+  "description": "Create a real-photo travel editorial hero from the office desk image.",
+  "instruction": "Create an 800x600 travel editorial hero from the real office desk photo. Complete it as a production workflow: place and crop the photo, apply the final color treatment, add the main information panel, add the accent strip, add the approval badge, add the headline 'TRAVEL PICK 013', add the detail 'WEEKEND GUIDE 013', add the owner/status line 'OWNER: EDITOR', and add the CTA 'PUBLISH HERO'.",
+  "source": "asil_realwork_hard_v2",
+  "snapshot": "gimp_default",
+  "config": [],
+  "related_apps": [
+    "gimp"
+  ],
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_image_layer",
+            "id": "hard_photo_013",
+            "label": "Hard Photo 013",
+            "asset_path": "evaluation_examples/assets/realwork_images/office_desk_960.jpg",
+            "x": 0,
+            "y": 0,
+            "width": 800,
+            "height": 600,
+            "crop": {
+              "x": 22,
+              "y": 36,
+              "width": 460,
+              "height": 620
+            },
+            "filters": {
+              "brightness": 1.05,
+              "contrast": 1.06,
+              "saturation": 0.92
+            }
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "apply_filter",
+            "id": "hard_photo_013",
+            "filters": {
+              "brightness": 1.03,
+              "contrast": 1.13,
+              "saturation": 0.88,
+              "sharpen": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_layer",
+            "id": "hard_panel_013",
+            "label": "Information Panel",
+            "kind": "rectangle",
+            "x": 0,
+            "y": 378,
+            "width": 800,
+            "height": 222,
+            "fill": "#1b4332",
+            "opacity": 0.9
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_layer",
+            "id": "hard_accent_013",
+            "label": "Accent Strip",
+            "kind": "rectangle",
+            "x": 0,
+            "y": 366,
+            "width": 800,
+            "height": 12,
+            "fill": "#b7e4c7",
+            "opacity": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_layer",
+            "id": "hard_badge_013",
+            "label": "Approval Badge",
+            "kind": "rectangle",
+            "x": 44,
+            "y": 404,
+            "width": 190,
+            "height": 42,
+            "fill": "#f8fafc",
+            "opacity": 0.94
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_text_layer",
+            "id": "hard_title_013",
+            "label": "Headline",
+            "text": "TRAVEL PICK 013",
+            "x": 44,
+            "y": 456,
+            "font_size": 38,
+            "color": "#ffffff"
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_text_layer",
+            "id": "hard_detail_013",
+            "label": "Detail",
+            "text": "WEEKEND GUIDE 013",
+            "x": 48,
+            "y": 510,
+            "font_size": 25,
+            "color": "#b7e4c7"
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_text_layer",
+            "id": "hard_meta_013",
+            "label": "Owner Line",
+            "text": "OWNER: EDITOR",
+            "x": 50,
+            "y": 556,
+            "font_size": 20,
+            "color": "#d8f3dc"
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_text_layer",
+            "id": "hard_cta_013",
+            "label": "CTA",
+            "text": "PUBLISH HERO",
+            "x": 62,
+            "y": 414,
+            "font_size": 18,
+            "color": "#1b4332"
+          }
+        ]
+      }
+    }
+  ],
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "The real office desk photo is turned into a finished travel editorial hero with a treated photo, information panel, badge, and four production text layers.",
+    "checkpoint_visibility": {
+      "canvas_size": "visible_on_canvas",
+      "layer_count": "visible_on_canvas",
+      "photo_asset": "visible_on_canvas",
+      "photo_filters": "visible_on_canvas",
+      "panel_fill": "visible_on_canvas",
+      "panel_position": "visible_on_canvas",
+      "accent_fill": "visible_on_canvas",
+      "badge_fill": "visible_on_canvas",
+      "title_text": "visible_on_canvas",
+      "detail_text": "visible_on_canvas",
+      "meta_text": "visible_on_canvas",
+      "cta_text": "visible_on_canvas",
+      "rendered_panel_region": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "canvas_size",
+            "weight": 0.8,
+            "gui_visible_required": true,
+            "rule": {
+              "image_size": {
+                "width": 800,
+                "height": 600
+              }
+            }
+          },
+          {
+            "id": "layer_count",
+            "weight": 0.8,
+            "gui_visible_required": true,
+            "rule": {
+              "count_elements_matching": {
+                "type": "layer",
+                "expected": 8
+              }
+            }
+          },
+          {
+            "id": "photo_asset",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_photo_013",
+                "key": "asset_path",
+                "expected": "evaluation_examples/assets/realwork_images/office_desk_960.jpg"
+              }
+            }
+          },
+          {
+            "id": "photo_filters",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_photo_013",
+                "key": "filters",
+                "expected": {
+                  "brightness": 1.03,
+                  "contrast": 1.13,
+                  "saturation": 0.88,
+                  "sharpen": false
+                }
+              }
+            }
+          },
+          {
+            "id": "panel_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_panel_013",
+                "key": "fill",
+                "expected": "#1b4332"
+              }
+            }
+          },
+          {
+            "id": "panel_position",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_panel_013",
+                "key": "x",
+                "expected": 0
+              }
+            }
+          },
+          {
+            "id": "accent_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_accent_013",
+                "key": "fill",
+                "expected": "#b7e4c7"
+              }
+            }
+          },
+          {
+            "id": "badge_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_badge_013",
+                "key": "fill",
+                "expected": "#f8fafc"
+              }
+            }
+          },
+          {
+            "id": "title_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_title_013",
+                "key": "text",
+                "expected": "TRAVEL PICK 013"
+              }
+            }
+          },
+          {
+            "id": "detail_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_detail_013",
+                "key": "text",
+                "expected": "WEEKEND GUIDE 013"
+              }
+            }
+          },
+          {
+            "id": "meta_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_meta_013",
+                "key": "text",
+                "expected": "OWNER: EDITOR"
+              }
+            }
+          },
+          {
+            "id": "cta_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_cta_013",
+                "key": "text",
+                "expected": "PUBLISH HERO"
+              }
+            }
+          },
+          {
+            "id": "rendered_panel_region",
+            "weight": 0.8,
+            "gui_visible_required": true,
+            "rule": {
+              "image_region_stat": {
+                "box": [
+                  20,
+                  430,
+                  760,
+                  140
+                ],
+                "metric": "luminance",
+                "min": 10,
+                "max": 175
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "complex",
+    "category": "realwork_hard",
+    "description": "Create a real-photo travel editorial hero from the office desk image.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_image_layer",
+              "id": "hard_photo_013",
+              "label": "Hard Photo 013",
+              "asset_path": "evaluation_examples/assets/realwork_images/office_desk_960.jpg",
+              "x": 0,
+              "y": 0,
+              "width": 800,
+              "height": 600,
+              "crop": {
+                "x": 22,
+                "y": 36,
+                "width": 460,
+                "height": 620
+              },
+              "filters": {
+                "brightness": 1.05,
+                "contrast": 1.06,
+                "saturation": 0.92
+              }
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "apply_filter",
+              "id": "hard_photo_013",
+              "filters": {
+                "brightness": 1.03,
+                "contrast": 1.13,
+                "saturation": 0.88,
+                "sharpen": false
+              }
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_layer",
+              "id": "hard_panel_013",
+              "label": "Information Panel",
+              "kind": "rectangle",
+              "x": 0,
+              "y": 378,
+              "width": 800,
+              "height": 222,
+              "fill": "#1b4332",
+              "opacity": 0.9
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_layer",
+              "id": "hard_accent_013",
+              "label": "Accent Strip",
+              "kind": "rectangle",
+              "x": 0,
+              "y": 366,
+              "width": 800,
+              "height": 12,
+              "fill": "#b7e4c7",
+              "opacity": 1.0
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_layer",
+              "id": "hard_badge_013",
+              "label": "Approval Badge",
+              "kind": "rectangle",
+              "x": 44,
+              "y": 404,
+              "width": 190,
+              "height": 42,
+              "fill": "#f8fafc",
+              "opacity": 0.94
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_text_layer",
+              "id": "hard_title_013",
+              "label": "Headline",
+              "text": "TRAVEL PICK 013",
+              "x": 44,
+              "y": 456,
+              "font_size": 38,
+              "color": "#ffffff"
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_text_layer",
+              "id": "hard_detail_013",
+              "label": "Detail",
+              "text": "WEEKEND GUIDE 013",
+              "x": 48,
+              "y": 510,
+              "font_size": 25,
+              "color": "#b7e4c7"
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_text_layer",
+              "id": "hard_meta_013",
+              "label": "Owner Line",
+              "text": "OWNER: EDITOR",
+              "x": 50,
+              "y": 556,
+              "font_size": 20,
+              "color": "#d8f3dc"
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_text_layer",
+              "id": "hard_cta_013",
+              "label": "CTA",
+              "text": "PUBLISH HERO",
+              "x": 62,
+              "y": 414,
+              "font_size": 18,
+              "color": "#1b4332"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank",
+    "workflow_complexity": {
+      "meaningful_actions": 9,
+      "uses_real_image_asset": true,
+      "layout": "bottom"
+    }
+  }
+}

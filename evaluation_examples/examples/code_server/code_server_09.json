@@ -1,0 +1,97 @@
+{
+  "id": "code_server_09",
+  "software": "code_server",
+  "difficulty": "medium",
+  "description": "Create a launch docs page.",
+  "instruction": "Create docs/launch.md with the content \"# Launch\nPublish the launch checklist.\n\" and open it.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {
+            "action": "create_file",
+            "path": "docs/launch.md",
+            "content": "# Launch\nPublish the launch checklist.\n"
+          },
+          {
+            "action": "open_file",
+            "path": "docs/launch.md"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "code_server"
+  ],
+  "snapshot": "code_server_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "A launch documentation page is created and opened.",
+    "checkpoint_visibility": {
+      "file_exists": "visible_in_editor",
+      "content": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "file_exists",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "file:docs/launch.md"
+            }
+          },
+          {
+            "id": "content",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "editor:docs/launch.md",
+                "key": "content",
+                "expected": "Publish the launch checklist."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "code_server",
+    "difficulty": "medium",
+    "description": "Create a launch docs page.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {
+              "action": "create_file",
+              "path": "docs/launch.md",
+              "content": "# Launch\nPublish the launch checklist.\n"
+            },
+            {
+              "action": "open_file",
+              "path": "docs/launch.md"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "gitea_12",
+  "instruction": "Reopen the closed issue #1",
+  "source": "asil_benchmark_v1",
+  "snapshot": "gitea_instance_default",
+  "config": [],
+  "related_apps": [
+    "gitea"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "gitea_12_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "gitea_12_1",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "issue:1"
+            }
+          },
+          {
+            "id": "gitea_12_2",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "issue:1",
+                "key": "state",
+                "expected": "open"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gitea",
+    "difficulty": "simple",
+    "description": "Reopen the closed issue #1",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "PATCH",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues/1",
+          "body": {
+            "state": "open"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "issue:1",
+            "key": "state",
+            "expected": "open"
+          }
+        }
+      ]
+    },
+    "initial_state": "with_closed_issue"
+  },
+  "gui_expectations": {
+    "success_surface": "web_page",
+    "visible_change_summary": "Reopen the closed issue #1",
+    "checkpoint_visibility": {
+      "gitea_12_1": "visible_on_web_page",
+      "gitea_12_2": "visible_on_web_page"
+    }
+  }
+}

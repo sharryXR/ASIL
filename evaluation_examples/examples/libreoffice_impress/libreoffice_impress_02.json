@@ -1,0 +1,65 @@
+{
+  "id": "libreoffice_impress_02",
+  "software": "libreoffice_impress",
+  "difficulty": "simple",
+  "description": "Update the first body line to \"Finalize training materials.\".",
+  "instruction": "Update the first body line on slide 1 to \"Finalize training materials.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_slide_body",
+            "slide_index": 1,
+            "body_index": 1,
+            "text": "Finalize training materials."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "The first slide body line shows Finalize training materials.",
+    "checkpoint_visibility": {
+      "slide1_body1": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "slide1_body1",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:1:body:1",
+                "key": "text_content",
+                "expected": "Finalize training materials."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "single_slide",
+    "slide_indices": [
+      1
+    ]
+  }
+}

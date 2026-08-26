@@ -1,0 +1,14 @@
+{
+  "id": "nautilus_06",
+  "instruction": "Open the `Images` folder.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "nautilus_workspace_default",
+  "config": [],
+  "related_apps": ["nautilus"],
+  "evaluator": {"selection": "best_score", "paths": [{"path_id": "nautilus_06_primary_path", "exclusive_group": "success_paths", "checkpoints": [{"id": "nautilus_06_location", "weight": 0.5, "gui_visible_required": true, "rule": {"element_value": {"id": "location", "key": "path", "expected": "Images"}}}, {"id": "nautilus_06_entry", "weight": 0.5, "gui_visible_required": true, "rule": {"any_element_matches": {"type": "directory_entry", "value": {"path": "Images/logo.png"}}}}]}]},
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {"software": "nautilus", "difficulty": "simple", "description": "Open the Images folder and show its logo file.", "actions": [{"action_type": "invoke_function", "target": "nautilus", "params": {"operations": [{"action": "open_directory", "path": "Images"}]}}], "validation": {"conditions": [{"element_value": {"id": "location", "key": "path", "expected": "Images"}}, {"any_element_matches": {"type": "directory_entry", "value": {"path": "Images/logo.png"}}}]}, "initial_state": "default"},
+  "gui_expectations": {"success_surface": "file_list", "visible_change_summary": "The Images folder is open and logo.png is visible in the file list.", "checkpoint_visibility": {"nautilus_06_location": "visible_in_location_bar", "nautilus_06_entry": "visible_in_file_list"}}
+}

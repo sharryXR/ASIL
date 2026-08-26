@@ -1,0 +1,11 @@
+{
+  "action_type": "api_call",
+  "target": "gitea",
+  "params": {
+    "operation": "delete_repository",
+    "arguments": {
+      "owner": "asil_admin",
+      "repo": "softwaregen-smoke-public"
+    }
+  }
+}

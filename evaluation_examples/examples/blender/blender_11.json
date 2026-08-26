@@ -1,0 +1,86 @@
+{
+  "id": "blender_11",
+  "instruction": "Create a torus and add a Subdivision Surface modifier",
+  "source": "asil_benchmark_v1",
+  "snapshot": "blender_default_scene",
+  "config": [],
+  "related_apps": [
+    "blender"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "blender_11_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "torus_with_subsurf",
+            "weight": 0.6,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "mesh",
+                "metadata": {
+                  "modifiers": [
+                    {
+                      "name": "Subdivision",
+                      "type": "SUBSURF"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "single_mesh_object",
+            "weight": 0.4,
+            "gui_visible_required": true,
+            "rule": {
+              "count_elements_matching": {
+                "type": "mesh",
+                "expected": 1
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "blender",
+    "difficulty": "medium",
+    "description": "Create a torus and add a Subdivision Surface modifier",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "bpy",
+        "params": {
+          "script": [
+            "import bpy",
+            "bpy.ops.mesh.primitive_torus_add(location=(0, 0, 0))",
+            "bpy.ops.object.modifier_add(type='SUBSURF')"
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "object_exists": "Torus"
+    },
+    "initial_state": "blank"
+  },
+  "gui_expectations": {
+    "success_surface": "viewport_and_modifier_panel",
+    "visible_change_summary": "A torus appears and the Subdivision Surface modifier is visible in Blender.",
+    "checkpoint_visibility": {
+      "torus_exists": "visible_in_viewport",
+      "torus_has_subsurf_modifier": "visible_in_modifier_panel",
+      "scene_object_count_4": "visible_in_viewport",
+      "torus_with_subsurf": "visible_in_viewport",
+      "single_mesh_object": "visible_in_viewport"
+    }
+  }
+}

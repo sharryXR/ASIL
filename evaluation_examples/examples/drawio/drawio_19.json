@@ -1,0 +1,245 @@
+{
+  "id": "drawio_19",
+  "software": "drawio",
+  "difficulty": "complex",
+  "description": "Refactor the default flow into intake, check, ship, and archive.",
+  "instruction": "Rename Start to Intake and Review to Check, add Ship and Archive to the right, connect Check->Ship and Ship->Archive.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "diagram",
+      "params": {
+        "operations": [
+          {
+            "action": "update_shape",
+            "id": "start",
+            "changes": {
+              "label": "Intake"
+            }
+          },
+          {
+            "action": "update_shape",
+            "id": "review",
+            "changes": {
+              "label": "Check"
+            }
+          },
+          {
+            "action": "add_shape",
+            "id": "ship",
+            "label": "Ship",
+            "shape_kind": "rectangle",
+            "x": 540,
+            "y": 140,
+            "width": 150,
+            "height": 80,
+            "fill": "#dcfce7",
+            "stroke": "#16a34a"
+          },
+          {
+            "action": "add_shape",
+            "id": "archive",
+            "label": "Archive",
+            "shape_kind": "rectangle",
+            "x": 760,
+            "y": 140,
+            "width": 150,
+            "height": 80,
+            "fill": "#e5e7eb",
+            "stroke": "#6b7280"
+          },
+          {
+            "action": "add_connector",
+            "id": "cship",
+            "source": "review",
+            "target": "ship",
+            "label": "ship"
+          },
+          {
+            "action": "add_connector",
+            "id": "carchive",
+            "source": "ship",
+            "target": "archive",
+            "label": "archive"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "drawio"
+  ],
+  "snapshot": "drawio_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "diagram_canvas",
+    "visible_change_summary": "The default flow expands into Intake -> Check -> Ship -> Archive.",
+    "checkpoint_visibility": {
+      "intake": "visible_on_diagram",
+      "check": "visible_on_diagram",
+      "ship": "visible_on_diagram",
+      "archive": "visible_on_diagram",
+      "cship": "visible_on_diagram",
+      "carchive": "visible_on_diagram"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "intake",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:start",
+                "key": "label",
+                "expected": "Intake"
+              }
+            }
+          },
+          {
+            "id": "check",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:review",
+                "key": "label",
+                "expected": "Check"
+              }
+            }
+          },
+          {
+            "id": "ship",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:ship",
+                "key": "label",
+                "expected": "Ship"
+              }
+            }
+          },
+          {
+            "id": "archive",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:archive",
+                "key": "label",
+                "expected": "Archive"
+              }
+            }
+          },
+          {
+            "id": "cship",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Check",
+                  "target_label": "Ship",
+                  "label": "ship"
+                }
+              }
+            }
+          },
+          {
+            "id": "carchive",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Ship",
+                  "target_label": "Archive",
+                  "label": "archive"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "drawio",
+    "difficulty": "complex",
+    "description": "Refactor the default flow into intake, check, ship, and archive.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "diagram",
+        "params": {
+          "operations": [
+            {
+              "action": "update_shape",
+              "id": "start",
+              "changes": {
+                "label": "Intake"
+              }
+            },
+            {
+              "action": "update_shape",
+              "id": "review",
+              "changes": {
+                "label": "Check"
+              }
+            },
+            {
+              "action": "add_shape",
+              "id": "ship",
+              "label": "Ship",
+              "shape_kind": "rectangle",
+              "x": 540,
+              "y": 140,
+              "width": 150,
+              "height": 80,
+              "fill": "#dcfce7",
+              "stroke": "#16a34a"
+            },
+            {
+              "action": "add_shape",
+              "id": "archive",
+              "label": "Archive",
+              "shape_kind": "rectangle",
+              "x": 760,
+              "y": 140,
+              "width": 150,
+              "height": 80,
+              "fill": "#e5e7eb",
+              "stroke": "#6b7280"
+            },
+            {
+              "action": "add_connector",
+              "id": "cship",
+              "source": "review",
+              "target": "ship",
+              "label": "ship"
+            },
+            {
+              "action": "add_connector",
+              "id": "carchive",
+              "source": "ship",
+              "target": "archive",
+              "label": "archive"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "id": "kdenlive_15",
+  "instruction": "Place the existing Intro Wide clip on V1 starting at frame 240 for 90 frames.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "kdenlive_default_project",
+  "config": [],
+  "related_apps": ["kdenlive"],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "kdenlive_15_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "kdenlive_15_clip_block",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "timeline_clip",
+                "id": "timeline_clip:tl_intro_return",
+                "value": {
+                  "track_id": "video_main",
+                  "position": 240,
+                  "duration": 90,
+                  "clip_title": "Intro Wide"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "kdenlive",
+    "difficulty": "simple",
+    "description": "Place the existing Intro Wide clip on V1 starting at frame 240 for 90 frames.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "/kdenliveProject/timeline/track[@id='video_main']",
+              "tag": "clipref",
+              "attributes": {
+                "id": "tl_intro_return",
+                "clip_id": "clip_intro",
+                "start": "240",
+                "duration": "90",
+                "in": "0",
+                "out": "90"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "any_element_matches": {
+        "type": "timeline_clip",
+        "id": "timeline_clip:tl_intro_return",
+        "value": {
+          "track_id": "video_main",
+          "position": 240,
+          "duration": 90,
+          "clip_title": "Intro Wide"
+        }
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "timeline",
+    "visible_change_summary": "A new Intro Wide block appears on V1 at frame 240.",
+    "checkpoint_visibility": {
+      "kdenlive_15_clip_block": "visible_in_timeline_clip_block"
+    }
+  }
+}

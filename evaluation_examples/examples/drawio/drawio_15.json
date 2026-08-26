@@ -1,0 +1,122 @@
+{
+  "id": "drawio_15",
+  "software": "drawio",
+  "difficulty": "complex",
+  "description": "Add a final Archive step.",
+  "instruction": "Add Archive at x=980 y=140, and connect Review to Archive with label archive.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "diagram",
+      "params": {
+        "operations": [
+          {
+            "action": "add_shape",
+            "id": "archive",
+            "label": "Archive",
+            "shape_kind": "rectangle",
+            "x": 980,
+            "y": 140,
+            "width": 150,
+            "height": 80,
+            "fill": "#e5e7eb",
+            "stroke": "#6b7280"
+          },
+          {
+            "action": "add_connector",
+            "id": "flow_archive",
+            "source": "review",
+            "target": "archive",
+            "label": "archive",
+            "stroke": "#6b7280"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "drawio"
+  ],
+  "snapshot": "drawio_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "diagram_canvas",
+    "visible_change_summary": "An Archive step appears on the far right with a connector from Review.",
+    "checkpoint_visibility": {
+      "archive": "visible_on_diagram",
+      "archive_flow": "visible_on_diagram"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "archive",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "shape:archive"
+            }
+          },
+          {
+            "id": "archive_flow",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Review",
+                  "target_label": "Archive",
+                  "label": "archive"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "drawio",
+    "difficulty": "complex",
+    "description": "Add a final Archive step.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "diagram",
+        "params": {
+          "operations": [
+            {
+              "action": "add_shape",
+              "id": "archive",
+              "label": "Archive",
+              "shape_kind": "rectangle",
+              "x": 980,
+              "y": 140,
+              "width": 150,
+              "height": 80,
+              "fill": "#e5e7eb",
+              "stroke": "#6b7280"
+            },
+            {
+              "action": "add_connector",
+              "id": "flow_archive",
+              "source": "review",
+              "target": "archive",
+              "label": "archive",
+              "stroke": "#6b7280"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

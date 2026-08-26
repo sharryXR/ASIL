@@ -1,0 +1,163 @@
+{
+  "id": "multi_apps_073",
+  "software": "multi_apps",
+  "source": "asil_multi_apps_generated",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: rename meeting-notes.md to meeting-notes-multi_073.md; add an Audacity label named 'MA-073 audio cue'; add a Kdenlive marker commented 'MA-073 edit marker'.",
+  "related_apps": [
+    "nautilus",
+    "audacity",
+    "kdenlive"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "nautilus_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "nautilus",
+                "rule": {
+                  "element_exists": "workspace:meeting-notes-multi_073.md"
+                }
+              }
+            }
+          },
+          {
+            "id": "audacity_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "audacity",
+                "rule": {
+                  "element_contains": {
+                    "id": "label:aud_multi_073",
+                    "key": "text",
+                    "expected": "MA-073 audio cue"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "kdenlive_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "kdenlive",
+                "rule": {
+                  "element_contains": {
+                    "id": "marker:kd_multi_073",
+                    "key": "comment",
+                    "expected": "MA-073 edit marker"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "nautilus_checkpoint": "visible_in_nautilus",
+      "audacity_checkpoint": "visible_in_audacity",
+      "kdenlive_checkpoint": "visible_in_kdenlive"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "complex",
+    "description": "Mixed Release cross-app task for nautilus, audacity, kdenlive.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "nautilus": "default",
+      "audacity": "default",
+      "kdenlive": "default"
+    },
+    "primary_app": "nautilus",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "nautilus",
+              "action": {
+                "action_type": "invoke_function",
+                "target": "nautilus",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "rename_entry",
+                      "path": "meeting-notes.md",
+                      "new_name": "meeting-notes-multi_073.md"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "audacity",
+              "action": {
+                "action_type": "modify_file",
+                "target": "audacity_project",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_label",
+                      "label_id": "aud_multi_073",
+                      "text": "MA-073 audio cue",
+                      "start": 8.3,
+                      "end": 9.3
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "kdenlive",
+              "action": {
+                "action_type": "modify_file",
+                "target": "project",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_element",
+                      "parent_xpath": "./guides",
+                      "tag": "marker",
+                      "attributes": {
+                        "id": "kd_multi_073",
+                        "frame": "163",
+                        "comment": "MA-073 edit marker",
+                        "color": "#0f766e"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "mixed_release"
+  }
+}

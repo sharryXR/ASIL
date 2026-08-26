@@ -1,0 +1,85 @@
+{
+  "id": "inkscape_08",
+  "instruction": "Add a path element with a simple triangle",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_08_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_08_1",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "path",
+                "value": {
+                  "d": "M 100,200 L 200,200 L 150,100 Z"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "medium",
+    "description": "Add a path element with a simple triangle",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "path",
+              "attributes": {
+                "id": "triangle1",
+                "d": "M 100,200 L 200,200 L 150,100 Z",
+                "style": "fill:#00ff00;stroke:#000000"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_exists": "triangle1"
+        },
+        {
+          "element_value": {
+            "id": "triangle1",
+            "key": "style",
+            "expected": "fill:#00ff00;stroke:#000000"
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Add a green triangle path with a black stroke.",
+    "checkpoint_visibility": {
+      "inkscape_08_1": "visible_on_canvas",
+      "inkscape_08_2": "visible_on_canvas"
+    }
+  }
+}

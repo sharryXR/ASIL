@@ -1,0 +1,316 @@
+{
+  "id": "gimp_13",
+  "software": "gimp",
+  "difficulty": "complex",
+  "description": "Build a hero banner composition.",
+  "instruction": "On a blank canvas, add a navy rectangle layer Hero Banner at x=40 y=40 width=420 height=180 with fill #123d7a, add a white text layer Headline with text \"APRIL LAUNCH\" at x=70 y=90 font size 34, and add an orange ellipse Accent at x=360 y=70 width=90 height=90 with fill #ff7f50.",
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_layer",
+            "id": "hero_banner",
+            "label": "Hero Banner",
+            "kind": "rectangle",
+            "x": 40,
+            "y": 40,
+            "width": 420,
+            "height": 180,
+            "fill": "#123d7a"
+          },
+          {
+            "action": "add_text_layer",
+            "id": "headline",
+            "label": "Headline",
+            "text": "APRIL LAUNCH",
+            "x": 70,
+            "y": 90,
+            "font_size": 34,
+            "color": "#ffffff"
+          },
+          {
+            "action": "add_layer",
+            "id": "accent",
+            "label": "Accent",
+            "kind": "ellipse",
+            "x": 360,
+            "y": 70,
+            "width": 90,
+            "height": 90,
+            "fill": "#ff7f50"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "gimp"
+  ],
+  "snapshot": "gimp_default",
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "A navy hero banner with APRIL LAUNCH and an orange accent appears.",
+    "checkpoint_visibility": {
+      "banner_fill": "visible_on_canvas",
+      "banner_x": "visible_on_canvas",
+      "banner_y": "visible_on_canvas",
+      "banner_width": "visible_on_canvas",
+      "banner_height": "visible_on_canvas",
+      "headline_text": "visible_on_canvas",
+      "headline_x": "visible_on_canvas",
+      "headline_y": "visible_on_canvas",
+      "headline_font_size": "visible_on_canvas",
+      "headline_color": "visible_on_canvas",
+      "accent_fill": "visible_on_canvas",
+      "accent_x": "visible_on_canvas",
+      "accent_y": "visible_on_canvas",
+      "accent_width": "visible_on_canvas",
+      "accent_height": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "banner_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hero_banner",
+                "key": "fill",
+                "expected": "#123d7a"
+              }
+            }
+          },
+          {
+            "id": "banner_x",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hero_banner",
+                "key": "x",
+                "expected": 40
+              }
+            }
+          },
+          {
+            "id": "banner_y",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hero_banner",
+                "key": "y",
+                "expected": 40
+              }
+            }
+          },
+          {
+            "id": "banner_width",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hero_banner",
+                "key": "width",
+                "expected": 420
+              }
+            }
+          },
+          {
+            "id": "banner_height",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hero_banner",
+                "key": "height",
+                "expected": 180
+              }
+            }
+          },
+          {
+            "id": "headline_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "headline",
+                "key": "text",
+                "expected": "APRIL LAUNCH"
+              }
+            }
+          },
+          {
+            "id": "headline_x",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "headline",
+                "key": "x",
+                "expected": 70
+              }
+            }
+          },
+          {
+            "id": "headline_y",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "headline",
+                "key": "y",
+                "expected": 90
+              }
+            }
+          },
+          {
+            "id": "headline_font_size",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "headline",
+                "key": "font_size",
+                "expected": 34
+              }
+            }
+          },
+          {
+            "id": "headline_color",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "headline",
+                "key": "color",
+                "expected": "#ffffff"
+              }
+            }
+          },
+          {
+            "id": "accent_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "accent",
+                "key": "fill",
+                "expected": "#ff7f50"
+              }
+            }
+          },
+          {
+            "id": "accent_x",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "accent",
+                "key": "x",
+                "expected": 360
+              }
+            }
+          },
+          {
+            "id": "accent_y",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "accent",
+                "key": "y",
+                "expected": 70
+              }
+            }
+          },
+          {
+            "id": "accent_width",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "accent",
+                "key": "width",
+                "expected": 90
+              }
+            }
+          },
+          {
+            "id": "accent_height",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "accent",
+                "key": "height",
+                "expected": 90
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "complex",
+    "description": "Build a hero banner composition.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_layer",
+              "id": "hero_banner",
+              "label": "Hero Banner",
+              "kind": "rectangle",
+              "x": 40,
+              "y": 40,
+              "width": 420,
+              "height": 180,
+              "fill": "#123d7a"
+            },
+            {
+              "action": "add_text_layer",
+              "id": "headline",
+              "label": "Headline",
+              "text": "APRIL LAUNCH",
+              "x": 70,
+              "y": 90,
+              "font_size": 34,
+              "color": "#ffffff"
+            },
+            {
+              "action": "add_layer",
+              "id": "accent",
+              "label": "Accent",
+              "kind": "ellipse",
+              "x": 360,
+              "y": 70,
+              "width": 90,
+              "height": 90,
+              "fill": "#ff7f50"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank"
+  }
+}

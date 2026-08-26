@@ -1,0 +1,194 @@
+{
+  "id": "libreoffice_impress_realwork_hard_002",
+  "software": "libreoffice_impress",
+  "difficulty": "complex",
+  "description": "Hard-suite variant of libreoffice_impress_19: Retitle slide 1 to \"Executive Overview\", retitle slide 2 to \"Action Tracker\", replace slide 2 body with \"Send the updated decision log.\" and \"Review unresolved approvals.\", then add a final slide titled \"Follow-Up\" with \"Share the recap with finance.\" and \"Update the hiring timeline.\".",
+  "instruction": "Retitle slide 1 to \"Executive Overview\", retitle slide 2 to \"Action Tracker\", replace slide 2 body lines with \"Send the updated decision log.\" and \"Review unresolved approvals.\", then add a final slide titled \"Follow-Up\" with body lines \"Share the recap with finance.\" and \"Update the hiring timeline.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_slide_title",
+            "slide_index": 1,
+            "text": "Executive Overview"
+          },
+          {
+            "action": "set_slide_title",
+            "slide_index": 2,
+            "text": "Action Tracker"
+          },
+          {
+            "action": "set_slide_body",
+            "slide_index": 2,
+            "body_index": 1,
+            "text": "Send the updated decision log."
+          },
+          {
+            "action": "append_slide_body",
+            "slide_index": 2,
+            "text": "Review unresolved approvals."
+          },
+          {
+            "action": "add_slide",
+            "title": "Follow-Up",
+            "body": [
+              "Share the recap with finance.",
+              "Update the hiring timeline."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "The deck shows Executive Overview, Action Tracker, and a new Follow-Up slide.",
+    "checkpoint_visibility": {
+      "slide1_title": "visible_on_slide",
+      "slide2_title": "visible_on_slide",
+      "slide2_body2": "visible_on_slide",
+      "slide3_title": "visible_on_slide",
+      "slide3_body2": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "slide1_title",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:1:title",
+                "key": "text_content",
+                "expected": "Executive Overview"
+              }
+            }
+          },
+          {
+            "id": "slide2_title",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:title",
+                "key": "text_content",
+                "expected": "Action Tracker"
+              }
+            }
+          },
+          {
+            "id": "slide2_body2",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:body:2",
+                "key": "text_content",
+                "expected": "Review unresolved approvals."
+              }
+            }
+          },
+          {
+            "id": "slide3_title",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:3:title",
+                "key": "text_content",
+                "expected": "Follow-Up"
+              }
+            }
+          },
+          {
+            "id": "slide3_body2",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:3:body:2",
+                "key": "text_content",
+                "expected": "Update the hiring timeline."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "contact_sheet",
+    "slide_indices": [
+      1,
+      2,
+      3
+    ]
+  },
+  "_asil": {
+    "software": "libreoffice_impress",
+    "difficulty": "complex",
+    "category": "realwork_hard",
+    "description": "Hard-suite variant of libreoffice_impress_19: Retitle slide 1 to \"Executive Overview\", retitle slide 2 to \"Action Tracker\", replace slide 2 body with \"Send the updated decision log.\" and \"Review unresolved approvals.\", then add a final slide titled \"Follow-Up\" with \"Share the recap with finance.\" and \"Update the hiring timeline.\".",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{odp_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "set_slide_title",
+              "slide_index": 1,
+              "text": "Executive Overview"
+            },
+            {
+              "action": "set_slide_title",
+              "slide_index": 2,
+              "text": "Action Tracker"
+            },
+            {
+              "action": "set_slide_body",
+              "slide_index": 2,
+              "body_index": 1,
+              "text": "Send the updated decision log."
+            },
+            {
+              "action": "append_slide_body",
+              "slide_index": 2,
+              "text": "Review unresolved approvals."
+            },
+            {
+              "action": "add_slide",
+              "title": "Follow-Up",
+              "body": [
+                "Share the recap with finance.",
+                "Update the hiring timeline."
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "source_task_id": "libreoffice_impress_19",
+    "workflow_complexity": {
+      "meaningful_actions": 1,
+      "suite_family": "office_diagrams",
+      "copied_from_main_benchmark": true
+    }
+  },
+  "source": "asil_realwork_hard_mixed_v2"
+}

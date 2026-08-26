@@ -1,0 +1,58 @@
+{
+  "id": "obs_06",
+  "instruction": "Start streaming",
+  "source": "asil_benchmark_v1",
+  "snapshot": "obs_studio_default",
+  "config": [],
+  "related_apps": [
+    "obs"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "obs_06_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "obs_06_stream_live",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "stream_active": true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "obs",
+    "difficulty": "medium",
+    "description": "Start streaming",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "StartStream",
+          "args": {}
+        }
+      }
+    ],
+    "validation": {
+      "stream_active": true
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "program_view",
+    "visible_change_summary": "Streaming status is live in OBS.",
+    "checkpoint_visibility": {
+      "obs_06_stream_live": "visible_in_obs_ui"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "id": "obs_12",
+  "instruction": "Unmute the Mic/Aux source",
+  "source": "asil_benchmark_v1",
+  "snapshot": "obs_default_scene",
+  "config": [],
+  "related_apps": [
+    "obs"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "obs_12_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "obs_12_mic_unmuted",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "input_muted": {
+                "name": "Mic/Aux",
+                "expected": false
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "obs",
+    "difficulty": "simple",
+    "description": "Unmute the Mic/Aux source",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "SetInputMute",
+          "args": {
+            "inputName": "Mic/Aux",
+            "inputMuted": false
+          }
+        }
+      }
+    ],
+    "validation": {
+      "current_scene": "Main Scene",
+      "input_muted": {
+        "name": "Mic/Aux",
+        "expected": false
+      }
+    },
+    "initial_state": "mic_muted"
+  },
+  "gui_expectations": {
+    "success_surface": "program_view",
+    "visible_change_summary": "Mic/Aux shows an unmuted state in the mixer.",
+    "checkpoint_visibility": {
+      "obs_12_mic_unmuted": "visible_in_obs_window"
+    }
+  }
+}

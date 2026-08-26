@@ -1,0 +1,119 @@
+{
+  "id": "drawio_09",
+  "software": "drawio",
+  "difficulty": "medium",
+  "description": "Add an Audit note after Deploy.",
+  "instruction": "Add a rectangle Audit at x=760 y=140 width=150 height=80 fill #e0f2fe and connect Deploy to Audit with label record.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "diagram",
+      "params": {
+        "operations": [
+          {
+            "action": "add_shape",
+            "id": "audit",
+            "label": "Audit",
+            "shape_kind": "rectangle",
+            "x": 760,
+            "y": 140,
+            "width": 150,
+            "height": 80,
+            "fill": "#e0f2fe",
+            "stroke": "#0284c7"
+          },
+          {
+            "action": "add_connector",
+            "id": "flow_3",
+            "source": "deploy",
+            "target": "audit",
+            "label": "record",
+            "stroke": "#0284c7"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "drawio"
+  ],
+  "snapshot": "drawio_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "diagram_canvas",
+    "visible_change_summary": "An Audit node appears after Deploy with a labeled connector.",
+    "checkpoint_visibility": {
+      "audit": "visible_on_diagram",
+      "audit_flow": "visible_on_diagram"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "audit",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "shape:audit"
+            }
+          },
+          {
+            "id": "audit_flow",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "connector:flow_3",
+                "key": "label",
+                "expected": "record"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "drawio",
+    "difficulty": "medium",
+    "description": "Add an Audit note after Deploy.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "diagram",
+        "params": {
+          "operations": [
+            {
+              "action": "add_shape",
+              "id": "audit",
+              "label": "Audit",
+              "shape_kind": "rectangle",
+              "x": 760,
+              "y": 140,
+              "width": 150,
+              "height": 80,
+              "fill": "#e0f2fe",
+              "stroke": "#0284c7"
+            },
+            {
+              "action": "add_connector",
+              "id": "flow_3",
+              "source": "deploy",
+              "target": "audit",
+              "label": "record",
+              "stroke": "#0284c7"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

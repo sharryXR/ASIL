@@ -1,0 +1,82 @@
+{
+  "id": "libreoffice_impress_09",
+  "software": "libreoffice_impress",
+  "difficulty": "medium",
+  "description": "Change slide 1 title to \"Readiness Snapshot\" and append the line \"Escalation rules were reviewed today.\".",
+  "instruction": "Change slide 1 title to \"Readiness Snapshot\" and append a second line saying \"Escalation rules were reviewed today.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_slide_title",
+            "slide_index": 1,
+            "text": "Readiness Snapshot"
+          },
+          {
+            "action": "append_slide_body",
+            "slide_index": 1,
+            "text": "Escalation rules were reviewed today."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "Slide 1 shows the Readiness Snapshot title and a second escalation-rules line.",
+    "checkpoint_visibility": {
+      "title": "visible_on_slide",
+      "body2": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "title",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:1:title",
+                "key": "text_content",
+                "expected": "Readiness Snapshot"
+              }
+            }
+          },
+          {
+            "id": "body2",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:1:body:2",
+                "key": "text_content",
+                "expected": "Escalation rules were reviewed today."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "single_slide",
+    "slide_indices": [
+      1
+    ]
+  }
+}

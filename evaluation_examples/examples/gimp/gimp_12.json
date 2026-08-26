@@ -1,0 +1,111 @@
+{
+  "id": "gimp_12",
+  "software": "gimp",
+  "difficulty": "medium",
+  "description": "Hide the hero background and recolor the logo block.",
+  "instruction": "Update hero_bg so visible=false, and update logo_block fill to #1f5eff.",
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "update_layer",
+            "id": "hero_bg",
+            "changes": {
+              "visible": false
+            }
+          },
+          {
+            "action": "update_layer",
+            "id": "logo_block",
+            "changes": {
+              "fill": "#1f5eff"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "gimp"
+  ],
+  "snapshot": "gimp_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "The background disappears and the logo block turns blue.",
+    "checkpoint_visibility": {
+      "hero_hidden": "visible_on_canvas",
+      "logo_fill": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "hero_hidden",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hero_bg",
+                "key": "visible",
+                "expected": false
+              }
+            }
+          },
+          {
+            "id": "logo_fill",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "logo_block",
+                "key": "fill",
+                "expected": "#1f5eff"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "medium",
+    "description": "Hide the hero background and recolor the logo block.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "update_layer",
+              "id": "hero_bg",
+              "changes": {
+                "visible": false
+              }
+            },
+            {
+              "action": "update_layer",
+              "id": "logo_block",
+              "changes": {
+                "fill": "#1f5eff"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

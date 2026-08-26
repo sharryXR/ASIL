@@ -1,0 +1,106 @@
+{
+  "software": "Gitea",
+  "supported_action_types": ["api_call"],
+  "target": "gitea_rest",
+  "description": "Interacts with Gitea via REST API (v1). Each action makes one HTTP request to a Gitea API endpoint.",
+  "actions": [
+    {
+      "name": "rest_call",
+      "description": "Make an HTTP request to the Gitea REST API. Specify the HTTP method, endpoint path, and request body.",
+      "params_schema": {
+        "method": "GET | POST | PUT | PATCH | DELETE",
+        "endpoint": "/api/v1/...",
+        "body": {}
+      },
+      "examples": [
+        {
+          "description": "Create a new repository",
+          "action": {
+            "action_type": "api_call",
+            "target": "gitea_rest",
+            "params": {
+              "method": "POST",
+              "endpoint": "/api/v1/user/repos",
+              "body": {
+                "name": "my-project",
+                "description": "A new project",
+                "private": false,
+                "auto_init": true,
+                "default_branch": "main"
+              }
+            }
+          }
+        },
+        {
+          "description": "Create an issue",
+          "action": {
+            "action_type": "api_call",
+            "target": "gitea_rest",
+            "params": {
+              "method": "POST",
+              "endpoint": "/api/v1/repos/owner/repo/issues",
+              "body": {
+                "title": "Bug: login fails",
+                "body": "Description of the bug"
+              }
+            }
+          }
+        },
+        {
+          "description": "Close an issue",
+          "action": {
+            "action_type": "api_call",
+            "target": "gitea_rest",
+            "params": {
+              "method": "PATCH",
+              "endpoint": "/api/v1/repos/owner/repo/issues/3",
+              "body": {"state": "closed"}
+            }
+          }
+        },
+        {
+          "description": "Delete a repository",
+          "action": {
+            "action_type": "api_call",
+            "target": "gitea_rest",
+            "params": {
+              "method": "DELETE",
+              "endpoint": "/api/v1/repos/owner/old-project",
+              "body": {}
+            }
+          }
+        },
+        {
+          "description": "Create a pull request",
+          "action": {
+            "action_type": "api_call",
+            "target": "gitea_rest",
+            "params": {
+              "method": "POST",
+              "endpoint": "/api/v1/repos/owner/repo/pulls",
+              "body": {
+                "title": "Fix login",
+                "body": "Resolves #2",
+                "head": "feature/login-fix",
+                "base": "main"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "done_action": {
+    "description": "Return this action when the task is fully complete.",
+    "example": {"action_type": "done", "target": "", "params": {}}
+  },
+  "tips": [
+    "Common endpoints: /api/v1/user/repos (list/create repos), /api/v1/repos/{owner}/{repo}/issues (issues)",
+    "Use POST to create, PATCH to update, DELETE to remove, GET to read",
+    "For GET requests, use empty body: {}",
+    "Issue numbers are integers, referenced in endpoint path: /issues/3",
+    "Labels: POST /repos/{owner}/{repo}/labels to create, POST /repos/{owner}/{repo}/issues/{index}/labels to attach",
+    "Milestones: POST /repos/{owner}/{repo}/milestones to create",
+    "Replace {owner} and {repo} with actual values from the observation"
+  ]
+}

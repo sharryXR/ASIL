@@ -1,0 +1,66 @@
+{
+  "id": "kdenlive_04",
+  "instruction": "Remove the Opening Title clip from V1.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "kdenlive_default_project",
+  "config": [],
+  "related_apps": ["kdenlive"],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "kdenlive_04_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "kdenlive_04_clip_removed",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "no_element_matches": {
+                "type": "timeline_clip",
+                "id": "timeline_clip:tl_title"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "kdenlive",
+    "difficulty": "simple",
+    "description": "Remove the Opening Title clip from V1.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "delete",
+              "xpath": "/kdenliveProject/timeline/track[@id='video_main']/clipref[@id='tl_title']"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "no_element_matches": {
+        "type": "timeline_clip",
+        "id": "timeline_clip:tl_title"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "timeline",
+    "visible_change_summary": "The Opening Title block disappears from V1.",
+    "checkpoint_visibility": {
+      "kdenlive_04_clip_removed": "visible_in_timeline_clip_block"
+    }
+  }
+}

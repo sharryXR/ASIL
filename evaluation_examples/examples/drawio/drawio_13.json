@@ -1,0 +1,295 @@
+{
+  "id": "drawio_13",
+  "software": "drawio",
+  "difficulty": "complex",
+  "description": "Expand to a four-step release flow.",
+  "instruction": "Add Draft, Review, Approve, and Release from left to right on a blank canvas with connectors between each adjacent step.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "diagram",
+      "params": {
+        "operations": [
+          {
+            "action": "add_shape",
+            "id": "draft",
+            "label": "Draft",
+            "shape_kind": "ellipse",
+            "x": 60,
+            "y": 180,
+            "width": 120,
+            "height": 70,
+            "fill": "#e0f2fe",
+            "stroke": "#0284c7"
+          },
+          {
+            "action": "add_shape",
+            "id": "review",
+            "label": "Review",
+            "shape_kind": "rectangle",
+            "x": 260,
+            "y": 170,
+            "width": 150,
+            "height": 80,
+            "fill": "#fef3c7",
+            "stroke": "#d97706"
+          },
+          {
+            "action": "add_shape",
+            "id": "approve",
+            "label": "Approve",
+            "shape_kind": "rectangle",
+            "x": 480,
+            "y": 170,
+            "width": 150,
+            "height": 80,
+            "fill": "#dcfce7",
+            "stroke": "#16a34a"
+          },
+          {
+            "action": "add_shape",
+            "id": "release",
+            "label": "Release",
+            "shape_kind": "rectangle",
+            "x": 700,
+            "y": 170,
+            "width": 150,
+            "height": 80,
+            "fill": "#ede9fe",
+            "stroke": "#7c3aed"
+          },
+          {
+            "action": "add_connector",
+            "id": "flow_1",
+            "source": "draft",
+            "target": "review",
+            "label": "submit"
+          },
+          {
+            "action": "add_connector",
+            "id": "flow_2",
+            "source": "review",
+            "target": "approve",
+            "label": "ready"
+          },
+          {
+            "action": "add_connector",
+            "id": "flow_3",
+            "source": "approve",
+            "target": "release",
+            "label": "ship"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "drawio"
+  ],
+  "snapshot": "drawio_default",
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "diagram_canvas",
+    "visible_change_summary": "A four-step release flow spans the diagram.",
+    "checkpoint_visibility": {
+      "draft": "visible_on_diagram",
+      "review": "visible_on_diagram",
+      "approve": "visible_on_diagram",
+      "release": "visible_on_diagram",
+      "flow_1": "visible_on_diagram",
+      "flow_2": "visible_on_diagram",
+      "flow_3": "visible_on_diagram"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "draft",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:draft",
+                "key": "label",
+                "expected": "Draft"
+              }
+            }
+          },
+          {
+            "id": "review",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:review",
+                "key": "label",
+                "expected": "Review"
+              }
+            }
+          },
+          {
+            "id": "approve",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:approve",
+                "key": "label",
+                "expected": "Approve"
+              }
+            }
+          },
+          {
+            "id": "release",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:release",
+                "key": "label",
+                "expected": "Release"
+              }
+            }
+          },
+          {
+            "id": "flow_1",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Draft",
+                  "target_label": "Review",
+                  "label": "submit"
+                }
+              }
+            }
+          },
+          {
+            "id": "flow_2",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Review",
+                  "target_label": "Approve",
+                  "label": "ready"
+                }
+              }
+            }
+          },
+          {
+            "id": "flow_3",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Approve",
+                  "target_label": "Release",
+                  "label": "ship"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "drawio",
+    "difficulty": "complex",
+    "description": "Expand to a four-step release flow.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "diagram",
+        "params": {
+          "operations": [
+            {
+              "action": "add_shape",
+              "id": "draft",
+              "label": "Draft",
+              "shape_kind": "ellipse",
+              "x": 60,
+              "y": 180,
+              "width": 120,
+              "height": 70,
+              "fill": "#e0f2fe",
+              "stroke": "#0284c7"
+            },
+            {
+              "action": "add_shape",
+              "id": "review",
+              "label": "Review",
+              "shape_kind": "rectangle",
+              "x": 260,
+              "y": 170,
+              "width": 150,
+              "height": 80,
+              "fill": "#fef3c7",
+              "stroke": "#d97706"
+            },
+            {
+              "action": "add_shape",
+              "id": "approve",
+              "label": "Approve",
+              "shape_kind": "rectangle",
+              "x": 480,
+              "y": 170,
+              "width": 150,
+              "height": 80,
+              "fill": "#dcfce7",
+              "stroke": "#16a34a"
+            },
+            {
+              "action": "add_shape",
+              "id": "release",
+              "label": "Release",
+              "shape_kind": "rectangle",
+              "x": 700,
+              "y": 170,
+              "width": 150,
+              "height": 80,
+              "fill": "#ede9fe",
+              "stroke": "#7c3aed"
+            },
+            {
+              "action": "add_connector",
+              "id": "flow_1",
+              "source": "draft",
+              "target": "review",
+              "label": "submit"
+            },
+            {
+              "action": "add_connector",
+              "id": "flow_2",
+              "source": "review",
+              "target": "approve",
+              "label": "ready"
+            },
+            {
+              "action": "add_connector",
+              "id": "flow_3",
+              "source": "approve",
+              "target": "release",
+              "label": "ship"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank"
+  }
+}

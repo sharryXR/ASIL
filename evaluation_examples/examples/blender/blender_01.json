@@ -1,0 +1,88 @@
+{
+  "id": "blender_01",
+  "instruction": "Create a default cube at the origin",
+  "source": "asil_benchmark_v1",
+  "snapshot": "blender_default_scene",
+  "config": [],
+  "related_apps": [
+    "blender"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "blender_01_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "cube_at_origin",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "mesh",
+                "value": {
+                  "location": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "dimensions": [
+                    2,
+                    2,
+                    2
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "single_mesh_object",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "count_elements_matching": {
+                "type": "mesh",
+                "expected": 1
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "blender",
+    "difficulty": "simple",
+    "description": "Create a default cube at the origin",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "bpy",
+        "params": {
+          "script": [
+            "import bpy",
+            "bpy.ops.mesh.primitive_cube_add(location=(0, 0, 0))"
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "object_exists": "Cube"
+    },
+    "initial_state": "blank"
+  },
+  "gui_expectations": {
+    "success_surface": "viewport",
+    "visible_change_summary": "Create a default cube at the origin",
+    "checkpoint_visibility": {
+      "cube_exists": "visible_in_viewport",
+      "cube_at_origin": "visible_in_viewport",
+      "scene_object_count_4": "visible_in_viewport",
+      "single_mesh_object": "visible_in_viewport"
+    }
+  }
+}

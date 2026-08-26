@@ -1,0 +1,74 @@
+{
+  "id": "gimp_05",
+  "software": "gimp",
+  "difficulty": "simple",
+  "description": "Delete the accent circle layer.",
+  "instruction": "Delete the accent circle layer from the default image.",
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "delete_layer",
+            "id": "accent_circle"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "gimp"
+  ],
+  "snapshot": "gimp_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "The blue accent circle disappears from the image.",
+    "checkpoint_visibility": {
+      "circle_removed": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "circle_removed",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_not_exists": "accent_circle"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "simple",
+    "description": "Delete the accent circle layer.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "delete_layer",
+              "id": "accent_circle"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

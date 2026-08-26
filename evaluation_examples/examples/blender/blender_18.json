@@ -1,0 +1,213 @@
+{
+  "id": "blender_18",
+  "instruction": "Build a simple room: floor plane, 4 wall planes, and a camera",
+  "source": "asil_benchmark_v1",
+  "snapshot": "blender_default_scene",
+  "config": [],
+  "related_apps": [
+    "blender"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "blender_18_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "floor_plane",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "mesh",
+                "value": {
+                  "location": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "rotation_euler": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "front_wall",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "mesh",
+                "value": {
+                  "location": [
+                    0,
+                    -5,
+                    5
+                  ],
+                  "rotation_euler": [
+                    1.5708,
+                    0,
+                    0
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "back_wall",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "mesh",
+                "value": {
+                  "location": [
+                    0,
+                    5,
+                    5
+                  ],
+                  "rotation_euler": [
+                    1.5708,
+                    0,
+                    0
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "left_wall",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "mesh",
+                "value": {
+                  "location": [
+                    -5,
+                    0,
+                    5
+                  ],
+                  "rotation_euler": [
+                    0,
+                    1.5708,
+                    0
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "right_wall",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "mesh",
+                "value": {
+                  "location": [
+                    5,
+                    0,
+                    5
+                  ],
+                  "rotation_euler": [
+                    0,
+                    1.5708,
+                    0
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "camera_position",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "camera",
+                "value": {
+                  "location": [
+                    0,
+                    -8,
+                    3
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "room_mesh_count",
+            "weight": 0.5,
+            "rule": {
+              "count_elements_matching": {
+                "type": "mesh",
+                "expected": 5
+              }
+            }
+          },
+          {
+            "id": "room_camera_count",
+            "weight": 0.5,
+            "rule": {
+              "count_elements_matching": {
+                "type": "camera",
+                "expected": 1
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "blender",
+    "difficulty": "complex",
+    "description": "Build a simple room: floor plane, 4 wall planes, and a camera",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "bpy",
+        "params": {
+          "script": [
+            "import bpy",
+            "bpy.ops.mesh.primitive_plane_add(size=10, location=(0, 0, 0))",
+            "bpy.ops.mesh.primitive_plane_add(size=10, location=(0, -5, 5))",
+            "bpy.context.object.rotation_euler = (1.5708, 0, 0)",
+            "bpy.ops.mesh.primitive_plane_add(size=10, location=(0, 5, 5))",
+            "bpy.context.object.rotation_euler = (1.5708, 0, 0)",
+            "bpy.ops.mesh.primitive_plane_add(size=10, location=(-5, 0, 5))",
+            "bpy.context.object.rotation_euler = (0, 1.5708, 0)",
+            "bpy.ops.mesh.primitive_plane_add(size=10, location=(5, 0, 5))",
+            "bpy.context.object.rotation_euler = (0, 1.5708, 0)",
+            "bpy.ops.object.camera_add(location=(0, -8, 3))"
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "object_type_exists": "CAMERA"
+    },
+    "initial_state": "blank"
+  },
+  "gui_expectations": {
+    "success_surface": "viewport",
+    "visible_change_summary": "Build a simple room: floor plane, 4 wall planes, and a camera",
+    "checkpoint_visibility": {
+      "floor_plane": "visible_in_viewport",
+      "front_wall": "visible_in_viewport",
+      "back_wall": "visible_in_viewport",
+      "left_wall": "visible_in_viewport",
+      "right_wall": "visible_in_viewport",
+      "camera_position": "visible_in_viewport"
+    }
+  }
+}

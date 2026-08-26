@@ -1,0 +1,45 @@
+Bootstrap: docker
+From: codercom/code-server@sha256:e6702766518b961c7e3c41095c129c7c9a82b041578c53326c52fa363a057727
+
+%post
+    set -e
+    mkdir -p /opt/asil
+    cat > /opt/asil/start_code_server.sh <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+HOST="${HOST:-127.0.0.1}"
+PORT="${PORT:-8080}"
+SHARED_WORKSPACES="${SHARED_WORKSPACES:-/shared-workspaces}"
+USER_DATA_DIR="${SHARED_WORKSPACES}/code-server-user-data"
+WORKSPACE_DIR="${SHARED_WORKSPACES}/code-server-workspace"
+
+export HOME="${HOME:-/tmp/code-server-home}"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-/tmp/code-server-config}"
+mkdir -p "$HOME" "$XDG_CONFIG_HOME" "$USER_DATA_DIR/User" "$WORKSPACE_DIR"
+cat > "${USER_DATA_DIR}/User/settings.json" <<'JSON'
+{
+  "workbench.startupEditor": "none",
+  "workbench.welcomePage.walkthroughs.openOnInstall": false,
+  "workbench.tips.enabled": false,
+  "telemetry.telemetryLevel": "off",
+  "security.workspace.trust.enabled": false,
+  "extensions.autoCheckUpdates": false,
+  "extensions.autoUpdate": false,
+  "update.mode": "none"
+}
+JSON
+
+exec code-server \
+  --auth none \
+  --bind-addr "${HOST}:${PORT}" \
+  --disable-workspace-trust \
+  --disable-telemetry \
+  --disable-update-check \
+  --user-data-dir "$USER_DATA_DIR" \
+  "$WORKSPACE_DIR"
+EOF
+    chmod +x /opt/asil/start_code_server.sh
+
+%runscript
+    exec /opt/asil/start_code_server.sh "$@"

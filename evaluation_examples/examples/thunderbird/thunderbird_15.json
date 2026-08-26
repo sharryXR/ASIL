@@ -1,0 +1,113 @@
+{
+  "id": "thunderbird_15",
+  "instruction": "Update the open draft so it is addressed to team@acme.test with the subject \"Status update\" and the body \"All blockers are green.\nMorgan\", then leave the compose window open.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "thunderbird_compose_focus",
+  "config": [],
+  "related_apps": [
+    "thunderbird"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "thunderbird_15_main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "draft_to",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "compose:draft",
+                "key": "to",
+                "expected": "team@acme.test"
+              }
+            }
+          },
+          {
+            "id": "draft_subject",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "compose:draft",
+                "key": "subject",
+                "expected": "Status update"
+              }
+            }
+          },
+          {
+            "id": "draft_body",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "compose:draft",
+                "key": "body",
+                "expected": "All blockers are green.\nMorgan"
+              }
+            }
+          },
+          {
+            "id": "draft_open",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "compose:draft",
+                "key": "is_open",
+                "expected": true
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "thunderbird",
+    "difficulty": "simple",
+    "description": "Update the open draft so it is addressed to team@acme.test with the subject \"Status update\" and the body \"All blockers are green.\nMorgan\", then leave the compose window open.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "thunderbird",
+        "params": {
+          "operations": [
+            {
+              "action": "update_draft",
+              "changes": {
+                "to": "team@acme.test",
+                "subject": "Status update",
+                "body": "All blockers are green.\nMorgan"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "compose:draft",
+        "key": "subject",
+        "expected": "Status update"
+      }
+    },
+    "initial_state": "compose_focus"
+  },
+  "gui_expectations": {
+    "success_surface": "compose_window",
+    "visible_change_summary": "A compose window is open with the Status update draft visible.",
+    "checkpoint_visibility": {
+      "draft_to": "visible_in_compose_window",
+      "draft_subject": "visible_in_compose_window",
+      "draft_body": "visible_in_compose_window",
+      "draft_open": "visible_in_compose_window"
+    }
+  }
+}

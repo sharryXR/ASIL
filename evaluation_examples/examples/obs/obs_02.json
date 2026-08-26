@@ -1,0 +1,70 @@
+{
+  "id": "obs_02",
+  "instruction": "Toggle visibility of source 'Webcam' in current scene",
+  "source": "asil_benchmark_v1",
+  "snapshot": "obs_studio_default",
+  "config": [],
+  "related_apps": [
+    "obs"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "obs_02_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "obs_02_webcam_hidden",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "source_visible": {
+                "scene": "Main Scene",
+                "source": "Webcam",
+                "expected": false
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "obs",
+    "difficulty": "simple",
+    "description": "Toggle visibility of source 'Webcam' in current scene",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "SetSceneItemEnabled",
+          "args": {
+            "sceneName": "Main Scene",
+            "sceneItemId": 1,
+            "sceneItemEnabled": false
+          }
+        }
+      }
+    ],
+    "validation": {
+      "source_visible": {
+        "scene": "Main Scene",
+        "source": "Webcam",
+        "expected": false
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "program_view",
+    "visible_change_summary": "Main Scene stays active while Webcam is hidden.",
+    "checkpoint_visibility": {
+      "obs_02_webcam_hidden": "visible_in_obs_ui"
+    }
+  }
+}

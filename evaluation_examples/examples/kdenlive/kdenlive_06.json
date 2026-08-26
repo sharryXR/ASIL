@@ -1,0 +1,69 @@
+{
+  "id": "kdenlive_06",
+  "instruction": "Lock the V2 track.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "kdenlive_default_project",
+  "config": [],
+  "related_apps": ["kdenlive"],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "kdenlive_06_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "kdenlive_06_track_locked",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "track:video_overlay",
+                "key": "locked",
+                "expected": true
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "kdenlive",
+    "difficulty": "simple",
+    "description": "Lock the V2 track.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "xpath": "/kdenliveProject/timeline/track[@id='video_overlay']",
+              "attribute": "locked",
+              "value": "1"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "track:video_overlay",
+        "key": "locked",
+        "expected": true
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "timeline",
+    "visible_change_summary": "The V2 track header shows its lock state enabled.",
+    "checkpoint_visibility": {
+      "kdenlive_06_track_locked": "visible_in_track_header"
+    }
+  }
+}

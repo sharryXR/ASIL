@@ -1,0 +1,971 @@
+{
+  "software": "libreoffice",
+  "tasks": [
+    {
+      "id": "libreoffice_01",
+      "software": "libreoffice",
+      "difficulty": "simple",
+      "description": "Set cell A1 to 'Sales Report'",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "A1", "value": "Sales Report", "value_type": "string"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!A1", "key": null, "expected": "Sales Report"}}
+    },
+    {
+      "id": "libreoffice_02",
+      "software": "libreoffice",
+      "difficulty": "simple",
+      "description": "Set cell B1 to numeric value 500",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "B1", "value": "500", "value_type": "float"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!B1", "key": null, "expected": "500"}}
+    },
+    {
+      "id": "libreoffice_03",
+      "software": "libreoffice",
+      "difficulty": "simple",
+      "description": "Update Cost value from 60 to 80",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "B2", "value": "80", "value_type": "float"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!B2", "key": null, "expected": "80"}}
+    },
+    {
+      "id": "libreoffice_04",
+      "software": "libreoffice",
+      "difficulty": "simple",
+      "description": "Add header row: Name, Q1, Q2, Q3, Q4",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "A1", "value": "Name", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B1", "value": "Q1", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C1", "value": "Q2", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D1", "value": "Q3", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E1", "value": "Q4", "value_type": "string"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!A1", "key": null, "expected": "Name"}}
+    },
+    {
+      "id": "libreoffice_05",
+      "software": "libreoffice",
+      "difficulty": "medium",
+      "description": "Populate a 3x3 multiplication table",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "B2", "value": "1", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C2", "value": "2", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D2", "value": "3", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "B3", "value": "2", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C3", "value": "4", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D3", "value": "6", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "B4", "value": "3", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C4", "value": "6", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D4", "value": "9", "value_type": "float"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!D4", "key": null, "expected": "9"}}
+    },
+    {
+      "id": "libreoffice_06",
+      "software": "libreoffice",
+      "difficulty": "medium",
+      "description": "Create monthly revenue data for Jan-Jun",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "A1", "value": "Month", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B1", "value": "Revenue", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A2", "value": "Jan", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B2", "value": "12500", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A3", "value": "Feb", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B3", "value": "13200", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A4", "value": "Mar", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B4", "value": "15800", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A5", "value": "Apr", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B5", "value": "14100", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A6", "value": "May", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B6", "value": "16900", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A7", "value": "Jun", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B7", "value": "18200", "value_type": "float"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!B7", "key": null, "expected": "18200"}}
+    },
+    {
+      "id": "libreoffice_07",
+      "software": "libreoffice",
+      "difficulty": "medium",
+      "description": "Fill in a budget tracking sheet with categories and amounts",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "A1", "value": "Category", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B1", "value": "Budget", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C1", "value": "Actual", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A2", "value": "Marketing", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B2", "value": "5000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C2", "value": "4800", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A3", "value": "Engineering", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B3", "value": "20000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C3", "value": "21500", "value_type": "float"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!C3", "key": null, "expected": "21500"}}
+    },
+    {
+      "id": "libreoffice_08",
+      "software": "libreoffice",
+      "difficulty": "complex",
+      "description": "Create student grade book with 5 students and 4 assignments",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "A1", "value": "Student", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B1", "value": "HW1", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C1", "value": "HW2", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D1", "value": "Midterm", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E1", "value": "Final", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A2", "value": "Alice", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B2", "value": "95", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C2", "value": "88", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D2", "value": "92", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E2", "value": "90", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A3", "value": "Bob", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B3", "value": "78", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C3", "value": "82", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D3", "value": "75", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E3", "value": "80", "value_type": "float"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!E3", "key": null, "expected": "80"}}
+    },
+    {
+      "id": "libreoffice_09",
+      "software": "libreoffice",
+      "difficulty": "complex",
+      "description": "Create inventory tracking sheet",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "A1", "value": "Item", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B1", "value": "SKU", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C1", "value": "Qty", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D1", "value": "Price", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A2", "value": "Widget A", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B2", "value": "WGT-001", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C2", "value": "150", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D2", "value": "9.99", "value_type": "float"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!D2", "key": null, "expected": "9.99"}}
+    },
+    {
+      "id": "libreoffice_10",
+      "software": "libreoffice",
+      "difficulty": "complex",
+      "description": "Build a project timeline with tasks, start dates, and durations",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "A1", "value": "Task", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B1", "value": "Start", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C1", "value": "Duration", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D1", "value": "Owner", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A2", "value": "Requirements", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B2", "value": "2026-01-01", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C2", "value": "14", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D2", "value": "PM", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A3", "value": "Design", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B3", "value": "2026-01-15", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C3", "value": "21", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D3", "value": "Designer", "value_type": "string"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!D3", "key": null, "expected": "Designer"}}
+    },
+    {
+      "id": "libreoffice_11",
+      "software": "libreoffice",
+      "difficulty": "medium",
+      "description": "Create a quarterly sales report: header row (Region, Q1, Q2, Q3, Q4), then 4 regions (North/South/East/West) with sales figures",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "A1", "value": "Region", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B1", "value": "Q1", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C1", "value": "Q2", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D1", "value": "Q3", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E1", "value": "Q4", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A2", "value": "North", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B2", "value": "45000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C2", "value": "52000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D2", "value": "48000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E2", "value": "61000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A3", "value": "South", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B3", "value": "38000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C3", "value": "41000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D3", "value": "39500", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E3", "value": "44000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A4", "value": "East", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B4", "value": "55000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C4", "value": "58000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D4", "value": "62000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E4", "value": "67000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A5", "value": "West", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B5", "value": "31000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C5", "value": "33500", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D5", "value": "35000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E5", "value": "37500", "value_type": "float"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!E5", "key": null, "expected": "37500"}}
+    },
+    {
+      "id": "libreoffice_12",
+      "software": "libreoffice",
+      "difficulty": "medium",
+      "description": "Create an employee directory: columns (Name, Department, Title, Phone, Email) and 8 employee records",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "A1", "value": "Name", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B1", "value": "Department", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C1", "value": "Title", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D1", "value": "Phone", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E1", "value": "Email", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A2", "value": "Alice Chen", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B2", "value": "Engineering", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C2", "value": "Senior Engineer", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D2", "value": "555-0101", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E2", "value": "alice@acme.com", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A3", "value": "Bob Martinez", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B3", "value": "Marketing", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C3", "value": "Marketing Manager", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D3", "value": "555-0102", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E3", "value": "bob@acme.com", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A4", "value": "Carol Johnson", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B4", "value": "Sales", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C4", "value": "Sales Director", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D4", "value": "555-0103", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E4", "value": "carol@acme.com", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A5", "value": "David Kim", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B5", "value": "Engineering", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C5", "value": "DevOps Lead", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D5", "value": "555-0104", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E5", "value": "david@acme.com", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A6", "value": "Eva Schmidt", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B6", "value": "HR", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C6", "value": "HR Manager", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D6", "value": "555-0105", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E6", "value": "eva@acme.com", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A7", "value": "Frank Lee", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B7", "value": "Finance", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C7", "value": "CFO", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D7", "value": "555-0106", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E7", "value": "frank@acme.com", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A8", "value": "Grace Wang", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B8", "value": "Design", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C8", "value": "UX Designer", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D8", "value": "555-0107", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E8", "value": "grace@acme.com", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A9", "value": "Henry Park", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B9", "value": "Support", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C9", "value": "Support Lead", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D9", "value": "555-0108", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E9", "value": "henry@acme.com", "value_type": "string"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!E9", "key": null, "expected": "henry@acme.com"}}
+    },
+    {
+      "id": "libreoffice_13",
+      "software": "libreoffice",
+      "difficulty": "medium",
+      "description": "Create a product price list: columns (SKU, Product, Unit Price, Stock) and 10 product rows",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "A1", "value": "SKU", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B1", "value": "Product", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C1", "value": "Unit Price", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D1", "value": "Stock", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A2", "value": "SKU-001", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B2", "value": "Wireless Mouse", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C2", "value": "29.99", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D2", "value": "150", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A3", "value": "SKU-002", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B3", "value": "Mechanical Keyboard", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C3", "value": "89.99", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D3", "value": "75", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A4", "value": "SKU-003", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B4", "value": "USB-C Hub", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C4", "value": "49.99", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D4", "value": "200", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A5", "value": "SKU-004", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B5", "value": "27\" Monitor", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C5", "value": "349.99", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D5", "value": "30", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A6", "value": "SKU-005", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B6", "value": "Webcam HD", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C6", "value": "59.99", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D6", "value": "120", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A7", "value": "SKU-006", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B7", "value": "Headset Pro", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C7", "value": "129.99", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D7", "value": "60", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A8", "value": "SKU-007", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B8", "value": "Laptop Stand", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C8", "value": "39.99", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D8", "value": "90", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A9", "value": "SKU-008", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B9", "value": "Desk Lamp LED", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C9", "value": "44.99", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D9", "value": "110", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A10", "value": "SKU-009", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B10", "value": "Cable Management Kit", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C10", "value": "19.99", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D10", "value": "300", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A11", "value": "SKU-010", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B11", "value": "Ergonomic Chair", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C11", "value": "499.99", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D11", "value": "15", "value_type": "float"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!D11", "key": null, "expected": "15"}}
+    },
+    {
+      "id": "libreoffice_14",
+      "software": "libreoffice",
+      "difficulty": "medium",
+      "description": "Create a weekly class schedule: columns (Time, Monday, Tuesday, Wednesday, Thursday, Friday), 6 time slots from 8:00 to 15:00",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "A1", "value": "Time", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B1", "value": "Monday", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C1", "value": "Tuesday", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D1", "value": "Wednesday", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E1", "value": "Thursday", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F1", "value": "Friday", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A2", "value": "08:00", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B2", "value": "Math", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C2", "value": "Physics", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D2", "value": "Math", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E2", "value": "Chemistry", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F2", "value": "English", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A3", "value": "09:30", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B3", "value": "English", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C3", "value": "Math", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D3", "value": "History", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E3", "value": "Physics", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F3", "value": "Art", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A4", "value": "11:00", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B4", "value": "Chemistry", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C4", "value": "English", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D4", "value": "Physics", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E4", "value": "Math", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F4", "value": "PE", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A5", "value": "13:00", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B5", "value": "History", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C5", "value": "Art", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D5", "value": "English", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E5", "value": "History", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F5", "value": "Math", "value_type": "string"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!F5", "key": null, "expected": "Math"}}
+    },
+    {
+      "id": "libreoffice_15",
+      "software": "libreoffice",
+      "difficulty": "medium",
+      "description": "Create a travel expense report: columns (Date, Description, Category, Amount) with 8 expense entries",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "A1", "value": "Date", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B1", "value": "Description", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C1", "value": "Category", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D1", "value": "Amount", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A2", "value": "2026-03-01", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B2", "value": "Flight to Shanghai", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C2", "value": "Transport", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D2", "value": "2800", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A3", "value": "2026-03-01", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B3", "value": "Airport taxi", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C3", "value": "Transport", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D3", "value": "150", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A4", "value": "2026-03-01", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B4", "value": "Hotel Marriott 3 nights", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C4", "value": "Lodging", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D4", "value": "3600", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A5", "value": "2026-03-02", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B5", "value": "Client dinner", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C5", "value": "Meals", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D5", "value": "580", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A6", "value": "2026-03-02", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B6", "value": "Metro day pass", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C6", "value": "Transport", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D6", "value": "20", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A7", "value": "2026-03-03", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B7", "value": "Conference registration", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C7", "value": "Event", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D7", "value": "1200", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A8", "value": "2026-03-03", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B8", "value": "Team lunch", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C8", "value": "Meals", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D8", "value": "320", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A9", "value": "2026-03-04", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B9", "value": "Return flight", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C9", "value": "Transport", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D9", "value": "2600", "value_type": "float"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!D9", "key": null, "expected": "2600"}}
+    },
+    {
+      "id": "libreoffice_16",
+      "software": "libreoffice",
+      "difficulty": "medium",
+      "description": "Create a student grade sheet: columns (Student, Chinese, Math, English, Physics, Chemistry) with 6 students and their scores",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "A1", "value": "Student", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B1", "value": "Chinese", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C1", "value": "Math", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D1", "value": "English", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E1", "value": "Physics", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F1", "value": "Chemistry", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A2", "value": "Zhang Wei", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B2", "value": "92", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C2", "value": "88", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D2", "value": "95", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E2", "value": "85", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F2", "value": "90", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A3", "value": "Li Na", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B3", "value": "88", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C3", "value": "95", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D3", "value": "82", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E3", "value": "91", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F3", "value": "87", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A4", "value": "Wang Fang", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B4", "value": "76", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C4", "value": "82", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D4", "value": "90", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E4", "value": "78", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F4", "value": "84", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A5", "value": "Chen Ming", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B5", "value": "95", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C5", "value": "78", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D5", "value": "85", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E5", "value": "92", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F5", "value": "88", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A6", "value": "Liu Yang", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B6", "value": "80", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C6", "value": "91", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D6", "value": "77", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E6", "value": "86", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F6", "value": "93", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A7", "value": "Zhao Jing", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B7", "value": "85", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C7", "value": "87", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D7", "value": "93", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E7", "value": "80", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F7", "value": "86", "value_type": "float"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!F7", "key": null, "expected": "86"}}
+    },
+    {
+      "id": "libreoffice_17",
+      "software": "libreoffice",
+      "difficulty": "complex",
+      "description": "Create a company P&L statement: columns (Item, Amount, Percentage, YoY Change) with 15 line items including Revenue, COGS, Gross Profit, Operating Expenses breakdown, EBITDA, Net Income",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "A1", "value": "P&L Statement 2025", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A2", "value": "Item", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B2", "value": "Amount", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C2", "value": "% of Revenue", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D2", "value": "YoY Change", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A3", "value": "Revenue", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B3", "value": "5200000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C3", "value": "100.0", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D3", "value": "12.5", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A4", "value": "COGS", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B4", "value": "2080000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C4", "value": "40.0", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D4", "value": "8.3", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A5", "value": "Gross Profit", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B5", "value": "3120000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C5", "value": "60.0", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D5", "value": "15.2", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A6", "value": "R&D", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B6", "value": "780000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C6", "value": "15.0", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D6", "value": "20.0", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A7", "value": "Sales & Marketing", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B7", "value": "624000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C7", "value": "12.0", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D7", "value": "10.5", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A8", "value": "G&A", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B8", "value": "416000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C8", "value": "8.0", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D8", "value": "5.1", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A9", "value": "Total OpEx", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B9", "value": "1820000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C9", "value": "35.0", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D9", "value": "13.2", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A10", "value": "EBITDA", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B10", "value": "1300000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C10", "value": "25.0", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D10", "value": "18.0", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A11", "value": "Depreciation", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B11", "value": "260000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C11", "value": "5.0", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D11", "value": "3.0", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A12", "value": "EBIT", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B12", "value": "1040000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C12", "value": "20.0", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D12", "value": "22.4", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A13", "value": "Interest Expense", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B13", "value": "52000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C13", "value": "1.0", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D13", "value": "-15.0", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A14", "value": "EBT", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B14", "value": "988000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C14", "value": "19.0", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D14", "value": "24.8", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A15", "value": "Tax (25%)", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B15", "value": "247000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C15", "value": "4.75", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D15", "value": "24.8", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A16", "value": "Net Income", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B16", "value": "741000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C16", "value": "14.25", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D16", "value": "24.8", "value_type": "float"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!D16", "key": null, "expected": "24.8"}}
+    },
+    {
+      "id": "libreoffice_18",
+      "software": "libreoffice",
+      "difficulty": "complex",
+      "description": "Create a project task tracker: columns (ID, Task, Owner, Start, Due, Status, Priority) with 12 project tasks",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "A1", "value": "ID", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B1", "value": "Task", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C1", "value": "Owner", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D1", "value": "Start", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E1", "value": "Due", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F1", "value": "Status", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "G1", "value": "Priority", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A2", "value": "T-001", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B2", "value": "Requirements gathering", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C2", "value": "Alice", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D2", "value": "2026-01-06", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E2", "value": "2026-01-17", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F2", "value": "Done", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "G2", "value": "High", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A3", "value": "T-002", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B3", "value": "UI/UX design", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C3", "value": "Bob", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D3", "value": "2026-01-20", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E3", "value": "2026-02-07", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F3", "value": "Done", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "G3", "value": "High", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A4", "value": "T-003", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B4", "value": "Database schema", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C4", "value": "Carol", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D4", "value": "2026-01-20", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E4", "value": "2026-01-31", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F4", "value": "Done", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "G4", "value": "High", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A5", "value": "T-004", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B5", "value": "Backend API development", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C5", "value": "Carol", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D5", "value": "2026-02-03", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E5", "value": "2026-03-07", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F5", "value": "In Progress", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "G5", "value": "High", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A6", "value": "T-005", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B6", "value": "Frontend implementation", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C6", "value": "David", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D6", "value": "2026-02-10", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E6", "value": "2026-03-14", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F6", "value": "In Progress", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "G6", "value": "High", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A7", "value": "T-006", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B7", "value": "Auth module", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C7", "value": "Alice", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D7", "value": "2026-02-17", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E7", "value": "2026-03-07", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F7", "value": "In Progress", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "G7", "value": "Medium", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A8", "value": "T-007", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B8", "value": "Unit tests", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C8", "value": "Eva", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D8", "value": "2026-03-03", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E8", "value": "2026-03-21", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F8", "value": "Not Started", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "G8", "value": "Medium", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A9", "value": "T-008", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B9", "value": "Integration tests", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C9", "value": "Eva", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D9", "value": "2026-03-10", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E9", "value": "2026-03-28", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F9", "value": "Not Started", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "G9", "value": "Medium", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A10", "value": "T-009", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B10", "value": "Performance optimization", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C10", "value": "Carol", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D10", "value": "2026-03-17", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E10", "value": "2026-03-28", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F10", "value": "Not Started", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "G10", "value": "Low", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A11", "value": "T-010", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B11", "value": "Security audit", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C11", "value": "Frank", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D11", "value": "2026-03-24", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E11", "value": "2026-04-04", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F11", "value": "Not Started", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "G11", "value": "High", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A12", "value": "T-011", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B12", "value": "User documentation", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C12", "value": "Bob", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D12", "value": "2026-03-24", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E12", "value": "2026-04-11", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F12", "value": "Not Started", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "G12", "value": "Medium", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A13", "value": "T-012", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B13", "value": "Production deployment", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C13", "value": "David", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D13", "value": "2026-04-07", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E13", "value": "2026-04-11", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F13", "value": "Not Started", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "G13", "value": "Critical", "value_type": "string"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!G13", "key": null, "expected": "Critical"}}
+    },
+    {
+      "id": "libreoffice_19",
+      "software": "libreoffice",
+      "difficulty": "complex",
+      "description": "Create a payroll sheet: columns (ID, Name, Department, Base Salary, Position Allowance, Performance Bonus, Insurance, Tax, Net Pay) for 10 employees",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "A1", "value": "ID", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B1", "value": "Name", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C1", "value": "Department", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D1", "value": "Base Salary", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E1", "value": "Allowance", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F1", "value": "Bonus", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "G1", "value": "Insurance", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "H1", "value": "Tax", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "I1", "value": "Net Pay", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A2", "value": "E001", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B2", "value": "Zhang Wei", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C2", "value": "Engineering", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D2", "value": "15000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E2", "value": "3000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F2", "value": "2000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "G2", "value": "1800", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "H2", "value": "1200", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "I2", "value": "17000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A3", "value": "E002", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B3", "value": "Li Na", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C3", "value": "Marketing", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D3", "value": "12000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E3", "value": "2500", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F3", "value": "1500", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "G3", "value": "1440", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "H3", "value": "800", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "I3", "value": "13760", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A4", "value": "E003", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B4", "value": "Wang Fang", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C4", "value": "Sales", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D4", "value": "10000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E4", "value": "2000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F4", "value": "4500", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "G4", "value": "1200", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "H4", "value": "900", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "I4", "value": "14400", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A5", "value": "E004", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B5", "value": "Chen Ming", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C5", "value": "Engineering", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D5", "value": "18000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E5", "value": "4000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F5", "value": "3000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "G5", "value": "2160", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "H5", "value": "1800", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "I5", "value": "21040", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A6", "value": "E005", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B6", "value": "Liu Yang", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C6", "value": "HR", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D6", "value": "11000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E6", "value": "2000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F6", "value": "1000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "G6", "value": "1320", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "H6", "value": "700", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "I6", "value": "11980", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A7", "value": "E006", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B7", "value": "Zhao Jing", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C7", "value": "Finance", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D7", "value": "14000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E7", "value": "3000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F7", "value": "1800", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "G7", "value": "1680", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "H7", "value": "1100", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "I7", "value": "16020", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A8", "value": "E007", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B8", "value": "Sun Lei", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C8", "value": "Engineering", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D8", "value": "16000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E8", "value": "3500", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F8", "value": "2500", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "G8", "value": "1920", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "H8", "value": "1400", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "I8", "value": "18680", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A9", "value": "E008", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B9", "value": "Xu Ting", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C9", "value": "Design", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D9", "value": "13000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E9", "value": "2500", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F9", "value": "1500", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "G9", "value": "1560", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "H9", "value": "950", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "I9", "value": "14490", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A10", "value": "E009", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B10", "value": "Huang Bo", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C10", "value": "Sales", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D10", "value": "9500", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E10", "value": "1500", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F10", "value": "5000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "G10", "value": "1140", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "H10", "value": "850", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "I10", "value": "14010", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A11", "value": "E010", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B11", "value": "Ma Yun", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C11", "value": "Management", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D11", "value": "25000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E11", "value": "5000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F11", "value": "5000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "G11", "value": "3000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "H11", "value": "3500", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "I11", "value": "28500", "value_type": "float"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!I11", "key": null, "expected": "28500"}}
+    },
+    {
+      "id": "libreoffice_20",
+      "software": "libreoffice",
+      "difficulty": "complex",
+      "description": "Create a yearly sales analysis: columns (Month, Electronics, Clothing, Food, Furniture, Sports) with 12 months of data",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{ods_path}}",
+          "params": {
+            "operations": [
+              {"sheet": "Sheet1", "cell": "A1", "value": "Month", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B1", "value": "Electronics", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "C1", "value": "Clothing", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "D1", "value": "Food", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "E1", "value": "Furniture", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "F1", "value": "Sports", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "A2", "value": "Jan", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B2", "value": "42000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C2", "value": "18000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D2", "value": "31000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E2", "value": "12000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F2", "value": "8500", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A3", "value": "Feb", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B3", "value": "38000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C3", "value": "22000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D3", "value": "29000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E3", "value": "11000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F3", "value": "7200", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A4", "value": "Mar", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B4", "value": "45000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C4", "value": "25000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D4", "value": "33000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E4", "value": "14000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F4", "value": "11000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A5", "value": "Apr", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B5", "value": "41000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C5", "value": "28000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D5", "value": "30000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E5", "value": "15000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F5", "value": "14000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A6", "value": "May", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B6", "value": "48000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C6", "value": "30000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D6", "value": "32000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E6", "value": "18000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F6", "value": "16000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A7", "value": "Jun", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B7", "value": "55000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C7", "value": "35000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D7", "value": "34000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E7", "value": "16000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F7", "value": "18000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A8", "value": "Jul", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B8", "value": "52000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C8", "value": "33000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D8", "value": "36000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E8", "value": "14000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F8", "value": "20000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A9", "value": "Aug", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B9", "value": "50000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C9", "value": "31000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D9", "value": "35000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E9", "value": "13000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F9", "value": "19000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A10", "value": "Sep", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B10", "value": "47000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C10", "value": "27000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D10", "value": "33000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E10", "value": "15000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F10", "value": "15000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A11", "value": "Oct", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B11", "value": "53000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C11", "value": "32000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D11", "value": "34000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E11", "value": "17000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F11", "value": "13000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A12", "value": "Nov", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B12", "value": "62000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C12", "value": "40000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D12", "value": "38000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E12", "value": "20000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F12", "value": "11000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "A13", "value": "Dec", "value_type": "string"},
+              {"sheet": "Sheet1", "cell": "B13", "value": "70000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "C13", "value": "45000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "D13", "value": "42000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "E13", "value": "22000", "value_type": "float"},
+              {"sheet": "Sheet1", "cell": "F13", "value": "9500", "value_type": "float"}
+            ]
+          }
+        }
+      ],
+      "validation": {"element_value": {"id": "Sheet1!F13", "key": null, "expected": "9500"}}
+    }
+  ]
+}

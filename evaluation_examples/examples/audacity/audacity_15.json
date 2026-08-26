@@ -1,0 +1,99 @@
+{
+  "id": "audacity_15",
+  "instruction": "Rename Music Bed to Score Bed and add a new track named Room Tone.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "audacity_default_project",
+  "config": [],
+  "related_apps": [
+    "audacity"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "audacity_15_main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "music_renamed",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "track:track_music",
+                "key": "name",
+                "expected": "Score Bed"
+              }
+            }
+          },
+          {
+            "id": "room_added",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "track",
+                "id": "track:track_room_tone",
+                "value": {
+                  "name": "Room Tone"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "audacity",
+    "difficulty": "simple",
+    "description": "Rename Music Bed to Score Bed and add a new track named Room Tone.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "set_track_value",
+              "track_id": "track_music",
+              "field": "name",
+              "value": "Score Bed"
+            },
+            {
+              "action": "add_track",
+              "track_id": "track_room_tone",
+              "name": "Room Tone",
+              "kind": "audio",
+              "mute": false,
+              "solo": false,
+              "gain_db": 0.0,
+              "pan": 0.0,
+              "height_px": 132,
+              "clips": []
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "track:track_music",
+        "key": "name",
+        "expected": "Score Bed"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "multitrack_timeline",
+    "visible_change_summary": "Music Bed is renamed to Score Bed and a Room Tone track appears.",
+    "checkpoint_visibility": {
+      "music_renamed": "visible_in_track_headers",
+      "room_added": "visible_in_track_headers"
+    }
+  }
+}

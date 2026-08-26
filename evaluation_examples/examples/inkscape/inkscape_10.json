@@ -1,0 +1,147 @@
+{
+  "id": "inkscape_10",
+  "instruction": "Create SVG icon: blue rounded background, centered SVG text, and border.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_10_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_10_1",
+            "weight": 0.34,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "rect",
+                "value": {
+                  "width": "64",
+                  "height": "64",
+                  "style": "fill:#4a90d9;rx:8;ry:8"
+                }
+              }
+            }
+          },
+          {
+            "id": "inkscape_10_2",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "rect",
+                "value": {
+                  "width": "64",
+                  "height": "64",
+                  "style": "fill:none;stroke:#1f1f1f;stroke-width:2;rx:8;ry:8"
+                }
+              }
+            }
+          },
+          {
+            "id": "inkscape_10_3",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "text",
+                "value": {
+                  "text_content": "SVG"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "complex",
+    "description": "Create SVG icon: blue rounded background, centered SVG text, and border.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "rect",
+              "attributes": {
+                "id": "icon_bg",
+                "x": "0",
+                "y": "0",
+                "width": "64",
+                "height": "64",
+                "style": "fill:#4a90d9;rx:8;ry:8"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "rect",
+              "attributes": {
+                "id": "icon_border",
+                "x": "0",
+                "y": "0",
+                "width": "64",
+                "height": "64",
+                "style": "fill:none;stroke:#1f1f1f;stroke-width:2;rx:8;ry:8"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "text",
+              "attributes": {
+                "id": "icon_text",
+                "x": "32",
+                "y": "40",
+                "style": "font-size:28px;fill:white;text-anchor:middle",
+                "text_content": "SVG"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_exists": "icon_bg"
+        },
+        {
+          "element_exists": "icon_border"
+        },
+        {
+          "element_value": {
+            "id": "icon_text",
+            "key": "text_content",
+            "expected": "SVG"
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Create a 64x64 blue rounded icon with centered SVG text and a thin border.",
+    "checkpoint_visibility": {
+      "inkscape_10_1": "visible_on_canvas",
+      "inkscape_10_2": "visible_on_canvas",
+      "inkscape_10_3": "visible_on_canvas"
+    }
+  }
+}

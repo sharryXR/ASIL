@@ -1,0 +1,172 @@
+{
+  "id": "inkscape_11",
+  "instruction": "Create a progress bar UI component showing 70% completion: a 400x32 light-gray background bar (id=progress_bg), a 280x32 green fill bar (id=progress_fill, style fill:#4caf50), and a centered white text label '70%' inside the fill (id=progress_label).",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_11_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_11_1",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "progress_bg",
+                "key": "width",
+                "expected": "400"
+              }
+            }
+          },
+          {
+            "id": "inkscape_11_2",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "progress_fill",
+                "key": "width",
+                "expected": "280"
+              }
+            }
+          },
+          {
+            "id": "inkscape_11_3",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "progress_fill",
+                "key": "style",
+                "expected": "fill:#4caf50"
+              }
+            }
+          },
+          {
+            "id": "inkscape_11_4",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "progress_label",
+                "key": "text_content",
+                "expected": "70%"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "medium",
+    "description": "Create a progress bar UI component showing 70% completion: a 400x32 light-gray background bar (id=progress_bg), a 280x32 green fill bar (id=progress_fill, style fill:#4caf50), and a centered white text label '70%' inside the fill (id=progress_label).",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "rect",
+              "attributes": {
+                "id": "progress_bg",
+                "x": "200",
+                "y": "284",
+                "width": "400",
+                "height": "32",
+                "rx": "6",
+                "ry": "6",
+                "style": "fill:#e0e0e0"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "rect",
+              "attributes": {
+                "id": "progress_fill",
+                "x": "200",
+                "y": "284",
+                "width": "280",
+                "height": "32",
+                "rx": "6",
+                "ry": "6",
+                "style": "fill:#4caf50"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "text",
+              "attributes": {
+                "id": "progress_label",
+                "x": "340",
+                "y": "307",
+                "style": "font-size:15px;fill:#ffffff;text-anchor:middle;font-family:sans-serif;font-weight:bold",
+                "text_content": "70%"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "progress_bg",
+            "key": "width",
+            "expected": "400"
+          }
+        },
+        {
+          "element_value": {
+            "id": "progress_fill",
+            "key": "width",
+            "expected": "280"
+          }
+        },
+        {
+          "element_value": {
+            "id": "progress_fill",
+            "key": "style",
+            "expected": "fill:#4caf50"
+          }
+        },
+        {
+          "element_value": {
+            "id": "progress_label",
+            "key": "text_content",
+            "expected": "70%"
+          }
+        }
+      ]
+    },
+    "initial_state": "blank"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Create a 70% progress bar with a gray track, green fill, and centered 70% label.",
+    "checkpoint_visibility": {
+      "inkscape_11_1": "visible_on_canvas",
+      "inkscape_11_2": "visible_on_canvas",
+      "inkscape_11_3": "visible_on_canvas",
+      "inkscape_11_4": "visible_on_canvas"
+    }
+  }
+}

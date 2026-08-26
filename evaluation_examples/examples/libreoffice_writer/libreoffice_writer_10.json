@@ -1,0 +1,76 @@
+{
+  "id": "libreoffice_writer_10",
+  "software": "libreoffice_writer",
+  "difficulty": "medium",
+  "description": "Append a paragraph \"Send the revised budget by Monday.\" and then change the second paragraph to \"Procurement review remains open.\".",
+  "instruction": "Append a paragraph \"Send the revised budget by Monday.\" and then change the second paragraph to \"Procurement review remains open.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odt_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "add_paragraph",
+            "text": "Send the revised budget by Monday."
+          },
+          {
+            "action": "set_paragraph_text",
+            "index": 2,
+            "text": "Procurement review remains open."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "snapshot": "writer_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "document_page",
+    "visible_change_summary": "A new reminder paragraph appears and the second paragraph is updated.",
+    "checkpoint_visibility": {
+      "reminder": "visible_on_page",
+      "second_para": "visible_on_page"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "reminder",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "paragraph",
+                "value": {
+                  "text_content": "Send the revised budget by Monday."
+                }
+              }
+            }
+          },
+          {
+            "id": "second_para",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "paragraph:2",
+                "key": "text_content",
+                "expected": "Procurement review remains open."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

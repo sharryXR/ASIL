@@ -1,0 +1,85 @@
+{
+  "id": "blender_05",
+  "instruction": "Create a plane and scale it to 5x5",
+  "source": "asil_benchmark_v1",
+  "snapshot": "blender_default_scene",
+  "config": [],
+  "related_apps": [
+    "blender"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "blender_05_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "plane_exists",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "mesh",
+                "value": {
+                  "dimensions": [
+                    10,
+                    10,
+                    0
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "single_mesh_object",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "count_elements_matching": {
+                "type": "mesh",
+                "expected": 1
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "blender",
+    "difficulty": "simple",
+    "description": "Create a plane and scale it to 5x5",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "bpy",
+        "params": {
+          "script": [
+            "import bpy",
+            "bpy.ops.mesh.primitive_plane_add(location=(0, 0, 0))",
+            "bpy.context.object.scale = (5, 5, 1)"
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "object_exists": "Plane"
+    },
+    "initial_state": "blank"
+  },
+  "gui_expectations": {
+    "success_surface": "viewport",
+    "visible_change_summary": "Create a plane and scale it to 5x5",
+    "checkpoint_visibility": {
+      "plane_exists": "visible_in_viewport",
+      "plane_at_origin": "visible_in_viewport",
+      "plane_scaled_5x5": "visible_in_viewport",
+      "scene_object_count_4": "visible_in_viewport",
+      "single_mesh_object": "visible_in_viewport"
+    }
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "id": "code_server_02",
+  "software": "code_server",
+  "difficulty": "simple",
+  "description": "Create a daily note.",
+  "instruction": "Create a new file notes/today.md containing \"# Today\" and \"Ship the slice.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {
+            "action": "create_file",
+            "path": "notes/today.md",
+            "content": "# Today\nShip the slice.\n"
+          },
+          {
+            "action": "open_file",
+            "path": "notes/today.md"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "code_server"
+  ],
+  "snapshot": "code_server_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "A new Today note is created and opened in the editor.",
+    "checkpoint_visibility": {
+      "file_exists": "visible_in_editor",
+      "file_content": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "file_exists",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "file:notes/today.md"
+            }
+          },
+          {
+            "id": "file_content",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "file:notes/today.md",
+                "key": "content",
+                "expected": "Ship the slice."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "code_server",
+    "difficulty": "simple",
+    "description": "Create a daily note.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {
+              "action": "create_file",
+              "path": "notes/today.md",
+              "content": "# Today\nShip the slice.\n"
+            },
+            {
+              "action": "open_file",
+              "path": "notes/today.md"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

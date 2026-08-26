@@ -1,0 +1,88 @@
+{
+  "id": "audacity_12",
+  "instruction": "Remove the Voiceover track and rename Music Bed to Program Music.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "audacity_default_project",
+  "config": [],
+  "related_apps": [
+    "audacity"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "audacity_12_main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "voice_removed",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "no_element_matches": {
+                "type": "track",
+                "id": "track:track_voice"
+              }
+            }
+          },
+          {
+            "id": "music_renamed",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "track:track_music",
+                "key": "name",
+                "expected": "Program Music"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "audacity",
+    "difficulty": "simple",
+    "description": "Remove the Voiceover track and rename Music Bed to Program Music.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "delete_track",
+              "track_id": "track_voice"
+            },
+            {
+              "action": "set_track_value",
+              "track_id": "track_music",
+              "field": "name",
+              "value": "Program Music"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "track:track_music",
+        "key": "name",
+        "expected": "Program Music"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "multitrack_timeline",
+    "visible_change_summary": "Voiceover disappears and Music Bed is renamed to Program Music.",
+    "checkpoint_visibility": {
+      "voice_removed": "visible_in_track_headers",
+      "music_renamed": "visible_in_track_headers"
+    }
+  }
+}

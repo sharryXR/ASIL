@@ -1,0 +1,611 @@
+{
+  "id": "libreoffice_20",
+  "instruction": "Create a yearly sales analysis with columns (Month, Electronics, Clothing, Food, Furniture, Sports). Add exactly 12 rows for Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec in that order, and use any reasonable non-negative numeric sales values in the category columns.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "libreoffice_calc_default",
+  "config": [],
+  "related_apps": [
+    "libreoffice"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "libreoffice_20_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "libreoffice_20_headers",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_headers": {
+                "sheet": "Sheet1",
+                "row": 1,
+                "expected": [
+                  "Month",
+                  "Electronics",
+                  "Clothing",
+                  "Food",
+                  "Furniture",
+                  "Sports"
+                ]
+              }
+            }
+          },
+          {
+            "id": "libreoffice_20_rows",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_complete_rows": {
+                "sheet": "Sheet1",
+                "columns": [
+                  "A",
+                  "B",
+                  "C",
+                  "D",
+                  "E",
+                  "F"
+                ],
+                "start_row": 2,
+                "expected_rows": 12
+              }
+            }
+          },
+          {
+            "id": "libreoffice_20_months",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_column_sequence": {
+                "sheet": "Sheet1",
+                "column": "A",
+                "start_row": 2,
+                "expected": [
+                  "Jan",
+                  "Feb",
+                  "Mar",
+                  "Apr",
+                  "May",
+                  "Jun",
+                  "Jul",
+                  "Aug",
+                  "Sep",
+                  "Oct",
+                  "Nov",
+                  "Dec"
+                ]
+              }
+            }
+          },
+          {
+            "id": "libreoffice_20_numeric_cols",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_column_type": {
+                "sheet": "Sheet1",
+                "columns": [
+                  "B",
+                  "C",
+                  "D",
+                  "E",
+                  "F"
+                ],
+                "start_row": 2,
+                "end_row": 13,
+                "expected": "number",
+                "min": 0
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "libreoffice",
+    "difficulty": "complex",
+    "description": "Create a yearly sales analysis: columns (Month, Electronics, Clothing, Food, Furniture, Sports) with 12 months of data",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{ods_path}}",
+        "params": {
+          "operations": [
+            {
+              "sheet": "Sheet1",
+              "cell": "A1",
+              "value": "Month",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B1",
+              "value": "Electronics",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C1",
+              "value": "Clothing",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D1",
+              "value": "Food",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E1",
+              "value": "Furniture",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F1",
+              "value": "Sports",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A2",
+              "value": "Jan",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B2",
+              "value": "42000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C2",
+              "value": "18000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D2",
+              "value": "31000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E2",
+              "value": "12000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F2",
+              "value": "8500",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A3",
+              "value": "Feb",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B3",
+              "value": "38000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C3",
+              "value": "22000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D3",
+              "value": "29000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E3",
+              "value": "11000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F3",
+              "value": "7200",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A4",
+              "value": "Mar",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B4",
+              "value": "45000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C4",
+              "value": "25000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D4",
+              "value": "33000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E4",
+              "value": "14000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F4",
+              "value": "11000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A5",
+              "value": "Apr",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B5",
+              "value": "41000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C5",
+              "value": "28000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D5",
+              "value": "30000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E5",
+              "value": "15000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F5",
+              "value": "14000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A6",
+              "value": "May",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B6",
+              "value": "48000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C6",
+              "value": "30000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D6",
+              "value": "32000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E6",
+              "value": "18000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F6",
+              "value": "16000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A7",
+              "value": "Jun",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B7",
+              "value": "55000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C7",
+              "value": "35000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D7",
+              "value": "34000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E7",
+              "value": "16000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F7",
+              "value": "18000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A8",
+              "value": "Jul",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B8",
+              "value": "52000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C8",
+              "value": "33000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D8",
+              "value": "36000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E8",
+              "value": "14000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F8",
+              "value": "20000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A9",
+              "value": "Aug",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B9",
+              "value": "50000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C9",
+              "value": "31000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D9",
+              "value": "35000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E9",
+              "value": "13000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F9",
+              "value": "19000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A10",
+              "value": "Sep",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B10",
+              "value": "47000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C10",
+              "value": "27000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D10",
+              "value": "33000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E10",
+              "value": "15000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F10",
+              "value": "15000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A11",
+              "value": "Oct",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B11",
+              "value": "53000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C11",
+              "value": "32000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D11",
+              "value": "34000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E11",
+              "value": "17000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F11",
+              "value": "13000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A12",
+              "value": "Nov",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B12",
+              "value": "62000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C12",
+              "value": "40000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D12",
+              "value": "38000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E12",
+              "value": "20000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F12",
+              "value": "11000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A13",
+              "value": "Dec",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B13",
+              "value": "70000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C13",
+              "value": "45000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D13",
+              "value": "42000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E13",
+              "value": "22000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F13",
+              "value": "9500",
+              "value_type": "float"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "Sheet1!F13",
+        "key": null,
+        "expected": "9500"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "spreadsheet",
+    "visible_change_summary": "Create a yearly sales analysis with columns (Month, Electronics, Clothing, Food, Furniture, Sports). Add exactly 12 rows for Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec in that order, and use any reasonable non-negative numeric sales values in the category columns.",
+    "checkpoint_visibility": {
+      "libreoffice_20_headers": "visible_in_sheet",
+      "libreoffice_20_rows": "visible_in_sheet",
+      "libreoffice_20_months": "visible_in_sheet",
+      "libreoffice_20_numeric_cols": "visible_in_sheet"
+    }
+  }
+}

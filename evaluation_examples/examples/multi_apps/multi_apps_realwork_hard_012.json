@@ -1,0 +1,263 @@
+{
+  "id": "multi_apps_realwork_hard_012",
+  "software": "multi_apps",
+  "source": "asil_realwork_hard_mixed_v2",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: add an Audacity label named 'MA-056 audio cue'; add a Kdenlive marker commented 'MA-056 edit marker'; switch OBS scene collection to Gaming Setup.",
+  "related_apps": [
+    "audacity",
+    "kdenlive",
+    "obs"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "audacity_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "audacity",
+                "rule": {
+                  "element_contains": {
+                    "id": "label:aud_multi_056",
+                    "key": "text",
+                    "expected": "MA-056 audio cue"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "kdenlive_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "kdenlive",
+                "rule": {
+                  "element_contains": {
+                    "id": "marker:kd_multi_056",
+                    "key": "comment",
+                    "expected": "MA-056 edit marker"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "obs_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "obs",
+                "rule": {
+                  "scene_collection": "Gaming Setup"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "audacity_checkpoint": "visible_in_audacity",
+      "kdenlive_checkpoint": "visible_in_kdenlive",
+      "obs_checkpoint": "visible_in_obs"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "complex",
+    "description": "Hard-suite variant of multi_apps_056: Media Publishing cross-app task for audacity, kdenlive, obs.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "audacity": "default",
+      "kdenlive": "default",
+      "obs": "default"
+    },
+    "primary_app": "audacity",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "audacity",
+              "action": {
+                "action_type": "modify_file",
+                "target": "audacity_project",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_label",
+                      "label_id": "aud_multi_056",
+                      "text": "MA-056 audio cue",
+                      "start": 6.6,
+                      "end": 7.6
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "kdenlive",
+              "action": {
+                "action_type": "modify_file",
+                "target": "project",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_element",
+                      "parent_xpath": "./guides",
+                      "tag": "marker",
+                      "attributes": {
+                        "id": "kd_multi_056",
+                        "frame": "146",
+                        "comment": "MA-056 edit marker",
+                        "color": "#0f766e"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "obs",
+              "action": {
+                "action_type": "api_call",
+                "target": "obs-websocket",
+                "params": {
+                  "method": "SetCurrentSceneCollection",
+                  "args": {
+                    "sceneCollectionName": "Gaming Setup"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "realwork_hard",
+    "source_task_id": "multi_apps_056",
+    "workflow_complexity": {
+      "meaningful_actions": 3,
+      "suite_family": "multi_app_hard",
+      "copied_from_main_benchmark": true
+    }
+  },
+  "difficulty": "complex",
+  "description": "Hard-suite variant of multi_apps_056: Media Publishing cross-app task for audacity, kdenlive, obs.",
+  "actions": [
+    {
+      "action_type": "batch",
+      "target": "multi_apps",
+      "params": {
+        "actions": [
+          {
+            "app": "audacity",
+            "action": {
+              "action_type": "modify_file",
+              "target": "audacity_project",
+              "params": {
+                "operations": [
+                  {
+                    "action": "add_label",
+                    "label_id": "aud_multi_056",
+                    "text": "MA-056 audio cue",
+                    "start": 6.6,
+                    "end": 7.6
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "batch",
+      "target": "multi_apps",
+      "params": {
+        "actions": [
+          {
+            "app": "kdenlive",
+            "action": {
+              "action_type": "modify_file",
+              "target": "project",
+              "params": {
+                "operations": [
+                  {
+                    "action": "add_element",
+                    "parent_xpath": "./guides",
+                    "tag": "marker",
+                    "attributes": {
+                      "id": "kd_multi_056",
+                      "frame": "146",
+                      "comment": "MA-056 edit marker",
+                      "color": "#0f766e"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "batch",
+      "target": "multi_apps",
+      "params": {
+        "actions": [
+          {
+            "app": "obs",
+            "action": {
+              "action_type": "api_call",
+              "target": "obs-websocket",
+              "params": {
+                "method": "SetCurrentSceneCollection",
+                "args": {
+                  "sceneCollectionName": "Gaming Setup"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

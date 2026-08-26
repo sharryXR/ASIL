@@ -1,0 +1,103 @@
+{
+  "id": "gimp_03",
+  "software": "gimp",
+  "difficulty": "simple",
+  "description": "Add a white SALE text layer.",
+  "instruction": "On a blank canvas, add a text layer named Sale Text with text \"SALE\", x=80, y=80, font size 42, and color #ffffff.",
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_text_layer",
+            "id": "sale_text",
+            "label": "Sale Text",
+            "text": "SALE",
+            "x": 80,
+            "y": 80,
+            "font_size": 42,
+            "color": "#ffffff"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "gimp"
+  ],
+  "snapshot": "gimp_default",
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "A white SALE label appears on the canvas.",
+    "checkpoint_visibility": {
+      "text_content": "visible_on_canvas",
+      "text_color": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "text_content",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "sale_text",
+                "key": "text",
+                "expected": "SALE"
+              }
+            }
+          },
+          {
+            "id": "text_color",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "sale_text",
+                "key": "color",
+                "expected": "#ffffff"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "simple",
+    "description": "Add a white SALE text layer.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_text_layer",
+              "id": "sale_text",
+              "label": "Sale Text",
+              "text": "SALE",
+              "x": 80,
+              "y": 80,
+              "font_size": 42,
+              "color": "#ffffff"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank"
+  }
+}

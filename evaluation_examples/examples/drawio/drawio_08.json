@@ -1,0 +1,99 @@
+{
+  "id": "drawio_08",
+  "software": "drawio",
+  "difficulty": "medium",
+  "description": "Rename Start to Intake and recolor it.",
+  "instruction": "Update the Start ellipse so its label becomes Intake and its fill becomes #bfdbfe.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "diagram",
+      "params": {
+        "operations": [
+          {
+            "action": "update_shape",
+            "id": "start",
+            "changes": {
+              "label": "Intake",
+              "fill": "#bfdbfe"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "drawio"
+  ],
+  "snapshot": "drawio_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "diagram_canvas",
+    "visible_change_summary": "The Start node becomes Intake with a lighter blue fill.",
+    "checkpoint_visibility": {
+      "start_label": "visible_on_diagram",
+      "start_fill": "visible_on_diagram"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "start_label",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:start",
+                "key": "label",
+                "expected": "Intake"
+              }
+            }
+          },
+          {
+            "id": "start_fill",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:start",
+                "key": "fill",
+                "expected": "#bfdbfe"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "drawio",
+    "difficulty": "medium",
+    "description": "Rename Start to Intake and recolor it.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "diagram",
+        "params": {
+          "operations": [
+            {
+              "action": "update_shape",
+              "id": "start",
+              "changes": {
+                "label": "Intake",
+                "fill": "#bfdbfe"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

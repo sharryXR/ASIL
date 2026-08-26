@@ -1,0 +1,113 @@
+{
+  "id": "thunderbird_14",
+  "instruction": "Update the open draft so it is addressed to aria@northwind.test with the subject \"Timeline attached\" and the body \"Timeline is attached.\nBest,\nMorgan\", then leave the compose window open.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "thunderbird_compose_focus",
+  "config": [],
+  "related_apps": [
+    "thunderbird"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "thunderbird_14_main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "draft_to",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "compose:draft",
+                "key": "to",
+                "expected": "aria@northwind.test"
+              }
+            }
+          },
+          {
+            "id": "draft_subject",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "compose:draft",
+                "key": "subject",
+                "expected": "Timeline attached"
+              }
+            }
+          },
+          {
+            "id": "draft_body",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "compose:draft",
+                "key": "body",
+                "expected": "Timeline is attached.\nBest,\nMorgan"
+              }
+            }
+          },
+          {
+            "id": "draft_open",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "compose:draft",
+                "key": "is_open",
+                "expected": true
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "thunderbird",
+    "difficulty": "simple",
+    "description": "Update the open draft so it is addressed to aria@northwind.test with the subject \"Timeline attached\" and the body \"Timeline is attached.\nBest,\nMorgan\", then leave the compose window open.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "thunderbird",
+        "params": {
+          "operations": [
+            {
+              "action": "update_draft",
+              "changes": {
+                "to": "aria@northwind.test",
+                "subject": "Timeline attached",
+                "body": "Timeline is attached.\nBest,\nMorgan"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "compose:draft",
+        "key": "subject",
+        "expected": "Timeline attached"
+      }
+    },
+    "initial_state": "compose_focus"
+  },
+  "gui_expectations": {
+    "success_surface": "compose_window",
+    "visible_change_summary": "A compose window is open with the Timeline attached draft visible.",
+    "checkpoint_visibility": {
+      "draft_to": "visible_in_compose_window",
+      "draft_subject": "visible_in_compose_window",
+      "draft_body": "visible_in_compose_window",
+      "draft_open": "visible_in_compose_window"
+    }
+  }
+}

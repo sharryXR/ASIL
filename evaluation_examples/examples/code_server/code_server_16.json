@@ -1,0 +1,109 @@
+{
+  "id": "code_server_16",
+  "software": "code_server",
+  "difficulty": "complex",
+  "description": "Replace the README intro and create a release note.",
+  "instruction": "Open README.md, replace \"Project checklist\" with \"Release checklist\", and create notes/release.md with \"# Release\nShare the final draft.\n\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {
+            "action": "open_file",
+            "path": "README.md"
+          },
+          {
+            "action": "replace_text",
+            "path": "README.md",
+            "old": "Project checklist",
+            "new": "Release checklist"
+          },
+          {
+            "action": "create_file",
+            "path": "notes/release.md",
+            "content": "# Release\nShare the final draft.\n"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "code_server"
+  ],
+  "snapshot": "code_server_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "README becomes a release checklist and a release note file is added.",
+    "checkpoint_visibility": {
+      "readme_title": "visible_in_editor",
+      "release_exists": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "readme_title",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "file:README.md",
+                "key": "content",
+                "expected": "Release checklist"
+              }
+            }
+          },
+          {
+            "id": "release_exists",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "file:notes/release.md"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "code_server",
+    "difficulty": "complex",
+    "description": "Replace the README intro and create a release note.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {
+              "action": "open_file",
+              "path": "README.md"
+            },
+            {
+              "action": "replace_text",
+              "path": "README.md",
+              "old": "Project checklist",
+              "new": "Release checklist"
+            },
+            {
+              "action": "create_file",
+              "path": "notes/release.md",
+              "content": "# Release\nShare the final draft.\n"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

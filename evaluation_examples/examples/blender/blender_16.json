@@ -1,0 +1,90 @@
+{
+  "id": "blender_16",
+  "instruction": "Add a spot light at position (0, 0, 5)",
+  "source": "asil_benchmark_v1",
+  "snapshot": "blender_default_scene",
+  "config": [],
+  "related_apps": [
+    "blender"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+      "path_id": "blender_16_primary_path",
+      "exclusive_group": "success_paths",
+      "checkpoints": [
+        {
+          "id": "spot_light_type",
+          "weight": 0.2,
+          "gui_visible_required": true,
+          "rule": {
+            "any_element_value": {
+              "type": "light",
+              "key": "light_type",
+              "expected": "SPOT"
+            }
+          }
+        },
+        {
+          "id": "spot_light_at_position",
+          "weight": 0.4,
+          "gui_visible_required": true,
+          "rule": {
+            "any_element_value": {
+              "type": "light",
+              "key": "location",
+              "expected": [
+                0,
+                0,
+                5
+              ]
+            }
+          }
+        },
+        {
+          "id": "scene_object_count_4",
+          "weight": 0.4,
+          "gui_visible_required": true,
+          "rule": {
+            "scene_object_count": 4
+          }
+        }
+      ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "blender",
+    "difficulty": "medium",
+    "description": "Add a spot light at position (0, 0, 5)",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "bpy",
+        "params": {
+          "script": [
+            "import bpy",
+            "bpy.ops.object.light_add(type='SPOT', location=(0, 0, 5))"
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "object_type_exists": "LIGHT"
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "viewport_and_light_properties",
+    "visible_change_summary": "A spot light appears at the target position and is visible in the light properties.",
+    "checkpoint_visibility": {
+      "spot_light_type": "visible_in_light_properties",
+      "spot_light_at_position": "visible_in_viewport",
+      "scene_object_count_4": "visible_in_viewport"
+    }
+  }
+}

@@ -1,0 +1,213 @@
+{
+  "id": "blender_20",
+  "instruction": "Create a product visualization scene: object, 3-point lighting, camera, and EEVEE render at 4K",
+  "source": "asil_benchmark_v1",
+  "snapshot": "blender_default_scene",
+  "config": [],
+  "related_apps": [
+    "blender"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "blender_20_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "product_object",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "mesh",
+                "value": {
+                  "location": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "key_light",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "light",
+                "value": {
+                  "light_type": "AREA",
+                  "location": [
+                    3,
+                    -3,
+                    5
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "fill_light",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "light",
+                "value": {
+                  "light_type": "AREA",
+                  "location": [
+                    -3,
+                    -3,
+                    5
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "rim_light",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "light",
+                "value": {
+                  "light_type": "AREA",
+                  "location": [
+                    0,
+                    5,
+                    3
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "camera_position",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "camera",
+                "value": {
+                  "location": [
+                    0,
+                    -6,
+                    2
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "render_engine_eevee",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "render_setting": {
+                "key": "engine",
+                "expected": "BLENDER_EEVEE"
+              }
+            }
+          },
+          {
+            "id": "resolution_x_3840",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "render_setting": {
+                "key": "resolution_x",
+                "expected": 3840
+              }
+            }
+          },
+          {
+            "id": "resolution_y_2160",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "render_setting": {
+                "key": "resolution_y",
+                "expected": 2160
+              }
+            }
+          },
+          {
+            "id": "product_area_light_count",
+            "weight": 0.5,
+            "rule": {
+              "count_elements_matching": {
+                "type": "light",
+                "value": {
+                  "light_type": "AREA"
+                },
+                "expected": 3
+              }
+            }
+          },
+          {
+            "id": "product_camera_count",
+            "weight": 0.5,
+            "rule": {
+              "count_elements_matching": {
+                "type": "camera",
+                "expected": 1
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "blender",
+    "difficulty": "complex",
+    "description": "Create a product visualization scene: object, 3-point lighting, camera, and EEVEE render at 4K",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "bpy",
+        "params": {
+          "script": [
+            "import bpy",
+            "bpy.ops.mesh.primitive_uv_sphere_add(location=(0, 0, 0))",
+            "bpy.ops.object.light_add(type='AREA', location=(3, -3, 5))",
+            "bpy.ops.object.light_add(type='AREA', location=(-3, -3, 5))",
+            "bpy.ops.object.light_add(type='AREA', location=(0, 5, 3))",
+            "bpy.ops.object.camera_add(location=(0, -6, 2))",
+            "bpy.context.scene.render.engine = 'BLENDER_EEVEE'",
+            "bpy.context.scene.render.resolution_x = 3840",
+            "bpy.context.scene.render.resolution_y = 2160"
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "render_setting": {
+        "key": "resolution_x",
+        "expected": 3840
+      }
+    },
+    "initial_state": "blank"
+  },
+  "gui_expectations": {
+    "success_surface": "viewport_and_render_properties",
+    "visible_change_summary": "A product scene appears in the viewport while render settings show EEVEE at 4K resolution.",
+    "checkpoint_visibility": {
+      "product_object": "visible_in_viewport",
+      "key_light": "visible_in_viewport",
+      "fill_light": "visible_in_viewport",
+      "rim_light": "visible_in_viewport",
+      "camera_position": "visible_in_viewport",
+      "render_engine_eevee": "visible_in_render_properties",
+      "resolution_x_3840": "visible_in_render_properties",
+      "resolution_y_2160": "visible_in_render_properties"
+    }
+  }
+}

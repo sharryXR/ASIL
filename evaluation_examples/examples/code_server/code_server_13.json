@@ -1,0 +1,99 @@
+{
+  "id": "code_server_13",
+  "software": "code_server",
+  "difficulty": "medium",
+  "description": "Create a feature flags file and note it in README.",
+  "instruction": "Create src/feature_flags.py with \"ENABLED = True\n\" and append \"- Review feature flags\" to README.md.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {
+            "action": "create_file",
+            "path": "src/feature_flags.py",
+            "content": "ENABLED = True\n"
+          },
+          {
+            "action": "append_text",
+            "path": "README.md",
+            "text": "- Review feature flags\n"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "code_server"
+  ],
+  "snapshot": "code_server_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "A feature_flags.py file exists and README includes a feature-flags checklist line.",
+    "checkpoint_visibility": {
+      "flags_exists": "visible_in_editor",
+      "readme_note": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "flags_exists",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "file:src/feature_flags.py"
+            }
+          },
+          {
+            "id": "readme_note",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "file:README.md",
+                "key": "content",
+                "expected": "- Review feature flags"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "code_server",
+    "difficulty": "medium",
+    "description": "Create a feature flags file and note it in README.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {
+              "action": "create_file",
+              "path": "src/feature_flags.py",
+              "content": "ENABLED = True\n"
+            },
+            {
+              "action": "append_text",
+              "path": "README.md",
+              "text": "- Review feature flags\n"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

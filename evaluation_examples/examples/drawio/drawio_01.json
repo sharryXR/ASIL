@@ -1,0 +1,126 @@
+{
+  "id": "drawio_01",
+  "software": "drawio",
+  "difficulty": "simple",
+  "description": "Add a Deploy step after Review.",
+  "instruction": "Add a rectangle shape Deploy at x=520 y=140 width=150 height=80 with fill #d1fae5, and connect Review to Deploy with a connector labeled approved.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "diagram",
+      "params": {
+        "operations": [
+          {
+            "action": "add_shape",
+            "id": "deploy",
+            "label": "Deploy",
+            "shape_kind": "rectangle",
+            "x": 520,
+            "y": 140,
+            "width": 150,
+            "height": 80,
+            "fill": "#d1fae5",
+            "stroke": "#059669"
+          },
+          {
+            "action": "add_connector",
+            "id": "flow_2",
+            "source": "review",
+            "target": "deploy",
+            "label": "approved",
+            "stroke": "#64748b"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "drawio"
+  ],
+  "snapshot": "drawio_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "diagram_canvas",
+    "visible_change_summary": "A Deploy step appears to the right of Review with a connector from Review.",
+    "checkpoint_visibility": {
+      "deploy_shape": "visible_on_diagram",
+      "deploy_flow": "visible_on_diagram"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "deploy_shape",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:deploy",
+                "key": "label",
+                "expected": "Deploy"
+              }
+            }
+          },
+          {
+            "id": "deploy_flow",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Review",
+                  "target_label": "Deploy",
+                  "label": "approved"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "drawio",
+    "difficulty": "simple",
+    "description": "Add a Deploy step after Review.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "diagram",
+        "params": {
+          "operations": [
+            {
+              "action": "add_shape",
+              "id": "deploy",
+              "label": "Deploy",
+              "shape_kind": "rectangle",
+              "x": 520,
+              "y": 140,
+              "width": 150,
+              "height": 80,
+              "fill": "#d1fae5",
+              "stroke": "#059669"
+            },
+            {
+              "action": "add_connector",
+              "id": "flow_2",
+              "source": "review",
+              "target": "deploy",
+              "label": "approved",
+              "stroke": "#64748b"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

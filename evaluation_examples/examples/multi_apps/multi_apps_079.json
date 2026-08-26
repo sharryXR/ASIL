@@ -1,0 +1,163 @@
+{
+  "id": "multi_apps_079",
+  "software": "multi_apps",
+  "source": "asil_multi_apps_generated",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: create a Blender object using material MultiMat079; add a Kdenlive marker commented 'MA-079 edit marker'; add an Inkscape text object labeled MA-079.",
+  "related_apps": [
+    "blender",
+    "kdenlive",
+    "inkscape"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "blender_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "blender",
+                "rule": {
+                  "material_exists": "MultiMat079"
+                }
+              }
+            }
+          },
+          {
+            "id": "kdenlive_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "kdenlive",
+                "rule": {
+                  "element_contains": {
+                    "id": "marker:kd_multi_079",
+                    "key": "comment",
+                    "expected": "MA-079 edit marker"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "inkscape_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "inkscape",
+                "rule": {
+                  "element_exists": "ink_multi_079"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "blender_checkpoint": "visible_in_blender",
+      "kdenlive_checkpoint": "visible_in_kdenlive",
+      "inkscape_checkpoint": "visible_in_inkscape"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "complex",
+    "description": "Mixed Release cross-app task for blender, kdenlive, inkscape.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "blender": "default",
+      "kdenlive": "default",
+      "inkscape": "default"
+    },
+    "primary_app": "blender",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "blender",
+              "action": {
+                "action_type": "invoke_function",
+                "target": "blender",
+                "params": {
+                  "script": [
+                    "import bpy",
+                    "bpy.ops.mesh.primitive_uv_sphere_add(radius=1, location=(0, 0, 0))",
+                    "mat = bpy.data.materials.new(name='MultiMat079')",
+                    "bpy.context.object.data.materials.append(mat)"
+                  ]
+                }
+              }
+            },
+            {
+              "app": "kdenlive",
+              "action": {
+                "action_type": "modify_file",
+                "target": "project",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_element",
+                      "parent_xpath": "./guides",
+                      "tag": "marker",
+                      "attributes": {
+                        "id": "kd_multi_079",
+                        "frame": "169",
+                        "comment": "MA-079 edit marker",
+                        "color": "#0f766e"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "inkscape",
+              "action": {
+                "action_type": "modify_file",
+                "target": "test.svg",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_element",
+                      "parent_xpath": "//svg:g[@id='layer1']",
+                      "tag": "text",
+                      "attributes": {
+                        "id": "ink_multi_079",
+                        "x": "159",
+                        "y": "169",
+                        "style": "font-size:24px;fill:#0f766e",
+                        "text_content": "MA-079"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "mixed_release"
+  }
+}

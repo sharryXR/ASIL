@@ -1,0 +1,587 @@
+{
+  "id": "gimp_realwork_hard_008",
+  "software": "gimp",
+  "difficulty": "complex",
+  "description": "Create a real-photo client proof review card from the coastal field image.",
+  "instruction": "Create an 800x600 client proof review card from the real coastal field photo. Complete it as a production workflow: place and crop the photo, apply the final color treatment, add the main information panel, add the accent strip, add the approval badge, add the headline 'CLIENT PROOF 008', add the detail 'REVISION QUEUE 008', add the owner/status line 'OWNER: DESIGN', and add the CTA 'APPROVE TODAY'.",
+  "source": "asil_realwork_hard_v2",
+  "snapshot": "gimp_default",
+  "config": [],
+  "related_apps": [
+    "gimp"
+  ],
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_image_layer",
+            "id": "hard_photo_008",
+            "label": "Hard Photo 008",
+            "asset_path": "evaluation_examples/assets/realwork_images/coast_960.jpg",
+            "x": 0,
+            "y": 0,
+            "width": 800,
+            "height": 600,
+            "crop": {
+              "x": 20,
+              "y": 20,
+              "width": 900,
+              "height": 675
+            },
+            "filters": {
+              "brightness": 1.03,
+              "contrast": 1.08,
+              "saturation": 1.04
+            }
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "apply_filter",
+            "id": "hard_photo_008",
+            "filters": {
+              "brightness": 1.03,
+              "contrast": 1.1,
+              "saturation": 0.94,
+              "sharpen": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_layer",
+            "id": "hard_panel_008",
+            "label": "Information Panel",
+            "kind": "rectangle",
+            "x": 0,
+            "y": 378,
+            "width": 800,
+            "height": 222,
+            "fill": "#102a43",
+            "opacity": 0.9
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_layer",
+            "id": "hard_accent_008",
+            "label": "Accent Strip",
+            "kind": "rectangle",
+            "x": 0,
+            "y": 366,
+            "width": 800,
+            "height": 12,
+            "fill": "#f6d365",
+            "opacity": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_layer",
+            "id": "hard_badge_008",
+            "label": "Approval Badge",
+            "kind": "rectangle",
+            "x": 44,
+            "y": 404,
+            "width": 190,
+            "height": 42,
+            "fill": "#ffffff",
+            "opacity": 0.94
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_text_layer",
+            "id": "hard_title_008",
+            "label": "Headline",
+            "text": "CLIENT PROOF 008",
+            "x": 44,
+            "y": 456,
+            "font_size": 38,
+            "color": "#ffffff"
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_text_layer",
+            "id": "hard_detail_008",
+            "label": "Detail",
+            "text": "REVISION QUEUE 008",
+            "x": 48,
+            "y": 510,
+            "font_size": 25,
+            "color": "#f6d365"
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_text_layer",
+            "id": "hard_meta_008",
+            "label": "Owner Line",
+            "text": "OWNER: DESIGN",
+            "x": 50,
+            "y": 556,
+            "font_size": 20,
+            "color": "#dbeafe"
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_text_layer",
+            "id": "hard_cta_008",
+            "label": "CTA",
+            "text": "APPROVE TODAY",
+            "x": 62,
+            "y": 414,
+            "font_size": 18,
+            "color": "#102a43"
+          }
+        ]
+      }
+    }
+  ],
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "The real coastal field photo is turned into a finished client proof review card with a treated photo, information panel, badge, and four production text layers.",
+    "checkpoint_visibility": {
+      "canvas_size": "visible_on_canvas",
+      "layer_count": "visible_on_canvas",
+      "photo_asset": "visible_on_canvas",
+      "photo_filters": "visible_on_canvas",
+      "panel_fill": "visible_on_canvas",
+      "panel_position": "visible_on_canvas",
+      "accent_fill": "visible_on_canvas",
+      "badge_fill": "visible_on_canvas",
+      "title_text": "visible_on_canvas",
+      "detail_text": "visible_on_canvas",
+      "meta_text": "visible_on_canvas",
+      "cta_text": "visible_on_canvas",
+      "rendered_panel_region": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "canvas_size",
+            "weight": 0.8,
+            "gui_visible_required": true,
+            "rule": {
+              "image_size": {
+                "width": 800,
+                "height": 600
+              }
+            }
+          },
+          {
+            "id": "layer_count",
+            "weight": 0.8,
+            "gui_visible_required": true,
+            "rule": {
+              "count_elements_matching": {
+                "type": "layer",
+                "expected": 8
+              }
+            }
+          },
+          {
+            "id": "photo_asset",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_photo_008",
+                "key": "asset_path",
+                "expected": "evaluation_examples/assets/realwork_images/coast_960.jpg"
+              }
+            }
+          },
+          {
+            "id": "photo_filters",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_photo_008",
+                "key": "filters",
+                "expected": {
+                  "brightness": 1.03,
+                  "contrast": 1.1,
+                  "saturation": 0.94,
+                  "sharpen": false
+                }
+              }
+            }
+          },
+          {
+            "id": "panel_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_panel_008",
+                "key": "fill",
+                "expected": "#102a43"
+              }
+            }
+          },
+          {
+            "id": "panel_position",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_panel_008",
+                "key": "x",
+                "expected": 0
+              }
+            }
+          },
+          {
+            "id": "accent_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_accent_008",
+                "key": "fill",
+                "expected": "#f6d365"
+              }
+            }
+          },
+          {
+            "id": "badge_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_badge_008",
+                "key": "fill",
+                "expected": "#ffffff"
+              }
+            }
+          },
+          {
+            "id": "title_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_title_008",
+                "key": "text",
+                "expected": "CLIENT PROOF 008"
+              }
+            }
+          },
+          {
+            "id": "detail_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_detail_008",
+                "key": "text",
+                "expected": "REVISION QUEUE 008"
+              }
+            }
+          },
+          {
+            "id": "meta_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_meta_008",
+                "key": "text",
+                "expected": "OWNER: DESIGN"
+              }
+            }
+          },
+          {
+            "id": "cta_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "hard_cta_008",
+                "key": "text",
+                "expected": "APPROVE TODAY"
+              }
+            }
+          },
+          {
+            "id": "rendered_panel_region",
+            "weight": 0.8,
+            "gui_visible_required": true,
+            "rule": {
+              "image_region_stat": {
+                "box": [
+                  20,
+                  430,
+                  760,
+                  140
+                ],
+                "metric": "luminance",
+                "min": 10,
+                "max": 175
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "complex",
+    "category": "realwork_hard",
+    "description": "Create a real-photo client proof review card from the coastal field image.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_image_layer",
+              "id": "hard_photo_008",
+              "label": "Hard Photo 008",
+              "asset_path": "evaluation_examples/assets/realwork_images/coast_960.jpg",
+              "x": 0,
+              "y": 0,
+              "width": 800,
+              "height": 600,
+              "crop": {
+                "x": 20,
+                "y": 20,
+                "width": 900,
+                "height": 675
+              },
+              "filters": {
+                "brightness": 1.03,
+                "contrast": 1.08,
+                "saturation": 1.04
+              }
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "apply_filter",
+              "id": "hard_photo_008",
+              "filters": {
+                "brightness": 1.03,
+                "contrast": 1.1,
+                "saturation": 0.94,
+                "sharpen": false
+              }
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_layer",
+              "id": "hard_panel_008",
+              "label": "Information Panel",
+              "kind": "rectangle",
+              "x": 0,
+              "y": 378,
+              "width": 800,
+              "height": 222,
+              "fill": "#102a43",
+              "opacity": 0.9
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_layer",
+              "id": "hard_accent_008",
+              "label": "Accent Strip",
+              "kind": "rectangle",
+              "x": 0,
+              "y": 366,
+              "width": 800,
+              "height": 12,
+              "fill": "#f6d365",
+              "opacity": 1.0
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_layer",
+              "id": "hard_badge_008",
+              "label": "Approval Badge",
+              "kind": "rectangle",
+              "x": 44,
+              "y": 404,
+              "width": 190,
+              "height": 42,
+              "fill": "#ffffff",
+              "opacity": 0.94
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_text_layer",
+              "id": "hard_title_008",
+              "label": "Headline",
+              "text": "CLIENT PROOF 008",
+              "x": 44,
+              "y": 456,
+              "font_size": 38,
+              "color": "#ffffff"
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_text_layer",
+              "id": "hard_detail_008",
+              "label": "Detail",
+              "text": "REVISION QUEUE 008",
+              "x": 48,
+              "y": 510,
+              "font_size": 25,
+              "color": "#f6d365"
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_text_layer",
+              "id": "hard_meta_008",
+              "label": "Owner Line",
+              "text": "OWNER: DESIGN",
+              "x": 50,
+              "y": 556,
+              "font_size": 20,
+              "color": "#dbeafe"
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_text_layer",
+              "id": "hard_cta_008",
+              "label": "CTA",
+              "text": "APPROVE TODAY",
+              "x": 62,
+              "y": 414,
+              "font_size": 18,
+              "color": "#102a43"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank",
+    "workflow_complexity": {
+      "meaningful_actions": 9,
+      "uses_real_image_asset": true,
+      "layout": "bottom"
+    }
+  }
+}

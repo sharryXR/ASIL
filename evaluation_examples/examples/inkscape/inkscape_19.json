@@ -1,0 +1,483 @@
+{
+  "id": "inkscape_19",
+  "instruction": "Create a professional 3-step horizontal process flowchart titled '产品研发流程': Step 1 box '需求分析' (id=flow_box_1, blue border, fill=#e3f2fd), arrow (id=flow_arrow_1), Step 2 box '设计开发' (id=flow_box_2, orange border, fill=#fff3e0), arrow (id=flow_arrow_2), Step 3 box '测试上线' (id=flow_box_3, green border, fill=#e8f5e9). Each box has centered text with the step name (id=flow_text_1/2/3). Add a title (id=flow_title) and step number labels '① ② ③' above each box.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_19_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_19_01",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "flow_title",
+                "key": "text_content",
+                "expected": "产品研发流程"
+              }
+            }
+          },
+          {
+            "id": "inkscape_19_02",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "flow_num_1",
+                "key": "text_content",
+                "expected": "①"
+              }
+            }
+          },
+          {
+            "id": "inkscape_19_03",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "flow_box_1",
+                "key": "style",
+                "expected": "fill:#e3f2fd;stroke:#1976d2;stroke-width:2"
+              }
+            }
+          },
+          {
+            "id": "inkscape_19_04",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "flow_text_1",
+                "key": "text_content",
+                "expected": "需求分析"
+              }
+            }
+          },
+          {
+            "id": "inkscape_19_05",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "flow_arrow_1",
+                "key": "style",
+                "expected": "fill:none;stroke:#546e7a;stroke-width:2.5;stroke-linejoin:round"
+              }
+            }
+          },
+          {
+            "id": "inkscape_19_06",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "flow_num_2",
+                "key": "text_content",
+                "expected": "②"
+              }
+            }
+          },
+          {
+            "id": "inkscape_19_07",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "flow_box_2",
+                "key": "style",
+                "expected": "fill:#fff3e0;stroke:#f57c00;stroke-width:2"
+              }
+            }
+          },
+          {
+            "id": "inkscape_19_08",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "flow_text_2",
+                "key": "text_content",
+                "expected": "设计开发"
+              }
+            }
+          },
+          {
+            "id": "inkscape_19_09",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "flow_arrow_2",
+                "key": "style",
+                "expected": "fill:none;stroke:#546e7a;stroke-width:2.5;stroke-linejoin:round"
+              }
+            }
+          },
+          {
+            "id": "inkscape_19_10",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "flow_num_3",
+                "key": "text_content",
+                "expected": "③"
+              }
+            }
+          },
+          {
+            "id": "inkscape_19_11",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "flow_box_3",
+                "key": "style",
+                "expected": "fill:#e8f5e9;stroke:#388e3c;stroke-width:2"
+              }
+            }
+          },
+          {
+            "id": "inkscape_19_12",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "flow_text_3",
+                "key": "text_content",
+                "expected": "测试上线"
+              }
+            }
+          },
+          {
+            "id": "inkscape_19_box1_x",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "flow_box_1",
+                "key": "x",
+                "expected": "60"
+              }
+            }
+          },
+          {
+            "id": "inkscape_19_box2_x",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "flow_box_2",
+                "key": "x",
+                "expected": "310"
+              }
+            }
+          },
+          {
+            "id": "inkscape_19_box3_x",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "flow_box_3",
+                "key": "x",
+                "expected": "560"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "complex",
+    "description": "Create a professional 3-step horizontal process flowchart titled '产品研发流程': Step 1 box '需求分析' (id=flow_box_1, blue border, fill=#e3f2fd), arrow (id=flow_arrow_1), Step 2 box '设计开发' (id=flow_box_2, orange border, fill=#fff3e0), arrow (id=flow_arrow_2), Step 3 box '测试上线' (id=flow_box_3, green border, fill=#e8f5e9). Each box has centered text with the step name (id=flow_text_1/2/3). Add a title (id=flow_title) and step number labels '① ② ③' above each box.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "g",
+              "attributes": {
+                "id": "flowchart"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='flowchart']",
+              "tag": "text",
+              "attributes": {
+                "id": "flow_title",
+                "x": "400",
+                "y": "50",
+                "style": "font-size:20px;font-weight:bold;text-anchor:middle;font-family:sans-serif;fill:#333",
+                "text_content": "产品研发流程"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='flowchart']",
+              "tag": "text",
+              "attributes": {
+                "id": "flow_num_1",
+                "x": "150",
+                "y": "220",
+                "style": "font-size:18px;text-anchor:middle;font-family:sans-serif;fill:#1976d2",
+                "text_content": "①"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='flowchart']",
+              "tag": "rect",
+              "attributes": {
+                "id": "flow_box_1",
+                "x": "60",
+                "y": "240",
+                "width": "180",
+                "height": "70",
+                "rx": "8",
+                "style": "fill:#e3f2fd;stroke:#1976d2;stroke-width:2"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='flowchart']",
+              "tag": "text",
+              "attributes": {
+                "id": "flow_text_1",
+                "x": "150",
+                "y": "282",
+                "style": "font-size:16px;text-anchor:middle;font-family:sans-serif;fill:#1976d2;font-weight:bold",
+                "text_content": "需求分析"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='flowchart']",
+              "tag": "path",
+              "attributes": {
+                "id": "flow_arrow_1",
+                "d": "M 240,275 L 310,275 M 305,269 L 315,275 L 305,281",
+                "style": "fill:none;stroke:#546e7a;stroke-width:2.5;stroke-linejoin:round"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='flowchart']",
+              "tag": "text",
+              "attributes": {
+                "id": "flow_num_2",
+                "x": "400",
+                "y": "220",
+                "style": "font-size:18px;text-anchor:middle;font-family:sans-serif;fill:#f57c00",
+                "text_content": "②"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='flowchart']",
+              "tag": "rect",
+              "attributes": {
+                "id": "flow_box_2",
+                "x": "310",
+                "y": "240",
+                "width": "180",
+                "height": "70",
+                "rx": "8",
+                "style": "fill:#fff3e0;stroke:#f57c00;stroke-width:2"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='flowchart']",
+              "tag": "text",
+              "attributes": {
+                "id": "flow_text_2",
+                "x": "400",
+                "y": "282",
+                "style": "font-size:16px;text-anchor:middle;font-family:sans-serif;fill:#f57c00;font-weight:bold",
+                "text_content": "设计开发"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='flowchart']",
+              "tag": "path",
+              "attributes": {
+                "id": "flow_arrow_2",
+                "d": "M 490,275 L 560,275 M 555,269 L 565,275 L 555,281",
+                "style": "fill:none;stroke:#546e7a;stroke-width:2.5;stroke-linejoin:round"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='flowchart']",
+              "tag": "text",
+              "attributes": {
+                "id": "flow_num_3",
+                "x": "650",
+                "y": "220",
+                "style": "font-size:18px;text-anchor:middle;font-family:sans-serif;fill:#388e3c",
+                "text_content": "③"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='flowchart']",
+              "tag": "rect",
+              "attributes": {
+                "id": "flow_box_3",
+                "x": "560",
+                "y": "240",
+                "width": "180",
+                "height": "70",
+                "rx": "8",
+                "style": "fill:#e8f5e9;stroke:#388e3c;stroke-width:2"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='flowchart']",
+              "tag": "text",
+              "attributes": {
+                "id": "flow_text_3",
+                "x": "650",
+                "y": "282",
+                "style": "font-size:16px;text-anchor:middle;font-family:sans-serif;fill:#388e3c;font-weight:bold",
+                "text_content": "测试上线"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "flow_title",
+            "key": "text_content",
+            "expected": "产品研发流程"
+          }
+        },
+        {
+          "element_value": {
+            "id": "flow_num_1",
+            "key": "text_content",
+            "expected": "①"
+          }
+        },
+        {
+          "element_value": {
+            "id": "flow_box_1",
+            "key": "style",
+            "expected": "fill:#e3f2fd;stroke:#1976d2;stroke-width:2"
+          }
+        },
+        {
+          "element_value": {
+            "id": "flow_text_1",
+            "key": "text_content",
+            "expected": "需求分析"
+          }
+        },
+        {
+          "element_value": {
+            "id": "flow_arrow_1",
+            "key": "style",
+            "expected": "fill:none;stroke:#546e7a;stroke-width:2.5;stroke-linejoin:round"
+          }
+        },
+        {
+          "element_value": {
+            "id": "flow_num_2",
+            "key": "text_content",
+            "expected": "②"
+          }
+        },
+        {
+          "element_value": {
+            "id": "flow_box_2",
+            "key": "style",
+            "expected": "fill:#fff3e0;stroke:#f57c00;stroke-width:2"
+          }
+        },
+        {
+          "element_value": {
+            "id": "flow_text_2",
+            "key": "text_content",
+            "expected": "设计开发"
+          }
+        },
+        {
+          "element_value": {
+            "id": "flow_arrow_2",
+            "key": "style",
+            "expected": "fill:none;stroke:#546e7a;stroke-width:2.5;stroke-linejoin:round"
+          }
+        },
+        {
+          "element_value": {
+            "id": "flow_num_3",
+            "key": "text_content",
+            "expected": "③"
+          }
+        },
+        {
+          "element_value": {
+            "id": "flow_box_3",
+            "key": "style",
+            "expected": "fill:#e8f5e9;stroke:#388e3c;stroke-width:2"
+          }
+        },
+        {
+          "element_value": {
+            "id": "flow_text_3",
+            "key": "text_content",
+            "expected": "测试上线"
+          }
+        }
+      ]
+    },
+    "initial_state": "blank"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Create a 3-step process flowchart with numbered steps, arrows, and titles.",
+    "checkpoint_visibility": {
+      "inkscape_19_01": "visible_on_canvas",
+      "inkscape_19_02": "visible_on_canvas",
+      "inkscape_19_03": "visible_on_canvas",
+      "inkscape_19_04": "visible_on_canvas",
+      "inkscape_19_05": "visible_on_canvas",
+      "inkscape_19_06": "visible_on_canvas",
+      "inkscape_19_07": "visible_on_canvas",
+      "inkscape_19_08": "visible_on_canvas",
+      "inkscape_19_09": "visible_on_canvas",
+      "inkscape_19_10": "visible_on_canvas",
+      "inkscape_19_11": "visible_on_canvas",
+      "inkscape_19_12": "visible_on_canvas",
+      "inkscape_19_box1_x": "visible_on_canvas",
+      "inkscape_19_box2_x": "visible_on_canvas",
+      "inkscape_19_box3_x": "visible_on_canvas"
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "libreoffice_impress_07",
+  "software": "libreoffice_impress",
+  "difficulty": "medium",
+  "description": "Retitle slide 2 to \"Team Commitments\" and add a second line \"Publish the owner list by Friday.\".",
+  "instruction": "Change slide 2 title to \"Team Commitments\" and add a second body line: \"Publish the owner list by Friday.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_slide_title",
+            "slide_index": 2,
+            "text": "Team Commitments"
+          },
+          {
+            "action": "append_slide_body",
+            "slide_index": 2,
+            "text": "Publish the owner list by Friday."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "Slide 2 is renamed to Team Commitments and shows a new Friday owner-list line.",
+    "checkpoint_visibility": {
+      "title": "visible_on_slide",
+      "body2": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "title",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:title",
+                "key": "text_content",
+                "expected": "Team Commitments"
+              }
+            }
+          },
+          {
+            "id": "body2",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:body:2",
+                "key": "text_content",
+                "expected": "Publish the owner list by Friday."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "single_slide",
+    "slide_indices": [
+      2
+    ]
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "id": "inkscape_09",
+  "instruction": "Create a group containing 3 shapes: a red rectangle, a blue circle, and a green triangle.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_09_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_09_1",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "group",
+                "value": {
+                  "child_count": 3
+                }
+              }
+            }
+          },
+          {
+            "id": "inkscape_09_2",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "rect",
+                "value": {
+                  "style": "fill:red"
+                }
+              }
+            }
+          },
+          {
+            "id": "inkscape_09_3",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "circle",
+                "value": {
+                  "style": "fill:blue"
+                }
+              }
+            }
+          },
+          {
+            "id": "inkscape_09_4",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "path",
+                "value": {
+                  "style": "fill:#4caf50;stroke:#1b5e20;stroke-width:2"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "complex",
+    "description": "Create a group containing 3 shapes: a red rectangle, a blue circle, and a green triangle.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "g",
+              "attributes": {
+                "id": "shape_group"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='shape_group']",
+              "tag": "rect",
+              "attributes": {
+                "id": "g_rect1",
+                "x": "10",
+                "y": "10",
+                "width": "50",
+                "height": "50",
+                "style": "fill:red"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='shape_group']",
+              "tag": "circle",
+              "attributes": {
+                "id": "g_circle1",
+                "cx": "100",
+                "cy": "100",
+                "r": "30",
+                "style": "fill:blue"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='shape_group']",
+              "tag": "path",
+              "attributes": {
+                "id": "g_triangle1",
+                "d": "M 170 20 L 210 80 L 130 80 Z",
+                "style": "fill:#4caf50;stroke:#1b5e20;stroke-width:2"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "shape_group",
+            "key": "child_count",
+            "expected": 3
+          }
+        },
+        {
+          "element_metadata_value": {
+            "id": "g_rect1",
+            "key": "parent_id",
+            "expected": "shape_group"
+          }
+        },
+        {
+          "element_metadata_value": {
+            "id": "g_circle1",
+            "key": "parent_id",
+            "expected": "shape_group"
+          }
+        },
+        {
+          "element_metadata_value": {
+            "id": "g_triangle1",
+            "key": "parent_id",
+            "expected": "shape_group"
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Group a red rectangle, blue circle, and green triangle under shape_group.",
+    "checkpoint_visibility": {
+      "inkscape_09_1": "visible_on_canvas",
+      "inkscape_09_2": "visible_on_canvas",
+      "inkscape_09_3": "visible_on_canvas",
+      "inkscape_09_4": "visible_on_canvas"
+    }
+  }
+}

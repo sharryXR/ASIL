@@ -1,0 +1,102 @@
+{
+  "id": "libreoffice_impress_11",
+  "software": "libreoffice_impress",
+  "difficulty": "medium",
+  "description": "Rename slide 1 to \"Launch Roadmap\", replace its body with \"Track the final QA checklist.\", and rename slide 2 to \"Support Plan\".",
+  "instruction": "Rename slide 1 to \"Launch Roadmap\", replace its first body line with \"Track the final QA checklist.\", and rename slide 2 to \"Support Plan\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_slide_title",
+            "slide_index": 1,
+            "text": "Launch Roadmap"
+          },
+          {
+            "action": "set_slide_body",
+            "slide_index": 1,
+            "body_index": 1,
+            "text": "Track the final QA checklist."
+          },
+          {
+            "action": "set_slide_title",
+            "slide_index": 2,
+            "text": "Support Plan"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "The deck shows Launch Roadmap on slide 1, Support Plan on slide 2, and the QA checklist body line.",
+    "checkpoint_visibility": {
+      "slide1_title": "visible_on_slide",
+      "slide1_body1": "visible_on_slide",
+      "slide2_title": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "slide1_title",
+            "weight": 0.34,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:1:title",
+                "key": "text_content",
+                "expected": "Launch Roadmap"
+              }
+            }
+          },
+          {
+            "id": "slide1_body1",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:1:body:1",
+                "key": "text_content",
+                "expected": "Track the final QA checklist."
+              }
+            }
+          },
+          {
+            "id": "slide2_title",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:title",
+                "key": "text_content",
+                "expected": "Support Plan"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "contact_sheet",
+    "slide_indices": [
+      1,
+      2
+    ]
+  }
+}

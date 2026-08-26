@@ -1,0 +1,295 @@
+{
+  "id": "drawio_16",
+  "software": "drawio",
+  "difficulty": "complex",
+  "description": "Create a support escalation branch.",
+  "instruction": "On a blank canvas, add Ticket, Review, Escalate, and Resolve, with connectors Ticket->Review, Review->Escalate, and Review->Resolve.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "diagram",
+      "params": {
+        "operations": [
+          {
+            "action": "add_shape",
+            "id": "ticket",
+            "label": "Ticket",
+            "shape_kind": "ellipse",
+            "x": 80,
+            "y": 180,
+            "width": 120,
+            "height": 70,
+            "fill": "#dbeafe",
+            "stroke": "#2563eb"
+          },
+          {
+            "action": "add_shape",
+            "id": "review",
+            "label": "Review",
+            "shape_kind": "rectangle",
+            "x": 300,
+            "y": 170,
+            "width": 150,
+            "height": 80,
+            "fill": "#fef3c7",
+            "stroke": "#d97706"
+          },
+          {
+            "action": "add_shape",
+            "id": "escalate",
+            "label": "Escalate",
+            "shape_kind": "rectangle",
+            "x": 560,
+            "y": 90,
+            "width": 160,
+            "height": 80,
+            "fill": "#fee2e2",
+            "stroke": "#dc2626"
+          },
+          {
+            "action": "add_shape",
+            "id": "resolve",
+            "label": "Resolve",
+            "shape_kind": "rectangle",
+            "x": 560,
+            "y": 260,
+            "width": 160,
+            "height": 80,
+            "fill": "#dcfce7",
+            "stroke": "#16a34a"
+          },
+          {
+            "action": "add_connector",
+            "id": "flow_a",
+            "source": "ticket",
+            "target": "review",
+            "label": "open"
+          },
+          {
+            "action": "add_connector",
+            "id": "flow_b",
+            "source": "review",
+            "target": "escalate",
+            "label": "needs help"
+          },
+          {
+            "action": "add_connector",
+            "id": "flow_c",
+            "source": "review",
+            "target": "resolve",
+            "label": "ready"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "drawio"
+  ],
+  "snapshot": "drawio_default",
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "diagram_canvas",
+    "visible_change_summary": "The support flow branches from Review into Escalate and Resolve.",
+    "checkpoint_visibility": {
+      "ticket": "visible_on_diagram",
+      "review": "visible_on_diagram",
+      "escalate": "visible_on_diagram",
+      "resolve": "visible_on_diagram",
+      "flow_a": "visible_on_diagram",
+      "flow_b": "visible_on_diagram",
+      "flow_c": "visible_on_diagram"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "ticket",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:ticket",
+                "key": "label",
+                "expected": "Ticket"
+              }
+            }
+          },
+          {
+            "id": "review",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:review",
+                "key": "label",
+                "expected": "Review"
+              }
+            }
+          },
+          {
+            "id": "escalate",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:escalate",
+                "key": "label",
+                "expected": "Escalate"
+              }
+            }
+          },
+          {
+            "id": "resolve",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:resolve",
+                "key": "label",
+                "expected": "Resolve"
+              }
+            }
+          },
+          {
+            "id": "flow_a",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Ticket",
+                  "target_label": "Review",
+                  "label": "open"
+                }
+              }
+            }
+          },
+          {
+            "id": "flow_b",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Review",
+                  "target_label": "Escalate",
+                  "label": "needs help"
+                }
+              }
+            }
+          },
+          {
+            "id": "flow_c",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Review",
+                  "target_label": "Resolve",
+                  "label": "ready"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "drawio",
+    "difficulty": "complex",
+    "description": "Create a support escalation branch.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "diagram",
+        "params": {
+          "operations": [
+            {
+              "action": "add_shape",
+              "id": "ticket",
+              "label": "Ticket",
+              "shape_kind": "ellipse",
+              "x": 80,
+              "y": 180,
+              "width": 120,
+              "height": 70,
+              "fill": "#dbeafe",
+              "stroke": "#2563eb"
+            },
+            {
+              "action": "add_shape",
+              "id": "review",
+              "label": "Review",
+              "shape_kind": "rectangle",
+              "x": 300,
+              "y": 170,
+              "width": 150,
+              "height": 80,
+              "fill": "#fef3c7",
+              "stroke": "#d97706"
+            },
+            {
+              "action": "add_shape",
+              "id": "escalate",
+              "label": "Escalate",
+              "shape_kind": "rectangle",
+              "x": 560,
+              "y": 90,
+              "width": 160,
+              "height": 80,
+              "fill": "#fee2e2",
+              "stroke": "#dc2626"
+            },
+            {
+              "action": "add_shape",
+              "id": "resolve",
+              "label": "Resolve",
+              "shape_kind": "rectangle",
+              "x": 560,
+              "y": 260,
+              "width": 160,
+              "height": 80,
+              "fill": "#dcfce7",
+              "stroke": "#16a34a"
+            },
+            {
+              "action": "add_connector",
+              "id": "flow_a",
+              "source": "ticket",
+              "target": "review",
+              "label": "open"
+            },
+            {
+              "action": "add_connector",
+              "id": "flow_b",
+              "source": "review",
+              "target": "escalate",
+              "label": "needs help"
+            },
+            {
+              "action": "add_connector",
+              "id": "flow_c",
+              "source": "review",
+              "target": "resolve",
+              "label": "ready"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank"
+  }
+}

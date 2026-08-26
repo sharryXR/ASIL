@@ -1,0 +1,99 @@
+{
+  "id": "audacity_16",
+  "instruction": "Rename Voiceover to Episode Host and add a new track named Sponsor Read.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "audacity_default_project",
+  "config": [],
+  "related_apps": [
+    "audacity"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "audacity_16_main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "voice_renamed",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "track:track_voice",
+                "key": "name",
+                "expected": "Episode Host"
+              }
+            }
+          },
+          {
+            "id": "sponsor_added",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "track",
+                "id": "track:track_sponsor_read",
+                "value": {
+                  "name": "Sponsor Read"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "audacity",
+    "difficulty": "simple",
+    "description": "Rename Voiceover to Episode Host and add a new track named Sponsor Read.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "set_track_value",
+              "track_id": "track_voice",
+              "field": "name",
+              "value": "Episode Host"
+            },
+            {
+              "action": "add_track",
+              "track_id": "track_sponsor_read",
+              "name": "Sponsor Read",
+              "kind": "audio",
+              "mute": false,
+              "solo": false,
+              "gain_db": 0.0,
+              "pan": 0.0,
+              "height_px": 132,
+              "clips": []
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "track:track_voice",
+        "key": "name",
+        "expected": "Episode Host"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "multitrack_timeline",
+    "visible_change_summary": "Voiceover is renamed to Episode Host and a Sponsor Read track appears.",
+    "checkpoint_visibility": {
+      "voice_renamed": "visible_in_track_headers",
+      "sponsor_added": "visible_in_track_headers"
+    }
+  }
+}

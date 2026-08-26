@@ -1,0 +1,136 @@
+{
+  "id": "libreoffice_impress_18",
+  "software": "libreoffice_impress",
+  "difficulty": "complex",
+  "description": "Change slide 1 title to \"Planning Recap\", replace its body with \"Review the updated staffing table.\", add \"Escalate late approvals immediately.\", and create a new slide titled \"Budget Notes\" with lines \"Track remaining contingency.\" and \"Confirm travel approvals.\".",
+  "instruction": "Change slide 1 title to \"Planning Recap\", set its first body line to \"Review the updated staffing table.\", append \"Escalate late approvals immediately.\", and add a new slide titled \"Budget Notes\" with two body lines: \"Track remaining contingency.\" and \"Confirm travel approvals.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_slide_title",
+            "slide_index": 1,
+            "text": "Planning Recap"
+          },
+          {
+            "action": "set_slide_body",
+            "slide_index": 1,
+            "body_index": 1,
+            "text": "Review the updated staffing table."
+          },
+          {
+            "action": "append_slide_body",
+            "slide_index": 1,
+            "text": "Escalate late approvals immediately."
+          },
+          {
+            "action": "add_slide",
+            "title": "Budget Notes",
+            "body": [
+              "Track remaining contingency.",
+              "Confirm travel approvals."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "Slide 1 becomes Planning Recap and a Budget Notes slide appears with two notes.",
+    "checkpoint_visibility": {
+      "slide1_title": "visible_on_slide",
+      "slide1_body1": "visible_on_slide",
+      "slide1_body2": "visible_on_slide",
+      "slide3_title": "visible_on_slide",
+      "slide3_body2": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "slide1_title",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:1:title",
+                "key": "text_content",
+                "expected": "Planning Recap"
+              }
+            }
+          },
+          {
+            "id": "slide1_body1",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:1:body:1",
+                "key": "text_content",
+                "expected": "Review the updated staffing table."
+              }
+            }
+          },
+          {
+            "id": "slide1_body2",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:1:body:2",
+                "key": "text_content",
+                "expected": "Escalate late approvals immediately."
+              }
+            }
+          },
+          {
+            "id": "slide3_title",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:3:title",
+                "key": "text_content",
+                "expected": "Budget Notes"
+              }
+            }
+          },
+          {
+            "id": "slide3_body2",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:3:body:2",
+                "key": "text_content",
+                "expected": "Confirm travel approvals."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "contact_sheet",
+    "slide_indices": [
+      1,
+      3
+    ]
+  }
+}

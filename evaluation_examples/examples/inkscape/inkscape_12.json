@@ -1,0 +1,350 @@
+{
+  "id": "inkscape_12",
+  "instruction": "Create a vertical bar chart titled '部门季度销售额' with 4 bars and labeled axes: 销售部(id=bar_sales, height=160, fill=#2196f3), 市场部(id=bar_marketing, height=120, fill=#ff9800), 工程部(id=bar_engineering, height=190, fill=#4caf50), 支持部(id=bar_support, height=90, fill=#f44336). Each bar has a centered text label below with the department name. Add a chart title text element (id=chart_title) at the top.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_12_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_12_01",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "chart_title",
+                "key": "text_content",
+                "expected": "部门季度销售额"
+              }
+            }
+          },
+          {
+            "id": "inkscape_12_02",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "bar_sales",
+                "key": "style",
+                "expected": "fill:#2196f3"
+              }
+            }
+          },
+          {
+            "id": "inkscape_12_03",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "bar_label_sales",
+                "key": "text_content",
+                "expected": "销售部"
+              }
+            }
+          },
+          {
+            "id": "inkscape_12_04",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "bar_marketing",
+                "key": "style",
+                "expected": "fill:#ff9800"
+              }
+            }
+          },
+          {
+            "id": "inkscape_12_05",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "bar_label_marketing",
+                "key": "text_content",
+                "expected": "市场部"
+              }
+            }
+          },
+          {
+            "id": "inkscape_12_06",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "bar_engineering",
+                "key": "style",
+                "expected": "fill:#4caf50"
+              }
+            }
+          },
+          {
+            "id": "inkscape_12_07",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "bar_label_engineering",
+                "key": "text_content",
+                "expected": "工程部"
+              }
+            }
+          },
+          {
+            "id": "inkscape_12_08",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "bar_support",
+                "key": "style",
+                "expected": "fill:#f44336"
+              }
+            }
+          },
+          {
+            "id": "inkscape_12_09",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "bar_label_support",
+                "key": "text_content",
+                "expected": "支持部"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "medium",
+    "description": "Create a vertical bar chart titled '部门季度销售额' with 4 bars and labeled axes: 销售部(id=bar_sales, height=160, fill=#2196f3), 市场部(id=bar_marketing, height=120, fill=#ff9800), 工程部(id=bar_engineering, height=190, fill=#4caf50), 支持部(id=bar_support, height=90, fill=#f44336). Each bar has a centered text label below with the department name. Add a chart title text element (id=chart_title) at the top.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "g",
+              "attributes": {
+                "id": "chart_group"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='chart_group']",
+              "tag": "text",
+              "attributes": {
+                "id": "chart_title",
+                "x": "400",
+                "y": "40",
+                "style": "font-size:18px;text-anchor:middle;font-family:sans-serif;font-weight:bold;fill:#333333",
+                "text_content": "部门季度销售额"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='chart_group']",
+              "tag": "rect",
+              "attributes": {
+                "id": "bar_sales",
+                "x": "100",
+                "y": "280",
+                "width": "60",
+                "height": "160",
+                "style": "fill:#2196f3"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='chart_group']",
+              "tag": "text",
+              "attributes": {
+                "id": "bar_label_sales",
+                "x": "130",
+                "y": "460",
+                "style": "font-size:13px;text-anchor:middle;font-family:sans-serif;fill:#333",
+                "text_content": "销售部"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='chart_group']",
+              "tag": "rect",
+              "attributes": {
+                "id": "bar_marketing",
+                "x": "220",
+                "y": "320",
+                "width": "60",
+                "height": "120",
+                "style": "fill:#ff9800"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='chart_group']",
+              "tag": "text",
+              "attributes": {
+                "id": "bar_label_marketing",
+                "x": "250",
+                "y": "460",
+                "style": "font-size:13px;text-anchor:middle;font-family:sans-serif;fill:#333",
+                "text_content": "市场部"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='chart_group']",
+              "tag": "rect",
+              "attributes": {
+                "id": "bar_engineering",
+                "x": "340",
+                "y": "250",
+                "width": "60",
+                "height": "190",
+                "style": "fill:#4caf50"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='chart_group']",
+              "tag": "text",
+              "attributes": {
+                "id": "bar_label_engineering",
+                "x": "370",
+                "y": "460",
+                "style": "font-size:13px;text-anchor:middle;font-family:sans-serif;fill:#333",
+                "text_content": "工程部"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='chart_group']",
+              "tag": "rect",
+              "attributes": {
+                "id": "bar_support",
+                "x": "460",
+                "y": "350",
+                "width": "60",
+                "height": "90",
+                "style": "fill:#f44336"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='chart_group']",
+              "tag": "text",
+              "attributes": {
+                "id": "bar_label_support",
+                "x": "490",
+                "y": "460",
+                "style": "font-size:13px;text-anchor:middle;font-family:sans-serif;fill:#333",
+                "text_content": "支持部"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "chart_title",
+            "key": "text_content",
+            "expected": "部门季度销售额"
+          }
+        },
+        {
+          "element_value": {
+            "id": "bar_sales",
+            "key": "style",
+            "expected": "fill:#2196f3"
+          }
+        },
+        {
+          "element_value": {
+            "id": "bar_label_sales",
+            "key": "text_content",
+            "expected": "销售部"
+          }
+        },
+        {
+          "element_value": {
+            "id": "bar_marketing",
+            "key": "style",
+            "expected": "fill:#ff9800"
+          }
+        },
+        {
+          "element_value": {
+            "id": "bar_label_marketing",
+            "key": "text_content",
+            "expected": "市场部"
+          }
+        },
+        {
+          "element_value": {
+            "id": "bar_engineering",
+            "key": "style",
+            "expected": "fill:#4caf50"
+          }
+        },
+        {
+          "element_value": {
+            "id": "bar_label_engineering",
+            "key": "text_content",
+            "expected": "工程部"
+          }
+        },
+        {
+          "element_value": {
+            "id": "bar_support",
+            "key": "style",
+            "expected": "fill:#f44336"
+          }
+        },
+        {
+          "element_value": {
+            "id": "bar_label_support",
+            "key": "text_content",
+            "expected": "支持部"
+          }
+        }
+      ]
+    },
+    "initial_state": "blank"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Create a 4-bar vertical chart titled \"部门季度销售额\" with labels under each bar.",
+    "checkpoint_visibility": {
+      "inkscape_12_01": "visible_on_canvas",
+      "inkscape_12_02": "visible_on_canvas",
+      "inkscape_12_03": "visible_on_canvas",
+      "inkscape_12_04": "visible_on_canvas",
+      "inkscape_12_05": "visible_on_canvas",
+      "inkscape_12_06": "visible_on_canvas",
+      "inkscape_12_07": "visible_on_canvas",
+      "inkscape_12_08": "visible_on_canvas",
+      "inkscape_12_09": "visible_on_canvas"
+    }
+  }
+}

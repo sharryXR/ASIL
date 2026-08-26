@@ -1,0 +1,83 @@
+{
+  "id": "inkscape_03",
+  "instruction": "Change the circle centered at (200,150) with radius 40 to yellow.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_03_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_03_1",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "circle",
+                "value": {
+                  "cx": "200",
+                  "cy": "150",
+                  "r": "40",
+                  "style": "fill:#ffff00"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "simple",
+    "description": "Change the circle centered at (200,150) with radius 40 to yellow.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "xpath": "//*[@id='circle1']",
+              "attribute": "style",
+              "value": "fill:#ffff00"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_exists": "circle1"
+        },
+        {
+          "element_value": {
+            "id": "circle1",
+            "key": "style",
+            "expected": "fill:#ffff00"
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Change the circle fill to yellow.",
+    "checkpoint_visibility": {
+      "inkscape_03_1": "visible_on_canvas",
+      "inkscape_03_2": "visible_on_canvas"
+    }
+  }
+}

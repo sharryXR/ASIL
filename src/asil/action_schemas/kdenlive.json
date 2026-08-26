@@ -1,0 +1,101 @@
+{
+  "software": "Kdenlive",
+  "supported_action_types": ["modify_file"],
+  "target": "kdenlive-project-xml",
+  "description": "Edits a Kdenlive project file deterministically while staying aligned to stable visible surfaces such as track headers, the project profile title bar, and clearly visible timeline clip blocks.",
+  "actions": [
+    {
+      "name": "modify_project_xml",
+      "description": "Apply one or more XML operations to a .kdenlive project. Operations run in order and should stay aligned to stable visible outcomes such as renaming track headers, updating the project profile summary, or adding and removing timeline clip blocks.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "set_attribute | add_element | delete",
+            "xpath": "XPath to target existing nodes",
+            "parent_xpath": "XPath to the parent node for add_element",
+            "tag": "Element name to append for add_element",
+            "attributes": {
+              "id": "node identifier",
+              "name": "track or clip label",
+              "clip_id": "existing clip id for a timeline clipref"
+            },
+            "attribute": "Attribute name for set_attribute",
+            "value": "New attribute value"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Rename the main video track",
+          "action": {
+            "action_type": "modify_file",
+            "target": "{{project_path}}",
+            "params": {
+              "operations": [
+                {
+                  "xpath": "/kdenliveProject/timeline/track[@id='video_main']",
+                  "attribute": "name",
+                  "value": "Primary Video"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Add the existing Opening Title clip to the V2 timeline as a clearly visible block",
+          "action": {
+            "action_type": "modify_file",
+            "target": "{{project_path}}",
+            "params": {
+              "operations": [
+                {
+                  "action": "add_element",
+                  "parent_xpath": "/kdenliveProject/timeline/track[@id='video_overlay']",
+                  "tag": "clipref",
+                  "attributes": {
+                    "id": "tl_title_overlay_24",
+                    "clip_id": "clip_title",
+                    "start": "24",
+                    "duration": "60",
+                    "in": "0",
+                    "out": "60"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Remove the existing V2 b-roll block from the timeline",
+          "action": {
+            "action_type": "modify_file",
+            "target": "{{project_path}}",
+            "params": {
+              "operations": [
+                {
+                  "action": "delete",
+                  "xpath": "/kdenliveProject/timeline/track[@id='video_overlay']/clipref[@id='tl_broll']"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "done_action": {
+    "description": "Return this action when the task is fully complete.",
+    "example": {
+      "action_type": "done",
+      "target": "",
+      "params": {}
+    }
+  },
+  "tips": [
+    "Use stable IDs like video_main, video_overlay, tl_intro, and tl_broll in XPath selectors.",
+    "Prefer stable visible surfaces: track headers, the project profile summary, and clearly visible timeline clip blocks.",
+    "Reuse existing visible clip IDs like clip_intro, clip_broll, and clip_title when adding timeline clipref entries.",
+    "Visible timeline outcomes are easiest to validate through track names plus timeline clip positions and durations.",
+    "Boolean-style flags in the project use 1 for enabled and 0 for disabled."
+  ]
+}

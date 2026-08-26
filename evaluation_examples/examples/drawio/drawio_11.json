@@ -1,0 +1,228 @@
+{
+  "id": "drawio_11",
+  "software": "drawio",
+  "difficulty": "medium",
+  "description": "Create a support handoff flow on a blank canvas.",
+  "instruction": "On a blank canvas, add Intake, Triage, and Support shapes with connectors Intake->Triage and Triage->Support.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "diagram",
+      "params": {
+        "operations": [
+          {
+            "action": "add_shape",
+            "id": "intake",
+            "label": "Intake",
+            "shape_kind": "ellipse",
+            "x": 70,
+            "y": 220,
+            "width": 120,
+            "height": 70,
+            "fill": "#dbeafe",
+            "stroke": "#2563eb"
+          },
+          {
+            "action": "add_shape",
+            "id": "triage",
+            "label": "Triage",
+            "shape_kind": "rectangle",
+            "x": 300,
+            "y": 210,
+            "width": 150,
+            "height": 80,
+            "fill": "#ede9fe",
+            "stroke": "#7c3aed"
+          },
+          {
+            "action": "add_shape",
+            "id": "support",
+            "label": "Support",
+            "shape_kind": "rectangle",
+            "x": 560,
+            "y": 210,
+            "width": 150,
+            "height": 80,
+            "fill": "#dcfce7",
+            "stroke": "#16a34a"
+          },
+          {
+            "action": "add_connector",
+            "id": "handoff_1",
+            "source": "intake",
+            "target": "triage",
+            "label": "route"
+          },
+          {
+            "action": "add_connector",
+            "id": "handoff_2",
+            "source": "triage",
+            "target": "support",
+            "label": "assign"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "drawio"
+  ],
+  "snapshot": "drawio_default",
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "diagram_canvas",
+    "visible_change_summary": "A three-step support handoff flow appears.",
+    "checkpoint_visibility": {
+      "intake_shape": "visible_on_diagram",
+      "triage_shape": "visible_on_diagram",
+      "support_shape": "visible_on_diagram",
+      "handoff_1": "visible_on_diagram",
+      "handoff_2": "visible_on_diagram"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "intake_shape",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:intake",
+                "key": "label",
+                "expected": "Intake"
+              }
+            }
+          },
+          {
+            "id": "triage_shape",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:triage",
+                "key": "label",
+                "expected": "Triage"
+              }
+            }
+          },
+          {
+            "id": "support_shape",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:support",
+                "key": "label",
+                "expected": "Support"
+              }
+            }
+          },
+          {
+            "id": "handoff_1",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Intake",
+                  "target_label": "Triage",
+                  "label": "route"
+                }
+              }
+            }
+          },
+          {
+            "id": "handoff_2",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "connector",
+                "value": {
+                  "source_label": "Triage",
+                  "target_label": "Support",
+                  "label": "assign"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "drawio",
+    "difficulty": "medium",
+    "description": "Create a support handoff flow on a blank canvas.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "diagram",
+        "params": {
+          "operations": [
+            {
+              "action": "add_shape",
+              "id": "intake",
+              "label": "Intake",
+              "shape_kind": "ellipse",
+              "x": 70,
+              "y": 220,
+              "width": 120,
+              "height": 70,
+              "fill": "#dbeafe",
+              "stroke": "#2563eb"
+            },
+            {
+              "action": "add_shape",
+              "id": "triage",
+              "label": "Triage",
+              "shape_kind": "rectangle",
+              "x": 300,
+              "y": 210,
+              "width": 150,
+              "height": 80,
+              "fill": "#ede9fe",
+              "stroke": "#7c3aed"
+            },
+            {
+              "action": "add_shape",
+              "id": "support",
+              "label": "Support",
+              "shape_kind": "rectangle",
+              "x": 560,
+              "y": 210,
+              "width": 150,
+              "height": 80,
+              "fill": "#dcfce7",
+              "stroke": "#16a34a"
+            },
+            {
+              "action": "add_connector",
+              "id": "handoff_1",
+              "source": "intake",
+              "target": "triage",
+              "label": "route"
+            },
+            {
+              "action": "add_connector",
+              "id": "handoff_2",
+              "source": "triage",
+              "target": "support",
+              "label": "assign"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank"
+  }
+}

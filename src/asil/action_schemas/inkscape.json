@@ -1,0 +1,224 @@
+{
+  "software": "Inkscape",
+  "supported_action_types": ["modify_file"],
+  "target": "The SVG file path (from app_state.document_path)",
+  "description": "Manipulates SVG XML structure via xpath-based operations. All changes are batched in a single action's operations array.",
+  "actions": [
+    {
+      "name": "set_attribute",
+      "description": "Set or modify an XML attribute of an existing SVG element. Use xpath with @id to locate the target element.",
+      "params_schema": {
+        "operations": [
+          {
+            "xpath": "//*[@id='element_id']",
+            "attribute": "attribute_name",
+            "value": "new_value_as_string"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Change rect1 fill color to blue",
+          "action": {
+            "action_type": "modify_file",
+            "target": "test.svg",
+            "params": {
+              "operations": [
+                {"xpath": "//*[@id='rect1']", "attribute": "style", "value": "fill:#0000ff"}
+              ]
+            }
+          }
+        },
+        {
+          "description": "Resize rect1 to 200x100",
+          "action": {
+            "action_type": "modify_file",
+            "target": "test.svg",
+            "params": {
+              "operations": [
+                {"xpath": "//*[@id='rect1']", "attribute": "width", "value": "200"},
+                {"xpath": "//*[@id='rect1']", "attribute": "height", "value": "100"}
+              ]
+            }
+          }
+        },
+        {
+          "description": "Move circle1 to position (100, 200)",
+          "action": {
+            "action_type": "modify_file",
+            "target": "test.svg",
+            "params": {
+              "operations": [
+                {"xpath": "//*[@id='circle1']", "attribute": "cx", "value": "100"},
+                {"xpath": "//*[@id='circle1']", "attribute": "cy", "value": "200"}
+              ]
+            }
+          }
+        },
+        {
+          "description": "Set rounded corners on rect1",
+          "action": {
+            "action_type": "modify_file",
+            "target": "test.svg",
+            "params": {
+              "operations": [
+                {"xpath": "//*[@id='rect1']", "attribute": "rx", "value": "10"},
+                {"xpath": "//*[@id='rect1']", "attribute": "ry", "value": "10"}
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "add_element",
+      "description": "Add a new SVG element as a child of a parent element. Use parent_xpath to locate where to insert.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "add_element",
+            "parent_xpath": "//*[@id='layer1']",
+            "tag": "svg_tag_name",
+            "attributes": {
+              "id": "new_element_id",
+              "...": "other SVG attributes"
+            }
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Add a blue rectangle",
+          "action": {
+            "action_type": "modify_file",
+            "target": "test.svg",
+            "params": {
+              "operations": [
+                {
+                  "action": "add_element",
+                  "parent_xpath": "//*[@id='layer1']",
+                  "tag": "rect",
+                  "attributes": {
+                    "id": "blue_rect",
+                    "x": "10",
+                    "y": "20",
+                    "width": "100",
+                    "height": "50",
+                    "style": "fill:#0000ff"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Add a triangle path",
+          "action": {
+            "action_type": "modify_file",
+            "target": "test.svg",
+            "params": {
+              "operations": [
+                {
+                  "action": "add_element",
+                  "parent_xpath": "//*[@id='layer1']",
+                  "tag": "path",
+                  "attributes": {
+                    "id": "triangle1",
+                    "d": "M 100,200 L 200,200 L 150,100 Z",
+                    "style": "fill:#00ff00;stroke:#000000"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Add a group element then add shapes inside it",
+          "action": {
+            "action_type": "modify_file",
+            "target": "test.svg",
+            "params": {
+              "operations": [
+                {
+                  "action": "add_element",
+                  "parent_xpath": "//*[@id='layer1']",
+                  "tag": "g",
+                  "attributes": {"id": "my_group"}
+                },
+                {
+                  "action": "add_element",
+                  "parent_xpath": "//*[@id='my_group']",
+                  "tag": "rect",
+                  "attributes": {"id": "g_rect", "x": "0", "y": "0", "width": "50", "height": "50", "style": "fill:red"}
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Add a new layer",
+          "action": {
+            "action_type": "modify_file",
+            "target": "test.svg",
+            "params": {
+              "operations": [
+                {
+                  "action": "add_element",
+                  "parent_xpath": "//svg:svg",
+                  "tag": "g",
+                  "attributes": {
+                    "id": "layer2",
+                    "inkscape:groupmode": "layer",
+                    "inkscape:label": "Layer 2"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "delete",
+      "description": "Remove an SVG element and all its children by xpath.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "delete",
+            "xpath": "//*[@id='element_id']"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Delete circle1",
+          "action": {
+            "action_type": "modify_file",
+            "target": "test.svg",
+            "params": {
+              "operations": [
+                {"action": "delete", "xpath": "//*[@id='circle1']"}
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "done_action": {
+    "description": "Return this action when the task is fully complete.",
+    "example": {"action_type": "done", "target": "", "params": {}}
+  },
+  "tips": [
+    "Use //*[@id='...'] xpath to target elements by their id",
+    "Multiple operations can be combined in one action's operations array — they execute sequentially",
+    "The default operation (no 'action' key) is set_attribute",
+    "Style uses CSS syntax: fill:#ff0000;stroke:#000000;stroke-width:2",
+    "For add_element, the parent must already exist — create parent groups first",
+    "SVG namespace prefix 'svg:' is used for top-level: //svg:svg",
+    "Inkscape namespace attributes: inkscape:groupmode, inkscape:label",
+    "CRITICAL: Use EXACTLY the element id specified in the Success Criteria (e.g., if criteria says id='blue_rect', set 'id': 'blue_rect')",
+    "CRITICAL: Set target to the full document path shown in 'Document path (use as target)'",
+    "CRITICAL: After your action, check the Success Criteria — if met, immediately return the done action"
+  ]
+}

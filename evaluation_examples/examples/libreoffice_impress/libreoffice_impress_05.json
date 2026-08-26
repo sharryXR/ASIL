@@ -1,0 +1,79 @@
+{
+  "id": "libreoffice_impress_05",
+  "software": "libreoffice_impress",
+  "difficulty": "simple",
+  "description": "Add a new slide titled \"Executive Recap\" with body text \"Revenue plan approved.\".",
+  "instruction": "Add a new third slide titled \"Executive Recap\" with one body line: \"Revenue plan approved.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "add_slide",
+            "title": "Executive Recap",
+            "body": [
+              "Revenue plan approved."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "A third slide titled Executive Recap appears with one recap line.",
+    "checkpoint_visibility": {
+      "slide3_title": "visible_on_slide",
+      "slide3_body1": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "slide3_title",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:3:title",
+                "key": "text_content",
+                "expected": "Executive Recap"
+              }
+            }
+          },
+          {
+            "id": "slide3_body1",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:3:body:1",
+                "key": "text_content",
+                "expected": "Revenue plan approved."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "single_slide",
+    "slide_indices": [
+      3
+    ]
+  }
+}

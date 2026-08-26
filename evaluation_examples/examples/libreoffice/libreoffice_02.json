@@ -1,0 +1,72 @@
+{
+  "id": "libreoffice_02",
+  "instruction": "Set cell B1 to numeric value 500",
+  "source": "asil_benchmark_v1",
+  "snapshot": "libreoffice_calc_default",
+  "config": [],
+  "related_apps": [
+    "libreoffice"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "libreoffice_02_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "libreoffice_02_1",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B1",
+                "key": null,
+                "expected": "500"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "libreoffice",
+    "difficulty": "simple",
+    "description": "Set cell B1 to numeric value 500",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{ods_path}}",
+        "params": {
+          "operations": [
+            {
+              "sheet": "Sheet1",
+              "cell": "B1",
+              "value": "500",
+              "value_type": "float"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "Sheet1!B1",
+        "key": null,
+        "expected": "500"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "spreadsheet",
+    "visible_change_summary": "Set cell B1 to numeric value 500",
+    "checkpoint_visibility": {
+      "libreoffice_02_1": "visible_in_sheet"
+    }
+  }
+}

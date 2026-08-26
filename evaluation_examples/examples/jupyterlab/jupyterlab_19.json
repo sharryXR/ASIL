@@ -1,0 +1,72 @@
+{
+  "id": "jupyterlab_19",
+  "software": "jupyterlab",
+  "difficulty": "medium",
+  "description": "Rename the helper function.",
+  "instruction": "Open src/helpers.py and replace \"format_total\" with \"format_metric\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {"action": "open_file", "path": "src/helpers.py"},
+          {"action": "replace_text", "path": "src/helpers.py", "old": "format_total", "new": "format_metric"}
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": ["jupyterlab"],
+  "snapshot": "jupyterlab_default",
+  "initial_state": "src_focus",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "The helper editor now shows format_metric as the function name.",
+    "checkpoint_visibility": {
+      "function_name": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "function_name",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "editor:src/helpers.py",
+                "key": "content",
+                "expected": "format_metric"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "jupyterlab",
+    "difficulty": "medium",
+    "description": "Rename the helper function.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {"action": "open_file", "path": "src/helpers.py"},
+            {"action": "replace_text", "path": "src/helpers.py", "old": "format_total", "new": "format_metric"}
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "src_focus"
+  }
+}

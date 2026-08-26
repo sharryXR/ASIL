@@ -1,0 +1,82 @@
+{
+  "id": "gitea_15",
+  "instruction": "Edit issue #1 to change its title to 'Critical: login fails on mobile'",
+  "source": "asil_benchmark_v1",
+  "snapshot": "gitea_instance_default",
+  "config": [],
+  "related_apps": [
+    "gitea"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "gitea_15_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "gitea_15_1",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "issue:1"
+            }
+          },
+          {
+            "id": "gitea_15_2",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "issue:1",
+                "key": "title",
+                "expected": "Critical: login fails on mobile"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gitea",
+    "difficulty": "medium",
+    "description": "Edit issue #1 to change its title to 'Critical: login fails on mobile'",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "PATCH",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues/1",
+          "body": {
+            "title": "Critical: login fails on mobile"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_contains": {
+            "id": "issue:1",
+            "key": "title",
+            "expected": "Critical: login fails on mobile"
+          }
+        }
+      ]
+    },
+    "initial_state": "with_issues"
+  },
+  "gui_expectations": {
+    "success_surface": "web_page",
+    "visible_change_summary": "Edit issue #1 to change its title to 'Critical: login fails on mobile'",
+    "checkpoint_visibility": {
+      "gitea_15_1": "visible_on_web_page",
+      "gitea_15_2": "visible_on_web_page"
+    }
+  }
+}

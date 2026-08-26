@@ -1,0 +1,88 @@
+{
+  "id": "code_server_11",
+  "software": "code_server",
+  "difficulty": "medium",
+  "description": "Rewrite src/app.py to return a new message.",
+  "instruction": "Open src/app.py and replace the file contents with \"def main() -> str:\n    return \"Launch checklist ready\"\n\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {
+            "action": "open_file",
+            "path": "src/app.py"
+          },
+          {
+            "action": "set_file_text",
+            "path": "src/app.py",
+            "content": "def main() -> str:\n    return \"Launch checklist ready\"\n"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "code_server"
+  ],
+  "snapshot": "code_server_default",
+  "initial_state": "src_focus",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "The app.py editor shows the new Launch checklist ready return value.",
+    "checkpoint_visibility": {
+      "content": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "content",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "editor:src/app.py",
+                "key": "content",
+                "expected": "Launch checklist ready"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "code_server",
+    "difficulty": "medium",
+    "description": "Rewrite src/app.py to return a new message.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {
+              "action": "open_file",
+              "path": "src/app.py"
+            },
+            {
+              "action": "set_file_text",
+              "path": "src/app.py",
+              "content": "def main() -> str:\n    return \"Launch checklist ready\"\n"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "src_focus"
+  }
+}

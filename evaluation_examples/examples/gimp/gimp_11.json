@@ -1,0 +1,125 @@
+{
+  "id": "gimp_11",
+  "software": "gimp",
+  "difficulty": "medium",
+  "description": "Create a layered promo card.",
+  "instruction": "On a blank canvas, add a rectangle card at x=30 y=30 width=120 height=80 with fill #ff7f50, then add a white text layer Promo with text \"SAVE 20%\" at x=48 y=54 font size 24.",
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_layer",
+            "id": "promo_card",
+            "label": "Promo Card",
+            "kind": "rectangle",
+            "x": 30,
+            "y": 30,
+            "width": 120,
+            "height": 80,
+            "fill": "#ff7f50"
+          },
+          {
+            "action": "add_text_layer",
+            "id": "promo_text",
+            "label": "Promo",
+            "text": "SAVE 20%",
+            "x": 48,
+            "y": 54,
+            "font_size": 24,
+            "color": "#ffffff"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "gimp"
+  ],
+  "snapshot": "gimp_default",
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "A coral promo card with SAVE 20% appears.",
+    "checkpoint_visibility": {
+      "card_fill": "visible_on_canvas",
+      "promo_text": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "card_fill",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "promo_card",
+                "key": "fill",
+                "expected": "#ff7f50"
+              }
+            }
+          },
+          {
+            "id": "promo_text",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "promo_text",
+                "key": "text",
+                "expected": "SAVE 20%"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "medium",
+    "description": "Create a layered promo card.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_layer",
+              "id": "promo_card",
+              "label": "Promo Card",
+              "kind": "rectangle",
+              "x": 30,
+              "y": 30,
+              "width": 120,
+              "height": 80,
+              "fill": "#ff7f50"
+            },
+            {
+              "action": "add_text_layer",
+              "id": "promo_text",
+              "label": "Promo",
+              "text": "SAVE 20%",
+              "x": 48,
+              "y": 54,
+              "font_size": 24,
+              "color": "#ffffff"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank"
+  }
+}

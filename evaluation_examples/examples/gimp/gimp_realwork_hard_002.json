@@ -1,0 +1,336 @@
+{
+  "id": "gimp_realwork_hard_002",
+  "software": "gimp",
+  "difficulty": "complex",
+  "description": "Create a real-photo travel postcard hero for a coastal retreat.",
+  "instruction": "Create an 800x600 travel postcard from the real coast photo. Use a wide crop, slightly brighten and sharpen the image, add a translucent white title card near the lower left, add the title COASTAL RETREAT, and add the detail MAY WEEKEND GUIDE.",
+  "source": "asil_realwork_hard_v1",
+  "snapshot": "gimp_default",
+  "config": [],
+  "related_apps": [
+    "gimp"
+  ],
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_image_layer",
+            "id": "coast_photo",
+            "label": "Coast Photo",
+            "asset_path": "evaluation_examples/assets/realwork_images/coast_960.jpg",
+            "x": 0,
+            "y": 0,
+            "width": 800,
+            "height": 600,
+            "crop": {
+              "x": 0,
+              "y": 0,
+              "width": 960,
+              "height": 720
+            },
+            "filters": {
+              "brightness": 1.08,
+              "contrast": 1.08,
+              "saturation": 1.05,
+              "sharpen": true
+            }
+          },
+          {
+            "action": "add_layer",
+            "id": "title_card",
+            "label": "Title Card",
+            "kind": "rectangle",
+            "x": 36,
+            "y": 390,
+            "width": 520,
+            "height": 150,
+            "fill": "#ffffff",
+            "opacity": 0.78
+          },
+          {
+            "action": "add_text_layer",
+            "id": "postcard_title",
+            "label": "Postcard Title",
+            "text": "COASTAL RETREAT",
+            "x": 62,
+            "y": 412,
+            "font_size": 42,
+            "color": "#1b3a4b"
+          },
+          {
+            "action": "add_text_layer",
+            "id": "postcard_detail",
+            "label": "Postcard Detail",
+            "text": "MAY WEEKEND GUIDE",
+            "x": 66,
+            "y": 482,
+            "font_size": 26,
+            "color": "#2f6f73"
+          }
+        ]
+      }
+    }
+  ],
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "The coastal photo becomes a polished travel postcard with a white title card and guide label.",
+    "checkpoint_visibility": {
+      "canvas_size": "visible_on_canvas",
+      "photo_asset": "visible_on_canvas",
+      "photo_width": "visible_on_canvas",
+      "photo_height": "visible_on_canvas",
+      "photo_filters": "visible_on_canvas",
+      "overlay_fill": "visible_on_canvas",
+      "overlay_opacity": "visible_on_canvas",
+      "title_text": "visible_on_canvas",
+      "title_position": "visible_on_canvas",
+      "detail_text": "visible_on_canvas",
+      "detail_position": "visible_on_canvas",
+      "rendered_region": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "canvas_size",
+            "weight": 0.8,
+            "gui_visible_required": true,
+            "rule": {
+              "image_size": {
+                "width": 800,
+                "height": 600
+              }
+            }
+          },
+          {
+            "id": "photo_asset",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "coast_photo",
+                "key": "asset_path",
+                "expected": "evaluation_examples/assets/realwork_images/coast_960.jpg"
+              }
+            }
+          },
+          {
+            "id": "photo_width",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "coast_photo",
+                "key": "width",
+                "expected": 800
+              }
+            }
+          },
+          {
+            "id": "photo_height",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "coast_photo",
+                "key": "height",
+                "expected": 600
+              }
+            }
+          },
+          {
+            "id": "photo_filters",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "coast_photo",
+                "key": "filters",
+                "expected": {
+                  "brightness": 1.08,
+                  "contrast": 1.08,
+                  "saturation": 1.05,
+                  "sharpen": true
+                }
+              }
+            }
+          },
+          {
+            "id": "overlay_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "title_card",
+                "key": "fill",
+                "expected": "#ffffff"
+              }
+            }
+          },
+          {
+            "id": "overlay_opacity",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "title_card",
+                "key": "opacity",
+                "expected": 0.78
+              }
+            }
+          },
+          {
+            "id": "title_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "postcard_title",
+                "key": "text",
+                "expected": "COASTAL RETREAT"
+              }
+            }
+          },
+          {
+            "id": "title_position",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "postcard_title",
+                "key": "x",
+                "expected": 62
+              }
+            }
+          },
+          {
+            "id": "detail_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "postcard_detail",
+                "key": "text",
+                "expected": "MAY WEEKEND GUIDE"
+              }
+            }
+          },
+          {
+            "id": "detail_position",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "postcard_detail",
+                "key": "y",
+                "expected": 482
+              }
+            }
+          },
+          {
+            "id": "rendered_region",
+            "weight": 0.8,
+            "gui_visible_required": true,
+            "rule": {
+              "image_region_stat": {
+                "box": [
+                  55,
+                  405,
+                  480,
+                  120
+                ],
+                "metric": "luminance",
+                "min": 120,
+                "max": 255
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "complex",
+    "category": "realwork_hard",
+    "description": "Create a real-photo travel postcard hero for a coastal retreat.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_image_layer",
+              "id": "coast_photo",
+              "label": "Coast Photo",
+              "asset_path": "evaluation_examples/assets/realwork_images/coast_960.jpg",
+              "x": 0,
+              "y": 0,
+              "width": 800,
+              "height": 600,
+              "crop": {
+                "x": 0,
+                "y": 0,
+                "width": 960,
+                "height": 720
+              },
+              "filters": {
+                "brightness": 1.08,
+                "contrast": 1.08,
+                "saturation": 1.05,
+                "sharpen": true
+              }
+            },
+            {
+              "action": "add_layer",
+              "id": "title_card",
+              "label": "Title Card",
+              "kind": "rectangle",
+              "x": 36,
+              "y": 390,
+              "width": 520,
+              "height": 150,
+              "fill": "#ffffff",
+              "opacity": 0.78
+            },
+            {
+              "action": "add_text_layer",
+              "id": "postcard_title",
+              "label": "Postcard Title",
+              "text": "COASTAL RETREAT",
+              "x": 62,
+              "y": 412,
+              "font_size": 42,
+              "color": "#1b3a4b"
+            },
+            {
+              "action": "add_text_layer",
+              "id": "postcard_detail",
+              "label": "Postcard Detail",
+              "text": "MAY WEEKEND GUIDE",
+              "x": 66,
+              "y": 482,
+              "font_size": 26,
+              "color": "#2f6f73"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank"
+  }
+}

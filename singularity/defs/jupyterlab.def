@@ -1,0 +1,31 @@
+Bootstrap: docker
+From: jupyter/minimal-notebook@sha256:1c4c8b6c7c27059c353d4e80523c2696e34723fde67d27418873ebeb42032551
+
+%post
+    set -e
+    mkdir -p /opt/asil
+    cat > /opt/asil/start_jupyterlab.sh <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+HOST="${HOST:-127.0.0.1}"
+PORT="${PORT:-8888}"
+SHARED_WORKSPACES="${SHARED_WORKSPACES:-/shared-workspaces}"
+WORKSPACE_DIR="${SHARED_WORKSPACES}/jupyterlab-workspace"
+
+export HOME="${HOME:-/tmp/jupyter-home}"
+export JUPYTER_RUNTIME_DIR="${JUPYTER_RUNTIME_DIR:-/tmp/jupyter-runtime}"
+mkdir -p "$HOME" "$JUPYTER_RUNTIME_DIR" "$WORKSPACE_DIR"
+
+exec start-notebook.py \
+  --ServerApp.ip="$HOST" \
+  --ServerApp.port="$PORT" \
+  --ServerApp.token='' \
+  --ServerApp.password='' \
+  --ServerApp.root_dir="$WORKSPACE_DIR" \
+  --ServerApp.allow_origin='*'
+EOF
+    chmod +x /opt/asil/start_jupyterlab.sh
+
+%runscript
+    exec /opt/asil/start_jupyterlab.sh "$@"

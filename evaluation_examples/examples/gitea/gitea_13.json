@@ -1,0 +1,122 @@
+{
+  "id": "gitea_13",
+  "instruction": "Create a label named 'enhancement' with color #84b6eb, then assign it to issue #1",
+  "source": "asil_benchmark_v1",
+  "snapshot": "gitea_instance_default",
+  "config": [],
+  "related_apps": [
+    "gitea"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "gitea_13_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "gitea_13_1",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "label:1",
+                "key": "name",
+                "expected": "enhancement"
+              }
+            }
+          },
+          {
+            "id": "gitea_13_2",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "label:1",
+                "key": "color",
+                "expected": "#84b6eb"
+              }
+            }
+          },
+          {
+            "id": "gitea_13_3",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "issue:1"
+            }
+          },
+          {
+            "id": "gitea_13_4",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "issue:1",
+                "key": "labels",
+                "expected": "enhancement"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gitea",
+    "difficulty": "medium",
+    "description": "Create a label named 'enhancement' with color #84b6eb, then assign it to issue #1",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/labels",
+          "body": {
+            "name": "enhancement",
+            "color": "#84b6eb"
+          }
+        }
+      },
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues/1/labels",
+          "body": {
+            "labels": [
+              "enhancement"
+            ]
+          }
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_contains": {
+            "id": "issue:1",
+            "key": "labels",
+            "expected": "enhancement"
+          }
+        }
+      ]
+    },
+    "initial_state": "with_issues"
+  },
+  "gui_expectations": {
+    "success_surface": "web_page",
+    "visible_change_summary": "Create a label named 'enhancement' with color #84b6eb, then assign it to issue #1",
+    "checkpoint_visibility": {
+      "gitea_13_1": "visible_on_web_page",
+      "gitea_13_2": "visible_on_web_page",
+      "gitea_13_3": "visible_on_web_page",
+      "gitea_13_4": "visible_on_web_page"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "id": "jupyterlab_11",
+  "software": "jupyterlab",
+  "difficulty": "medium",
+  "description": "Create a small Python report helper.",
+  "instruction": "Create src/report.py with \"def build_report() -> str:\\n    return \\\"Notebook ready\\\"\\n\" and open it.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {"action": "create_file", "path": "src/report.py", "content": "def build_report() -> str:\n    return \"Notebook ready\"\n"},
+          {"action": "open_file", "path": "src/report.py"}
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": ["jupyterlab"],
+  "snapshot": "jupyterlab_default",
+  "initial_state": "src_focus",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "A new report helper file is open and returns Notebook ready.",
+    "checkpoint_visibility": {
+      "report_file": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "report_file",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "editor:src/report.py",
+                "key": "content",
+                "expected": "Notebook ready"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "jupyterlab",
+    "difficulty": "medium",
+    "description": "Create a small Python report helper.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {"action": "create_file", "path": "src/report.py", "content": "def build_report() -> str:\n    return \"Notebook ready\"\n"},
+            {"action": "open_file", "path": "src/report.py"}
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "src_focus"
+  }
+}

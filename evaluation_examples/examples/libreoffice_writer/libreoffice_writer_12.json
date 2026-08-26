@@ -1,0 +1,94 @@
+{
+  "id": "libreoffice_writer_12",
+  "software": "libreoffice_writer",
+  "difficulty": "medium",
+  "description": "Rename the title to \"Client Summary\", change the first paragraph to \"Feature requests were prioritized.\", and append a paragraph \"A written recap goes out tonight.\".",
+  "instruction": "Rename the title to \"Client Summary\", change the first paragraph to \"Feature requests were prioritized.\", and append a paragraph \"A written recap goes out tonight.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odt_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_heading_text",
+            "index": 1,
+            "text": "Client Summary"
+          },
+          {
+            "action": "set_paragraph_text",
+            "index": 1,
+            "text": "Feature requests were prioritized."
+          },
+          {
+            "action": "add_paragraph",
+            "text": "A written recap goes out tonight."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "snapshot": "writer_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "document_page",
+    "visible_change_summary": "The document title and first paragraph change, and a recap paragraph is appended.",
+    "checkpoint_visibility": {
+      "title": "visible_on_page",
+      "first_para": "visible_on_page",
+      "new_para": "visible_on_page"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "title",
+            "weight": 0.34,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "heading:1",
+                "key": "text_content",
+                "expected": "Client Summary"
+              }
+            }
+          },
+          {
+            "id": "first_para",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "paragraph:1",
+                "key": "text_content",
+                "expected": "Feature requests were prioritized."
+              }
+            }
+          },
+          {
+            "id": "new_para",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "paragraph",
+                "value": {
+                  "text_content": "A written recap goes out tonight."
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

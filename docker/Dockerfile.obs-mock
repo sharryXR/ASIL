@@ -1,0 +1,17 @@
+FROM python:3.11-slim@sha256:e031123e3d85762b141ad1cbc56452ba69c6e722ebf2f042cc0dc86c47c0d8b3
+
+ARG ASIL_GIT_COMMIT=unknown
+ARG ASIL_CONSTRAINTS_SHA256=unknown
+ARG ASIL_SOURCE_SHA256=unknown
+
+LABEL org.asil.git-commit="$ASIL_GIT_COMMIT" \
+      org.asil.constraints-sha256="$ASIL_CONSTRAINTS_SHA256" \
+      org.asil.source-sha256="$ASIL_SOURCE_SHA256"
+
+RUN pip install --no-cache-dir websockets==16.0
+
+COPY obs_mock_server.py /obs_mock_server.py
+
+EXPOSE 4455
+
+CMD ["python", "/obs_mock_server.py"]

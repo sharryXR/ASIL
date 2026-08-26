@@ -1,0 +1,125 @@
+{
+  "id": "gimp_08",
+  "software": "gimp",
+  "difficulty": "medium",
+  "description": "Add a badge and a matching label.",
+  "instruction": "On a blank canvas, add a rectangle badge layer with fill #0047ab at x=60 y=60 width=220 height=90, then add a white text layer named Headline with text \"Launch Day\" at x=90 y=88.",
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_layer",
+            "id": "badge",
+            "label": "Badge",
+            "kind": "rectangle",
+            "x": 60,
+            "y": 60,
+            "width": 220,
+            "height": 90,
+            "fill": "#0047ab"
+          },
+          {
+            "action": "add_text_layer",
+            "id": "headline",
+            "label": "Headline",
+            "text": "Launch Day",
+            "x": 90,
+            "y": 88,
+            "font_size": 28,
+            "color": "#ffffff"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "gimp"
+  ],
+  "snapshot": "gimp_default",
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "A blue badge with a white Launch Day label appears.",
+    "checkpoint_visibility": {
+      "badge_fill": "visible_on_canvas",
+      "headline_text": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "badge_fill",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "badge",
+                "key": "fill",
+                "expected": "#0047ab"
+              }
+            }
+          },
+          {
+            "id": "headline_text",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "headline",
+                "key": "text",
+                "expected": "Launch Day"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "medium",
+    "description": "Add a badge and a matching label.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_layer",
+              "id": "badge",
+              "label": "Badge",
+              "kind": "rectangle",
+              "x": 60,
+              "y": 60,
+              "width": 220,
+              "height": 90,
+              "fill": "#0047ab"
+            },
+            {
+              "action": "add_text_layer",
+              "id": "headline",
+              "label": "Headline",
+              "text": "Launch Day",
+              "x": 90,
+              "y": 88,
+              "font_size": 28,
+              "color": "#ffffff"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank"
+  }
+}

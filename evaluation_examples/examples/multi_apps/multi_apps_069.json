@@ -1,0 +1,158 @@
+{
+  "id": "multi_apps_069",
+  "software": "multi_apps",
+  "source": "asil_multi_apps_generated",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: add a Writer paragraph containing 'MA-069 narrative release note'; tag the Thunderbird client follow-up message with multi-069; open a Gitea issue titled 'MA-069 release coordination'.",
+  "related_apps": [
+    "libreoffice_writer",
+    "thunderbird",
+    "gitea"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "libreoffice_writer_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "libreoffice_writer",
+                "rule": {
+                  "any_element_matches": {
+                    "type": "paragraph",
+                    "value": {
+                      "text_content": "MA-069 narrative release note"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "thunderbird_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "thunderbird",
+                "rule": {
+                  "element_contains": {
+                    "id": "message:msg_client_followup",
+                    "key": "tags",
+                    "expected": "multi-069"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "gitea_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "gitea",
+                "rule": {
+                  "any_element_contains": {
+                    "type": "issue",
+                    "key": "title",
+                    "expected": "MA-069 release coordination"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "libreoffice_writer_checkpoint": "visible_in_libreoffice_writer",
+      "thunderbird_checkpoint": "visible_in_thunderbird",
+      "gitea_checkpoint": "visible_in_gitea"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "complex",
+    "description": "Mixed Release cross-app task for libreoffice_writer, thunderbird, gitea.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "libreoffice_writer": "default",
+      "thunderbird": "default",
+      "gitea": "default"
+    },
+    "primary_app": "libreoffice_writer",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "libreoffice_writer",
+              "action": {
+                "action_type": "modify_file",
+                "target": "document",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_paragraph",
+                      "text": "MA-069 narrative release note"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "thunderbird",
+              "action": {
+                "action_type": "invoke_function",
+                "target": "thunderbird",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_tag",
+                      "id": "msg_client_followup",
+                      "tag": "multi-069"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "gitea",
+              "action": {
+                "action_type": "api_call",
+                "target": "gitea-api",
+                "params": {
+                  "method": "POST",
+                  "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+                  "body": {
+                    "title": "MA-069 release coordination",
+                    "body": "Track cross-app completion for MA-069."
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "mixed_release"
+  }
+}

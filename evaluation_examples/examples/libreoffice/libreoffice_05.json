@@ -1,0 +1,224 @@
+{
+  "id": "libreoffice_05",
+  "instruction": "Populate a 3x3 multiplication table",
+  "source": "asil_benchmark_v1",
+  "snapshot": "libreoffice_calc_default",
+  "config": [],
+  "related_apps": [
+    "libreoffice"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "libreoffice_05_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "libreoffice_05_1",
+            "weight": 0.111111,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B2",
+                "key": null,
+                "expected": "1"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_05_2",
+            "weight": 0.111111,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C2",
+                "key": null,
+                "expected": "2"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_05_3",
+            "weight": 0.111111,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D2",
+                "key": null,
+                "expected": "3"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_05_4",
+            "weight": 0.111111,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B3",
+                "key": null,
+                "expected": "2"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_05_5",
+            "weight": 0.111111,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C3",
+                "key": null,
+                "expected": "4"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_05_6",
+            "weight": 0.111111,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D3",
+                "key": null,
+                "expected": "6"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_05_7",
+            "weight": 0.111111,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B4",
+                "key": null,
+                "expected": "3"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_05_8",
+            "weight": 0.111111,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C4",
+                "key": null,
+                "expected": "6"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_05_9",
+            "weight": 0.111112,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D4",
+                "key": null,
+                "expected": "9"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "libreoffice",
+    "difficulty": "medium",
+    "description": "Populate a 3x3 multiplication table",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{ods_path}}",
+        "params": {
+          "operations": [
+            {
+              "sheet": "Sheet1",
+              "cell": "B2",
+              "value": "1",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C2",
+              "value": "2",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D2",
+              "value": "3",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B3",
+              "value": "2",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C3",
+              "value": "4",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D3",
+              "value": "6",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B4",
+              "value": "3",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C4",
+              "value": "6",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D4",
+              "value": "9",
+              "value_type": "float"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "Sheet1!D4",
+        "key": null,
+        "expected": "9"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "spreadsheet",
+    "visible_change_summary": "Populate a 3x3 multiplication table",
+    "checkpoint_visibility": {
+      "libreoffice_05_1": "visible_in_sheet",
+      "libreoffice_05_2": "visible_in_sheet",
+      "libreoffice_05_3": "visible_in_sheet",
+      "libreoffice_05_4": "visible_in_sheet",
+      "libreoffice_05_5": "visible_in_sheet",
+      "libreoffice_05_6": "visible_in_sheet",
+      "libreoffice_05_7": "visible_in_sheet",
+      "libreoffice_05_8": "visible_in_sheet",
+      "libreoffice_05_9": "visible_in_sheet"
+    }
+  }
+}

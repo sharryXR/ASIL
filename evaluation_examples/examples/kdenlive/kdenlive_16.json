@@ -1,0 +1,88 @@
+{
+  "id": "kdenlive_16",
+  "instruction": "Add a new video track named 'Cutaways'.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "kdenlive_default_project",
+  "config": [],
+  "related_apps": ["kdenlive"],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "kdenlive_16_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "kdenlive_16_new_track",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "track:video_cutaways",
+                "key": "name",
+                "expected": "Cutaways"
+              }
+            }
+          },
+          {
+            "id": "kdenlive_16_track_count",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "count_elements_matching": {
+                "type": "track",
+                "expected": 4
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "kdenlive",
+    "difficulty": "medium",
+    "description": "Add a new video track named 'Cutaways'.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "/kdenliveProject/timeline",
+              "tag": "track",
+              "attributes": {
+                "id": "video_cutaways",
+                "kind": "video",
+                "name": "Cutaways",
+                "muted": "0",
+                "locked": "0"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "track:video_cutaways",
+        "key": "name",
+        "expected": "Cutaways"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "timeline",
+    "visible_change_summary": "A new video track labeled 'Cutaways' appears in the track stack.",
+    "checkpoint_visibility": {
+      "kdenlive_16_new_track": "visible_in_track_header",
+      "kdenlive_16_track_count": "visible_in_track_stack"
+    }
+  }
+}

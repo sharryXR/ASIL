@@ -1,0 +1,72 @@
+{
+  "id": "jupyterlab_04",
+  "software": "jupyterlab",
+  "difficulty": "simple",
+  "description": "Append a note to the summary markdown.",
+  "instruction": "Open notebooks/summary.md and append \"- Share the KPI deck\\n\" at the end.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {"action": "open_file", "path": "notebooks/summary.md"},
+          {"action": "append_text", "path": "notebooks/summary.md", "text": "- Share the KPI deck\n"}
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": ["jupyterlab"],
+  "snapshot": "jupyterlab_default",
+  "initial_state": "summary_focus",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "The summary markdown now includes a line about sharing the KPI deck.",
+    "checkpoint_visibility": {
+      "summary_append": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "summary_append",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "editor:notebooks/summary.md",
+                "key": "content",
+                "expected": "Share the KPI deck"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "jupyterlab",
+    "difficulty": "simple",
+    "description": "Append a note to the summary markdown.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {"action": "open_file", "path": "notebooks/summary.md"},
+            {"action": "append_text", "path": "notebooks/summary.md", "text": "- Share the KPI deck\n"}
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "summary_focus"
+  }
+}

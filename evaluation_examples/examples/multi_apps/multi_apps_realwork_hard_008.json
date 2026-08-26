@@ -1,0 +1,273 @@
+{
+  "id": "multi_apps_realwork_hard_008",
+  "software": "multi_apps",
+  "source": "asil_realwork_hard_mixed_v2",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: create a Blender object using material MultiMat040; add a GIMP text layer containing 'MA-040 asset'; add a draw.io shape labeled 'MA-040 flow'.",
+  "related_apps": [
+    "blender",
+    "gimp",
+    "drawio"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "blender_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "blender",
+                "rule": {
+                  "material_exists": "MultiMat040"
+                }
+              }
+            }
+          },
+          {
+            "id": "gimp_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "gimp",
+                "rule": {
+                  "element_contains": {
+                    "id": "gimp_multi_040",
+                    "key": "text",
+                    "expected": "MA-040 asset"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "drawio_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "drawio",
+                "rule": {
+                  "element_contains": {
+                    "id": "shape:draw_multi_040",
+                    "key": "label",
+                    "expected": "MA-040 flow"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "blender_checkpoint": "visible_in_blender",
+      "gimp_checkpoint": "visible_in_gimp",
+      "drawio_checkpoint": "visible_in_drawio"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "complex",
+    "description": "Hard-suite variant of multi_apps_040: Design Assets cross-app task for blender, gimp, drawio.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "blender": "default",
+      "gimp": "default",
+      "drawio": "default"
+    },
+    "primary_app": "blender",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "blender",
+              "action": {
+                "action_type": "invoke_function",
+                "target": "blender",
+                "params": {
+                  "script": [
+                    "import bpy",
+                    "bpy.ops.mesh.primitive_uv_sphere_add(radius=1, location=(0, 0, 0))",
+                    "mat = bpy.data.materials.new(name='MultiMat040')",
+                    "bpy.context.object.data.materials.append(mat)"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "gimp",
+              "action": {
+                "action_type": "invoke_function",
+                "target": "gimp",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_text_layer",
+                      "id": "gimp_multi_040",
+                      "label": "MA-040 asset",
+                      "text": "MA-040 asset",
+                      "x": 80,
+                      "y": 90,
+                      "font_size": 26,
+                      "color": "#0f766e"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "drawio",
+              "action": {
+                "action_type": "modify_file",
+                "target": "diagram",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_shape",
+                      "id": "draw_multi_040",
+                      "label": "MA-040 flow",
+                      "shape_kind": "rounded",
+                      "x": 120,
+                      "y": 160,
+                      "width": 150,
+                      "height": 70,
+                      "fill": "#d1fae5"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "realwork_hard",
+    "source_task_id": "multi_apps_040",
+    "workflow_complexity": {
+      "meaningful_actions": 3,
+      "suite_family": "multi_app_hard",
+      "copied_from_main_benchmark": true
+    }
+  },
+  "difficulty": "complex",
+  "description": "Hard-suite variant of multi_apps_040: Design Assets cross-app task for blender, gimp, drawio.",
+  "actions": [
+    {
+      "action_type": "batch",
+      "target": "multi_apps",
+      "params": {
+        "actions": [
+          {
+            "app": "blender",
+            "action": {
+              "action_type": "invoke_function",
+              "target": "blender",
+              "params": {
+                "script": [
+                  "import bpy",
+                  "bpy.ops.mesh.primitive_uv_sphere_add(radius=1, location=(0, 0, 0))",
+                  "mat = bpy.data.materials.new(name='MultiMat040')",
+                  "bpy.context.object.data.materials.append(mat)"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "batch",
+      "target": "multi_apps",
+      "params": {
+        "actions": [
+          {
+            "app": "gimp",
+            "action": {
+              "action_type": "invoke_function",
+              "target": "gimp",
+              "params": {
+                "operations": [
+                  {
+                    "action": "add_text_layer",
+                    "id": "gimp_multi_040",
+                    "label": "MA-040 asset",
+                    "text": "MA-040 asset",
+                    "x": 80,
+                    "y": 90,
+                    "font_size": 26,
+                    "color": "#0f766e"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "batch",
+      "target": "multi_apps",
+      "params": {
+        "actions": [
+          {
+            "app": "drawio",
+            "action": {
+              "action_type": "modify_file",
+              "target": "diagram",
+              "params": {
+                "operations": [
+                  {
+                    "action": "add_shape",
+                    "id": "draw_multi_040",
+                    "label": "MA-040 flow",
+                    "shape_kind": "rounded",
+                    "x": 120,
+                    "y": 160,
+                    "width": 150,
+                    "height": 70,
+                    "fill": "#d1fae5"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

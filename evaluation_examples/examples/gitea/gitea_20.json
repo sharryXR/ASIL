@@ -1,0 +1,170 @@
+{
+  "id": "gitea_20",
+  "instruction": "Create milestone 'v3.0', create two issues linked to it ('Feature A' and 'Feature B'), close 'Feature A', verify milestone has 1 open and 1 closed issue",
+  "source": "asil_benchmark_v1",
+  "snapshot": "gitea_instance_default",
+  "config": [],
+  "related_apps": [
+    "gitea"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "gitea_20_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "gitea_20_1",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "milestone:1",
+                "key": "title",
+                "expected": "v3.0"
+              }
+            }
+          },
+          {
+            "id": "gitea_20_2",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "issue:1",
+                "key": "title",
+                "expected": "Feature A"
+              }
+            }
+          },
+          {
+            "id": "gitea_20_3",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "issue:2",
+                "key": "title",
+                "expected": "Feature B"
+              }
+            }
+          },
+          {
+            "id": "gitea_20_4",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_value": {
+                "type": "milestone",
+                "key": "open_issues",
+                "expected": 1
+              }
+            }
+          },
+          {
+            "id": "gitea_20_5",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_value": {
+                "type": "milestone",
+                "key": "closed_issues",
+                "expected": 1
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gitea",
+    "difficulty": "complex",
+    "description": "Create milestone 'v3.0', create two issues linked to it ('Feature A' and 'Feature B'), close 'Feature A', verify milestone has 1 open and 1 closed issue",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/milestones",
+          "body": {
+            "title": "v3.0",
+            "description": "Version 3.0 milestone"
+          }
+        }
+      },
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+          "body": {
+            "title": "Feature A",
+            "body": "Implement feature A.",
+            "milestone": 1
+          }
+        }
+      },
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+          "body": {
+            "title": "Feature B",
+            "body": "Implement feature B.",
+            "milestone": 1
+          }
+        }
+      },
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "PATCH",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues/1",
+          "body": {
+            "state": "closed"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "any_element_value": {
+            "type": "milestone",
+            "key": "open_issues",
+            "expected": 1
+          }
+        },
+        {
+          "any_element_value": {
+            "type": "milestone",
+            "key": "closed_issues",
+            "expected": 1
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "web_page",
+    "visible_change_summary": "Create milestone 'v3.0', create two issues linked to it ('Feature A' and 'Feature B'), close 'Feature A', verify milestone has 1 open and 1 closed issue",
+    "checkpoint_visibility": {
+      "gitea_20_1": "visible_on_web_page",
+      "gitea_20_2": "visible_on_web_page",
+      "gitea_20_3": "visible_on_web_page",
+      "gitea_20_4": "visible_on_web_page",
+      "gitea_20_5": "visible_on_web_page"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "id": "obs_08",
+  "instruction": "Switch scene collection to 'Gaming Setup'",
+  "source": "asil_benchmark_v1",
+  "snapshot": "obs_studio_default",
+  "config": [],
+  "related_apps": [
+    "obs"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "obs_08_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "obs_08_collection_gaming",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "scene_collection": "Gaming Setup"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "obs",
+    "difficulty": "medium",
+    "description": "Switch scene collection to 'Gaming Setup'",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "SetCurrentSceneCollection",
+          "args": {
+            "sceneCollectionName": "Gaming Setup"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "scene_collection": "Gaming Setup"
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "workspace_controls",
+    "visible_change_summary": "Scene collection switches to Gaming Setup.",
+    "checkpoint_visibility": {
+      "obs_08_collection_gaming": "visible_in_obs_ui"
+    }
+  }
+}

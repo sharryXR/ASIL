@@ -1,0 +1,119 @@
+{
+  "id": "nautilus_12",
+  "instruction": "Rename `draft-plan.md` to `release-plan.md`, copy it to `Inbox`, and open `Inbox`.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "nautilus_workspace_default",
+  "config": [],
+  "related_apps": [
+    "nautilus"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "nautilus_12_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "nautilus_12_location",
+            "weight": 0.34,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "location",
+                "key": "path",
+                "expected": "Inbox"
+              }
+            }
+          },
+          {
+            "id": "nautilus_12_copy",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "directory_entry",
+                "value": {
+                  "path": "Inbox/release-plan.md"
+                }
+              }
+            }
+          },
+          {
+            "id": "nautilus_12_source_preserved",
+            "weight": 0.33,
+            "gui_visible_required": false,
+            "rule": {
+              "any_element_matches": {
+                "type": "workspace_entry",
+                "value": {
+                  "path": "Projects/alpha/release-plan.md"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "nautilus",
+    "difficulty": "medium",
+    "description": "Rename the alpha plan file, copy it into Inbox, and show the Inbox copy.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "nautilus",
+        "params": {
+          "operations": [
+            {
+              "action": "rename_entry",
+              "path": "draft-plan.md",
+              "new_name": "release-plan.md"
+            },
+            {
+              "action": "copy_entry",
+              "path": "release-plan.md",
+              "destination_dir": "../../Inbox"
+            },
+            {
+              "action": "open_directory",
+              "path": "../../Inbox"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "location",
+            "key": "path",
+            "expected": "Inbox"
+          }
+        },
+        {
+          "any_element_matches": {
+            "type": "directory_entry",
+            "value": {
+              "path": "Inbox/release-plan.md"
+            }
+          }
+        }
+      ]
+    },
+    "initial_state": "projects_alpha"
+  },
+  "gui_expectations": {
+    "success_surface": "file_list",
+    "visible_change_summary": "Inbox is open and now contains a visible copy of release-plan.md.",
+    "checkpoint_visibility": {
+      "nautilus_12_location": "visible_in_location_bar",
+      "nautilus_12_copy": "visible_in_file_list"
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "id": "code_server_18",
+  "software": "code_server",
+  "difficulty": "complex",
+  "description": "Move the backlog note into a sprint note and update it.",
+  "instruction": "Rename notes/backlog.md to notes/sprint.md, open notes/sprint.md, and append \"- Review the sprint plan\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {
+            "action": "rename_path",
+            "path": "notes/backlog.md",
+            "new_path": "notes/sprint.md"
+          },
+          {
+            "action": "open_file",
+            "path": "notes/sprint.md"
+          },
+          {
+            "action": "append_text",
+            "path": "notes/sprint.md",
+            "text": "- Review the sprint plan\n"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "code_server"
+  ],
+  "snapshot": "code_server_default",
+  "initial_state": "notes_focus",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "The sprint note replaces backlog.md and includes a new sprint-plan line.",
+    "checkpoint_visibility": {
+      "new_exists": "visible_in_editor",
+      "content": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "new_exists",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "file:notes/sprint.md"
+            }
+          },
+          {
+            "id": "content",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "file:notes/sprint.md",
+                "key": "content",
+                "expected": "- Review the sprint plan"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "code_server",
+    "difficulty": "complex",
+    "description": "Move the backlog note into a sprint note and update it.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {
+              "action": "rename_path",
+              "path": "notes/backlog.md",
+              "new_path": "notes/sprint.md"
+            },
+            {
+              "action": "open_file",
+              "path": "notes/sprint.md"
+            },
+            {
+              "action": "append_text",
+              "path": "notes/sprint.md",
+              "text": "- Review the sprint plan\n"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "notes_focus"
+  }
+}

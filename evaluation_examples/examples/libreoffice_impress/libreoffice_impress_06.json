@@ -1,0 +1,83 @@
+{
+  "id": "libreoffice_impress_06",
+  "software": "libreoffice_impress",
+  "difficulty": "medium",
+  "description": "Retitle slide 1 to \"Quarterly Plan\" and replace its body text with \"Confirm team assignments this week.\".",
+  "instruction": "Retitle slide 1 to \"Quarterly Plan\" and replace its first body line with \"Confirm team assignments this week.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_slide_title",
+            "slide_index": 1,
+            "text": "Quarterly Plan"
+          },
+          {
+            "action": "set_slide_body",
+            "slide_index": 1,
+            "body_index": 1,
+            "text": "Confirm team assignments this week."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "Slide 1 shows the new Quarterly Plan title and the assignments message.",
+    "checkpoint_visibility": {
+      "title": "visible_on_slide",
+      "body": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "title",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:1:title",
+                "key": "text_content",
+                "expected": "Quarterly Plan"
+              }
+            }
+          },
+          {
+            "id": "body",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:1:body:1",
+                "key": "text_content",
+                "expected": "Confirm team assignments this week."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "single_slide",
+    "slide_indices": [
+      1
+    ]
+  }
+}

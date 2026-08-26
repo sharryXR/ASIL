@@ -1,0 +1,14 @@
+{
+  "id": "nautilus_03",
+  "instruction": "From `Projects/alpha`, go back to the `Projects` folder.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "nautilus_workspace_default",
+  "config": [],
+  "related_apps": ["nautilus"],
+  "evaluator": {"selection": "best_score", "paths": [{"path_id": "nautilus_03_primary_path", "exclusive_group": "success_paths", "checkpoints": [{"id": "nautilus_03_location", "weight": 0.5, "gui_visible_required": true, "rule": {"element_value": {"id": "location", "key": "path", "expected": "Projects"}}}, {"id": "nautilus_03_entry", "weight": 0.5, "gui_visible_required": true, "rule": {"any_element_matches": {"type": "directory_entry", "value": {"path": "Projects/alpha"}}}}]}]},
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {"software": "nautilus", "difficulty": "simple", "description": "Navigate back from Projects/alpha to Projects.", "actions": [{"action_type": "invoke_function", "target": "nautilus", "params": {"operations": [{"action": "go_back"}]}}], "validation": {"conditions": [{"element_value": {"id": "location", "key": "path", "expected": "Projects"}}, {"any_element_matches": {"type": "directory_entry", "value": {"path": "Projects/alpha"}}}]}, "initial_state": "projects_alpha"},
+  "gui_expectations": {"success_surface": "file_list", "visible_change_summary": "The parent Projects folder is shown with the alpha subfolder visible.", "checkpoint_visibility": {"nautilus_03_location": "visible_in_location_bar", "nautilus_03_entry": "visible_in_file_list"}}
+}

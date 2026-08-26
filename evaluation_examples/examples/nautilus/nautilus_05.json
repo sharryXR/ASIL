@@ -1,0 +1,14 @@
+{
+  "id": "nautilus_05",
+  "instruction": "Rename `milestones.txt` to `beta-milestones.txt` inside `Projects/beta`.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "nautilus_workspace_default",
+  "config": [],
+  "related_apps": ["nautilus"],
+  "evaluator": {"selection": "best_score", "paths": [{"path_id": "nautilus_05_primary_path", "exclusive_group": "success_paths", "checkpoints": [{"id": "nautilus_05_renamed", "weight": 0.5, "gui_visible_required": true, "rule": {"any_element_matches": {"type": "directory_entry", "value": {"path": "Projects/beta/beta-milestones.txt"}}}}, {"id": "nautilus_05_old_removed", "weight": 0.5, "gui_visible_required": true, "rule": {"no_element_matches": {"type": "directory_entry", "value": {"path": "Projects/beta/milestones.txt"}}}}]}]},
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {"software": "nautilus", "difficulty": "simple", "description": "Rename the beta milestones file.", "actions": [{"action_type": "invoke_function", "target": "nautilus", "params": {"operations": [{"action": "rename_entry", "path": "milestones.txt", "new_name": "beta-milestones.txt"}]}}], "validation": {"conditions": [{"any_element_matches": {"type": "directory_entry", "value": {"path": "Projects/beta/beta-milestones.txt"}}}, {"no_element_matches": {"type": "directory_entry", "value": {"path": "Projects/beta/milestones.txt"}}}]}, "initial_state": "projects_beta"},
+  "gui_expectations": {"success_surface": "file_list", "visible_change_summary": "The beta folder now shows beta-milestones.txt instead of milestones.txt.", "checkpoint_visibility": {"nautilus_05_renamed": "visible_in_file_list", "nautilus_05_old_removed": "visible_in_file_list"}}
+}

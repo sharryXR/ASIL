@@ -1,0 +1,86 @@
+{
+  "audacity": [
+    "audacity_01",
+    "audacity_02",
+    "audacity_03",
+    "audacity_04",
+    "audacity_05",
+    "audacity_06"
+  ],
+  "blender": [
+    "blender_01",
+    "blender_02",
+    "blender_03",
+    "blender_05"
+  ],
+  "code_server": [
+    "code_server_01",
+    "code_server_02",
+    "code_server_03",
+    "code_server_04",
+    "code_server_05"
+  ],
+  "drawio": [
+    "drawio_01",
+    "drawio_02",
+    "drawio_03",
+    "drawio_04",
+    "drawio_05"
+  ],
+  "gimp": [
+    "gimp_01",
+    "gimp_02",
+    "gimp_03",
+    "gimp_04",
+    "gimp_05"
+  ],
+  "gitea": [
+    "gitea_01",
+    "gitea_02",
+    "gitea_03",
+    "gitea_04",
+    "gitea_05",
+    "gitea_11"
+  ],
+  "inkscape": [
+    "inkscape_01",
+    "inkscape_02",
+    "inkscape_03",
+    "inkscape_04",
+    "inkscape_05"
+  ],
+  "jupyterlab": [
+    "jupyterlab_01",
+    "jupyterlab_02",
+    "jupyterlab_03",
+    "jupyterlab_04",
+    "jupyterlab_05",
+    "jupyterlab_12"
+  ],
+  "kdenlive": [
+    "kdenlive_01",
+    "kdenlive_02",
+    "kdenlive_03",
+    "kdenlive_04",
+    "kdenlive_05"
+  ],
+  "libreoffice": [
+    "libreoffice_01",
+    "libreoffice_02",
+    "libreoffice_03"
+  ],
+  "nautilus": [
+    "nautilus_01",
+    "nautilus_02",
+    "nautilus_03",
+    "nautilus_04",
+    "nautilus_05"
+  ],
+  "obs": [
+    "obs_01",
+    "obs_02",
+    "obs_03",
+    "obs_04",
+    "obs_05"
+  ]
+}

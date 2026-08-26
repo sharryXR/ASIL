@@ -1,0 +1,64 @@
+{
+  "id": "libreoffice_impress_03",
+  "software": "libreoffice_impress",
+  "difficulty": "simple",
+  "description": "Rename slide 2 to \"Milestone Review\".",
+  "instruction": "Change the title of slide 2 to \"Milestone Review\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_slide_title",
+            "slide_index": 2,
+            "text": "Milestone Review"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "The second slide title reads Milestone Review.",
+    "checkpoint_visibility": {
+      "slide2_title": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "slide2_title",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:title",
+                "key": "text_content",
+                "expected": "Milestone Review"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "single_slide",
+    "slide_indices": [
+      2
+    ]
+  }
+}

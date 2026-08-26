@@ -1,0 +1,77 @@
+{
+  "id": "libreoffice_writer_09",
+  "software": "libreoffice_writer",
+  "difficulty": "medium",
+  "description": "Rename the title to \"Meeting Notes\" and append a heading \"Decisions\".",
+  "instruction": "Rename the title to \"Meeting Notes\" and append a heading \"Decisions\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odt_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_heading_text",
+            "index": 1,
+            "text": "Meeting Notes"
+          },
+          {
+            "action": "add_heading",
+            "text": "Decisions",
+            "level": 2
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "snapshot": "writer_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "document_page",
+    "visible_change_summary": "The document title becomes Meeting Notes and a Decisions heading is appended.",
+    "checkpoint_visibility": {
+      "title": "visible_on_page",
+      "decisions_heading": "visible_on_page"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "title",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "heading:1",
+                "key": "text_content",
+                "expected": "Meeting Notes"
+              }
+            }
+          },
+          {
+            "id": "decisions_heading",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "heading",
+                "value": {
+                  "text_content": "Decisions"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

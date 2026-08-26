@@ -1,0 +1,95 @@
+{
+  "id": "gitea_07",
+  "instruction": "Create a label 'bug' with red color #ee0701",
+  "source": "asil_benchmark_v1",
+  "snapshot": "gitea_instance_default",
+  "config": [],
+  "related_apps": [
+    "gitea"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "gitea_07_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "gitea_07_1",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "label:1",
+                "key": "name",
+                "expected": "bug"
+              }
+            }
+          },
+          {
+            "id": "gitea_07_2",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "label:1",
+                "key": "color",
+                "expected": "#ee0701"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gitea",
+    "difficulty": "medium",
+    "description": "Create a label 'bug' with red color #ee0701",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/labels",
+          "body": {
+            "name": "bug",
+            "color": "#ee0701",
+            "description": "Something is not working"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "label:1",
+            "key": "name",
+            "expected": "bug"
+          }
+        },
+        {
+          "element_value": {
+            "id": "label:1",
+            "key": "color",
+            "expected": "#ee0701"
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "web_page",
+    "visible_change_summary": "Create a label 'bug' with red color #ee0701",
+    "checkpoint_visibility": {
+      "gitea_07_1": "visible_on_web_page",
+      "gitea_07_2": "visible_on_web_page"
+    }
+  }
+}

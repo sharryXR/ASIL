@@ -1,0 +1,101 @@
+{
+  "id": "libreoffice_impress_13",
+  "software": "libreoffice_impress",
+  "difficulty": "medium",
+  "description": "Change slide 2 to title \"Delivery Timeline\" and replace its body with two lines: \"Publish the rollout calendar.\" and \"Confirm the dry-run date.\".",
+  "instruction": "Change slide 2 title to \"Delivery Timeline\" and make its body lines read \"Publish the rollout calendar.\" and \"Confirm the dry-run date.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_slide_title",
+            "slide_index": 2,
+            "text": "Delivery Timeline"
+          },
+          {
+            "action": "set_slide_body",
+            "slide_index": 2,
+            "body_index": 1,
+            "text": "Publish the rollout calendar."
+          },
+          {
+            "action": "append_slide_body",
+            "slide_index": 2,
+            "text": "Confirm the dry-run date."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "Slide 2 becomes Delivery Timeline and shows two rollout-planning lines.",
+    "checkpoint_visibility": {
+      "title": "visible_on_slide",
+      "body1": "visible_on_slide",
+      "body2": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "title",
+            "weight": 0.34,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:title",
+                "key": "text_content",
+                "expected": "Delivery Timeline"
+              }
+            }
+          },
+          {
+            "id": "body1",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:body:1",
+                "key": "text_content",
+                "expected": "Publish the rollout calendar."
+              }
+            }
+          },
+          {
+            "id": "body2",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:body:2",
+                "key": "text_content",
+                "expected": "Confirm the dry-run date."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "single_slide",
+    "slide_indices": [
+      2
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use ASIL, please cite the paper and software release."
+title: "ASIL: Replacing Screenshot-and-Click with Structured State and Semantic Actions"
+type: software
+authors:
+  - given-names: Rui
+    family-names: Xie
+    email: sharryXR@sjtu.edu.cn
+    affiliation: Shanghai Jiao Tong University
+  - given-names: Lu
+    family-names: Chen
+    email: chenlusz@sjtu.edu.cn
+    affiliation: Shanghai Jiao Tong University
+repository-code: "https://github.com/sharryXR/ASIL"
+url: "https://github.com/sharryXR/ASIL"
+license: Apache-2.0
+version: "0.1.0"
+date-released: 2026-08-26

@@ -1,0 +1,14 @@
+{
+  "id": "nautilus_14",
+  "instruction": "Move `milestones.txt` from `Projects/beta` into `Inbox`, then open `Inbox`.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "nautilus_workspace_default",
+  "config": [],
+  "related_apps": ["nautilus"],
+  "evaluator": {"selection": "best_score", "paths": [{"path_id": "nautilus_14_primary_path", "exclusive_group": "success_paths", "checkpoints": [{"id": "nautilus_14_location", "weight": 0.5, "gui_visible_required": true, "rule": {"element_value": {"id": "location", "key": "path", "expected": "Inbox"}}}, {"id": "nautilus_14_entry", "weight": 0.5, "gui_visible_required": true, "rule": {"any_element_matches": {"type": "directory_entry", "value": {"path": "Inbox/milestones.txt"}}}}]}]},
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {"software": "nautilus", "difficulty": "medium", "description": "Move milestones.txt into Inbox and show the destination folder.", "actions": [{"action_type": "invoke_function", "target": "nautilus", "params": {"operations": [{"action": "move_entry", "path": "milestones.txt", "destination_dir": "../../Inbox"}, {"action": "open_directory", "path": "../../Inbox"}]}}], "validation": {"conditions": [{"element_value": {"id": "location", "key": "path", "expected": "Inbox"}}, {"any_element_matches": {"type": "directory_entry", "value": {"path": "Inbox/milestones.txt"}}}]}, "initial_state": "projects_beta"},
+  "gui_expectations": {"success_surface": "file_list", "visible_change_summary": "Inbox is open and milestones.txt appears there after the move.", "checkpoint_visibility": {"nautilus_14_location": "visible_in_location_bar", "nautilus_14_entry": "visible_in_file_list"}}
+}

@@ -1,0 +1,88 @@
+{
+  "id": "audacity_11",
+  "instruction": "Remove the Music Bed track and rename Voiceover to Narration.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "audacity_default_project",
+  "config": [],
+  "related_apps": [
+    "audacity"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "audacity_11_main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "music_removed",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "no_element_matches": {
+                "type": "track",
+                "id": "track:track_music"
+              }
+            }
+          },
+          {
+            "id": "voice_renamed",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "track:track_voice",
+                "key": "name",
+                "expected": "Narration"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "audacity",
+    "difficulty": "simple",
+    "description": "Remove the Music Bed track and rename Voiceover to Narration.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "delete_track",
+              "track_id": "track_music"
+            },
+            {
+              "action": "set_track_value",
+              "track_id": "track_voice",
+              "field": "name",
+              "value": "Narration"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "track:track_voice",
+        "key": "name",
+        "expected": "Narration"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "multitrack_timeline",
+    "visible_change_summary": "Music Bed disappears and the remaining top track is renamed to Narration.",
+    "checkpoint_visibility": {
+      "music_removed": "visible_in_track_headers",
+      "voice_renamed": "visible_in_track_headers"
+    }
+  }
+}

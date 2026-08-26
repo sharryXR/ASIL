@@ -1,0 +1,224 @@
+{
+  "id": "libreoffice_07",
+  "instruction": "Fill in a budget tracking sheet with headers Category, Budget, Actual. Enter exactly these rows: Marketing | 5000 | 4800; Engineering | 20000 | 21500.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "libreoffice_calc_default",
+  "config": [],
+  "related_apps": [
+    "libreoffice"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "libreoffice_07_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "libreoffice_07_1",
+            "weight": 0.111111,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A1",
+                "key": null,
+                "expected": "Category"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_07_2",
+            "weight": 0.111111,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B1",
+                "key": null,
+                "expected": "Budget"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_07_3",
+            "weight": 0.111111,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C1",
+                "key": null,
+                "expected": "Actual"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_07_4",
+            "weight": 0.111111,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A2",
+                "key": null,
+                "expected": "Marketing"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_07_5",
+            "weight": 0.111111,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B2",
+                "key": null,
+                "expected": "5000"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_07_6",
+            "weight": 0.111111,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C2",
+                "key": null,
+                "expected": "4800"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_07_7",
+            "weight": 0.111111,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A3",
+                "key": null,
+                "expected": "Engineering"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_07_8",
+            "weight": 0.111111,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B3",
+                "key": null,
+                "expected": "20000"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_07_9",
+            "weight": 0.111112,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C3",
+                "key": null,
+                "expected": "21500"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "libreoffice",
+    "difficulty": "medium",
+    "description": "Fill in a budget tracking sheet with categories and amounts",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{ods_path}}",
+        "params": {
+          "operations": [
+            {
+              "sheet": "Sheet1",
+              "cell": "A1",
+              "value": "Category",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B1",
+              "value": "Budget",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C1",
+              "value": "Actual",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A2",
+              "value": "Marketing",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B2",
+              "value": "5000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C2",
+              "value": "4800",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A3",
+              "value": "Engineering",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B3",
+              "value": "20000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C3",
+              "value": "21500",
+              "value_type": "float"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "Sheet1!C3",
+        "key": null,
+        "expected": "21500"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "spreadsheet",
+    "visible_change_summary": "Fill in a budget tracking sheet with headers Category, Budget, Actual. Enter exactly these rows: Marketing | 5000 | 4800; Engineering | 20000 | 21500.",
+    "checkpoint_visibility": {
+      "libreoffice_07_1": "visible_in_sheet",
+      "libreoffice_07_2": "visible_in_sheet",
+      "libreoffice_07_3": "visible_in_sheet",
+      "libreoffice_07_4": "visible_in_sheet",
+      "libreoffice_07_5": "visible_in_sheet",
+      "libreoffice_07_6": "visible_in_sheet",
+      "libreoffice_07_7": "visible_in_sheet",
+      "libreoffice_07_8": "visible_in_sheet",
+      "libreoffice_07_9": "visible_in_sheet"
+    }
+  }
+}

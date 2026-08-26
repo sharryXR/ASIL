@@ -1,0 +1,67 @@
+{
+  "id": "obs_15",
+  "instruction": "Stop the active stream",
+  "source": "asil_benchmark_v1",
+  "snapshot": "obs_default_scene",
+  "config": [],
+  "related_apps": [
+    "obs"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "obs_15_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "obs_15_stream_off",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "stream_active": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "obs",
+    "difficulty": "simple",
+    "description": "Stop the active stream",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "StartStream",
+          "args": {}
+        }
+      },
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "StopStream",
+          "args": {}
+        }
+      }
+    ],
+    "validation": {
+      "current_scene": "Main Scene",
+      "stream_active": false
+    },
+    "initial_state": "streaming_active"
+  },
+  "gui_expectations": {
+    "success_surface": "program_view",
+    "visible_change_summary": "Streaming status is stopped in OBS.",
+    "checkpoint_visibility": {
+      "obs_15_stream_off": "visible_in_obs_window"
+    }
+  }
+}

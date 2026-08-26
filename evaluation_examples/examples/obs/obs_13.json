@@ -1,0 +1,72 @@
+{
+  "id": "obs_13",
+  "instruction": "Set Desktop Audio volume to -6 dB",
+  "source": "asil_benchmark_v1",
+  "snapshot": "obs_default_scene",
+  "config": [],
+  "related_apps": [
+    "obs"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "obs_13_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "obs_13_desktop_volume",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "input_volume_db": {
+                "name": "Desktop Audio",
+                "expected": -6.0
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "obs",
+    "difficulty": "simple",
+    "description": "Set Desktop Audio volume to -6 dB",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "SetInputVolume",
+          "args": {
+            "inputName": "Desktop Audio",
+            "inputVolumeDb": -6.0
+          }
+        }
+      }
+    ],
+    "validation": {
+      "current_scene": "Main Scene",
+      "input_volume_db": {
+        "name": "Desktop Audio",
+        "expected": -6.0
+      },
+      "input_muted": {
+        "name": "Desktop Audio",
+        "expected": false
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "program_view",
+    "visible_change_summary": "Desktop Audio slider sits at -6 dB and remains unmuted.",
+    "checkpoint_visibility": {
+      "obs_13_desktop_volume": "visible_in_obs_window"
+    }
+  }
+}

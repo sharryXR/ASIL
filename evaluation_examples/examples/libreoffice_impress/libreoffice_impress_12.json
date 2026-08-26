@@ -1,0 +1,93 @@
+{
+  "id": "libreoffice_impress_12",
+  "software": "libreoffice_impress",
+  "difficulty": "medium",
+  "description": "Add a slide titled \"Owner Review\" with lines \"Finalize escalation contacts.\" and \"Review backup coverage.\".",
+  "instruction": "Add a new slide titled \"Owner Review\" with two body lines: \"Finalize escalation contacts.\" and \"Review backup coverage.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "add_slide",
+            "title": "Owner Review",
+            "body": [
+              "Finalize escalation contacts.",
+              "Review backup coverage."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "A new Owner Review slide appears with both requested review lines.",
+    "checkpoint_visibility": {
+      "title": "visible_on_slide",
+      "body1": "visible_on_slide",
+      "body2": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "title",
+            "weight": 0.34,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:3:title",
+                "key": "text_content",
+                "expected": "Owner Review"
+              }
+            }
+          },
+          {
+            "id": "body1",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:3:body:1",
+                "key": "text_content",
+                "expected": "Finalize escalation contacts."
+              }
+            }
+          },
+          {
+            "id": "body2",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:3:body:2",
+                "key": "text_content",
+                "expected": "Review backup coverage."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "single_slide",
+    "slide_indices": [
+      3
+    ]
+  }
+}

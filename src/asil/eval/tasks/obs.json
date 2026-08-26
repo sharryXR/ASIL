@@ -1,0 +1,447 @@
+{
+  "software": "obs",
+  "tasks": [
+    {
+      "id": "obs_01",
+      "software": "obs",
+      "difficulty": "simple",
+      "description": "Switch to scene named 'Main Scene'",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetCurrentProgramScene",
+            "args": {"sceneName": "Main Scene"}
+          }
+        }
+      ],
+      "validation": {"current_scene": "Main Scene"}
+    },
+    {
+      "id": "obs_02",
+      "software": "obs",
+      "difficulty": "simple",
+      "description": "Toggle visibility of source 'Webcam' in current scene",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetSceneItemEnabled",
+            "args": {"sceneName": "Main Scene", "sceneItemId": 1, "sceneItemEnabled": false}
+          }
+        }
+      ],
+      "validation": {"source_visible": {"scene": "Main Scene", "source": "Webcam", "expected": false}}
+    },
+    {
+      "id": "obs_03",
+      "software": "obs",
+      "difficulty": "simple",
+      "description": "Get the current program scene name",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "GetCurrentProgramScene",
+            "args": {}
+          }
+        }
+      ],
+      "validation": {"response_has_field": "currentProgramSceneName"}
+    },
+    {
+      "id": "obs_04",
+      "software": "obs",
+      "difficulty": "simple",
+      "description": "Mute the Desktop Audio source",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetInputMute",
+            "args": {"inputName": "Desktop Audio", "inputMuted": true}
+          }
+        }
+      ],
+      "validation": {"input_muted": {"name": "Desktop Audio", "expected": true}}
+    },
+    {
+      "id": "obs_05",
+      "software": "obs",
+      "difficulty": "simple",
+      "description": "Set volume of Mic/Aux to -10 dB",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetInputVolume",
+            "args": {"inputName": "Mic/Aux", "inputVolumeDb": -10.0}
+          }
+        }
+      ],
+      "validation": {"input_volume_db": {"name": "Mic/Aux", "expected": -10.0}}
+    },
+    {
+      "id": "obs_06",
+      "software": "obs",
+      "difficulty": "medium",
+      "description": "Start streaming",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "StartStream",
+            "args": {}
+          }
+        }
+      ],
+      "validation": {"stream_active": true}
+    },
+    {
+      "id": "obs_07",
+      "software": "obs",
+      "difficulty": "medium",
+      "description": "Stop recording",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "StopRecord",
+            "args": {}
+          }
+        }
+      ],
+      "validation": {"record_active": false}
+    },
+    {
+      "id": "obs_08",
+      "software": "obs",
+      "difficulty": "medium",
+      "description": "Switch scene collection to 'Gaming Setup'",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetCurrentSceneCollection",
+            "args": {"sceneCollectionName": "Gaming Setup"}
+          }
+        }
+      ],
+      "validation": {"scene_collection": "Gaming Setup"}
+    },
+    {
+      "id": "obs_09",
+      "software": "obs",
+      "difficulty": "complex",
+      "description": "Perform scene transition: switch preview to 'Intermission', trigger studio mode transition, then switch to program",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetStudioModeEnabled",
+            "args": {"studioModeEnabled": true}
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetCurrentPreviewScene",
+            "args": {"sceneName": "Intermission"}
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "TriggerStudioModeTransition",
+            "args": {}
+          }
+        }
+      ],
+      "validation": {"current_scene": "Intermission"}
+    },
+    {
+      "id": "obs_10",
+      "software": "obs",
+      "difficulty": "complex",
+      "description": "Configure recording to save as MKV at 1080p60 and start recording",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetRecordDirectory",
+            "args": {"recordDirectory": "{{recording_path}}"}
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetVideoSettings",
+            "args": {
+              "fpsNumerator": 60,
+              "fpsDenominator": 1,
+              "baseWidth": 1920,
+              "baseHeight": 1080,
+              "outputWidth": 1920,
+              "outputHeight": 1080
+            }
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "StartRecord",
+            "args": {}
+          }
+        }
+      ],
+      "validation": {"record_active": true}
+    },
+    {
+      "id": "obs_11",
+      "software": "obs",
+      "difficulty": "simple",
+      "description": "Switch to scene named 'BRB'",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetCurrentProgramScene",
+            "args": {"sceneName": "BRB"}
+          }
+        }
+      ],
+      "validation": {"current_scene": "BRB"}
+    },
+    {
+      "id": "obs_12",
+      "software": "obs",
+      "difficulty": "simple",
+      "description": "Unmute the Mic/Aux source",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetInputMute",
+            "args": {"inputName": "Mic/Aux", "inputMuted": false}
+          }
+        }
+      ],
+      "validation": {"input_muted": {"name": "Mic/Aux", "expected": false}}
+    },
+    {
+      "id": "obs_13",
+      "software": "obs",
+      "difficulty": "simple",
+      "description": "Set Desktop Audio volume to -6 dB",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetInputVolume",
+            "args": {"inputName": "Desktop Audio", "inputVolumeDb": -6.0}
+          }
+        }
+      ],
+      "validation": {"input_volume_db": {"name": "Desktop Audio", "expected": -6.0}}
+    },
+    {
+      "id": "obs_14",
+      "software": "obs",
+      "difficulty": "simple",
+      "description": "Hide the Game Capture source in Main Scene",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetSceneItemEnabled",
+            "args": {"sceneName": "Main Scene", "sceneItemId": 2, "sceneItemEnabled": false}
+          }
+        }
+      ],
+      "validation": {"source_visible": {"scene": "Main Scene", "source": "Game Capture", "expected": false}}
+    },
+    {
+      "id": "obs_15",
+      "software": "obs",
+      "difficulty": "simple",
+      "description": "Stop the active stream",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "StartStream",
+            "args": {}
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "StopStream",
+            "args": {}
+          }
+        }
+      ],
+      "validation": {"stream_active": false}
+    },
+    {
+      "id": "obs_16",
+      "software": "obs",
+      "difficulty": "medium",
+      "description": "Switch scene collection to 'Podcast'",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetCurrentSceneCollection",
+            "args": {"sceneCollectionName": "Podcast"}
+          }
+        }
+      ],
+      "validation": {"scene_collection": "Podcast"}
+    },
+    {
+      "id": "obs_17",
+      "software": "obs",
+      "difficulty": "medium",
+      "description": "Set video output to 720p30",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetVideoSettings",
+            "args": {
+              "fpsNumerator": 30,
+              "fpsDenominator": 1,
+              "baseWidth": 1280,
+              "baseHeight": 720,
+              "outputWidth": 1280,
+              "outputHeight": 720
+            }
+          }
+        }
+      ],
+      "validation": {"current_scene": "Main Scene"}
+    },
+    {
+      "id": "obs_18",
+      "software": "obs",
+      "difficulty": "medium",
+      "description": "Start recording",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "StartRecord",
+            "args": {}
+          }
+        }
+      ],
+      "validation": {"record_active": true}
+    },
+    {
+      "id": "obs_19",
+      "software": "obs",
+      "difficulty": "complex",
+      "description": "Mute all audio inputs and switch to Intermission scene",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetInputMute",
+            "args": {"inputName": "Desktop Audio", "inputMuted": true}
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetInputMute",
+            "args": {"inputName": "Mic/Aux", "inputMuted": true}
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetCurrentProgramScene",
+            "args": {"sceneName": "Intermission"}
+          }
+        }
+      ],
+      "validation": {"current_scene": "Intermission"}
+    },
+    {
+      "id": "obs_20",
+      "software": "obs",
+      "difficulty": "complex",
+      "description": "Full live setup: enable studio mode, set preview to BRB, transition, start stream and record",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetStudioModeEnabled",
+            "args": {"studioModeEnabled": true}
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "SetCurrentPreviewScene",
+            "args": {"sceneName": "BRB"}
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "TriggerStudioModeTransition",
+            "args": {}
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "StartStream",
+            "args": {}
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "obs-websocket",
+          "params": {
+            "method": "StartRecord",
+            "args": {}
+          }
+        }
+      ],
+      "validation": {"stream_active": true}
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "id": "audacity_09",
+  "instruction": "Add a new track named Safety Copy and rename Voiceover to Main VO.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "audacity_default_project",
+  "config": [],
+  "related_apps": [
+    "audacity"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "audacity_09_main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "safety_added",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "track",
+                "id": "track:track_safety_copy",
+                "value": {
+                  "name": "Safety Copy"
+                }
+              }
+            }
+          },
+          {
+            "id": "voice_renamed",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "track:track_voice",
+                "key": "name",
+                "expected": "Main VO"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "audacity",
+    "difficulty": "simple",
+    "description": "Add a new track named Safety Copy and rename Voiceover to Main VO.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_track",
+              "track_id": "track_safety_copy",
+              "name": "Safety Copy",
+              "kind": "audio",
+              "mute": false,
+              "solo": false,
+              "gain_db": 0.0,
+              "pan": 0.0,
+              "height_px": 132,
+              "clips": []
+            },
+            {
+              "action": "set_track_value",
+              "track_id": "track_voice",
+              "field": "name",
+              "value": "Main VO"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "any_element_matches": {
+        "type": "track",
+        "id": "track:track_safety_copy",
+        "value": {
+          "name": "Safety Copy"
+        }
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "multitrack_timeline",
+    "visible_change_summary": "A Safety Copy track appears and Voiceover is renamed to Main VO.",
+    "checkpoint_visibility": {
+      "safety_added": "visible_in_track_headers",
+      "voice_renamed": "visible_in_track_headers"
+    }
+  }
+}

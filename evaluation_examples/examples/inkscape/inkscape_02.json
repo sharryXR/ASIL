@@ -1,0 +1,94 @@
+{
+  "id": "inkscape_02",
+  "instruction": "Modify the rectangle at (10,20) with size 100x50 so its corner radius becomes 10px.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_02_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_02_1",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "rect",
+                "value": {
+                  "x": "10",
+                  "y": "20",
+                  "width": "100",
+                  "height": "50",
+                  "rx": "10",
+                  "ry": "10"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "simple",
+    "description": "Modify the rectangle at (10,20) with size 100x50 so its corner radius becomes 10px.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "xpath": "//*[@id='rect1']",
+              "attribute": "rx",
+              "value": "10"
+            },
+            {
+              "xpath": "//*[@id='rect1']",
+              "attribute": "ry",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "rect1",
+            "key": "rx",
+            "expected": "10"
+          }
+        },
+        {
+          "element_value": {
+            "id": "rect1",
+            "key": "ry",
+            "expected": "10"
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Round rect1 corners to 10px.",
+    "checkpoint_visibility": {
+      "inkscape_02_1": "visible_on_canvas",
+      "inkscape_02_2": "visible_on_canvas"
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "id": "libreoffice_writer_15",
+  "software": "libreoffice_writer",
+  "difficulty": "complex",
+  "description": "Create a new section with heading \"Highlights\" and two paragraphs: \"Adoption exceeded forecast.\" and \"Support tickets dropped week over week.\".",
+  "instruction": "Create a new section with heading \"Highlights\" and two paragraphs: \"Adoption exceeded forecast.\" and \"Support tickets dropped week over week.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odt_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "add_heading",
+            "text": "Highlights",
+            "level": 2
+          },
+          {
+            "action": "add_paragraph",
+            "text": "Adoption exceeded forecast."
+          },
+          {
+            "action": "add_paragraph",
+            "text": "Support tickets dropped week over week."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "snapshot": "writer_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "document_page",
+    "visible_change_summary": "A Highlights section appears with two visible summary bullets as paragraphs.",
+    "checkpoint_visibility": {
+      "heading": "visible_on_page",
+      "para1": "visible_on_page",
+      "para2": "visible_on_page"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "heading",
+            "weight": 0.34,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "heading",
+                "value": {
+                  "text_content": "Highlights"
+                }
+              }
+            }
+          },
+          {
+            "id": "para1",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "paragraph",
+                "value": {
+                  "text_content": "Adoption exceeded forecast."
+                }
+              }
+            }
+          },
+          {
+            "id": "para2",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "paragraph",
+                "value": {
+                  "text_content": "Support tickets dropped week over week."
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

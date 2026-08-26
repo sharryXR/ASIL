@@ -1,0 +1,104 @@
+{
+  "gimp": [
+    "gimp_realwork_hard_001",
+    "gimp_realwork_hard_002",
+    "gimp_realwork_hard_003",
+    "gimp_realwork_hard_004",
+    "gimp_realwork_hard_005",
+    "gimp_realwork_hard_006",
+    "gimp_realwork_hard_007",
+    "gimp_realwork_hard_008",
+    "gimp_realwork_hard_009",
+    "gimp_realwork_hard_010",
+    "gimp_realwork_hard_011",
+    "gimp_realwork_hard_012",
+    "gimp_realwork_hard_013",
+    "gimp_realwork_hard_014",
+    "gimp_realwork_hard_015",
+    "gimp_realwork_hard_016",
+    "gimp_realwork_hard_017",
+    "gimp_realwork_hard_018",
+    "gimp_realwork_hard_019",
+    "gimp_realwork_hard_020",
+    "gimp_realwork_hard_021",
+    "gimp_realwork_hard_022",
+    "gimp_realwork_hard_023",
+    "gimp_realwork_hard_024"
+  ],
+  "multi_apps": [
+    "multi_apps_realwork_hard_001",
+    "multi_apps_realwork_hard_002",
+    "multi_apps_realwork_hard_003",
+    "multi_apps_realwork_hard_004",
+    "multi_apps_realwork_hard_005",
+    "multi_apps_realwork_hard_006",
+    "multi_apps_realwork_hard_007",
+    "multi_apps_realwork_hard_008",
+    "multi_apps_realwork_hard_009",
+    "multi_apps_realwork_hard_010",
+    "multi_apps_realwork_hard_011",
+    "multi_apps_realwork_hard_012",
+    "multi_apps_realwork_hard_013",
+    "multi_apps_realwork_hard_014",
+    "multi_apps_realwork_hard_015",
+    "multi_apps_realwork_hard_016",
+    "multi_apps_realwork_hard_017",
+    "multi_apps_realwork_hard_018",
+    "multi_apps_realwork_hard_019",
+    "multi_apps_realwork_hard_020",
+    "multi_apps_realwork_hard_021",
+    "multi_apps_realwork_hard_022",
+    "multi_apps_realwork_hard_023",
+    "multi_apps_realwork_hard_024",
+    "multi_apps_realwork_hard_025",
+    "multi_apps_realwork_hard_026",
+    "multi_apps_realwork_hard_027",
+    "multi_apps_realwork_hard_028",
+    "multi_apps_realwork_hard_029",
+    "multi_apps_realwork_hard_030"
+  ],
+  "drawio": [
+    "drawio_realwork_hard_001",
+    "drawio_realwork_hard_002",
+    "drawio_realwork_hard_003"
+  ],
+  "libreoffice": [
+    "libreoffice_realwork_hard_001",
+    "libreoffice_realwork_hard_002",
+    "libreoffice_realwork_hard_003"
+  ],
+  "libreoffice_writer": [
+    "libreoffice_writer_realwork_hard_001",
+    "libreoffice_writer_realwork_hard_002",
+    "libreoffice_writer_realwork_hard_003"
+  ],
+  "libreoffice_impress": [
+    "libreoffice_impress_realwork_hard_001",
+    "libreoffice_impress_realwork_hard_002",
+    "libreoffice_impress_realwork_hard_003"
+  ],
+  "code_server": [
+    "code_server_realwork_hard_001",
+    "code_server_realwork_hard_002",
+    "code_server_realwork_hard_003",
+    "code_server_realwork_hard_004"
+  ],
+  "gitea": [
+    "gitea_realwork_hard_001",
+    "gitea_realwork_hard_002",
+    "gitea_realwork_hard_003"
+  ],
+  "jupyterlab": [
+    "jupyterlab_realwork_hard_001"
+  ],
+  "nautilus": [
+    "nautilus_realwork_hard_001"
+  ],
+  "thunderbird": [
+    "thunderbird_realwork_hard_001",
+    "thunderbird_realwork_hard_002",
+    "thunderbird_realwork_hard_003",
+    "thunderbird_realwork_hard_004",
+    "thunderbird_realwork_hard_005"
+  ]
+}

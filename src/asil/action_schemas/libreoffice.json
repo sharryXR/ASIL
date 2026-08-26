@@ -1,0 +1,77 @@
+{
+  "software": "LibreOffice Calc",
+  "supported_action_types": ["modify_file"],
+  "target": "The ODS file path (from app_state.document_path)",
+  "description": "Manipulates ODS spreadsheet cells. Each operation sets a single cell's value in a specified sheet.",
+  "actions": [
+    {
+      "name": "set_cell_value",
+      "description": "Set the value and type of a spreadsheet cell. Cell references use Excel-style notation (A1, B3, Z100).",
+      "params_schema": {
+        "operations": [
+          {
+            "sheet": "Sheet name, e.g. Sheet1",
+            "cell": "Cell reference, e.g. A1, B3",
+            "value": "New value as string",
+            "value_type": "string | float"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Set cell A1 to text 'Revenue'",
+          "action": {
+            "action_type": "modify_file",
+            "target": "test.ods",
+            "params": {
+              "operations": [
+                {"sheet": "Sheet1", "cell": "A1", "value": "Revenue", "value_type": "string"}
+              ]
+            }
+          }
+        },
+        {
+          "description": "Set cell B2 to numeric value 500",
+          "action": {
+            "action_type": "modify_file",
+            "target": "test.ods",
+            "params": {
+              "operations": [
+                {"sheet": "Sheet1", "cell": "B2", "value": "500", "value_type": "float"}
+              ]
+            }
+          }
+        },
+        {
+          "description": "Fill a header row",
+          "action": {
+            "action_type": "modify_file",
+            "target": "test.ods",
+            "params": {
+              "operations": [
+                {"sheet": "Sheet1", "cell": "A1", "value": "Name", "value_type": "string"},
+                {"sheet": "Sheet1", "cell": "B1", "value": "Q1", "value_type": "string"},
+                {"sheet": "Sheet1", "cell": "C1", "value": "Q2", "value_type": "string"},
+                {"sheet": "Sheet1", "cell": "D1", "value": "Q3", "value_type": "string"}
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "done_action": {
+    "description": "Return this action when the task is fully complete.",
+    "example": {"action_type": "done", "target": "", "params": {}}
+  },
+  "tips": [
+    "Cell IDs in observations use format 'SheetName!CellRef', e.g. 'Sheet1!A1'",
+    "Use value_type 'float' for numbers, 'string' for text",
+    "Batch ALL required cell writes into a single action's operations array — do it in one shot",
+    "Rows and columns are auto-extended if the target cell doesn't exist yet",
+    "Numeric values must still be passed as strings in the value field",
+    "CRITICAL: Set target to the full document path shown in 'Document path (use as target)'",
+    "CRITICAL: After writing, verify the Success Criteria cell exists in the observation — if yes, return done immediately",
+    "CRITICAL: If the Success Criteria cell already has the correct value in the Current State, return done without writing"
+  ]
+}

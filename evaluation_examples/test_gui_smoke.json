@@ -1,0 +1,20 @@
+{
+  "inkscape": [
+    "inkscape_01"
+  ],
+  "libreoffice": [
+    "libreoffice_01"
+  ],
+  "obs": [
+    "obs_01"
+  ],
+  "gitea": [
+    "gitea_01"
+  ],
+  "drawio": [
+    "drawio_01"
+  ],
+  "jupyterlab": [
+    "jupyterlab_01"
+  ]
+}

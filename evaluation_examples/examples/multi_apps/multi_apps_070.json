@@ -1,0 +1,173 @@
+{
+  "id": "multi_apps_070",
+  "software": "multi_apps",
+  "source": "asil_multi_apps_generated",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: add an Impress slide titled 'MA-070 launch slide'; add a draw.io shape labeled 'MA-070 flow'; add a GIMP text layer containing 'MA-070 asset'.",
+  "related_apps": [
+    "libreoffice_impress",
+    "drawio",
+    "gimp"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "libreoffice_impress_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "libreoffice_impress",
+                "rule": {
+                  "any_element_matches": {
+                    "type": "slide_title",
+                    "value": {
+                      "text_content": "MA-070 launch slide"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "drawio_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "drawio",
+                "rule": {
+                  "element_contains": {
+                    "id": "shape:draw_multi_070",
+                    "key": "label",
+                    "expected": "MA-070 flow"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "gimp_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "gimp",
+                "rule": {
+                  "element_contains": {
+                    "id": "gimp_multi_070",
+                    "key": "text",
+                    "expected": "MA-070 asset"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "libreoffice_impress_checkpoint": "visible_in_libreoffice_impress",
+      "drawio_checkpoint": "visible_in_drawio",
+      "gimp_checkpoint": "visible_in_gimp"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "complex",
+    "description": "Mixed Release cross-app task for libreoffice_impress, drawio, gimp.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "libreoffice_impress": "default",
+      "drawio": "default",
+      "gimp": "default"
+    },
+    "primary_app": "libreoffice_impress",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "libreoffice_impress",
+              "action": {
+                "action_type": "modify_file",
+                "target": "presentation",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_slide",
+                      "title": "MA-070 launch slide",
+                      "body": [
+                        "Cross-app proof for MA-070"
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "drawio",
+              "action": {
+                "action_type": "modify_file",
+                "target": "diagram",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_shape",
+                      "id": "draw_multi_070",
+                      "label": "MA-070 flow",
+                      "shape_kind": "rounded",
+                      "x": 150,
+                      "y": 190,
+                      "width": 150,
+                      "height": 70,
+                      "fill": "#d1fae5"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "gimp",
+              "action": {
+                "action_type": "invoke_function",
+                "target": "gimp",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_text_layer",
+                      "id": "gimp_multi_070",
+                      "label": "MA-070 asset",
+                      "text": "MA-070 asset",
+                      "x": 110,
+                      "y": 120,
+                      "font_size": 26,
+                      "color": "#0f766e"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "mixed_release"
+  }
+}

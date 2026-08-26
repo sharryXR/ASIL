@@ -1,0 +1,150 @@
+{
+  "software": "Audacity",
+  "supported_action_types": ["modify_file", "set_value"],
+  "target": "The project state JSON path (from app_state.document_path) or audacity_project",
+  "description": "Manipulates a deterministic Audacity timeline snapshot stored as JSON. Actions should only describe visible timeline outcomes such as track names, mute or solo state, selection bounds, labels, clip timing, transport state, and export settings.",
+  "actions": [
+    {
+      "name": "set_track_value",
+      "description": "Update a visible track property like name, mute, solo, gain_db, pan, or height_px.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "set_track_value",
+            "track_id": "track_music",
+            "field": "name",
+            "value": "Narration Bed"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Rename the music track and unmute it",
+          "action": {
+            "action_type": "modify_file",
+            "target": "{{project_path}}",
+            "params": {
+              "operations": [
+                {"action": "set_track_value", "track_id": "track_music", "field": "name", "value": "Narration Bed"},
+                {"action": "set_track_value", "track_id": "track_music", "field": "mute", "value": false}
+              ]
+            }
+          }
+        },
+        {
+          "description": "Add a new CTA FX track and move it to the top of the stack",
+          "action": {
+            "action_type": "modify_file",
+            "target": "{{project_path}}",
+            "params": {
+              "operations": [
+                {"action": "add_track", "track_id": "track_cta_fx", "name": "CTA FX", "kind": "audio", "clips": []},
+                {"action": "move_track", "track_id": "track_cta_fx", "index": 0}
+              ]
+            }
+          }
+        },
+        {
+          "description": "Delete an unused scratch track",
+          "action": {
+            "action_type": "modify_file",
+            "target": "{{project_path}}",
+            "params": {
+              "operations": [
+                {"action": "delete_track", "track_id": "track_scratch"}
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "set_selection_or_labels",
+      "description": "Adjust the visible timeline selection or edit labels shown on the label track.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "set_selection",
+            "start": 1.0,
+            "end": 3.5,
+            "focused_track_id": "track_voice"
+          },
+          {
+            "action": "set_label",
+            "label_id": "label_edit",
+            "text": "Shorten pause",
+            "start": 3.9,
+            "end": 4.3
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Create a new outro label",
+          "action": {
+            "action_type": "set_value",
+            "target": "audacity_project",
+            "params": {
+              "operations": [
+                {"action": "add_label", "label_id": "label_outro", "text": "Outro", "start": 12.0, "end": 14.0}
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "set_clip_transport_export",
+      "description": "Update visible clip timing, transport state, or export settings.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "set_clip_value",
+            "clip_id": "clip_voice_1",
+            "field": "end",
+            "value": 7.5
+          },
+          {
+            "action": "set_transport",
+            "field": "playback",
+            "value": "playing"
+          },
+          {
+            "action": "set_export",
+            "field": "filename",
+            "value": "episode_mix_final.mp3"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Trim the voice clip and switch export format to MP3",
+          "action": {
+            "action_type": "modify_file",
+            "target": "{{project_path}}",
+            "params": {
+              "operations": [
+                {"action": "set_clip_value", "clip_id": "clip_voice_1", "field": "end", "value": 7.5},
+                {"action": "set_export", "field": "format", "value": "mp3"},
+                {"action": "set_export", "field": "filename", "value": "episode_mix_final.mp3"}
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "done_action": {
+    "description": "Return this action when the task is fully complete.",
+    "example": {"action_type": "done", "target": "", "params": {}}
+  },
+  "tips": [
+    "Use exact track ids from the observation, such as track:track_music implying track_id=track_music",
+    "When tasks add or remove tracks, prefer add_track, delete_track, and move_track instead of overloading label or clip operations.",
+    "Keep actions focused on GUI-visible outcomes instead of hidden internal metadata",
+    "Selection bounds are measured in seconds and should match the visible timeline range",
+    "Labels should include visible text plus start and end times",
+    "Export settings should update both format and filename when the task asks for a different output artifact",
+    "Set target to the exact project path shown in app_state.document_path or use audacity_project when the adapter allows it"
+  ]
+}

@@ -1,0 +1,333 @@
+{
+  "id": "gimp_realwork_hard_004",
+  "software": "gimp",
+  "difficulty": "complex",
+  "description": "Create a conservation campaign image from a real coastal photo.",
+  "instruction": "Create an 800x600 conservation campaign image from the coast photo. Use a centered crop, lower brightness a little, increase saturation, add a deep green top banner, add the title PROTECT THE SHORE, and add the detail VOLUNTEER CLEANUP.",
+  "source": "asil_realwork_hard_v1",
+  "snapshot": "gimp_default",
+  "config": [],
+  "related_apps": [
+    "gimp"
+  ],
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_image_layer",
+            "id": "conservation_photo",
+            "label": "Conservation Photo",
+            "asset_path": "evaluation_examples/assets/realwork_images/coast_960.jpg",
+            "x": 0,
+            "y": 0,
+            "width": 800,
+            "height": 600,
+            "crop": {
+              "x": 70,
+              "y": 10,
+              "width": 820,
+              "height": 615
+            },
+            "filters": {
+              "brightness": 0.92,
+              "contrast": 1.12,
+              "saturation": 1.18
+            }
+          },
+          {
+            "action": "add_layer",
+            "id": "campaign_banner",
+            "label": "Campaign Banner",
+            "kind": "rectangle",
+            "x": 0,
+            "y": 0,
+            "width": 800,
+            "height": 150,
+            "fill": "#1b4332",
+            "opacity": 0.84
+          },
+          {
+            "action": "add_text_layer",
+            "id": "campaign_title",
+            "label": "Campaign Title",
+            "text": "PROTECT THE SHORE",
+            "x": 42,
+            "y": 34,
+            "font_size": 42,
+            "color": "#ffffff"
+          },
+          {
+            "action": "add_text_layer",
+            "id": "campaign_detail",
+            "label": "Campaign Detail",
+            "text": "VOLUNTEER CLEANUP",
+            "x": 46,
+            "y": 96,
+            "font_size": 24,
+            "color": "#b7e4c7"
+          }
+        ]
+      }
+    }
+  ],
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "The coast photo is transformed into a conservation campaign graphic with a green banner.",
+    "checkpoint_visibility": {
+      "canvas_size": "visible_on_canvas",
+      "photo_asset": "visible_on_canvas",
+      "photo_width": "visible_on_canvas",
+      "photo_height": "visible_on_canvas",
+      "photo_filters": "visible_on_canvas",
+      "overlay_fill": "visible_on_canvas",
+      "overlay_opacity": "visible_on_canvas",
+      "title_text": "visible_on_canvas",
+      "title_position": "visible_on_canvas",
+      "detail_text": "visible_on_canvas",
+      "detail_position": "visible_on_canvas",
+      "rendered_region": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "canvas_size",
+            "weight": 0.8,
+            "gui_visible_required": true,
+            "rule": {
+              "image_size": {
+                "width": 800,
+                "height": 600
+              }
+            }
+          },
+          {
+            "id": "photo_asset",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "conservation_photo",
+                "key": "asset_path",
+                "expected": "evaluation_examples/assets/realwork_images/coast_960.jpg"
+              }
+            }
+          },
+          {
+            "id": "photo_width",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "conservation_photo",
+                "key": "width",
+                "expected": 800
+              }
+            }
+          },
+          {
+            "id": "photo_height",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "conservation_photo",
+                "key": "height",
+                "expected": 600
+              }
+            }
+          },
+          {
+            "id": "photo_filters",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "conservation_photo",
+                "key": "filters",
+                "expected": {
+                  "brightness": 0.92,
+                  "contrast": 1.12,
+                  "saturation": 1.18
+                }
+              }
+            }
+          },
+          {
+            "id": "overlay_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "campaign_banner",
+                "key": "fill",
+                "expected": "#1b4332"
+              }
+            }
+          },
+          {
+            "id": "overlay_opacity",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "campaign_banner",
+                "key": "opacity",
+                "expected": 0.84
+              }
+            }
+          },
+          {
+            "id": "title_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "campaign_title",
+                "key": "text",
+                "expected": "PROTECT THE SHORE"
+              }
+            }
+          },
+          {
+            "id": "title_position",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "campaign_title",
+                "key": "x",
+                "expected": 42
+              }
+            }
+          },
+          {
+            "id": "detail_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "campaign_detail",
+                "key": "text",
+                "expected": "VOLUNTEER CLEANUP"
+              }
+            }
+          },
+          {
+            "id": "detail_position",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "campaign_detail",
+                "key": "y",
+                "expected": 96
+              }
+            }
+          },
+          {
+            "id": "rendered_region",
+            "weight": 0.8,
+            "gui_visible_required": true,
+            "rule": {
+              "image_region_stat": {
+                "box": [
+                  20,
+                  20,
+                  760,
+                  110
+                ],
+                "metric": "green",
+                "min": 45,
+                "max": 150
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "complex",
+    "category": "realwork_hard",
+    "description": "Create a conservation campaign image from a real coastal photo.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_image_layer",
+              "id": "conservation_photo",
+              "label": "Conservation Photo",
+              "asset_path": "evaluation_examples/assets/realwork_images/coast_960.jpg",
+              "x": 0,
+              "y": 0,
+              "width": 800,
+              "height": 600,
+              "crop": {
+                "x": 70,
+                "y": 10,
+                "width": 820,
+                "height": 615
+              },
+              "filters": {
+                "brightness": 0.92,
+                "contrast": 1.12,
+                "saturation": 1.18
+              }
+            },
+            {
+              "action": "add_layer",
+              "id": "campaign_banner",
+              "label": "Campaign Banner",
+              "kind": "rectangle",
+              "x": 0,
+              "y": 0,
+              "width": 800,
+              "height": 150,
+              "fill": "#1b4332",
+              "opacity": 0.84
+            },
+            {
+              "action": "add_text_layer",
+              "id": "campaign_title",
+              "label": "Campaign Title",
+              "text": "PROTECT THE SHORE",
+              "x": 42,
+              "y": 34,
+              "font_size": 42,
+              "color": "#ffffff"
+            },
+            {
+              "action": "add_text_layer",
+              "id": "campaign_detail",
+              "label": "Campaign Detail",
+              "text": "VOLUNTEER CLEANUP",
+              "x": 46,
+              "y": 96,
+              "font_size": 24,
+              "color": "#b7e4c7"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank"
+  }
+}

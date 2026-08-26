@@ -1,0 +1,202 @@
+{
+  "software": "Thunderbird",
+  "supported_action_types": ["invoke_function"],
+  "target": "thunderbird",
+  "description": "Runs deterministic Thunderbird mailbox operations against a local mailbox state file. Operations execute sequentially within one action.",
+  "actions": [
+    {
+      "name": "switch_folder",
+      "description": "Open a mailbox folder and focus its first visible message, if any.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "switch_folder",
+            "folder": "Projects"
+          }
+        ]
+      }
+    },
+    {
+      "name": "select_message",
+      "description": "Select a specific message and open its preview pane.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "select_message",
+            "id": "msg_client_followup"
+          }
+        ]
+      }
+    },
+    {
+      "name": "set_starred",
+      "description": "Star or unstar a message.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "set_starred",
+            "id": "msg_client_followup",
+            "starred": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "set_read",
+      "description": "Mark a message read or unread.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "set_read",
+            "id": "msg_budget_review",
+            "read": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "move_message",
+      "description": "Move a message to another folder and focus it there.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "move_message",
+            "id": "msg_invoice_april",
+            "destination": "Finance"
+          }
+        ]
+      }
+    },
+    {
+      "name": "archive_message",
+      "description": "Move a message into Archive and mark it read.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "archive_message",
+            "id": "msg_client_followup"
+          }
+        ]
+      }
+    },
+    {
+      "name": "delete_message",
+      "description": "Move a message into Trash.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "delete_message",
+            "id": "msg_budget_review"
+          }
+        ]
+      }
+    },
+    {
+      "name": "restore_message",
+      "description": "Restore a message from Trash into another folder.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "restore_message",
+            "id": "msg_old_flyer",
+            "destination": "Inbox"
+          }
+        ]
+      }
+    },
+    {
+      "name": "add_tag",
+      "description": "Add a message tag if it is not already present.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "add_tag",
+            "id": "msg_contract_redline",
+            "tag": "Urgent"
+          }
+        ]
+      }
+    },
+    {
+      "name": "remove_tag",
+      "description": "Remove a message tag when it is present.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "remove_tag",
+            "id": "msg_design_mockups",
+            "tag": "Design"
+          }
+        ]
+      }
+    },
+    {
+      "name": "create_draft_reply",
+      "description": "Open a reply draft addressed to the sender of the source message.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "create_draft_reply",
+            "source_id": "msg_budget_review"
+          }
+        ]
+      }
+    },
+    {
+      "name": "create_draft",
+      "description": "Open a fresh draft with explicit recipient, subject, and body values.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "create_draft",
+            "to": "team@acme.test",
+            "subject": "Status update",
+            "body": "Draft the weekly status update."
+          }
+        ]
+      }
+    },
+    {
+      "name": "update_draft",
+      "description": "Update subject, body, or recipient fields on the open draft.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "update_draft",
+            "changes": {
+              "subject": "Re: Budget review notes",
+              "body": "Approved for Thursday.\nThanks,\nMorgan"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "send_draft",
+      "description": "Send the current draft and place the resulting message in Sent.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "send_draft"
+          }
+        ]
+      }
+    }
+  ],
+  "done_action": {
+    "description": "Return this action when the mailbox already satisfies the task.",
+    "example": {
+      "action_type": "done",
+      "target": "",
+      "params": {}
+    }
+  },
+  "tips": [
+    "Use `target: \"thunderbird\"` for every executable action.",
+    "Bundle related mailbox edits into one action by listing them in `params.operations` in execution order.",
+    "Use `switch_folder` after a move, archive, delete, restore, or send when the success criteria mention a visible folder outcome.",
+    "Use `create_draft_reply` for replies or `create_draft` for a fresh message, then `update_draft`, then `send_draft`.",
+    "Tags are plain strings such as `Follow Up`, `Finance`, or `Urgent`.",
+    "After the observation matches the success criteria, return the done action."
+  ]
+}

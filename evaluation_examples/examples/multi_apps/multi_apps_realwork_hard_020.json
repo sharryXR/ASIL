@@ -1,0 +1,255 @@
+{
+  "id": "multi_apps_realwork_hard_020",
+  "software": "multi_apps",
+  "source": "asil_realwork_hard_mixed_v2",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: save reports/multi_078_analysis.md with the analysis note; tag the Thunderbird client follow-up message with multi-078; open a Gitea issue titled 'MA-078 release coordination'. Use these exact checkpoint text values where applicable: jupyterlab: 'MA-078 notebook analysis saved'.",
+  "related_apps": [
+    "jupyterlab",
+    "thunderbird",
+    "gitea"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "jupyterlab_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "jupyterlab",
+                "rule": {
+                  "element_contains": {
+                    "id": "file:reports/multi_078_analysis.md",
+                    "key": "content",
+                    "expected": "MA-078 notebook analysis saved"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "thunderbird_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "thunderbird",
+                "rule": {
+                  "element_contains": {
+                    "id": "message:msg_client_followup",
+                    "key": "tags",
+                    "expected": "multi-078"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "gitea_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "gitea",
+                "rule": {
+                  "any_element_contains": {
+                    "type": "issue",
+                    "key": "title",
+                    "expected": "MA-078 release coordination"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "jupyterlab_checkpoint": "visible_in_jupyterlab",
+      "thunderbird_checkpoint": "visible_in_thunderbird",
+      "gitea_checkpoint": "visible_in_gitea"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "complex",
+    "description": "Hard-suite variant of multi_apps_078: Mixed Release cross-app task for jupyterlab, thunderbird, gitea.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "jupyterlab": "readme_focus",
+      "thunderbird": "default",
+      "gitea": "default"
+    },
+    "primary_app": "jupyterlab",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "jupyterlab",
+              "action": {
+                "action_type": "modify_file",
+                "target": "workspace",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "create_file",
+                      "path": "reports/multi_078_analysis.md",
+                      "content": "MA-078 notebook analysis saved\n"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "thunderbird",
+              "action": {
+                "action_type": "invoke_function",
+                "target": "thunderbird",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_tag",
+                      "id": "msg_client_followup",
+                      "tag": "multi-078"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "gitea",
+              "action": {
+                "action_type": "api_call",
+                "target": "gitea-api",
+                "params": {
+                  "method": "POST",
+                  "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+                  "body": {
+                    "title": "MA-078 release coordination",
+                    "body": "Track cross-app completion for MA-078."
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "realwork_hard",
+    "source_task_id": "multi_apps_078",
+    "workflow_complexity": {
+      "meaningful_actions": 3,
+      "suite_family": "multi_app_hard",
+      "copied_from_main_benchmark": true
+    }
+  },
+  "difficulty": "complex",
+  "description": "Hard-suite variant of multi_apps_078: Mixed Release cross-app task for jupyterlab, thunderbird, gitea.",
+  "actions": [
+    {
+      "action_type": "batch",
+      "target": "multi_apps",
+      "params": {
+        "actions": [
+          {
+            "app": "jupyterlab",
+            "action": {
+              "action_type": "modify_file",
+              "target": "workspace",
+              "params": {
+                "operations": [
+                  {
+                    "action": "create_file",
+                    "path": "reports/multi_078_analysis.md",
+                    "content": "MA-078 notebook analysis saved\n"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "batch",
+      "target": "multi_apps",
+      "params": {
+        "actions": [
+          {
+            "app": "thunderbird",
+            "action": {
+              "action_type": "invoke_function",
+              "target": "thunderbird",
+              "params": {
+                "operations": [
+                  {
+                    "action": "add_tag",
+                    "id": "msg_client_followup",
+                    "tag": "multi-078"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "batch",
+      "target": "multi_apps",
+      "params": {
+        "actions": [
+          {
+            "app": "gitea",
+            "action": {
+              "action_type": "api_call",
+              "target": "gitea-api",
+              "params": {
+                "method": "POST",
+                "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+                "body": {
+                  "title": "MA-078 release coordination",
+                  "body": "Track cross-app completion for MA-078."
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

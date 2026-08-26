@@ -1,0 +1,105 @@
+{
+  "id": "code_server_realwork_hard_001",
+  "software": "code_server",
+  "difficulty": "complex",
+  "description": "Hard-suite variant of code_server_17: Build a nested checklist doc.",
+  "instruction": "Create docs/release/checklist.md with \"# Checklist\n- Confirm owners\n- Send recap\n\" and open it.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {
+            "action": "create_file",
+            "path": "docs/release/checklist.md",
+            "content": "# Checklist\n- Confirm owners\n- Send recap\n"
+          },
+          {
+            "action": "open_file",
+            "path": "docs/release/checklist.md"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "code_server"
+  ],
+  "snapshot": "code_server_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "A nested release checklist document is created and opened.",
+    "checkpoint_visibility": {
+      "file_exists": "visible_in_editor",
+      "content": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "file_exists",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "file:docs/release/checklist.md"
+            }
+          },
+          {
+            "id": "content",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "editor:docs/release/checklist.md",
+                "key": "content",
+                "expected": "- Send recap"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "code_server",
+    "difficulty": "complex",
+    "description": "Hard-suite variant of code_server_17: Build a nested checklist doc.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {
+              "action": "create_file",
+              "path": "docs/release/checklist.md",
+              "content": "# Checklist\n- Confirm owners\n- Send recap\n"
+            },
+            {
+              "action": "open_file",
+              "path": "docs/release/checklist.md"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default",
+    "category": "realwork_hard",
+    "source_task_id": "code_server_17",
+    "workflow_complexity": {
+      "meaningful_actions": 1,
+      "suite_family": "developer_workflows",
+      "copied_from_main_benchmark": true
+    }
+  },
+  "source": "asil_realwork_hard_mixed_v2"
+}

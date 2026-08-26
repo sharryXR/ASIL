@@ -1,0 +1,14 @@
+{
+  "id": "nautilus_02",
+  "instruction": "Open the `Projects/alpha` folder.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "nautilus_workspace_default",
+  "config": [],
+  "related_apps": ["nautilus"],
+  "evaluator": {"selection": "best_score", "paths": [{"path_id": "nautilus_02_primary_path", "exclusive_group": "success_paths", "checkpoints": [{"id": "nautilus_02_location", "weight": 0.5, "gui_visible_required": true, "rule": {"element_value": {"id": "location", "key": "path", "expected": "Projects/alpha"}}}, {"id": "nautilus_02_entry", "weight": 0.5, "gui_visible_required": true, "rule": {"any_element_matches": {"type": "directory_entry", "value": {"path": "Projects/alpha/draft-plan.md"}}}}]}]},
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {"software": "nautilus", "difficulty": "simple", "description": "Open the Projects/alpha folder.", "actions": [{"action_type": "invoke_function", "target": "nautilus", "params": {"operations": [{"action": "open_directory", "path": "Projects/alpha"}]}}], "validation": {"conditions": [{"element_value": {"id": "location", "key": "path", "expected": "Projects/alpha"}}, {"any_element_matches": {"type": "directory_entry", "value": {"path": "Projects/alpha/draft-plan.md"}}}]}, "initial_state": "default"},
+  "gui_expectations": {"success_surface": "file_list", "visible_change_summary": "The alpha project folder is open and the draft-plan.md file is visible.", "checkpoint_visibility": {"nautilus_02_location": "visible_in_location_bar", "nautilus_02_entry": "visible_in_file_list"}}
+}

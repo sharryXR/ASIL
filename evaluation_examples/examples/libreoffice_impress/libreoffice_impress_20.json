@@ -1,0 +1,172 @@
+{
+  "id": "libreoffice_impress_20",
+  "software": "libreoffice_impress",
+  "difficulty": "complex",
+  "description": "Rename slide 1 to \"Executive Recap\", append \"Revenue goals remain on track.\", rename slide 2 to \"Support Checklist\", replace its body with \"Confirm escalation routing.\", append \"Review coverage with operations.\", and add a final slide titled \"Summary\" with \"Hiring plans will be revisited next month.\".",
+  "instruction": "Rename slide 1 to \"Executive Recap\", append a second line \"Revenue goals remain on track.\", rename slide 2 to \"Support Checklist\", replace its first body line with \"Confirm escalation routing.\", append \"Review coverage with operations.\", and add a final slide titled \"Summary\" with one body line: \"Hiring plans will be revisited next month.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_slide_title",
+            "slide_index": 1,
+            "text": "Executive Recap"
+          },
+          {
+            "action": "append_slide_body",
+            "slide_index": 1,
+            "text": "Revenue goals remain on track."
+          },
+          {
+            "action": "set_slide_title",
+            "slide_index": 2,
+            "text": "Support Checklist"
+          },
+          {
+            "action": "set_slide_body",
+            "slide_index": 2,
+            "body_index": 1,
+            "text": "Confirm escalation routing."
+          },
+          {
+            "action": "append_slide_body",
+            "slide_index": 2,
+            "text": "Review coverage with operations."
+          },
+          {
+            "action": "add_slide",
+            "title": "Summary",
+            "body": [
+              "Hiring plans will be revisited next month."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "The deck ends with Executive Recap, Support Checklist, and a new Summary slide.",
+    "checkpoint_visibility": {
+      "slide1_title": "visible_on_slide",
+      "slide1_body2": "visible_on_slide",
+      "slide2_title": "visible_on_slide",
+      "slide2_body1": "visible_on_slide",
+      "slide2_body2": "visible_on_slide",
+      "slide3_title": "visible_on_slide",
+      "slide3_body1": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "slide1_title",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:1:title",
+                "key": "text_content",
+                "expected": "Executive Recap"
+              }
+            }
+          },
+          {
+            "id": "slide1_body2",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:1:body:2",
+                "key": "text_content",
+                "expected": "Revenue goals remain on track."
+              }
+            }
+          },
+          {
+            "id": "slide2_title",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:title",
+                "key": "text_content",
+                "expected": "Support Checklist"
+              }
+            }
+          },
+          {
+            "id": "slide2_body1",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:body:1",
+                "key": "text_content",
+                "expected": "Confirm escalation routing."
+              }
+            }
+          },
+          {
+            "id": "slide2_body2",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:body:2",
+                "key": "text_content",
+                "expected": "Review coverage with operations."
+              }
+            }
+          },
+          {
+            "id": "slide3_title",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:3:title",
+                "key": "text_content",
+                "expected": "Summary"
+              }
+            }
+          },
+          {
+            "id": "slide3_body1",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:3:body:1",
+                "key": "text_content",
+                "expected": "Hiring plans will be revisited next month."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "contact_sheet",
+    "slide_indices": [
+      1,
+      2,
+      3
+    ]
+  }
+}

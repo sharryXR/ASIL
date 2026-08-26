@@ -1,0 +1,85 @@
+{
+  "id": "code_server_12",
+  "software": "code_server",
+  "difficulty": "medium",
+  "description": "Rename settings.json to editor.json.",
+  "instruction": "Rename config/settings.json to config/editor.json.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {
+            "action": "rename_path",
+            "path": "config/settings.json",
+            "new_path": "config/editor.json"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "code_server"
+  ],
+  "snapshot": "code_server_default",
+  "initial_state": "config_focus",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "The config file is renamed to editor.json.",
+    "checkpoint_visibility": {
+      "old_removed": "visible_in_editor",
+      "new_exists": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "old_removed",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_not_exists": "file:config/settings.json"
+            }
+          },
+          {
+            "id": "new_exists",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "file:config/editor.json"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "code_server",
+    "difficulty": "medium",
+    "description": "Rename settings.json to editor.json.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {
+              "action": "rename_path",
+              "path": "config/settings.json",
+              "new_path": "config/editor.json"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "config_focus"
+  }
+}

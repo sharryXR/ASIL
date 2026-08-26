@@ -1,0 +1,80 @@
+{
+  "id": "blender_07",
+  "instruction": "Set render resolution to 1920x1080",
+  "source": "asil_benchmark_v1",
+  "snapshot": "blender_default_scene",
+  "config": [],
+  "related_apps": [
+    "blender"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "blender_07_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+        {
+          "id": "resolution_x_1920",
+          "weight": 0.5,
+          "gui_visible_required": true,
+          "rule": {
+            "render_setting": {
+              "key": "resolution_x",
+              "expected": 1920
+            }
+          }
+        },
+        {
+          "id": "resolution_y_1080",
+          "weight": 0.5,
+          "gui_visible_required": true,
+          "rule": {
+            "render_setting": {
+              "key": "resolution_y",
+              "expected": 1080
+            }
+          }
+        }
+      ]
+    }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "blender",
+    "difficulty": "medium",
+    "description": "Set render resolution to 1920x1080",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "bpy",
+        "params": {
+          "script": [
+            "import bpy",
+            "bpy.context.scene.render.resolution_x = 1920",
+            "bpy.context.scene.render.resolution_y = 1080",
+            "bpy.context.scene.render.resolution_percentage = 100"
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "render_setting": {
+        "key": "resolution_x",
+        "expected": 1920
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "render_properties",
+    "visible_change_summary": "The Render Properties panel shows the resolution set to 1920 by 1080.",
+    "checkpoint_visibility": {
+      "resolution_x_1920": "visible_in_render_properties",
+      "resolution_y_1080": "visible_in_render_properties"
+    }
+  }
+}

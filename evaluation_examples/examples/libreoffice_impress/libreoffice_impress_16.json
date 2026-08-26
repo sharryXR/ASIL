@@ -1,0 +1,107 @@
+{
+  "id": "libreoffice_impress_16",
+  "software": "libreoffice_impress",
+  "difficulty": "complex",
+  "description": "Create a third slide titled \"Readout\" with lines \"Launch metrics will be shared Monday.\", \"Escalations dropped by 20%.\", and \"Support coverage remains stable.\".",
+  "instruction": "Add a new slide titled \"Readout\" with three body lines: \"Launch metrics will be shared Monday.\", \"Escalations dropped by 20%.\", and \"Support coverage remains stable.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "add_slide",
+            "title": "Readout",
+            "body": [
+              "Launch metrics will be shared Monday.",
+              "Escalations dropped by 20%.",
+              "Support coverage remains stable."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "A new Readout slide appears with all three report lines.",
+    "checkpoint_visibility": {
+      "title": "visible_on_slide",
+      "body1": "visible_on_slide",
+      "body2": "visible_on_slide",
+      "body3": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "title",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:3:title",
+                "key": "text_content",
+                "expected": "Readout"
+              }
+            }
+          },
+          {
+            "id": "body1",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:3:body:1",
+                "key": "text_content",
+                "expected": "Launch metrics will be shared Monday."
+              }
+            }
+          },
+          {
+            "id": "body2",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:3:body:2",
+                "key": "text_content",
+                "expected": "Escalations dropped by 20%."
+              }
+            }
+          },
+          {
+            "id": "body3",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:3:body:3",
+                "key": "text_content",
+                "expected": "Support coverage remains stable."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "single_slide",
+    "slide_indices": [
+      3
+    ]
+  }
+}

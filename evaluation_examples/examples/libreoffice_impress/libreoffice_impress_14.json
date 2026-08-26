@@ -1,0 +1,117 @@
+{
+  "id": "libreoffice_impress_14",
+  "software": "libreoffice_impress",
+  "difficulty": "complex",
+  "description": "Rename slide 1 to \"Status Snapshot\", add the second line \"Share the updated dashboard link.\", and add a new slide titled \"Blocked Items\" with body lines \"Security review is pending.\" and \"Procurement approval is open.\".",
+  "instruction": "Rename slide 1 to \"Status Snapshot\", append \"Share the updated dashboard link.\", and add a new slide titled \"Blocked Items\" with body lines \"Security review is pending.\" and \"Procurement approval is open.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_slide_title",
+            "slide_index": 1,
+            "text": "Status Snapshot"
+          },
+          {
+            "action": "append_slide_body",
+            "slide_index": 1,
+            "text": "Share the updated dashboard link."
+          },
+          {
+            "action": "add_slide",
+            "title": "Blocked Items",
+            "body": [
+              "Security review is pending.",
+              "Procurement approval is open."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "Slide 1 is renamed to Status Snapshot, and a Blocked Items slide appears with both blocker lines.",
+    "checkpoint_visibility": {
+      "slide1_title": "visible_on_slide",
+      "slide1_body2": "visible_on_slide",
+      "slide3_title": "visible_on_slide",
+      "slide3_body2": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "slide1_title",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:1:title",
+                "key": "text_content",
+                "expected": "Status Snapshot"
+              }
+            }
+          },
+          {
+            "id": "slide1_body2",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:1:body:2",
+                "key": "text_content",
+                "expected": "Share the updated dashboard link."
+              }
+            }
+          },
+          {
+            "id": "slide3_title",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:3:title",
+                "key": "text_content",
+                "expected": "Blocked Items"
+              }
+            }
+          },
+          {
+            "id": "slide3_body2",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:3:body:2",
+                "key": "text_content",
+                "expected": "Procurement approval is open."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "contact_sheet",
+    "slide_indices": [
+      1,
+      3
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "nautilus_09",
+  "instruction": "Add `Archive` to the sidebar bookmarks.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "nautilus_workspace_default",
+  "config": [],
+  "related_apps": ["nautilus"],
+  "evaluator": {"selection": "best_score", "paths": [{"path_id": "nautilus_09_primary_path", "exclusive_group": "success_paths", "checkpoints": [{"id": "nautilus_09_bookmark", "weight": 1.0, "gui_visible_required": true, "rule": {"any_element_matches": {"type": "bookmark", "value": {"path": "Archive"}}}}]}]},
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {"software": "nautilus", "difficulty": "simple", "description": "Add the Archive folder to the sidebar bookmarks.", "actions": [{"action_type": "invoke_function", "target": "nautilus", "params": {"operations": [{"action": "add_bookmark", "path": "Archive"}]}}], "validation": {"any_element_matches": {"type": "bookmark", "value": {"path": "Archive"}}}, "initial_state": "default"},
+  "gui_expectations": {"success_surface": "sidebar_bookmarks", "visible_change_summary": "The Nautilus sidebar shows Archive as a saved bookmark.", "checkpoint_visibility": {"nautilus_09_bookmark": "visible_in_sidebar"}}
+}

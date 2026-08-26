@@ -1,0 +1,333 @@
+{
+  "id": "gimp_realwork_hard_005",
+  "software": "gimp",
+  "difficulty": "complex",
+  "description": "Create a morning-menu announcement from a real cafe photo.",
+  "instruction": "Create an 800x600 morning-menu image from the coffee street photo. Crop tightly around the storefront, brighten the photo, add a cream card in the upper left, add the title NEW MORNING MENU, and add the detail ESPRESSO + PASTRY COMBO.",
+  "source": "asil_realwork_hard_v1",
+  "snapshot": "gimp_default",
+  "config": [],
+  "related_apps": [
+    "gimp"
+  ],
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_image_layer",
+            "id": "menu_photo",
+            "label": "Menu Photo",
+            "asset_path": "evaluation_examples/assets/realwork_images/coffee_street_960.jpg",
+            "x": 0,
+            "y": 0,
+            "width": 800,
+            "height": 600,
+            "crop": {
+              "x": 70,
+              "y": 30,
+              "width": 780,
+              "height": 585
+            },
+            "filters": {
+              "brightness": 1.12,
+              "contrast": 1.03,
+              "saturation": 0.95
+            }
+          },
+          {
+            "action": "add_layer",
+            "id": "menu_card",
+            "label": "Menu Card",
+            "kind": "rectangle",
+            "x": 34,
+            "y": 36,
+            "width": 500,
+            "height": 175,
+            "fill": "#fff3d6",
+            "opacity": 0.88
+          },
+          {
+            "action": "add_text_layer",
+            "id": "menu_title",
+            "label": "Menu Title",
+            "text": "NEW MORNING MENU",
+            "x": 60,
+            "y": 62,
+            "font_size": 38,
+            "color": "#3c2f2f"
+          },
+          {
+            "action": "add_text_layer",
+            "id": "menu_detail",
+            "label": "Menu Detail",
+            "text": "ESPRESSO + PASTRY COMBO",
+            "x": 62,
+            "y": 132,
+            "font_size": 24,
+            "color": "#7f5539"
+          }
+        ]
+      }
+    }
+  ],
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "The cafe storefront photo becomes a menu announcement with a light card and readable offer text.",
+    "checkpoint_visibility": {
+      "canvas_size": "visible_on_canvas",
+      "photo_asset": "visible_on_canvas",
+      "photo_width": "visible_on_canvas",
+      "photo_height": "visible_on_canvas",
+      "photo_filters": "visible_on_canvas",
+      "overlay_fill": "visible_on_canvas",
+      "overlay_opacity": "visible_on_canvas",
+      "title_text": "visible_on_canvas",
+      "title_position": "visible_on_canvas",
+      "detail_text": "visible_on_canvas",
+      "detail_position": "visible_on_canvas",
+      "rendered_region": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "canvas_size",
+            "weight": 0.8,
+            "gui_visible_required": true,
+            "rule": {
+              "image_size": {
+                "width": 800,
+                "height": 600
+              }
+            }
+          },
+          {
+            "id": "photo_asset",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "menu_photo",
+                "key": "asset_path",
+                "expected": "evaluation_examples/assets/realwork_images/coffee_street_960.jpg"
+              }
+            }
+          },
+          {
+            "id": "photo_width",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "menu_photo",
+                "key": "width",
+                "expected": 800
+              }
+            }
+          },
+          {
+            "id": "photo_height",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "menu_photo",
+                "key": "height",
+                "expected": 600
+              }
+            }
+          },
+          {
+            "id": "photo_filters",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "menu_photo",
+                "key": "filters",
+                "expected": {
+                  "brightness": 1.12,
+                  "contrast": 1.03,
+                  "saturation": 0.95
+                }
+              }
+            }
+          },
+          {
+            "id": "overlay_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "menu_card",
+                "key": "fill",
+                "expected": "#fff3d6"
+              }
+            }
+          },
+          {
+            "id": "overlay_opacity",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "menu_card",
+                "key": "opacity",
+                "expected": 0.88
+              }
+            }
+          },
+          {
+            "id": "title_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "menu_title",
+                "key": "text",
+                "expected": "NEW MORNING MENU"
+              }
+            }
+          },
+          {
+            "id": "title_position",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "menu_title",
+                "key": "x",
+                "expected": 60
+              }
+            }
+          },
+          {
+            "id": "detail_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "menu_detail",
+                "key": "text",
+                "expected": "ESPRESSO + PASTRY COMBO"
+              }
+            }
+          },
+          {
+            "id": "detail_position",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "menu_detail",
+                "key": "y",
+                "expected": 132
+              }
+            }
+          },
+          {
+            "id": "rendered_region",
+            "weight": 0.8,
+            "gui_visible_required": true,
+            "rule": {
+              "image_region_stat": {
+                "box": [
+                  40,
+                  45,
+                  480,
+                  155
+                ],
+                "metric": "luminance",
+                "min": 120,
+                "max": 255
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "complex",
+    "category": "realwork_hard",
+    "description": "Create a morning-menu announcement from a real cafe photo.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_image_layer",
+              "id": "menu_photo",
+              "label": "Menu Photo",
+              "asset_path": "evaluation_examples/assets/realwork_images/coffee_street_960.jpg",
+              "x": 0,
+              "y": 0,
+              "width": 800,
+              "height": 600,
+              "crop": {
+                "x": 70,
+                "y": 30,
+                "width": 780,
+                "height": 585
+              },
+              "filters": {
+                "brightness": 1.12,
+                "contrast": 1.03,
+                "saturation": 0.95
+              }
+            },
+            {
+              "action": "add_layer",
+              "id": "menu_card",
+              "label": "Menu Card",
+              "kind": "rectangle",
+              "x": 34,
+              "y": 36,
+              "width": 500,
+              "height": 175,
+              "fill": "#fff3d6",
+              "opacity": 0.88
+            },
+            {
+              "action": "add_text_layer",
+              "id": "menu_title",
+              "label": "Menu Title",
+              "text": "NEW MORNING MENU",
+              "x": 60,
+              "y": 62,
+              "font_size": 38,
+              "color": "#3c2f2f"
+            },
+            {
+              "action": "add_text_layer",
+              "id": "menu_detail",
+              "label": "Menu Detail",
+              "text": "ESPRESSO + PASTRY COMBO",
+              "x": 62,
+              "y": 132,
+              "font_size": 24,
+              "color": "#7f5539"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank"
+  }
+}

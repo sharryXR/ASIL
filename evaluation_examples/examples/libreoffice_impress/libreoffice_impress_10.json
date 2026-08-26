@@ -1,0 +1,83 @@
+{
+  "id": "libreoffice_impress_10",
+  "software": "libreoffice_impress",
+  "difficulty": "medium",
+  "description": "Update slide 2 body to \"Prepare the customer FAQ.\" and add \"Confirm sign-off with legal.\" beneath it.",
+  "instruction": "Replace the first body line on slide 2 with \"Prepare the customer FAQ.\" and add a second line \"Confirm sign-off with legal.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_slide_body",
+            "slide_index": 2,
+            "body_index": 1,
+            "text": "Prepare the customer FAQ."
+          },
+          {
+            "action": "append_slide_body",
+            "slide_index": 2,
+            "text": "Confirm sign-off with legal."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "Slide 2 shows the FAQ line and a second legal sign-off line.",
+    "checkpoint_visibility": {
+      "body1": "visible_on_slide",
+      "body2": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "body1",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:body:1",
+                "key": "text_content",
+                "expected": "Prepare the customer FAQ."
+              }
+            }
+          },
+          {
+            "id": "body2",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:body:2",
+                "key": "text_content",
+                "expected": "Confirm sign-off with legal."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "single_slide",
+    "slide_indices": [
+      2
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+Bootstrap: docker
+From: jgraph/drawio@sha256:d46e87bcd015763f0fbaef9cd62b9181ff69052fcf6d12b24e4d879100e22980
+
+%post
+    set -e
+    mkdir -p /opt/asil
+    cat > /opt/asil/start_drawio.sh <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+PORT="${PORT:-8080}"
+if [ "$PORT" -gt 20000 ]; then
+  SHUTDOWN_PORT="${SHUTDOWN_PORT:-$((PORT - 20000))}"
+  AJP_PORT="${AJP_PORT:-$((PORT - 19000))}"
+else
+  SHUTDOWN_PORT="${SHUTDOWN_PORT:-$((PORT + 10000))}"
+  AJP_PORT="${AJP_PORT:-$((PORT + 11000))}"
+fi
+export HOME="${HOME:-/tmp/drawio-home}"
+mkdir -p "$HOME"
+
+if [ "$PORT" != "8080" ]; then
+  export CATALINA_HOME="${CATALINA_HOME:-/usr/local/tomcat}"
+  export CATALINA_BASE="${CATALINA_BASE:-/tmp/drawio-catalina-${PORT}}"
+  if [ ! -d "$CATALINA_BASE/conf" ]; then
+    mkdir -p "$CATALINA_BASE"
+    cp -a "$CATALINA_HOME/conf" "$CATALINA_BASE/conf"
+    cp -a "$CATALINA_HOME/webapps" "$CATALINA_BASE/webapps"
+    mkdir -p "$CATALINA_BASE/logs" "$CATALINA_BASE/temp" "$CATALINA_BASE/work"
+    sed -i -E "s/port=\"8080\"/port=\"${PORT}\"/g" "$CATALINA_BASE/conf/server.xml"
+    sed -i -E "s/port=\"8005\"/port=\"${SHUTDOWN_PORT}\"/g" "$CATALINA_BASE/conf/server.xml"
+    sed -i -E "s/port=\"8009\"/port=\"${AJP_PORT}\"/g" "$CATALINA_BASE/conf/server.xml"
+  fi
+fi
+
+exec /docker-entrypoint.sh catalina.sh run
+EOF
+    chmod +x /opt/asil/start_drawio.sh
+
+%runscript
+    exec /opt/asil/start_drawio.sh "$@"

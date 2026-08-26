@@ -1,0 +1,528 @@
+{
+  "id": "libreoffice_11",
+  "instruction": "Create a quarterly sales report with headers Region, Q1, Q2, Q3, Q4. Enter exactly these rows: North | 45000 | 52000 | 48000 | 61000; South | 38000 | 41000 | 39500 | 44000; East | 55000 | 58000 | 62000 | 67000; West | 31000 | 33500 | 35000 | 37500.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "libreoffice_calc_default",
+  "config": [],
+  "related_apps": [
+    "libreoffice"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "libreoffice_11_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "libreoffice_11_1",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A1",
+                "key": null,
+                "expected": "Region"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_2",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B1",
+                "key": null,
+                "expected": "Q1"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_3",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C1",
+                "key": null,
+                "expected": "Q2"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_4",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D1",
+                "key": null,
+                "expected": "Q3"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_5",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!E1",
+                "key": null,
+                "expected": "Q4"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_6",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A2",
+                "key": null,
+                "expected": "North"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_7",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B2",
+                "key": null,
+                "expected": "45000"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_8",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C2",
+                "key": null,
+                "expected": "52000"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_9",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D2",
+                "key": null,
+                "expected": "48000"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_10",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!E2",
+                "key": null,
+                "expected": "61000"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_11",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A3",
+                "key": null,
+                "expected": "South"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_12",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B3",
+                "key": null,
+                "expected": "38000"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_13",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C3",
+                "key": null,
+                "expected": "41000"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_14",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D3",
+                "key": null,
+                "expected": "39500"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_15",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!E3",
+                "key": null,
+                "expected": "44000"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_16",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A4",
+                "key": null,
+                "expected": "East"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_17",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B4",
+                "key": null,
+                "expected": "55000"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_18",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C4",
+                "key": null,
+                "expected": "58000"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_19",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D4",
+                "key": null,
+                "expected": "62000"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_20",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!E4",
+                "key": null,
+                "expected": "67000"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_21",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A5",
+                "key": null,
+                "expected": "West"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_22",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B5",
+                "key": null,
+                "expected": "31000"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_23",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!C5",
+                "key": null,
+                "expected": "33500"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_24",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!D5",
+                "key": null,
+                "expected": "35000"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_11_25",
+            "weight": 0.04,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!E5",
+                "key": null,
+                "expected": "37500"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "libreoffice",
+    "difficulty": "medium",
+    "description": "Create a quarterly sales report: header row (Region, Q1, Q2, Q3, Q4), then 4 regions (North/South/East/West) with sales figures",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{ods_path}}",
+        "params": {
+          "operations": [
+            {
+              "sheet": "Sheet1",
+              "cell": "A1",
+              "value": "Region",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B1",
+              "value": "Q1",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C1",
+              "value": "Q2",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D1",
+              "value": "Q3",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E1",
+              "value": "Q4",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A2",
+              "value": "North",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B2",
+              "value": "45000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C2",
+              "value": "52000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D2",
+              "value": "48000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E2",
+              "value": "61000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A3",
+              "value": "South",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B3",
+              "value": "38000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C3",
+              "value": "41000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D3",
+              "value": "39500",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E3",
+              "value": "44000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A4",
+              "value": "East",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B4",
+              "value": "55000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C4",
+              "value": "58000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D4",
+              "value": "62000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E4",
+              "value": "67000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A5",
+              "value": "West",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B5",
+              "value": "31000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C5",
+              "value": "33500",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D5",
+              "value": "35000",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E5",
+              "value": "37500",
+              "value_type": "float"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "Sheet1!E5",
+        "key": null,
+        "expected": "37500"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "spreadsheet",
+    "visible_change_summary": "Create a quarterly sales report with headers Region, Q1, Q2, Q3, Q4. Enter exactly these rows: North | 45000 | 52000 | 48000 | 61000; South | 38000 | 41000 | 39500 | 44000; East | 55000 | 58000 | 62000 | 67000; West | 31000 | 33500 | 35000 | 37500.",
+    "checkpoint_visibility": {
+      "libreoffice_11_1": "visible_in_sheet",
+      "libreoffice_11_2": "visible_in_sheet",
+      "libreoffice_11_3": "visible_in_sheet",
+      "libreoffice_11_4": "visible_in_sheet",
+      "libreoffice_11_5": "visible_in_sheet",
+      "libreoffice_11_6": "visible_in_sheet",
+      "libreoffice_11_7": "visible_in_sheet",
+      "libreoffice_11_8": "visible_in_sheet",
+      "libreoffice_11_9": "visible_in_sheet",
+      "libreoffice_11_10": "visible_in_sheet",
+      "libreoffice_11_11": "visible_in_sheet",
+      "libreoffice_11_12": "visible_in_sheet",
+      "libreoffice_11_13": "visible_in_sheet",
+      "libreoffice_11_14": "visible_in_sheet",
+      "libreoffice_11_15": "visible_in_sheet",
+      "libreoffice_11_16": "visible_in_sheet",
+      "libreoffice_11_17": "visible_in_sheet",
+      "libreoffice_11_18": "visible_in_sheet",
+      "libreoffice_11_19": "visible_in_sheet",
+      "libreoffice_11_20": "visible_in_sheet",
+      "libreoffice_11_21": "visible_in_sheet",
+      "libreoffice_11_22": "visible_in_sheet",
+      "libreoffice_11_23": "visible_in_sheet",
+      "libreoffice_11_24": "visible_in_sheet",
+      "libreoffice_11_25": "visible_in_sheet"
+    }
+  }
+}

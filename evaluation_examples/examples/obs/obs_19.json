@@ -1,0 +1,122 @@
+{
+  "id": "obs_19",
+  "instruction": "Mute all audio inputs and switch to Intermission scene",
+  "source": "asil_benchmark_v1",
+  "snapshot": "obs_default_scene",
+  "config": [],
+  "related_apps": [
+    "obs"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "obs_19_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "obs_19_intermission_scene",
+            "weight": 0.3,
+            "gui_visible_required": true,
+            "rule": {
+              "current_scene": "Intermission"
+            }
+          },
+          {
+            "id": "obs_19_desktop_muted",
+            "weight": 0.35,
+            "gui_visible_required": true,
+            "rule": {
+              "input_muted": {
+                "name": "Desktop Audio",
+                "expected": true
+              }
+            }
+          },
+          {
+            "id": "obs_19_mic_muted",
+            "weight": 0.35,
+            "gui_visible_required": true,
+            "rule": {
+              "input_muted": {
+                "name": "Mic/Aux",
+                "expected": true
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "obs",
+    "difficulty": "complex",
+    "description": "Mute all audio inputs and switch to Intermission scene",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "SetInputMute",
+          "args": {
+            "inputName": "Desktop Audio",
+            "inputMuted": true
+          }
+        }
+      },
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "SetInputMute",
+          "args": {
+            "inputName": "Mic/Aux",
+            "inputMuted": true
+          }
+        }
+      },
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "SetCurrentProgramScene",
+          "args": {
+            "sceneName": "Intermission"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "current_scene": "Intermission"
+        },
+        {
+          "input_muted": {
+            "name": "Desktop Audio",
+            "expected": true
+          }
+        },
+        {
+          "input_muted": {
+            "name": "Mic/Aux",
+            "expected": true
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "program_view",
+    "visible_change_summary": "Intermission is active and both audio inputs are muted.",
+    "checkpoint_visibility": {
+      "obs_19_intermission_scene": "visible_in_obs_ui",
+      "obs_19_desktop_muted": "visible_in_obs_ui",
+      "obs_19_mic_muted": "visible_in_obs_ui"
+    }
+  }
+}

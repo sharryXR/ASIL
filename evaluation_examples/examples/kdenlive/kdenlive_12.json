@@ -1,0 +1,69 @@
+{
+  "id": "kdenlive_12",
+  "instruction": "Rename the V2 track to 'B-Roll Layer'.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "kdenlive_default_project",
+  "config": [],
+  "related_apps": ["kdenlive"],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "kdenlive_12_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "kdenlive_12_track_name",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "track:video_overlay",
+                "key": "name",
+                "expected": "B-Roll Layer"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "kdenlive",
+    "difficulty": "simple",
+    "description": "Rename the V2 track to 'B-Roll Layer'.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "xpath": "/kdenliveProject/timeline/track[@id='video_overlay']",
+              "attribute": "name",
+              "value": "B-Roll Layer"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "track:video_overlay",
+        "key": "name",
+        "expected": "B-Roll Layer"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "timeline",
+    "visible_change_summary": "The second video track header now reads 'B-Roll Layer'.",
+    "checkpoint_visibility": {
+      "kdenlive_12_track_name": "visible_in_track_header"
+    }
+  }
+}

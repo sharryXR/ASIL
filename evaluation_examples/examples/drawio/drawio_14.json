@@ -1,0 +1,181 @@
+{
+  "id": "drawio_14",
+  "software": "drawio",
+  "difficulty": "complex",
+  "description": "Create a decision branch.",
+  "instruction": "Add Approve and Reject rectangles to the default diagram, connect Review to Approve with approved and Review to Reject with rejected.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "diagram",
+      "params": {
+        "operations": [
+          {
+            "action": "add_shape",
+            "id": "approve",
+            "label": "Approve",
+            "shape_kind": "rectangle",
+            "x": 540,
+            "y": 80,
+            "width": 150,
+            "height": 80,
+            "fill": "#dcfce7",
+            "stroke": "#16a34a"
+          },
+          {
+            "action": "add_shape",
+            "id": "reject",
+            "label": "Reject",
+            "shape_kind": "rectangle",
+            "x": 540,
+            "y": 240,
+            "width": 150,
+            "height": 80,
+            "fill": "#fee2e2",
+            "stroke": "#dc2626"
+          },
+          {
+            "action": "add_connector",
+            "id": "flow_approve",
+            "source": "review",
+            "target": "approve",
+            "label": "approved",
+            "stroke": "#16a34a"
+          },
+          {
+            "action": "add_connector",
+            "id": "flow_reject",
+            "source": "review",
+            "target": "reject",
+            "label": "rejected",
+            "stroke": "#dc2626"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "drawio"
+  ],
+  "snapshot": "drawio_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "diagram_canvas",
+    "visible_change_summary": "Review branches into Approve and Reject outcomes.",
+    "checkpoint_visibility": {
+      "approve": "visible_on_diagram",
+      "reject": "visible_on_diagram",
+      "flow_approve": "visible_on_diagram",
+      "flow_reject": "visible_on_diagram"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "approve",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "shape:approve"
+            }
+          },
+          {
+            "id": "reject",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "shape:reject"
+            }
+          },
+          {
+            "id": "flow_approve",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "connector:flow_approve",
+                "key": "label",
+                "expected": "approved"
+              }
+            }
+          },
+          {
+            "id": "flow_reject",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "connector:flow_reject",
+                "key": "label",
+                "expected": "rejected"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "drawio",
+    "difficulty": "complex",
+    "description": "Create a decision branch.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "diagram",
+        "params": {
+          "operations": [
+            {
+              "action": "add_shape",
+              "id": "approve",
+              "label": "Approve",
+              "shape_kind": "rectangle",
+              "x": 540,
+              "y": 80,
+              "width": 150,
+              "height": 80,
+              "fill": "#dcfce7",
+              "stroke": "#16a34a"
+            },
+            {
+              "action": "add_shape",
+              "id": "reject",
+              "label": "Reject",
+              "shape_kind": "rectangle",
+              "x": 540,
+              "y": 240,
+              "width": 150,
+              "height": 80,
+              "fill": "#fee2e2",
+              "stroke": "#dc2626"
+            },
+            {
+              "action": "add_connector",
+              "id": "flow_approve",
+              "source": "review",
+              "target": "approve",
+              "label": "approved",
+              "stroke": "#16a34a"
+            },
+            {
+              "action": "add_connector",
+              "id": "flow_reject",
+              "source": "review",
+              "target": "reject",
+              "label": "rejected",
+              "stroke": "#dc2626"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "nautilus_19",
+  "instruction": "Add `Archive` to bookmarks and open `Archive`.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "nautilus_workspace_default",
+  "config": [],
+  "related_apps": ["nautilus"],
+  "evaluator": {"selection": "best_score", "paths": [{"path_id": "nautilus_19_primary_path", "exclusive_group": "success_paths", "checkpoints": [{"id": "nautilus_19_bookmark", "weight": 0.34, "gui_visible_required": true, "rule": {"any_element_matches": {"type": "bookmark", "value": {"path": "Archive"}}}}, {"id": "nautilus_19_location", "weight": 0.33, "gui_visible_required": true, "rule": {"element_value": {"id": "location", "key": "path", "expected": "Archive"}}}, {"id": "nautilus_19_entry", "weight": 0.33, "gui_visible_required": true, "rule": {"any_element_matches": {"type": "directory_entry", "value": {"path": "Archive/old-invoice.txt"}}}}]}]},
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {"software": "nautilus", "difficulty": "medium", "description": "Bookmark Archive and open it.", "actions": [{"action_type": "invoke_function", "target": "nautilus", "params": {"operations": [{"action": "add_bookmark", "path": "Archive"}, {"action": "open_directory", "path": "Archive"}]}}], "validation": {"conditions": [{"any_element_matches": {"type": "bookmark", "value": {"path": "Archive"}}}, {"element_value": {"id": "location", "key": "path", "expected": "Archive"}}, {"any_element_matches": {"type": "directory_entry", "value": {"path": "Archive/old-invoice.txt"}}}]}, "initial_state": "default"},
+  "gui_expectations": {"success_surface": "sidebar_bookmarks", "visible_change_summary": "Archive appears in the sidebar bookmarks and the Archive folder is open.", "checkpoint_visibility": {"nautilus_19_bookmark": "visible_in_sidebar", "nautilus_19_location": "visible_in_location_bar", "nautilus_19_entry": "visible_in_file_list"}}
+}

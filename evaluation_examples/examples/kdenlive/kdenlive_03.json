@@ -1,0 +1,87 @@
+{
+  "id": "kdenlive_03",
+  "instruction": "Place the existing Opening Title clip on V2 starting at frame 24 for 60 frames.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "kdenlive_default_project",
+  "config": [],
+  "related_apps": ["kdenlive"],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "kdenlive_03_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "kdenlive_03_timeline_block",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "timeline_clip",
+                "id": "timeline_clip:tl_title_overlay_24",
+                "value": {
+                  "track_id": "video_overlay",
+                  "position": 24,
+                  "duration": 60,
+                  "clip_title": "Opening Title"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "kdenlive",
+    "difficulty": "simple",
+    "description": "Place the existing Opening Title clip on V2 starting at frame 24 for 60 frames.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "/kdenliveProject/timeline/track[@id='video_overlay']",
+              "tag": "clipref",
+              "attributes": {
+                "id": "tl_title_overlay_24",
+                "clip_id": "clip_title",
+                "start": "24",
+                "duration": "60",
+                "in": "0",
+                "out": "60"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "any_element_matches": {
+        "type": "timeline_clip",
+        "id": "timeline_clip:tl_title_overlay_24",
+        "value": {
+          "track_id": "video_overlay",
+          "position": 24,
+          "duration": 60,
+          "clip_title": "Opening Title"
+        }
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "timeline",
+    "visible_change_summary": "A new Opening Title block appears on V2 near frame 24.",
+    "checkpoint_visibility": {
+      "kdenlive_03_timeline_block": "visible_in_timeline_clip_block"
+    }
+  }
+}

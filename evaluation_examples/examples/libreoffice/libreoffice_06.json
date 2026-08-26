@@ -1,0 +1,319 @@
+{
+  "id": "libreoffice_06",
+  "instruction": "Create monthly revenue data for Jan-Jun. Use headers Month and Revenue, then enter exactly these rows: Jan=12500; Feb=13200; Mar=15800; Apr=14100; May=16900; Jun=18200.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "libreoffice_calc_default",
+  "config": [],
+  "related_apps": [
+    "libreoffice"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "libreoffice_06_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "libreoffice_06_1",
+            "weight": 0.071429,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A1",
+                "key": null,
+                "expected": "Month"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_06_2",
+            "weight": 0.071429,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B1",
+                "key": null,
+                "expected": "Revenue"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_06_3",
+            "weight": 0.071429,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A2",
+                "key": null,
+                "expected": "Jan"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_06_4",
+            "weight": 0.071429,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B2",
+                "key": null,
+                "expected": "12500"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_06_5",
+            "weight": 0.071429,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A3",
+                "key": null,
+                "expected": "Feb"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_06_6",
+            "weight": 0.071429,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B3",
+                "key": null,
+                "expected": "13200"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_06_7",
+            "weight": 0.071429,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A4",
+                "key": null,
+                "expected": "Mar"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_06_8",
+            "weight": 0.071429,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B4",
+                "key": null,
+                "expected": "15800"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_06_9",
+            "weight": 0.071429,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A5",
+                "key": null,
+                "expected": "Apr"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_06_10",
+            "weight": 0.071429,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B5",
+                "key": null,
+                "expected": "14100"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_06_11",
+            "weight": 0.071429,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A6",
+                "key": null,
+                "expected": "May"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_06_12",
+            "weight": 0.071429,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B6",
+                "key": null,
+                "expected": "16900"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_06_13",
+            "weight": 0.071429,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!A7",
+                "key": null,
+                "expected": "Jun"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_06_14",
+            "weight": 0.071423,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "Sheet1!B7",
+                "key": null,
+                "expected": "18200"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "libreoffice",
+    "difficulty": "medium",
+    "description": "Create monthly revenue data for Jan-Jun",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{ods_path}}",
+        "params": {
+          "operations": [
+            {
+              "sheet": "Sheet1",
+              "cell": "A1",
+              "value": "Month",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B1",
+              "value": "Revenue",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A2",
+              "value": "Jan",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B2",
+              "value": "12500",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A3",
+              "value": "Feb",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B3",
+              "value": "13200",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A4",
+              "value": "Mar",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B4",
+              "value": "15800",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A5",
+              "value": "Apr",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B5",
+              "value": "14100",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A6",
+              "value": "May",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B6",
+              "value": "16900",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A7",
+              "value": "Jun",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B7",
+              "value": "18200",
+              "value_type": "float"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "Sheet1!B7",
+        "key": null,
+        "expected": "18200"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "spreadsheet",
+    "visible_change_summary": "Create monthly revenue data for Jan-Jun. Use headers Month and Revenue, then enter exactly these rows: Jan=12500; Feb=13200; Mar=15800; Apr=14100; May=16900; Jun=18200.",
+    "checkpoint_visibility": {
+      "libreoffice_06_1": "visible_in_sheet",
+      "libreoffice_06_2": "visible_in_sheet",
+      "libreoffice_06_3": "visible_in_sheet",
+      "libreoffice_06_4": "visible_in_sheet",
+      "libreoffice_06_5": "visible_in_sheet",
+      "libreoffice_06_6": "visible_in_sheet",
+      "libreoffice_06_7": "visible_in_sheet",
+      "libreoffice_06_8": "visible_in_sheet",
+      "libreoffice_06_9": "visible_in_sheet",
+      "libreoffice_06_10": "visible_in_sheet",
+      "libreoffice_06_11": "visible_in_sheet",
+      "libreoffice_06_12": "visible_in_sheet",
+      "libreoffice_06_13": "visible_in_sheet",
+      "libreoffice_06_14": "visible_in_sheet"
+    }
+  }
+}

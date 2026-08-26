@@ -1,0 +1,259 @@
+{
+  "id": "inkscape_14",
+  "instruction": "Create a horizontal button group with 3 labeled buttons: '确认' (id=btn_confirm, fill=#1976d2), '保存' (id=btn_save, fill=#388e3c), '取消' (id=btn_cancel, fill=#d32f2f). Each button is 140x44px with rx=8, white text centered inside. Buttons start at x=80, y=278, spaced 160px apart.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_14_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_14_01",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "btn_confirm",
+                "key": "style",
+                "expected": "fill:#1976d2"
+              }
+            }
+          },
+          {
+            "id": "inkscape_14_02",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "btn_text_confirm",
+                "key": "text_content",
+                "expected": "确认"
+              }
+            }
+          },
+          {
+            "id": "inkscape_14_03",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "btn_save",
+                "key": "style",
+                "expected": "fill:#388e3c"
+              }
+            }
+          },
+          {
+            "id": "inkscape_14_04",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "btn_text_save",
+                "key": "text_content",
+                "expected": "保存"
+              }
+            }
+          },
+          {
+            "id": "inkscape_14_05",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "btn_cancel",
+                "key": "style",
+                "expected": "fill:#d32f2f"
+              }
+            }
+          },
+          {
+            "id": "inkscape_14_06",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "btn_text_cancel",
+                "key": "text_content",
+                "expected": "取消"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "medium",
+    "description": "Create a horizontal button group with 3 labeled buttons: '确认' (id=btn_confirm, fill=#1976d2), '保存' (id=btn_save, fill=#388e3c), '取消' (id=btn_cancel, fill=#d32f2f). Each button is 140x44px with rx=8, white text centered inside. Buttons start at x=80, y=278, spaced 160px apart.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "g",
+              "attributes": {
+                "id": "btn_group"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='btn_group']",
+              "tag": "rect",
+              "attributes": {
+                "id": "btn_confirm",
+                "x": "80",
+                "y": "278",
+                "width": "140",
+                "height": "44",
+                "rx": "8",
+                "ry": "8",
+                "style": "fill:#1976d2"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='btn_group']",
+              "tag": "text",
+              "attributes": {
+                "id": "btn_text_confirm",
+                "x": "150",
+                "y": "307",
+                "style": "font-size:15px;fill:#ffffff;text-anchor:middle;font-family:sans-serif",
+                "text_content": "确认"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='btn_group']",
+              "tag": "rect",
+              "attributes": {
+                "id": "btn_save",
+                "x": "240",
+                "y": "278",
+                "width": "140",
+                "height": "44",
+                "rx": "8",
+                "ry": "8",
+                "style": "fill:#388e3c"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='btn_group']",
+              "tag": "text",
+              "attributes": {
+                "id": "btn_text_save",
+                "x": "310",
+                "y": "307",
+                "style": "font-size:15px;fill:#ffffff;text-anchor:middle;font-family:sans-serif",
+                "text_content": "保存"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='btn_group']",
+              "tag": "rect",
+              "attributes": {
+                "id": "btn_cancel",
+                "x": "400",
+                "y": "278",
+                "width": "140",
+                "height": "44",
+                "rx": "8",
+                "ry": "8",
+                "style": "fill:#d32f2f"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='btn_group']",
+              "tag": "text",
+              "attributes": {
+                "id": "btn_text_cancel",
+                "x": "470",
+                "y": "307",
+                "style": "font-size:15px;fill:#ffffff;text-anchor:middle;font-family:sans-serif",
+                "text_content": "取消"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "btn_confirm",
+            "key": "style",
+            "expected": "fill:#1976d2"
+          }
+        },
+        {
+          "element_value": {
+            "id": "btn_text_confirm",
+            "key": "text_content",
+            "expected": "确认"
+          }
+        },
+        {
+          "element_value": {
+            "id": "btn_save",
+            "key": "style",
+            "expected": "fill:#388e3c"
+          }
+        },
+        {
+          "element_value": {
+            "id": "btn_text_save",
+            "key": "text_content",
+            "expected": "保存"
+          }
+        },
+        {
+          "element_value": {
+            "id": "btn_cancel",
+            "key": "style",
+            "expected": "fill:#d32f2f"
+          }
+        },
+        {
+          "element_value": {
+            "id": "btn_text_cancel",
+            "key": "text_content",
+            "expected": "取消"
+          }
+        }
+      ]
+    },
+    "initial_state": "blank"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Create three colored buttons labeled 确认, 保存, and 取消 in a horizontal group.",
+    "checkpoint_visibility": {
+      "inkscape_14_01": "visible_on_canvas",
+      "inkscape_14_02": "visible_on_canvas",
+      "inkscape_14_03": "visible_on_canvas",
+      "inkscape_14_04": "visible_on_canvas",
+      "inkscape_14_05": "visible_on_canvas",
+      "inkscape_14_06": "visible_on_canvas"
+    }
+  }
+}

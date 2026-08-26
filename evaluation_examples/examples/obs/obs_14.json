@@ -1,0 +1,70 @@
+{
+  "id": "obs_14",
+  "instruction": "Hide the Game Capture source in Main Scene",
+  "source": "asil_benchmark_v1",
+  "snapshot": "obs_default_scene",
+  "config": [],
+  "related_apps": [
+    "obs"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "obs_14_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "obs_14_game_capture_hidden",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "source_visible": {
+                "scene": "Main Scene",
+                "source": "Game Capture",
+                "expected": false
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "obs",
+    "difficulty": "simple",
+    "description": "Hide the Game Capture source in Main Scene",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "SetSceneItemEnabled",
+          "args": {
+            "sceneName": "Main Scene",
+            "sceneItemId": 2,
+            "sceneItemEnabled": false
+          }
+        }
+      }
+    ],
+    "validation": {
+      "source_visible": {
+        "scene": "Main Scene",
+        "source": "Game Capture",
+        "expected": false
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "program_view",
+    "visible_change_summary": "Game Capture is hidden in the Main Scene canvas.",
+    "checkpoint_visibility": {
+      "obs_14_game_capture_hidden": "visible_in_obs_ui"
+    }
+  }
+}

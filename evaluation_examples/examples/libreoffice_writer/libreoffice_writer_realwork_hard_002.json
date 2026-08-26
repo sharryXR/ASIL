@@ -1,0 +1,141 @@
+{
+  "id": "libreoffice_writer_realwork_hard_002",
+  "software": "libreoffice_writer",
+  "difficulty": "complex",
+  "description": "Hard-suite variant of libreoffice_writer_19: Add heading \"Announcements\" and paragraphs \"Office hours move to Wednesday.\" and \"The roadmap review is public now.\", then update the second paragraph to \"Stakeholder feedback was collected.\".",
+  "instruction": "Add heading \"Announcements\" and paragraphs \"Office hours move to Wednesday.\" and \"The roadmap review is public now.\", then update the second paragraph to \"Stakeholder feedback was collected.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odt_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "add_heading",
+            "text": "Announcements",
+            "level": 2
+          },
+          {
+            "action": "add_paragraph",
+            "text": "Office hours move to Wednesday."
+          },
+          {
+            "action": "add_paragraph",
+            "text": "The roadmap review is public now."
+          },
+          {
+            "action": "set_paragraph_text",
+            "index": 2,
+            "text": "Stakeholder feedback was collected."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "snapshot": "writer_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "document_page",
+    "visible_change_summary": "An Announcements section appears with two new notes while the second paragraph is updated.",
+    "checkpoint_visibility": {
+      "heading": "visible_on_page",
+      "announce1": "visible_on_page",
+      "announce2": "visible_on_page",
+      "second_para": "visible_on_page"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "heading",
+            "weight": 0.34,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "heading",
+                "value": {
+                  "text_content": "Announcements"
+                }
+              }
+            }
+          },
+          {
+            "id": "announce1",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "paragraph",
+                "value": {
+                  "text_content": "Office hours move to Wednesday."
+                }
+              }
+            }
+          },
+          {
+            "id": "second_para",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "paragraph:2",
+                "key": "text_content",
+                "expected": "Stakeholder feedback was collected."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "libreoffice_writer",
+    "difficulty": "complex",
+    "category": "realwork_hard",
+    "description": "Hard-suite variant of libreoffice_writer_19: Add heading \"Announcements\" and paragraphs \"Office hours move to Wednesday.\" and \"The roadmap review is public now.\", then update the second paragraph to \"Stakeholder feedback was collected.\".",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{odt_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_heading",
+              "text": "Announcements",
+              "level": 2
+            },
+            {
+              "action": "add_paragraph",
+              "text": "Office hours move to Wednesday."
+            },
+            {
+              "action": "add_paragraph",
+              "text": "The roadmap review is public now."
+            },
+            {
+              "action": "set_paragraph_text",
+              "index": 2,
+              "text": "Stakeholder feedback was collected."
+            }
+          ]
+        }
+      }
+    ],
+    "source_task_id": "libreoffice_writer_19",
+    "workflow_complexity": {
+      "meaningful_actions": 1,
+      "suite_family": "office_diagrams",
+      "copied_from_main_benchmark": true
+    }
+  },
+  "source": "asil_realwork_hard_mixed_v2"
+}

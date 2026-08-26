@@ -1,0 +1,87 @@
+{
+  "id": "jupyterlab_17",
+  "software": "jupyterlab",
+  "difficulty": "medium",
+  "description": "Add a ready-status code cell to the notebook.",
+  "instruction": "Open notebooks/analysis.ipynb, insert a code cell at zero-based position 3 with source \"status = \\\"ready\\\"\", and set its output to ready.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {"action": "open_file", "path": "notebooks/analysis.ipynb"},
+          {"action": "insert_cell", "path": "notebooks/analysis.ipynb", "cell_type": "code", "source": "status = \"ready\"", "position": 3},
+          {"action": "set_cell_output", "path": "notebooks/analysis.ipynb", "cell_index": 3, "output": "ready", "execution_count": 6}
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": ["jupyterlab"],
+  "snapshot": "jupyterlab_default",
+  "initial_state": "notebook_focus",
+  "gui_expectations": {
+    "success_surface": "notebook",
+    "visible_change_summary": "The notebook shows a new ready-status code cell with its output.",
+    "checkpoint_visibility": {
+      "status_source": "visible_in_notebook_cell",
+      "status_output": "visible_in_notebook_output"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "status_source",
+            "weight": 0.5,
+            "gui_visible_required": true,
+          "rule": {
+            "element_value": {
+              "id": "cell:notebooks/analysis.ipynb:3",
+              "key": "source",
+              "expected": "status = \"ready\""
+            }
+            }
+          },
+          {
+            "id": "status_output",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "cell:notebooks/analysis.ipynb:3",
+                "key": "output",
+                "expected": "ready"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "jupyterlab",
+    "difficulty": "medium",
+    "description": "Add a ready-status code cell to the notebook.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {"action": "open_file", "path": "notebooks/analysis.ipynb"},
+            {"action": "insert_cell", "path": "notebooks/analysis.ipynb", "cell_type": "code", "source": "status = \"ready\"", "position": 3},
+            {"action": "set_cell_output", "path": "notebooks/analysis.ipynb", "cell_index": 3, "output": "ready", "execution_count": 6}
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "notebook_focus"
+  }
+}

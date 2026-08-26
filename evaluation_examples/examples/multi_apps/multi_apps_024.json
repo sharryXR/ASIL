@@ -1,0 +1,119 @@
+{
+  "id": "multi_apps_024",
+  "software": "multi_apps",
+  "source": "asil_multi_apps_generated",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: rename meeting-notes.md to meeting-notes-multi_024.md; save reports/multi_024_analysis.md with the analysis note. Use these exact checkpoint text values where applicable: jupyterlab: 'MA-024 notebook analysis saved'.",
+  "related_apps": [
+    "nautilus",
+    "jupyterlab"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "nautilus_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "nautilus",
+                "rule": {
+                  "element_exists": "workspace:meeting-notes-multi_024.md"
+                }
+              }
+            }
+          },
+          {
+            "id": "jupyterlab_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "jupyterlab",
+                "rule": {
+                  "element_contains": {
+                    "id": "file:reports/multi_024_analysis.md",
+                    "key": "content",
+                    "expected": "MA-024 notebook analysis saved"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "nautilus_checkpoint": "visible_in_nautilus",
+      "jupyterlab_checkpoint": "visible_in_jupyterlab"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "medium",
+    "description": "File Workspace cross-app task for nautilus, jupyterlab.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "nautilus": "default",
+      "jupyterlab": "readme_focus"
+    },
+    "primary_app": "nautilus",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "nautilus",
+              "action": {
+                "action_type": "invoke_function",
+                "target": "nautilus",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "rename_entry",
+                      "path": "meeting-notes.md",
+                      "new_name": "meeting-notes-multi_024.md"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "jupyterlab",
+              "action": {
+                "action_type": "modify_file",
+                "target": "workspace",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "create_file",
+                      "path": "reports/multi_024_analysis.md",
+                      "content": "MA-024 notebook analysis saved\n"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "file_workspace"
+  }
+}

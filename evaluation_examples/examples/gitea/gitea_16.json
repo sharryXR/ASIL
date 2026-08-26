@@ -1,0 +1,104 @@
+{
+  "id": "gitea_16",
+  "instruction": "Create a release tagged 'v1.0.0' with name 'Initial Release'",
+  "source": "asil_benchmark_v1",
+  "snapshot": "gitea_instance_default",
+  "config": [],
+  "related_apps": [
+    "gitea"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "gitea_16_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "gitea_16_1",
+            "weight": 0.3333,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_value": {
+                "type": "release",
+                "key": "tag_name",
+                "expected": "v1.0.0"
+              }
+            }
+          },
+          {
+            "id": "gitea_16_2",
+            "weight": 0.3333,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_value": {
+                "type": "release",
+                "key": "name",
+                "expected": "Initial Release"
+              }
+            }
+          },
+          {
+            "id": "gitea_16_3",
+            "weight": 0.3333,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_contains": {
+                "type": "release",
+                "key": "body",
+                "expected": "First stable release."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gitea",
+    "difficulty": "medium",
+    "description": "Create a release tagged 'v1.0.0' with name 'Initial Release'",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/releases",
+          "body": {
+            "tag_name": "v1.0.0",
+            "name": "Initial Release",
+            "body": "First stable release.",
+            "draft": false,
+            "prerelease": false,
+            "target_commitish": "main"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "any_element_value": {
+            "type": "release",
+            "key": "tag_name",
+            "expected": "v1.0.0"
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "web_page",
+    "visible_change_summary": "Create a release tagged 'v1.0.0' with name 'Initial Release'",
+    "checkpoint_visibility": {
+      "gitea_16_1": "visible_on_web_page",
+      "gitea_16_2": "visible_on_web_page",
+      "gitea_16_3": "visible_on_web_page"
+    }
+  }
+}

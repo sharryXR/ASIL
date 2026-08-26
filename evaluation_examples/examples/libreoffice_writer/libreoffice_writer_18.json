@@ -1,0 +1,95 @@
+{
+  "id": "libreoffice_writer_18",
+  "software": "libreoffice_writer",
+  "difficulty": "complex",
+  "description": "Retitle the document to \"Status Memo\", replace the first paragraph with \"The launch checklist is nearly complete.\", and add heading \"Next Steps\".",
+  "instruction": "Retitle the document to \"Status Memo\", replace the first paragraph with \"The launch checklist is nearly complete.\", and add heading \"Next Steps\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odt_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_heading_text",
+            "index": 1,
+            "text": "Status Memo"
+          },
+          {
+            "action": "set_paragraph_text",
+            "index": 1,
+            "text": "The launch checklist is nearly complete."
+          },
+          {
+            "action": "add_heading",
+            "text": "Next Steps",
+            "level": 2
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "snapshot": "writer_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "document_page",
+    "visible_change_summary": "The title and first paragraph change, and a Next Steps heading is appended.",
+    "checkpoint_visibility": {
+      "title": "visible_on_page",
+      "p1": "visible_on_page",
+      "heading_added": "visible_on_page"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "title",
+            "weight": 0.34,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "heading:1",
+                "key": "text_content",
+                "expected": "Status Memo"
+              }
+            }
+          },
+          {
+            "id": "p1",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "paragraph:1",
+                "key": "text_content",
+                "expected": "The launch checklist is nearly complete."
+              }
+            }
+          },
+          {
+            "id": "heading_added",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "heading",
+                "value": {
+                  "text_content": "Next Steps"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

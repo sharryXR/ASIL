@@ -1,0 +1,13 @@
+{
+  "action_type": "api_call",
+  "target": "gitea",
+  "params": {
+    "operation": "create_repository",
+    "arguments": {
+      "name": "softwaregen-smoke-public",
+      "description": "Temporary repository created by the ASIL softwaregen validation",
+      "private": true,
+      "auto_init": true
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "id": "multi_apps_006",
+  "software": "multi_apps",
+  "source": "asil_multi_apps_generated",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: create reports/multi_006_handoff.md with the handoff note; open a Gitea issue titled 'MA-006 release coordination'. Use these exact checkpoint text values where applicable: code_server: 'MA-006 code handoff complete'.",
+  "related_apps": [
+    "code_server",
+    "gitea"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "code_server_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "code_server",
+                "rule": {
+                  "element_contains": {
+                    "id": "file:reports/multi_006_handoff.md",
+                    "key": "content",
+                    "expected": "MA-006 code handoff complete"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "gitea_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "gitea",
+                "rule": {
+                  "any_element_contains": {
+                    "type": "issue",
+                    "key": "title",
+                    "expected": "MA-006 release coordination"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "code_server_checkpoint": "visible_in_code_server",
+      "gitea_checkpoint": "visible_in_gitea"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "medium",
+    "description": "Dev Data cross-app task for code_server, gitea.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "code_server": "default",
+      "gitea": "default"
+    },
+    "primary_app": "code_server",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "code_server",
+              "action": {
+                "action_type": "modify_file",
+                "target": "workspace",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "create_file",
+                      "path": "reports/multi_006_handoff.md",
+                      "content": "MA-006 code handoff complete\n"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "gitea",
+              "action": {
+                "action_type": "api_call",
+                "target": "gitea-api",
+                "params": {
+                  "method": "POST",
+                  "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+                  "body": {
+                    "title": "MA-006 release coordination",
+                    "body": "Track cross-app completion for MA-006."
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "dev_data"
+  }
+}

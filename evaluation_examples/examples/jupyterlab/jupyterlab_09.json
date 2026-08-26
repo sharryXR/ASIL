@@ -1,0 +1,88 @@
+{
+  "id": "jupyterlab_09",
+  "software": "jupyterlab",
+  "difficulty": "medium",
+  "description": "Remove the intro markdown cell so the code cell becomes first.",
+  "instruction": "Open notebooks/analysis.ipynb and delete the first cell.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {
+            "action": "open_file",
+            "path": "notebooks/analysis.ipynb"
+          },
+          {
+            "action": "delete_cell",
+            "path": "notebooks/analysis.ipynb",
+            "cell_index": 0
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "jupyterlab"
+  ],
+  "snapshot": "jupyterlab_default",
+  "initial_state": "notebook_focus",
+  "gui_expectations": {
+    "success_surface": "notebook",
+    "visible_change_summary": "The notebook now starts with the code cell.",
+    "checkpoint_visibility": {
+      "first_code_cell": "visible_in_notebook_cell"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "first_code_cell",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "cell:notebooks/analysis.ipynb:0",
+                "key": "cell_type",
+                "expected": "code"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "jupyterlab",
+    "difficulty": "medium",
+    "description": "Remove the intro markdown cell so the code cell becomes first.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {
+              "action": "open_file",
+              "path": "notebooks/analysis.ipynb"
+            },
+            {
+              "action": "delete_cell",
+              "path": "notebooks/analysis.ipynb",
+              "cell_index": 0
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "notebook_focus"
+  }
+}

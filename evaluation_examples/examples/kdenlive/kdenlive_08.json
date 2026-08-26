@@ -1,0 +1,87 @@
+{
+  "id": "kdenlive_08",
+  "instruction": "Place the existing City B-Roll clip on V2 starting at frame 144 for 72 frames.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "kdenlive_default_project",
+  "config": [],
+  "related_apps": ["kdenlive"],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "kdenlive_08_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "kdenlive_08_timeline_block",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "timeline_clip",
+                "id": "timeline_clip:tl_broll_overlay_144",
+                "value": {
+                  "track_id": "video_overlay",
+                  "position": 144,
+                  "duration": 72,
+                  "clip_title": "City B-Roll"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "kdenlive",
+    "difficulty": "simple",
+    "description": "Place the existing City B-Roll clip on V2 starting at frame 144 for 72 frames.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "/kdenliveProject/timeline/track[@id='video_overlay']",
+              "tag": "clipref",
+              "attributes": {
+                "id": "tl_broll_overlay_144",
+                "clip_id": "clip_broll",
+                "start": "144",
+                "duration": "72",
+                "in": "0",
+                "out": "72"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "any_element_matches": {
+        "type": "timeline_clip",
+        "id": "timeline_clip:tl_broll_overlay_144",
+        "value": {
+          "track_id": "video_overlay",
+          "position": 144,
+          "duration": 72,
+          "clip_title": "City B-Roll"
+        }
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "timeline",
+    "visible_change_summary": "A new City B-Roll block appears on V2 near frame 144.",
+    "checkpoint_visibility": {
+      "kdenlive_08_timeline_block": "visible_in_timeline_clip_block"
+    }
+  }
+}

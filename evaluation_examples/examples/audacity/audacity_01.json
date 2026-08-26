@@ -1,0 +1,72 @@
+{
+  "id": "audacity_01",
+  "instruction": "Rename the Music Bed track to Narration Bed.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "audacity_default_project",
+  "config": [],
+  "related_apps": [
+    "audacity"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "audacity_01_main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "music_renamed",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "track:track_music",
+                "key": "name",
+                "expected": "Narration Bed"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "audacity",
+    "difficulty": "simple",
+    "description": "Rename the Music Bed track to Narration Bed.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "set_track_value",
+              "track_id": "track_music",
+              "field": "name",
+              "value": "Narration Bed"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "track:track_music",
+        "key": "name",
+        "expected": "Narration Bed"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "multitrack_timeline",
+    "visible_change_summary": "The second track header now reads Narration Bed.",
+    "checkpoint_visibility": {
+      "music_renamed": "visible_in_track_headers"
+    }
+  }
+}

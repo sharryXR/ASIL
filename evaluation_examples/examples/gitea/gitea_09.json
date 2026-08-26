@@ -1,0 +1,129 @@
+{
+  "id": "gitea_09",
+  "instruction": "Update repository settings: disable wiki, enable issues, set description to 'Updated project description'",
+  "source": "asil_benchmark_v1",
+  "snapshot": "gitea_instance_default",
+  "config": [],
+  "related_apps": [
+    "gitea"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "gitea_09_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "gitea_09_1",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "repo:asil_admin/test-repo",
+                "key": "has_wiki",
+                "expected": false
+              }
+            }
+          },
+          {
+            "id": "gitea_09_2",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "repo:asil_admin/test-repo",
+                "key": "has_issues",
+                "expected": true
+              }
+            }
+          },
+          {
+            "id": "gitea_09_3",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "repo:asil_admin/test-repo",
+                "key": "description",
+                "expected": "Updated project description"
+              }
+            }
+          },
+          {
+            "id": "gitea_09_4",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "repo:asil_admin/test-repo",
+                "key": "has_projects",
+                "expected": true
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gitea",
+    "difficulty": "complex",
+    "description": "Update repository settings: disable wiki, enable issues, set description to 'Updated project description'",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "PATCH",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}",
+          "body": {
+            "description": "Updated project description",
+            "has_issues": true,
+            "has_wiki": false,
+            "has_projects": true
+          }
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "repo:asil_admin/test-repo",
+            "key": "has_wiki",
+            "expected": false
+          }
+        },
+        {
+          "element_value": {
+            "id": "repo:asil_admin/test-repo",
+            "key": "has_issues",
+            "expected": true
+          }
+        },
+        {
+          "element_contains": {
+            "id": "repo:asil_admin/test-repo",
+            "key": "description",
+            "expected": "Updated project description"
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "web_page",
+    "visible_change_summary": "Update repository settings: disable wiki, enable issues, set description to 'Updated project description'",
+    "checkpoint_visibility": {
+      "gitea_09_1": "visible_on_web_page",
+      "gitea_09_2": "visible_on_web_page",
+      "gitea_09_3": "visible_on_web_page",
+      "gitea_09_4": "visible_on_web_page"
+    }
+  }
+}

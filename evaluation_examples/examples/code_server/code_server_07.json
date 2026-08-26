@@ -1,0 +1,90 @@
+{
+  "id": "code_server_07",
+  "software": "code_server",
+  "difficulty": "medium",
+  "description": "Refine the status formatter.",
+  "instruction": "Open src/utils.py and replace \"Status:\" with \"Current status:\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {
+            "action": "open_file",
+            "path": "src/utils.py"
+          },
+          {
+            "action": "replace_text",
+            "path": "src/utils.py",
+            "old": "Status:",
+            "new": "Current status:"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "code_server"
+  ],
+  "snapshot": "code_server_default",
+  "initial_state": "src_focus",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "The utils formatter now says Current status.",
+    "checkpoint_visibility": {
+      "utils_content": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "utils_content",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "file:src/utils.py",
+                "key": "content",
+                "expected": "Current status:"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "code_server",
+    "difficulty": "medium",
+    "description": "Refine the status formatter.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {
+              "action": "open_file",
+              "path": "src/utils.py"
+            },
+            {
+              "action": "replace_text",
+              "path": "src/utils.py",
+              "old": "Status:",
+              "new": "Current status:"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "src_focus"
+  }
+}

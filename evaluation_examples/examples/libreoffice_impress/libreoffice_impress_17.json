@@ -1,0 +1,122 @@
+{
+  "id": "libreoffice_impress_17",
+  "software": "libreoffice_impress",
+  "difficulty": "complex",
+  "description": "Rename slide 2 to \"Go-Live Support\", replace its first body line with \"Publish the incident response roster.\", append \"Review handoff coverage every Friday.\", and add a new slide titled \"FAQ Owners\" with body line \"Assign final answers by Thursday.\".",
+  "instruction": "Rename slide 2 to \"Go-Live Support\", replace its first body line with \"Publish the incident response roster.\", append \"Review handoff coverage every Friday.\", and add a new slide titled \"FAQ Owners\" with one body line: \"Assign final answers by Thursday.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_slide_title",
+            "slide_index": 2,
+            "text": "Go-Live Support"
+          },
+          {
+            "action": "set_slide_body",
+            "slide_index": 2,
+            "body_index": 1,
+            "text": "Publish the incident response roster."
+          },
+          {
+            "action": "append_slide_body",
+            "slide_index": 2,
+            "text": "Review handoff coverage every Friday."
+          },
+          {
+            "action": "add_slide",
+            "title": "FAQ Owners",
+            "body": [
+              "Assign final answers by Thursday."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "Slide 2 becomes Go-Live Support and a new FAQ Owners slide appears.",
+    "checkpoint_visibility": {
+      "slide2_title": "visible_on_slide",
+      "slide2_body1": "visible_on_slide",
+      "slide2_body2": "visible_on_slide",
+      "slide3_title": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "slide2_title",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:title",
+                "key": "text_content",
+                "expected": "Go-Live Support"
+              }
+            }
+          },
+          {
+            "id": "slide2_body1",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:body:1",
+                "key": "text_content",
+                "expected": "Publish the incident response roster."
+              }
+            }
+          },
+          {
+            "id": "slide2_body2",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:body:2",
+                "key": "text_content",
+                "expected": "Review handoff coverage every Friday."
+              }
+            }
+          },
+          {
+            "id": "slide3_title",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:3:title",
+                "key": "text_content",
+                "expected": "FAQ Owners"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "contact_sheet",
+    "slide_indices": [
+      2,
+      3
+    ]
+  }
+}

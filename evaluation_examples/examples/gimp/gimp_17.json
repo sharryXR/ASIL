@@ -1,0 +1,186 @@
+{
+  "id": "gimp_17",
+  "software": "gimp",
+  "difficulty": "complex",
+  "description": "Refresh the default title treatment.",
+  "instruction": "Update watermark_text so text becomes \"REVIEW\", color becomes #444444, and x=520 y=480; then update logo_block to width=170 height=100 fill #7a3cff.",
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "update_layer",
+            "id": "watermark_text",
+            "changes": {
+              "text": "REVIEW",
+              "color": "#444444",
+              "x": 520,
+              "y": 480
+            }
+          },
+          {
+            "action": "update_layer",
+            "id": "logo_block",
+            "changes": {
+              "width": 170,
+              "height": 100,
+              "fill": "#7a3cff"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "gimp"
+  ],
+  "snapshot": "gimp_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "The watermark becomes REVIEW and the logo block changes to purple.",
+    "checkpoint_visibility": {
+      "watermark_text": "visible_on_canvas",
+      "watermark_color": "visible_on_canvas",
+      "watermark_x": "visible_on_canvas",
+      "watermark_y": "visible_on_canvas",
+      "logo_fill": "visible_on_canvas",
+      "logo_width": "visible_on_canvas",
+      "logo_height": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "watermark_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "watermark_text",
+                "key": "text",
+                "expected": "REVIEW"
+              }
+            }
+          },
+          {
+            "id": "watermark_color",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "watermark_text",
+                "key": "color",
+                "expected": "#444444"
+              }
+            }
+          },
+          {
+            "id": "watermark_x",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "watermark_text",
+                "key": "x",
+                "expected": 520
+              }
+            }
+          },
+          {
+            "id": "watermark_y",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "watermark_text",
+                "key": "y",
+                "expected": 480
+              }
+            }
+          },
+          {
+            "id": "logo_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "logo_block",
+                "key": "fill",
+                "expected": "#7a3cff"
+              }
+            }
+          },
+          {
+            "id": "logo_width",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "logo_block",
+                "key": "width",
+                "expected": 170
+              }
+            }
+          },
+          {
+            "id": "logo_height",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "logo_block",
+                "key": "height",
+                "expected": 100
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "complex",
+    "description": "Refresh the default title treatment.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "update_layer",
+              "id": "watermark_text",
+              "changes": {
+                "text": "REVIEW",
+                "color": "#444444",
+                "x": 520,
+                "y": 480
+              }
+            },
+            {
+              "action": "update_layer",
+              "id": "logo_block",
+              "changes": {
+                "width": 170,
+                "height": 100,
+                "fill": "#7a3cff"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

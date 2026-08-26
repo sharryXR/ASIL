@@ -1,0 +1,91 @@
+{
+  "id": "audacity_07",
+  "instruction": "Rename Voiceover to Lead VO and Music Bed to Theme Bed.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "audacity_default_project",
+  "config": [],
+  "related_apps": [
+    "audacity"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "audacity_07_main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "voice_renamed",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "track:track_voice",
+                "key": "name",
+                "expected": "Lead VO"
+              }
+            }
+          },
+          {
+            "id": "music_renamed",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "track:track_music",
+                "key": "name",
+                "expected": "Theme Bed"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "audacity",
+    "difficulty": "simple",
+    "description": "Rename Voiceover to Lead VO and Music Bed to Theme Bed.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "set_track_value",
+              "track_id": "track_voice",
+              "field": "name",
+              "value": "Lead VO"
+            },
+            {
+              "action": "set_track_value",
+              "track_id": "track_music",
+              "field": "name",
+              "value": "Theme Bed"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "track:track_voice",
+        "key": "name",
+        "expected": "Lead VO"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "multitrack_timeline",
+    "visible_change_summary": "Both visible track headers are renamed to Lead VO and Theme Bed.",
+    "checkpoint_visibility": {
+      "voice_renamed": "visible_in_track_headers",
+      "music_renamed": "visible_in_track_headers"
+    }
+  }
+}

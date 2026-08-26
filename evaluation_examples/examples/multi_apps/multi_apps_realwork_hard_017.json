@@ -1,0 +1,268 @@
+{
+  "id": "multi_apps_realwork_hard_017",
+  "software": "multi_apps",
+  "source": "asil_realwork_hard_mixed_v2",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: create a Blender object using material MultiMat075; add an Impress slide titled 'MA-075 launch slide'; add a draw.io shape labeled 'MA-075 flow'.",
+  "related_apps": [
+    "blender",
+    "libreoffice_impress",
+    "drawio"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "blender_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "blender",
+                "rule": {
+                  "material_exists": "MultiMat075"
+                }
+              }
+            }
+          },
+          {
+            "id": "libreoffice_impress_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "libreoffice_impress",
+                "rule": {
+                  "any_element_matches": {
+                    "type": "slide_title",
+                    "value": {
+                      "text_content": "MA-075 launch slide"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "drawio_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "drawio",
+                "rule": {
+                  "element_contains": {
+                    "id": "shape:draw_multi_075",
+                    "key": "label",
+                    "expected": "MA-075 flow"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "blender_checkpoint": "visible_in_blender",
+      "libreoffice_impress_checkpoint": "visible_in_libreoffice_impress",
+      "drawio_checkpoint": "visible_in_drawio"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "complex",
+    "description": "Hard-suite variant of multi_apps_075: Mixed Release cross-app task for blender, libreoffice_impress, drawio.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "blender": "default",
+      "libreoffice_impress": "default",
+      "drawio": "default"
+    },
+    "primary_app": "blender",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "blender",
+              "action": {
+                "action_type": "invoke_function",
+                "target": "blender",
+                "params": {
+                  "script": [
+                    "import bpy",
+                    "bpy.ops.mesh.primitive_uv_sphere_add(radius=1, location=(0, 0, 0))",
+                    "mat = bpy.data.materials.new(name='MultiMat075')",
+                    "bpy.context.object.data.materials.append(mat)"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "libreoffice_impress",
+              "action": {
+                "action_type": "modify_file",
+                "target": "presentation",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_slide",
+                      "title": "MA-075 launch slide",
+                      "body": [
+                        "Cross-app proof for MA-075"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "drawio",
+              "action": {
+                "action_type": "modify_file",
+                "target": "diagram",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_shape",
+                      "id": "draw_multi_075",
+                      "label": "MA-075 flow",
+                      "shape_kind": "rounded",
+                      "x": 155,
+                      "y": 195,
+                      "width": 150,
+                      "height": 70,
+                      "fill": "#d1fae5"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "realwork_hard",
+    "source_task_id": "multi_apps_075",
+    "workflow_complexity": {
+      "meaningful_actions": 3,
+      "suite_family": "multi_app_hard",
+      "copied_from_main_benchmark": true
+    }
+  },
+  "difficulty": "complex",
+  "description": "Hard-suite variant of multi_apps_075: Mixed Release cross-app task for blender, libreoffice_impress, drawio.",
+  "actions": [
+    {
+      "action_type": "batch",
+      "target": "multi_apps",
+      "params": {
+        "actions": [
+          {
+            "app": "blender",
+            "action": {
+              "action_type": "invoke_function",
+              "target": "blender",
+              "params": {
+                "script": [
+                  "import bpy",
+                  "bpy.ops.mesh.primitive_uv_sphere_add(radius=1, location=(0, 0, 0))",
+                  "mat = bpy.data.materials.new(name='MultiMat075')",
+                  "bpy.context.object.data.materials.append(mat)"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "batch",
+      "target": "multi_apps",
+      "params": {
+        "actions": [
+          {
+            "app": "libreoffice_impress",
+            "action": {
+              "action_type": "modify_file",
+              "target": "presentation",
+              "params": {
+                "operations": [
+                  {
+                    "action": "add_slide",
+                    "title": "MA-075 launch slide",
+                    "body": [
+                      "Cross-app proof for MA-075"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "action_type": "batch",
+      "target": "multi_apps",
+      "params": {
+        "actions": [
+          {
+            "app": "drawio",
+            "action": {
+              "action_type": "modify_file",
+              "target": "diagram",
+              "params": {
+                "operations": [
+                  {
+                    "action": "add_shape",
+                    "id": "draw_multi_075",
+                    "label": "MA-075 flow",
+                    "shape_kind": "rounded",
+                    "x": 155,
+                    "y": 195,
+                    "width": 150,
+                    "height": 70,
+                    "fill": "#d1fae5"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

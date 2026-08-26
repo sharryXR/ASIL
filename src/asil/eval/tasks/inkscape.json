@@ -1,0 +1,1758 @@
+{
+  "software": "inkscape",
+  "tasks": [
+    {
+      "id": "inkscape_01",
+      "software": "inkscape",
+      "difficulty": "simple",
+      "description": "Create a blue rectangle (100x50 at position 10,20)",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "blue_rect",
+                  "x": "10",
+                  "y": "20",
+                  "width": "100",
+                  "height": "50",
+                  "style": "fill:#0000ff"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "element_exists": "blue_rect"
+      }
+    },
+    {
+      "id": "inkscape_02",
+      "software": "inkscape",
+      "difficulty": "simple",
+      "description": "Modify rectangle corner radius to 10px",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "xpath": "//*[@id='rect1']",
+                "attribute": "rx",
+                "value": "10"
+              },
+              {
+                "xpath": "//*[@id='rect1']",
+                "attribute": "ry",
+                "value": "10"
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "element_value": {
+          "id": "rect1",
+          "key": "rx",
+          "expected": "10"
+        }
+      }
+    },
+    {
+      "id": "inkscape_03",
+      "software": "inkscape",
+      "difficulty": "simple",
+      "description": "Change circle fill color to yellow",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "xpath": "//*[@id='circle1']",
+                "attribute": "style",
+                "value": "fill:#ffff00"
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "element_value": {
+          "id": "circle1",
+          "key": "style",
+          "expected": "fill:#ffff00"
+        }
+      }
+    },
+    {
+      "id": "inkscape_04",
+      "software": "inkscape",
+      "difficulty": "simple",
+      "description": "Delete the circle element",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "action": "delete",
+                "xpath": "//*[@id='circle1']"
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "element_not_exists": "circle1"
+      }
+    },
+    {
+      "id": "inkscape_05",
+      "software": "inkscape",
+      "difficulty": "simple",
+      "description": "Add a second layer named 'Annotations'",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "action": "add_element",
+                "parent_xpath": "//svg:svg",
+                "tag": "g",
+                "attributes": {
+                  "id": "annotations_layer",
+                  "inkscape:groupmode": "layer",
+                  "inkscape:label": "Annotations"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "element_exists": "annotations_layer"
+      }
+    },
+    {
+      "id": "inkscape_06",
+      "software": "inkscape",
+      "difficulty": "medium",
+      "description": "Resize rect1 to width=200, height=100",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "xpath": "//*[@id='rect1']",
+                "attribute": "width",
+                "value": "200"
+              },
+              {
+                "xpath": "//*[@id='rect1']",
+                "attribute": "height",
+                "value": "100"
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "element_value": {
+          "id": "rect1",
+          "key": "width",
+          "expected": "200"
+        }
+      }
+    },
+    {
+      "id": "inkscape_07",
+      "software": "inkscape",
+      "difficulty": "medium",
+      "description": "Move rect2 to position (50, 50)",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "xpath": "//*[@id='rect2']",
+                "attribute": "x",
+                "value": "50"
+              },
+              {
+                "xpath": "//*[@id='rect2']",
+                "attribute": "y",
+                "value": "50"
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "element_value": {
+          "id": "rect2",
+          "key": "x",
+          "expected": "50"
+        }
+      }
+    },
+    {
+      "id": "inkscape_08",
+      "software": "inkscape",
+      "difficulty": "medium",
+      "description": "Add a path element with a simple triangle",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "path",
+                "attributes": {
+                  "id": "triangle1",
+                  "d": "M 100,200 L 200,200 L 150,100 Z",
+                  "style": "fill:#00ff00;stroke:#000000"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "element_exists": "triangle1"
+      }
+    },
+    {
+      "id": "inkscape_09",
+      "software": "inkscape",
+      "difficulty": "complex",
+      "description": "Create a group of 3 shapes and assign group id",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "g",
+                "attributes": {
+                  "id": "shape_group"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='shape_group']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "g_rect1",
+                  "x": "10",
+                  "y": "10",
+                  "width": "50",
+                  "height": "50",
+                  "style": "fill:red"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='shape_group']",
+                "tag": "circle",
+                "attributes": {
+                  "id": "g_circle1",
+                  "cx": "100",
+                  "cy": "100",
+                  "r": "30",
+                  "style": "fill:blue"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "element_exists": "g_rect1"
+      }
+    },
+    {
+      "id": "inkscape_10",
+      "software": "inkscape",
+      "difficulty": "complex",
+      "description": "Create SVG icon: background rect + centered text + border",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "icon_bg",
+                  "x": "0",
+                  "y": "0",
+                  "width": "64",
+                  "height": "64",
+                  "style": "fill:#4a90d9;rx:8;ry:8"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "text",
+                "attributes": {
+                  "id": "icon_text",
+                  "x": "32",
+                  "y": "40",
+                  "style": "font-size:28px;fill:white;text-anchor:middle"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "element_exists": "icon_bg"
+      }
+    },
+    {
+      "id": "inkscape_11",
+      "software": "inkscape",
+      "difficulty": "medium",
+      "initial_state": "blank",
+      "description": "Create a progress bar UI component showing 70% completion: a 400x32 light-gray background bar (id=progress_bg), a 280x32 green fill bar (id=progress_fill, style fill:#4caf50), and a centered white text label '70%' inside the fill (id=progress_label).",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "progress_bg",
+                  "x": "200",
+                  "y": "284",
+                  "width": "400",
+                  "height": "32",
+                  "rx": "6",
+                  "ry": "6",
+                  "style": "fill:#e0e0e0"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "progress_fill",
+                  "x": "200",
+                  "y": "284",
+                  "width": "280",
+                  "height": "32",
+                  "rx": "6",
+                  "ry": "6",
+                  "style": "fill:#4caf50"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "text",
+                "attributes": {
+                  "id": "progress_label",
+                  "x": "340",
+                  "y": "307",
+                  "style": "font-size:15px;fill:#ffffff;text-anchor:middle;font-family:sans-serif;font-weight:bold",
+                  "text_content": "70%"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_exists": "progress_fill"
+          },
+          {
+            "element_value": {
+              "id": "progress_label",
+              "key": "text_content",
+              "expected": "70%"
+            }
+          },
+          {
+            "count_at_least": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "inkscape_12",
+      "software": "inkscape",
+      "difficulty": "medium",
+      "initial_state": "blank",
+      "description": "Create a vertical bar chart titled '部门季度销售额' with 4 bars and labeled axes: 销售部(id=bar_sales, height=160, fill=#2196f3), 市场部(id=bar_marketing, height=120, fill=#ff9800), 工程部(id=bar_engineering, height=190, fill=#4caf50), 支持部(id=bar_support, height=90, fill=#f44336). Each bar has a centered text label below with the department name. Add a chart title text element (id=chart_title) at the top.",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "g",
+                "attributes": {
+                  "id": "chart_group"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='chart_group']",
+                "tag": "text",
+                "attributes": {
+                  "id": "chart_title",
+                  "x": "400",
+                  "y": "40",
+                  "style": "font-size:18px;text-anchor:middle;font-family:sans-serif;font-weight:bold;fill:#333333",
+                  "text_content": "部门季度销售额"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='chart_group']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "bar_sales",
+                  "x": "100",
+                  "y": "280",
+                  "width": "60",
+                  "height": "160",
+                  "style": "fill:#2196f3"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='chart_group']",
+                "tag": "text",
+                "attributes": {
+                  "id": "bar_label_sales",
+                  "x": "130",
+                  "y": "460",
+                  "style": "font-size:13px;text-anchor:middle;font-family:sans-serif;fill:#333",
+                  "text_content": "销售部"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='chart_group']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "bar_marketing",
+                  "x": "220",
+                  "y": "320",
+                  "width": "60",
+                  "height": "120",
+                  "style": "fill:#ff9800"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='chart_group']",
+                "tag": "text",
+                "attributes": {
+                  "id": "bar_label_marketing",
+                  "x": "250",
+                  "y": "460",
+                  "style": "font-size:13px;text-anchor:middle;font-family:sans-serif;fill:#333",
+                  "text_content": "市场部"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='chart_group']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "bar_engineering",
+                  "x": "340",
+                  "y": "250",
+                  "width": "60",
+                  "height": "190",
+                  "style": "fill:#4caf50"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='chart_group']",
+                "tag": "text",
+                "attributes": {
+                  "id": "bar_label_engineering",
+                  "x": "370",
+                  "y": "460",
+                  "style": "font-size:13px;text-anchor:middle;font-family:sans-serif;fill:#333",
+                  "text_content": "工程部"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='chart_group']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "bar_support",
+                  "x": "460",
+                  "y": "350",
+                  "width": "60",
+                  "height": "90",
+                  "style": "fill:#f44336"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='chart_group']",
+                "tag": "text",
+                "attributes": {
+                  "id": "bar_label_support",
+                  "x": "490",
+                  "y": "460",
+                  "style": "font-size:13px;text-anchor:middle;font-family:sans-serif;fill:#333",
+                  "text_content": "支持部"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_exists": "bar_engineering"
+          },
+          {
+            "element_value": {
+              "id": "chart_title",
+              "key": "text_content",
+              "expected": "部门季度销售额"
+            }
+          },
+          {
+            "element_value": {
+              "id": "bar_label_sales",
+              "key": "text_content",
+              "expected": "销售部"
+            }
+          },
+          {
+            "count_at_least": 8
+          }
+        ]
+      }
+    },
+    {
+      "id": "inkscape_13",
+      "software": "inkscape",
+      "difficulty": "medium",
+      "initial_state": "blank",
+      "description": "Create a user avatar component for user 'Alex': a 100px-radius circle background (id=avatar_bg, fill=#3f51b5), a centered white letter 'A' in 64px bold font (id=avatar_initial, text='A'), and a thin 4px-stroke border ring (id=avatar_ring, r=108, fill=none, stroke=#3f51b5). Center everything at (400, 300).",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "circle",
+                "attributes": {
+                  "id": "avatar_bg",
+                  "cx": "400",
+                  "cy": "300",
+                  "r": "100",
+                  "style": "fill:#3f51b5"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "text",
+                "attributes": {
+                  "id": "avatar_initial",
+                  "x": "400",
+                  "y": "330",
+                  "style": "font-size:80px;fill:#ffffff;text-anchor:middle;font-family:sans-serif;font-weight:bold",
+                  "text_content": "A"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "circle",
+                "attributes": {
+                  "id": "avatar_ring",
+                  "cx": "400",
+                  "cy": "300",
+                  "r": "108",
+                  "style": "fill:none;stroke:#3f51b5;stroke-width:4"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_exists": "avatar_initial"
+          },
+          {
+            "element_value": {
+              "id": "avatar_initial",
+              "key": "text_content",
+              "expected": "A"
+            }
+          },
+          {
+            "count_at_least": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "inkscape_14",
+      "software": "inkscape",
+      "difficulty": "medium",
+      "initial_state": "blank",
+      "description": "Create a horizontal button group with 3 labeled buttons: '确认' (id=btn_confirm, fill=#1976d2), '保存' (id=btn_save, fill=#388e3c), '取消' (id=btn_cancel, fill=#d32f2f). Each button is 140x44px with rx=8, white text centered inside. Buttons start at x=80, y=278, spaced 160px apart.",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "g",
+                "attributes": {
+                  "id": "btn_group"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='btn_group']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "btn_confirm",
+                  "x": "80",
+                  "y": "278",
+                  "width": "140",
+                  "height": "44",
+                  "rx": "8",
+                  "ry": "8",
+                  "style": "fill:#1976d2"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='btn_group']",
+                "tag": "text",
+                "attributes": {
+                  "id": "btn_text_confirm",
+                  "x": "150",
+                  "y": "307",
+                  "style": "font-size:15px;fill:#ffffff;text-anchor:middle;font-family:sans-serif",
+                  "text_content": "确认"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='btn_group']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "btn_save",
+                  "x": "240",
+                  "y": "278",
+                  "width": "140",
+                  "height": "44",
+                  "rx": "8",
+                  "ry": "8",
+                  "style": "fill:#388e3c"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='btn_group']",
+                "tag": "text",
+                "attributes": {
+                  "id": "btn_text_save",
+                  "x": "310",
+                  "y": "307",
+                  "style": "font-size:15px;fill:#ffffff;text-anchor:middle;font-family:sans-serif",
+                  "text_content": "保存"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='btn_group']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "btn_cancel",
+                  "x": "400",
+                  "y": "278",
+                  "width": "140",
+                  "height": "44",
+                  "rx": "8",
+                  "ry": "8",
+                  "style": "fill:#d32f2f"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='btn_group']",
+                "tag": "text",
+                "attributes": {
+                  "id": "btn_text_cancel",
+                  "x": "470",
+                  "y": "307",
+                  "style": "font-size:15px;fill:#ffffff;text-anchor:middle;font-family:sans-serif",
+                  "text_content": "取消"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_exists": "btn_cancel"
+          },
+          {
+            "element_value": {
+              "id": "btn_text_confirm",
+              "key": "text_content",
+              "expected": "确认"
+            }
+          },
+          {
+            "element_value": {
+              "id": "btn_text_cancel",
+              "key": "text_content",
+              "expected": "取消"
+            }
+          },
+          {
+            "count_at_least": 6
+          }
+        ]
+      }
+    },
+    {
+      "id": "inkscape_15",
+      "software": "inkscape",
+      "difficulty": "medium",
+      "initial_state": "blank",
+      "description": "Create a realistic traffic light graphic: a dark gray (#37474f) rounded rectangle frame (id=traffic_frame, 80x230, rx=16) at (360,80), 3 circular lights stacked vertically — red (id=light_red, fill=#f44336), yellow (id=light_yellow, fill=#ffeb3b), green (id=light_green, fill=#4caf50) — each with r=25, cx=400, spaced 76px apart starting at cy=148. Add a 'STOP' text label (id=stop_label) below in red when light_red is active.",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "traffic_frame",
+                  "x": "360",
+                  "y": "80",
+                  "width": "80",
+                  "height": "230",
+                  "rx": "16",
+                  "ry": "16",
+                  "style": "fill:#37474f"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "circle",
+                "attributes": {
+                  "id": "light_red",
+                  "cx": "400",
+                  "cy": "148",
+                  "r": "25",
+                  "style": "fill:#f44336"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "circle",
+                "attributes": {
+                  "id": "light_yellow",
+                  "cx": "400",
+                  "cy": "224",
+                  "r": "25",
+                  "style": "fill:#ffeb3b"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "circle",
+                "attributes": {
+                  "id": "light_green",
+                  "cx": "400",
+                  "cy": "300",
+                  "r": "25",
+                  "style": "fill:#4caf50"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "text",
+                "attributes": {
+                  "id": "stop_label",
+                  "x": "400",
+                  "y": "340",
+                  "style": "font-size:14px;fill:#f44336;text-anchor:middle;font-family:sans-serif;font-weight:bold",
+                  "text_content": "STOP"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_exists": "light_green"
+          },
+          {
+            "element_value": {
+              "id": "stop_label",
+              "key": "text_content",
+              "expected": "STOP"
+            }
+          },
+          {
+            "count_at_least": 5
+          }
+        ]
+      }
+    },
+    {
+      "id": "inkscape_16",
+      "software": "inkscape",
+      "difficulty": "medium",
+      "initial_state": "blank",
+      "description": "Create a color palette panel titled '品牌色板': 5 square color swatches (60x60, rx=6) in a row at y=240, spaced 90px apart starting at x=80: id=swatch_red(#f44336), swatch_blue(#2196f3), swatch_green(#4caf50), swatch_orange(#ff9800), swatch_purple(#9c27b0). Below each swatch, a hex-code text label (id=swatch_label_red etc.). Above the swatches, a title text (id=palette_title, text='品牌色板').",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "g",
+                "attributes": {
+                  "id": "palette_group"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='palette_group']",
+                "tag": "text",
+                "attributes": {
+                  "id": "palette_title",
+                  "x": "310",
+                  "y": "210",
+                  "style": "font-size:20px;font-weight:bold;font-family:sans-serif;fill:#333;text-anchor:middle",
+                  "text_content": "品牌色板"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='palette_group']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "swatch_red",
+                  "x": "80",
+                  "y": "240",
+                  "width": "60",
+                  "height": "60",
+                  "rx": "6",
+                  "style": "fill:#f44336"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='palette_group']",
+                "tag": "text",
+                "attributes": {
+                  "id": "swatch_label_red",
+                  "x": "110",
+                  "y": "320",
+                  "style": "font-size:10px;text-anchor:middle;font-family:monospace;fill:#555",
+                  "text_content": "#F44336"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='palette_group']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "swatch_blue",
+                  "x": "170",
+                  "y": "240",
+                  "width": "60",
+                  "height": "60",
+                  "rx": "6",
+                  "style": "fill:#2196f3"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='palette_group']",
+                "tag": "text",
+                "attributes": {
+                  "id": "swatch_label_blue",
+                  "x": "200",
+                  "y": "320",
+                  "style": "font-size:10px;text-anchor:middle;font-family:monospace;fill:#555",
+                  "text_content": "#2196F3"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='palette_group']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "swatch_green",
+                  "x": "260",
+                  "y": "240",
+                  "width": "60",
+                  "height": "60",
+                  "rx": "6",
+                  "style": "fill:#4caf50"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='palette_group']",
+                "tag": "text",
+                "attributes": {
+                  "id": "swatch_label_green",
+                  "x": "290",
+                  "y": "320",
+                  "style": "font-size:10px;text-anchor:middle;font-family:monospace;fill:#555",
+                  "text_content": "#4CAF50"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='palette_group']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "swatch_orange",
+                  "x": "350",
+                  "y": "240",
+                  "width": "60",
+                  "height": "60",
+                  "rx": "6",
+                  "style": "fill:#ff9800"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='palette_group']",
+                "tag": "text",
+                "attributes": {
+                  "id": "swatch_label_orange",
+                  "x": "380",
+                  "y": "320",
+                  "style": "font-size:10px;text-anchor:middle;font-family:monospace;fill:#555",
+                  "text_content": "#FF9800"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='palette_group']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "swatch_purple",
+                  "x": "440",
+                  "y": "240",
+                  "width": "60",
+                  "height": "60",
+                  "rx": "6",
+                  "style": "fill:#9c27b0"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='palette_group']",
+                "tag": "text",
+                "attributes": {
+                  "id": "swatch_label_purple",
+                  "x": "470",
+                  "y": "320",
+                  "style": "font-size:10px;text-anchor:middle;font-family:monospace;fill:#555",
+                  "text_content": "#9C27B0"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_exists": "swatch_purple"
+          },
+          {
+            "element_value": {
+              "id": "palette_title",
+              "key": "text_content",
+              "expected": "品牌色板"
+            }
+          },
+          {
+            "element_value": {
+              "id": "swatch_label_red",
+              "key": "text_content",
+              "expected": "#F44336"
+            }
+          },
+          {
+            "count_at_least": 11
+          }
+        ]
+      }
+    },
+    {
+      "id": "inkscape_17",
+      "software": "inkscape",
+      "difficulty": "complex",
+      "initial_state": "blank",
+      "description": "Design a professional website navigation bar (800x60) for company '启明科技': full-width dark background rect (id=nav_bg, fill=#1a237e, height=60), company logo text '启明科技' on the left (id=nav_logo, x=24, fill=#ffffff, bold), and 4 navigation links at right: '首页'(id=nav_home,x=520), '产品'(id=nav_products,x=600), '关于我们'(id=nav_about,x=670), '联系'(id=nav_contact,x=760), all fill=#b0bec5, font-size=14px. Add a 3px bottom accent line (id=nav_accent, fill=#00e5ff).",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "g",
+                "attributes": {
+                  "id": "navbar"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='navbar']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "nav_bg",
+                  "x": "0",
+                  "y": "0",
+                  "width": "800",
+                  "height": "60",
+                  "style": "fill:#1a237e"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='navbar']",
+                "tag": "text",
+                "attributes": {
+                  "id": "nav_logo",
+                  "x": "24",
+                  "y": "40",
+                  "style": "font-size:20px;fill:#ffffff;font-family:sans-serif;font-weight:bold",
+                  "text_content": "启明科技"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='navbar']",
+                "tag": "text",
+                "attributes": {
+                  "id": "nav_home",
+                  "x": "520",
+                  "y": "38",
+                  "style": "font-size:14px;fill:#b0bec5;font-family:sans-serif",
+                  "text_content": "首页"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='navbar']",
+                "tag": "text",
+                "attributes": {
+                  "id": "nav_products",
+                  "x": "590",
+                  "y": "38",
+                  "style": "font-size:14px;fill:#b0bec5;font-family:sans-serif",
+                  "text_content": "产品"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='navbar']",
+                "tag": "text",
+                "attributes": {
+                  "id": "nav_about",
+                  "x": "650",
+                  "y": "38",
+                  "style": "font-size:14px;fill:#b0bec5;font-family:sans-serif",
+                  "text_content": "关于我们"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='navbar']",
+                "tag": "text",
+                "attributes": {
+                  "id": "nav_contact",
+                  "x": "748",
+                  "y": "38",
+                  "style": "font-size:14px;fill:#b0bec5;font-family:sans-serif",
+                  "text_content": "联系"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='navbar']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "nav_accent",
+                  "x": "0",
+                  "y": "57",
+                  "width": "800",
+                  "height": "3",
+                  "style": "fill:#00e5ff"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_exists": "nav_accent"
+          },
+          {
+            "element_value": {
+              "id": "nav_logo",
+              "key": "text_content",
+              "expected": "启明科技"
+            }
+          },
+          {
+            "element_value": {
+              "id": "nav_home",
+              "key": "text_content",
+              "expected": "首页"
+            }
+          },
+          {
+            "element_value": {
+              "id": "nav_contact",
+              "key": "text_content",
+              "expected": "联系"
+            }
+          },
+          {
+            "count_at_least": 7
+          }
+        ]
+      }
+    },
+    {
+      "id": "inkscape_18",
+      "software": "inkscape",
+      "difficulty": "complex",
+      "initial_state": "blank",
+      "description": "Create a labeled pie chart titled '2024年销售区域分布' with 4 sectors using SVG path arcs centered at (400,310), r=130: 华东 38% (id=pie_east, fill=#2196f3), 华南 27% (id=pie_south, fill=#ff9800), 华北 22% (id=pie_north, fill=#4caf50), 西部 13% (id=pie_west, fill=#f44336). Add a text label near each sector showing region name and percentage. Add chart title (id=chart_title, y=50). Add a legend group (id=legend) with 4 color squares + text at bottom.",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "g",
+                "attributes": {
+                  "id": "pie_chart"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='pie_chart']",
+                "tag": "text",
+                "attributes": {
+                  "id": "chart_title",
+                  "x": "400",
+                  "y": "50",
+                  "style": "font-size:18px;font-weight:bold;text-anchor:middle;font-family:sans-serif;fill:#333",
+                  "text_content": "2024年销售区域分布"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='pie_chart']",
+                "tag": "path",
+                "attributes": {
+                  "id": "pie_east",
+                  "d": "M 400,310 L 400,180 A 130,130 0 0,1 523,375 Z",
+                  "style": "fill:#2196f3"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='pie_chart']",
+                "tag": "path",
+                "attributes": {
+                  "id": "pie_south",
+                  "d": "M 400,310 L 523,375 A 130,130 0 0,1 395,440 Z",
+                  "style": "fill:#ff9800"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='pie_chart']",
+                "tag": "path",
+                "attributes": {
+                  "id": "pie_north",
+                  "d": "M 400,310 L 395,440 A 130,130 0 0,1 277,375 Z",
+                  "style": "fill:#4caf50"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='pie_chart']",
+                "tag": "path",
+                "attributes": {
+                  "id": "pie_west",
+                  "d": "M 400,310 L 277,375 A 130,130 0 0,1 400,180 Z",
+                  "style": "fill:#f44336"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='pie_chart']",
+                "tag": "text",
+                "attributes": {
+                  "id": "label_east",
+                  "x": "490",
+                  "y": "250",
+                  "style": "font-size:13px;font-family:sans-serif;fill:#333",
+                  "text_content": "华东 38%"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='pie_chart']",
+                "tag": "text",
+                "attributes": {
+                  "id": "label_south",
+                  "x": "510",
+                  "y": "390",
+                  "style": "font-size:13px;font-family:sans-serif;fill:#333",
+                  "text_content": "华南 27%"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='pie_chart']",
+                "tag": "text",
+                "attributes": {
+                  "id": "label_north",
+                  "x": "290",
+                  "y": "450",
+                  "style": "font-size:13px;font-family:sans-serif;fill:#333",
+                  "text_content": "华北 22%"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='pie_chart']",
+                "tag": "text",
+                "attributes": {
+                  "id": "label_west",
+                  "x": "220",
+                  "y": "270",
+                  "style": "font-size:13px;font-family:sans-serif;fill:#333",
+                  "text_content": "西部 13%"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_exists": "pie_west"
+          },
+          {
+            "element_value": {
+              "id": "chart_title",
+              "key": "text_content",
+              "expected": "2024年销售区域分布"
+            }
+          },
+          {
+            "element_value": {
+              "id": "label_east",
+              "key": "text_content",
+              "expected": "华东 38%"
+            }
+          },
+          {
+            "count_at_least": 9
+          }
+        ]
+      }
+    },
+    {
+      "id": "inkscape_19",
+      "software": "inkscape",
+      "difficulty": "complex",
+      "initial_state": "blank",
+      "description": "Create a professional 3-step horizontal process flowchart titled '产品研发流程': Step 1 box '需求分析' (id=flow_box_1, blue border, fill=#e3f2fd), arrow (id=flow_arrow_1), Step 2 box '设计开发' (id=flow_box_2, orange border, fill=#fff3e0), arrow (id=flow_arrow_2), Step 3 box '测试上线' (id=flow_box_3, green border, fill=#e8f5e9). Each box has centered text with the step name (id=flow_text_1/2/3). Add a title (id=flow_title) and step number labels '① ② ③' above each box.",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "g",
+                "attributes": {
+                  "id": "flowchart"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='flowchart']",
+                "tag": "text",
+                "attributes": {
+                  "id": "flow_title",
+                  "x": "400",
+                  "y": "50",
+                  "style": "font-size:20px;font-weight:bold;text-anchor:middle;font-family:sans-serif;fill:#333",
+                  "text_content": "产品研发流程"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='flowchart']",
+                "tag": "text",
+                "attributes": {
+                  "id": "flow_num_1",
+                  "x": "150",
+                  "y": "220",
+                  "style": "font-size:18px;text-anchor:middle;font-family:sans-serif;fill:#1976d2",
+                  "text_content": "①"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='flowchart']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "flow_box_1",
+                  "x": "60",
+                  "y": "240",
+                  "width": "180",
+                  "height": "70",
+                  "rx": "8",
+                  "style": "fill:#e3f2fd;stroke:#1976d2;stroke-width:2"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='flowchart']",
+                "tag": "text",
+                "attributes": {
+                  "id": "flow_text_1",
+                  "x": "150",
+                  "y": "282",
+                  "style": "font-size:16px;text-anchor:middle;font-family:sans-serif;fill:#1976d2;font-weight:bold",
+                  "text_content": "需求分析"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='flowchart']",
+                "tag": "path",
+                "attributes": {
+                  "id": "flow_arrow_1",
+                  "d": "M 240,275 L 310,275 M 305,269 L 315,275 L 305,281",
+                  "style": "fill:none;stroke:#546e7a;stroke-width:2.5;stroke-linejoin:round"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='flowchart']",
+                "tag": "text",
+                "attributes": {
+                  "id": "flow_num_2",
+                  "x": "400",
+                  "y": "220",
+                  "style": "font-size:18px;text-anchor:middle;font-family:sans-serif;fill:#f57c00",
+                  "text_content": "②"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='flowchart']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "flow_box_2",
+                  "x": "310",
+                  "y": "240",
+                  "width": "180",
+                  "height": "70",
+                  "rx": "8",
+                  "style": "fill:#fff3e0;stroke:#f57c00;stroke-width:2"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='flowchart']",
+                "tag": "text",
+                "attributes": {
+                  "id": "flow_text_2",
+                  "x": "400",
+                  "y": "282",
+                  "style": "font-size:16px;text-anchor:middle;font-family:sans-serif;fill:#f57c00;font-weight:bold",
+                  "text_content": "设计开发"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='flowchart']",
+                "tag": "path",
+                "attributes": {
+                  "id": "flow_arrow_2",
+                  "d": "M 490,275 L 560,275 M 555,269 L 565,275 L 555,281",
+                  "style": "fill:none;stroke:#546e7a;stroke-width:2.5;stroke-linejoin:round"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='flowchart']",
+                "tag": "text",
+                "attributes": {
+                  "id": "flow_num_3",
+                  "x": "650",
+                  "y": "220",
+                  "style": "font-size:18px;text-anchor:middle;font-family:sans-serif;fill:#388e3c",
+                  "text_content": "③"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='flowchart']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "flow_box_3",
+                  "x": "560",
+                  "y": "240",
+                  "width": "180",
+                  "height": "70",
+                  "rx": "8",
+                  "style": "fill:#e8f5e9;stroke:#388e3c;stroke-width:2"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='flowchart']",
+                "tag": "text",
+                "attributes": {
+                  "id": "flow_text_3",
+                  "x": "650",
+                  "y": "282",
+                  "style": "font-size:16px;text-anchor:middle;font-family:sans-serif;fill:#388e3c;font-weight:bold",
+                  "text_content": "测试上线"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_exists": "flow_arrow_2"
+          },
+          {
+            "element_value": {
+              "id": "flow_title",
+              "key": "text_content",
+              "expected": "产品研发流程"
+            }
+          },
+          {
+            "element_value": {
+              "id": "flow_text_2",
+              "key": "text_content",
+              "expected": "设计开发"
+            }
+          },
+          {
+            "count_at_least": 12
+          }
+        ]
+      }
+    },
+    {
+      "id": "inkscape_20",
+      "software": "inkscape",
+      "difficulty": "complex",
+      "initial_state": "blank",
+      "description": "Design a complete professional business card (600x340) for: Name: 张伟 (Zhang Wei), Title: 产品总监, Company: 启明科技有限公司, Phone: +86 138-0013-8000, Email: zhang.wei@qiming.com, Website: www.qiming.com. Layout: white card background with subtle shadow, company logo circle (id=card_logo, fill=#1a237e) with '启' text on left, name in large bold (id=card_name, text='张伟'), title below (id=card_title, text='产品总监'), company name (id=card_company, text='启明科技有限公司'), horizontal divider line (id=card_divider), phone (id=card_phone, text='+86 138-0013-8000'), email (id=card_email, text='zhang.wei@qiming.com'), website (id=card_website, text='www.qiming.com').",
+      "actions": [
+        {
+          "action_type": "modify_file",
+          "target": "{{svg_path}}",
+          "params": {
+            "operations": [
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='layer1']",
+                "tag": "g",
+                "attributes": {
+                  "id": "business_card"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='business_card']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "card_shadow",
+                  "x": "102",
+                  "y": "132",
+                  "width": "600",
+                  "height": "340",
+                  "rx": "12",
+                  "style": "fill:#00000018"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='business_card']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "card_bg",
+                  "x": "100",
+                  "y": "130",
+                  "width": "600",
+                  "height": "340",
+                  "rx": "12",
+                  "style": "fill:#ffffff;stroke:#e0e0e0;stroke-width:1"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='business_card']",
+                "tag": "rect",
+                "attributes": {
+                  "id": "card_accent",
+                  "x": "100",
+                  "y": "130",
+                  "width": "8",
+                  "height": "340",
+                  "rx": "12",
+                  "style": "fill:#1a237e"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='business_card']",
+                "tag": "circle",
+                "attributes": {
+                  "id": "card_logo",
+                  "cx": "180",
+                  "cy": "230",
+                  "r": "40",
+                  "style": "fill:#1a237e"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='business_card']",
+                "tag": "text",
+                "attributes": {
+                  "id": "card_logo_text",
+                  "x": "180",
+                  "y": "248",
+                  "style": "font-size:36px;fill:#ffffff;text-anchor:middle;font-family:sans-serif;font-weight:bold",
+                  "text_content": "启"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='business_card']",
+                "tag": "text",
+                "attributes": {
+                  "id": "card_name",
+                  "x": "250",
+                  "y": "210",
+                  "style": "font-size:28px;font-weight:bold;font-family:sans-serif;fill:#1a237e",
+                  "text_content": "张伟"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='business_card']",
+                "tag": "text",
+                "attributes": {
+                  "id": "card_title",
+                  "x": "250",
+                  "y": "240",
+                  "style": "font-size:15px;font-family:sans-serif;fill:#546e7a",
+                  "text_content": "产品总监"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='business_card']",
+                "tag": "text",
+                "attributes": {
+                  "id": "card_company",
+                  "x": "250",
+                  "y": "265",
+                  "style": "font-size:13px;font-family:sans-serif;fill:#78909c",
+                  "text_content": "启明科技有限公司"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='business_card']",
+                "tag": "line",
+                "attributes": {
+                  "id": "card_divider",
+                  "x1": "130",
+                  "y1": "300",
+                  "x2": "670",
+                  "y2": "300",
+                  "style": "stroke:#e0e0e0;stroke-width:1"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='business_card']",
+                "tag": "text",
+                "attributes": {
+                  "id": "card_phone",
+                  "x": "150",
+                  "y": "330",
+                  "style": "font-size:13px;font-family:sans-serif;fill:#546e7a",
+                  "text_content": "+86 138-0013-8000"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='business_card']",
+                "tag": "text",
+                "attributes": {
+                  "id": "card_email",
+                  "x": "150",
+                  "y": "355",
+                  "style": "font-size:13px;font-family:sans-serif;fill:#546e7a",
+                  "text_content": "zhang.wei@qiming.com"
+                }
+              },
+              {
+                "action": "add_element",
+                "parent_xpath": "//*[@id='business_card']",
+                "tag": "text",
+                "attributes": {
+                  "id": "card_website",
+                  "x": "150",
+                  "y": "380",
+                  "style": "font-size:13px;font-family:sans-serif;fill:#1a237e",
+                  "text_content": "www.qiming.com"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_exists": "card_divider"
+          },
+          {
+            "element_value": {
+              "id": "card_name",
+              "key": "text_content",
+              "expected": "张伟"
+            }
+          },
+          {
+            "element_value": {
+              "id": "card_phone",
+              "key": "text_content",
+              "expected": "+86 138-0013-8000"
+            }
+          },
+          {
+            "element_value": {
+              "id": "card_email",
+              "key": "text_content",
+              "expected": "zhang.wei@qiming.com"
+            }
+          },
+          {
+            "count_at_least": 12
+          }
+        ]
+      }
+    }
+  ]
+}

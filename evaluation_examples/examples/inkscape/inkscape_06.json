@@ -1,0 +1,100 @@
+{
+  "id": "inkscape_06",
+  "instruction": "Resize rect1 to width=200, height=100",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_06_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_06_1",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "rect1",
+                "key": "width",
+                "expected": "200"
+              }
+            }
+          },
+          {
+            "id": "inkscape_06_2",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "rect1",
+                "key": "height",
+                "expected": "100"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "medium",
+    "description": "Resize rect1 to width=200, height=100",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "xpath": "//*[@id='rect1']",
+              "attribute": "width",
+              "value": "200"
+            },
+            {
+              "xpath": "//*[@id='rect1']",
+              "attribute": "height",
+              "value": "100"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "rect1",
+            "key": "width",
+            "expected": "200"
+          }
+        },
+        {
+          "element_value": {
+            "id": "rect1",
+            "key": "height",
+            "expected": "100"
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Resize rect1 to 200x100.",
+    "checkpoint_visibility": {
+      "inkscape_06_1": "visible_on_canvas",
+      "inkscape_06_2": "visible_on_canvas"
+    }
+  }
+}

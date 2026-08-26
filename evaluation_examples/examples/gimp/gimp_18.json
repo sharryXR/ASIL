@@ -1,0 +1,290 @@
+{
+  "id": "gimp_18",
+  "software": "gimp",
+  "difficulty": "complex",
+  "description": "Compose a thumbnail with three visible layers.",
+  "instruction": "On a blank canvas, add a background rectangle #1d3557 covering 800x600, a highlight ellipse #ffd166 at x=560 y=80 width=150 height=150, and a white text layer with text \"WATCH NOW\" at x=70 y=260 font size 36.",
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_layer",
+            "id": "thumb_bg",
+            "label": "Thumb BG",
+            "kind": "rectangle",
+            "x": 0,
+            "y": 0,
+            "width": 800,
+            "height": 600,
+            "fill": "#1d3557"
+          },
+          {
+            "action": "add_layer",
+            "id": "thumb_glow",
+            "label": "Thumb Glow",
+            "kind": "ellipse",
+            "x": 560,
+            "y": 80,
+            "width": 150,
+            "height": 150,
+            "fill": "#ffd166"
+          },
+          {
+            "action": "add_text_layer",
+            "id": "thumb_copy",
+            "label": "Thumb Copy",
+            "text": "WATCH NOW",
+            "x": 70,
+            "y": 260,
+            "font_size": 36,
+            "color": "#ffffff"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "gimp"
+  ],
+  "snapshot": "gimp_default",
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "A dark thumbnail with a yellow glow and WATCH NOW text appears.",
+    "checkpoint_visibility": {
+      "bg_fill": "visible_on_canvas",
+      "bg_width": "visible_on_canvas",
+      "bg_height": "visible_on_canvas",
+      "glow_fill": "visible_on_canvas",
+      "glow_x": "visible_on_canvas",
+      "glow_y": "visible_on_canvas",
+      "glow_width": "visible_on_canvas",
+      "glow_height": "visible_on_canvas",
+      "copy_text": "visible_on_canvas",
+      "copy_x": "visible_on_canvas",
+      "copy_y": "visible_on_canvas",
+      "copy_font": "visible_on_canvas",
+      "copy_color": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "bg_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "thumb_bg",
+                "key": "fill",
+                "expected": "#1d3557"
+              }
+            }
+          },
+          {
+            "id": "bg_width",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "thumb_bg",
+                "key": "width",
+                "expected": 800
+              }
+            }
+          },
+          {
+            "id": "bg_height",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "thumb_bg",
+                "key": "height",
+                "expected": 600
+              }
+            }
+          },
+          {
+            "id": "glow_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "thumb_glow",
+                "key": "fill",
+                "expected": "#ffd166"
+              }
+            }
+          },
+          {
+            "id": "glow_x",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "thumb_glow",
+                "key": "x",
+                "expected": 560
+              }
+            }
+          },
+          {
+            "id": "glow_y",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "thumb_glow",
+                "key": "y",
+                "expected": 80
+              }
+            }
+          },
+          {
+            "id": "glow_width",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "thumb_glow",
+                "key": "width",
+                "expected": 150
+              }
+            }
+          },
+          {
+            "id": "glow_height",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "thumb_glow",
+                "key": "height",
+                "expected": 150
+              }
+            }
+          },
+          {
+            "id": "copy_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "thumb_copy",
+                "key": "text",
+                "expected": "WATCH NOW"
+              }
+            }
+          },
+          {
+            "id": "copy_x",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "thumb_copy",
+                "key": "x",
+                "expected": 70
+              }
+            }
+          },
+          {
+            "id": "copy_y",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "thumb_copy",
+                "key": "y",
+                "expected": 260
+              }
+            }
+          },
+          {
+            "id": "copy_font",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "thumb_copy",
+                "key": "font_size",
+                "expected": 36
+              }
+            }
+          },
+          {
+            "id": "copy_color",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "thumb_copy",
+                "key": "color",
+                "expected": "#ffffff"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "complex",
+    "description": "Compose a thumbnail with three visible layers.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_layer",
+              "id": "thumb_bg",
+              "label": "Thumb BG",
+              "kind": "rectangle",
+              "x": 0,
+              "y": 0,
+              "width": 800,
+              "height": 600,
+              "fill": "#1d3557"
+            },
+            {
+              "action": "add_layer",
+              "id": "thumb_glow",
+              "label": "Thumb Glow",
+              "kind": "ellipse",
+              "x": 560,
+              "y": 80,
+              "width": 150,
+              "height": 150,
+              "fill": "#ffd166"
+            },
+            {
+              "action": "add_text_layer",
+              "id": "thumb_copy",
+              "label": "Thumb Copy",
+              "text": "WATCH NOW",
+              "x": 70,
+              "y": 260,
+              "font_size": 36,
+              "color": "#ffffff"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank"
+  }
+}

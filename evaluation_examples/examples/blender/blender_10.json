@@ -1,0 +1,120 @@
+{
+  "id": "blender_10",
+  "instruction": "Set animation keyframes for a cube moving from (0,0,0) to (5,0,0) over 24 frames",
+  "source": "asil_benchmark_v1",
+  "snapshot": "blender_default_scene",
+  "config": [],
+  "related_apps": [
+    "blender"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "blender_10_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "animated_cube_keyframes",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "mesh",
+                "metadata": {
+                  "keyframe_frames": [
+                    1,
+                    24
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "animated_cube_end_location",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "mesh",
+                "value": {
+                  "location": [
+                    5,
+                    0,
+                    0
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "timeline_start_1",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "timeline_settings",
+                "key": "frame_start",
+                "expected": 1
+              }
+            }
+          },
+          {
+            "id": "timeline_end_24",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "timeline_settings",
+                "key": "frame_end",
+                "expected": 24
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "blender",
+    "difficulty": "complex",
+    "description": "Set animation keyframes for a cube moving from (0,0,0) to (5,0,0) over 24 frames",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "bpy",
+        "params": {
+          "script": [
+            "import bpy",
+            "bpy.ops.mesh.primitive_cube_add(location=(0, 0, 0))",
+            "cube = bpy.context.object",
+            "cube.location = (0, 0, 0)",
+            "cube.keyframe_insert(data_path='location', frame=1)",
+            "cube.location = (5, 0, 0)",
+            "cube.keyframe_insert(data_path='location', frame=24)",
+            "bpy.context.scene.frame_start = 1",
+            "bpy.context.scene.frame_end = 24",
+            "bpy.context.scene.frame_set(24)"
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "animation_data_exists": "Cube"
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "viewport_and_timeline",
+    "visible_change_summary": "A cube ends at (5, 0, 0) and visible timeline keyframes span frames 1 to 24.",
+    "checkpoint_visibility": {
+      "animated_cube_keyframes": "visible_in_timeline",
+      "animated_cube_end_location": "visible_in_viewport",
+      "timeline_start_1": "visible_in_timeline",
+      "timeline_end_24": "visible_in_timeline"
+    }
+  }
+}

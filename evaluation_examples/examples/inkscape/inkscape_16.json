@@ -1,0 +1,360 @@
+{
+  "id": "inkscape_16",
+  "instruction": "Create a color palette panel titled '品牌色板': 5 square color swatches (60x60, rx=6) in a row at y=240, spaced 90px apart starting at x=80: id=swatch_red(#f44336), swatch_blue(#2196f3), swatch_green(#4caf50), swatch_orange(#ff9800), swatch_purple(#9c27b0). Below each swatch, a hex-code text label (id=swatch_label_red etc.). Above the swatches, a title text (id=palette_title, text='品牌色板').",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_16_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_16_01",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "palette_title",
+                "key": "text_content",
+                "expected": "品牌色板"
+              }
+            }
+          },
+          {
+            "id": "inkscape_16_02",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "swatch_red",
+                "key": "style",
+                "expected": "fill:#f44336"
+              }
+            }
+          },
+          {
+            "id": "inkscape_16_03",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "swatch_blue",
+                "key": "style",
+                "expected": "fill:#2196f3"
+              }
+            }
+          },
+          {
+            "id": "inkscape_16_04",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "swatch_green",
+                "key": "style",
+                "expected": "fill:#4caf50"
+              }
+            }
+          },
+          {
+            "id": "inkscape_16_05",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "swatch_orange",
+                "key": "style",
+                "expected": "fill:#ff9800"
+              }
+            }
+          },
+          {
+            "id": "inkscape_16_06",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "swatch_purple",
+                "key": "style",
+                "expected": "fill:#9c27b0"
+              }
+            }
+          },
+          {
+            "id": "inkscape_16_07",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "swatch_label_red",
+                "key": "text_content",
+                "expected": "#F44336"
+              }
+            }
+          },
+          {
+            "id": "inkscape_16_08",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "swatch_label_purple",
+                "key": "text_content",
+                "expected": "#9C27B0"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "medium",
+    "description": "Create a color palette panel titled '品牌色板': 5 square color swatches (60x60, rx=6) in a row at y=240, spaced 90px apart starting at x=80: id=swatch_red(#f44336), swatch_blue(#2196f3), swatch_green(#4caf50), swatch_orange(#ff9800), swatch_purple(#9c27b0). Below each swatch, a hex-code text label (id=swatch_label_red etc.). Above the swatches, a title text (id=palette_title, text='品牌色板').",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='layer1']",
+              "tag": "g",
+              "attributes": {
+                "id": "palette_group"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='palette_group']",
+              "tag": "text",
+              "attributes": {
+                "id": "palette_title",
+                "x": "310",
+                "y": "210",
+                "style": "font-size:20px;font-weight:bold;font-family:sans-serif;fill:#333;text-anchor:middle",
+                "text_content": "品牌色板"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='palette_group']",
+              "tag": "rect",
+              "attributes": {
+                "id": "swatch_red",
+                "x": "80",
+                "y": "240",
+                "width": "60",
+                "height": "60",
+                "rx": "6",
+                "style": "fill:#f44336"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='palette_group']",
+              "tag": "text",
+              "attributes": {
+                "id": "swatch_label_red",
+                "x": "110",
+                "y": "320",
+                "style": "font-size:10px;text-anchor:middle;font-family:monospace;fill:#555",
+                "text_content": "#F44336"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='palette_group']",
+              "tag": "rect",
+              "attributes": {
+                "id": "swatch_blue",
+                "x": "170",
+                "y": "240",
+                "width": "60",
+                "height": "60",
+                "rx": "6",
+                "style": "fill:#2196f3"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='palette_group']",
+              "tag": "text",
+              "attributes": {
+                "id": "swatch_label_blue",
+                "x": "200",
+                "y": "320",
+                "style": "font-size:10px;text-anchor:middle;font-family:monospace;fill:#555",
+                "text_content": "#2196F3"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='palette_group']",
+              "tag": "rect",
+              "attributes": {
+                "id": "swatch_green",
+                "x": "260",
+                "y": "240",
+                "width": "60",
+                "height": "60",
+                "rx": "6",
+                "style": "fill:#4caf50"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='palette_group']",
+              "tag": "text",
+              "attributes": {
+                "id": "swatch_label_green",
+                "x": "290",
+                "y": "320",
+                "style": "font-size:10px;text-anchor:middle;font-family:monospace;fill:#555",
+                "text_content": "#4CAF50"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='palette_group']",
+              "tag": "rect",
+              "attributes": {
+                "id": "swatch_orange",
+                "x": "350",
+                "y": "240",
+                "width": "60",
+                "height": "60",
+                "rx": "6",
+                "style": "fill:#ff9800"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='palette_group']",
+              "tag": "text",
+              "attributes": {
+                "id": "swatch_label_orange",
+                "x": "380",
+                "y": "320",
+                "style": "font-size:10px;text-anchor:middle;font-family:monospace;fill:#555",
+                "text_content": "#FF9800"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='palette_group']",
+              "tag": "rect",
+              "attributes": {
+                "id": "swatch_purple",
+                "x": "440",
+                "y": "240",
+                "width": "60",
+                "height": "60",
+                "rx": "6",
+                "style": "fill:#9c27b0"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "//*[@id='palette_group']",
+              "tag": "text",
+              "attributes": {
+                "id": "swatch_label_purple",
+                "x": "470",
+                "y": "320",
+                "style": "font-size:10px;text-anchor:middle;font-family:monospace;fill:#555",
+                "text_content": "#9C27B0"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_value": {
+            "id": "palette_title",
+            "key": "text_content",
+            "expected": "品牌色板"
+          }
+        },
+        {
+          "element_value": {
+            "id": "swatch_red",
+            "key": "style",
+            "expected": "fill:#f44336"
+          }
+        },
+        {
+          "element_value": {
+            "id": "swatch_blue",
+            "key": "style",
+            "expected": "fill:#2196f3"
+          }
+        },
+        {
+          "element_value": {
+            "id": "swatch_green",
+            "key": "style",
+            "expected": "fill:#4caf50"
+          }
+        },
+        {
+          "element_value": {
+            "id": "swatch_orange",
+            "key": "style",
+            "expected": "fill:#ff9800"
+          }
+        },
+        {
+          "element_value": {
+            "id": "swatch_purple",
+            "key": "style",
+            "expected": "fill:#9c27b0"
+          }
+        },
+        {
+          "element_value": {
+            "id": "swatch_label_red",
+            "key": "text_content",
+            "expected": "#F44336"
+          }
+        },
+        {
+          "element_value": {
+            "id": "swatch_label_purple",
+            "key": "text_content",
+            "expected": "#9C27B0"
+          }
+        }
+      ]
+    },
+    "initial_state": "blank"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Create a branded color palette with five swatches, hex labels, and a title.",
+    "checkpoint_visibility": {
+      "inkscape_16_01": "visible_on_canvas",
+      "inkscape_16_02": "visible_on_canvas",
+      "inkscape_16_03": "visible_on_canvas",
+      "inkscape_16_04": "visible_on_canvas",
+      "inkscape_16_05": "visible_on_canvas",
+      "inkscape_16_06": "visible_on_canvas",
+      "inkscape_16_07": "visible_on_canvas",
+      "inkscape_16_08": "visible_on_canvas"
+    }
+  }
+}

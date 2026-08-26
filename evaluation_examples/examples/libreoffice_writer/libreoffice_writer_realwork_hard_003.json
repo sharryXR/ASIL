@@ -1,0 +1,154 @@
+{
+  "id": "libreoffice_writer_realwork_hard_003",
+  "software": "libreoffice_writer",
+  "difficulty": "complex",
+  "description": "Hard-suite variant of libreoffice_writer_20: Rename the title to \"Executive Recap\", append heading \"Summary\", and add two paragraphs: \"Revenue goals remain on track.\" and \"Hiring plans will be revisited next month.\".",
+  "instruction": "Rename the title to \"Executive Recap\", append heading \"Summary\", and add two paragraphs: \"Revenue goals remain on track.\" and \"Hiring plans will be revisited next month.\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odt_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_heading_text",
+            "index": 1,
+            "text": "Executive Recap"
+          },
+          {
+            "action": "add_heading",
+            "text": "Summary",
+            "level": 2
+          },
+          {
+            "action": "add_paragraph",
+            "text": "Revenue goals remain on track."
+          },
+          {
+            "action": "add_paragraph",
+            "text": "Hiring plans will be revisited next month."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "snapshot": "writer_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "document_page",
+    "visible_change_summary": "The document title changes to Executive Recap and a Summary section with two visible recap paragraphs appears.",
+    "checkpoint_visibility": {
+      "title": "visible_on_page",
+      "summary_heading": "visible_on_page",
+      "summary1": "visible_on_page",
+      "summary2": "visible_on_page"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "title",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "heading:1",
+                "key": "text_content",
+                "expected": "Executive Recap"
+              }
+            }
+          },
+          {
+            "id": "summary_heading",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "heading",
+                "value": {
+                  "text_content": "Summary"
+                }
+              }
+            }
+          },
+          {
+            "id": "summary1",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "paragraph",
+                "value": {
+                  "text_content": "Revenue goals remain on track."
+                }
+              }
+            }
+          },
+          {
+            "id": "summary2",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "paragraph",
+                "value": {
+                  "text_content": "Hiring plans will be revisited next month."
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "libreoffice_writer",
+    "difficulty": "complex",
+    "category": "realwork_hard",
+    "description": "Hard-suite variant of libreoffice_writer_20: Rename the title to \"Executive Recap\", append heading \"Summary\", and add two paragraphs: \"Revenue goals remain on track.\" and \"Hiring plans will be revisited next month.\".",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{odt_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "set_heading_text",
+              "index": 1,
+              "text": "Executive Recap"
+            },
+            {
+              "action": "add_heading",
+              "text": "Summary",
+              "level": 2
+            },
+            {
+              "action": "add_paragraph",
+              "text": "Revenue goals remain on track."
+            },
+            {
+              "action": "add_paragraph",
+              "text": "Hiring plans will be revisited next month."
+            }
+          ]
+        }
+      }
+    ],
+    "source_task_id": "libreoffice_writer_20",
+    "workflow_complexity": {
+      "meaningful_actions": 1,
+      "suite_family": "office_diagrams",
+      "copied_from_main_benchmark": true
+    }
+  },
+  "source": "asil_realwork_hard_mixed_v2"
+}

@@ -1,0 +1,159 @@
+{
+  "id": "blender_19",
+  "instruction": "Create two cubes with different materials and animate the first one",
+  "source": "asil_benchmark_v1",
+  "snapshot": "blender_default_scene",
+  "config": [],
+  "related_apps": [
+    "blender"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "blender_19_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "animated_red_cube",
+            "weight": 0.4,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "mesh",
+                "value": {
+                  "location": [
+                    3,
+                    0,
+                    0
+                  ]
+                },
+                "metadata": {
+                  "materials": [
+                    {
+                      "name": "Mat_Red",
+                      "color": [
+                        1,
+                        0,
+                        0,
+                        1
+                      ]
+                    }
+                  ],
+                  "has_animation_data": true,
+                  "keyframe_frames": [
+                    1,
+                    20
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "blue_cube",
+            "weight": 0.4,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "mesh",
+                "value": {
+                  "location": [
+                    5,
+                    0,
+                    0
+                  ]
+                },
+                "metadata": {
+                  "materials": [
+                    {
+                      "name": "Mat_Blue",
+                      "color": [
+                        0,
+                        0,
+                        1,
+                        1
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "two_mesh_objects",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "count_elements_matching": {
+                "type": "mesh",
+                "expected": 2
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "blender",
+    "difficulty": "complex",
+    "description": "Create two cubes with different materials and animate the first one",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "bpy",
+        "params": {
+          "script": [
+            "import bpy",
+            "bpy.ops.mesh.primitive_cube_add(location=(0, 0, 0))",
+            "cube1 = bpy.context.object",
+            "mat1 = bpy.data.materials.new(name='Mat_Red')",
+            "mat1.use_nodes = True",
+            "mat1.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value = (1.0, 0.0, 0.0, 1.0)",
+            "cube1.data.materials.append(mat1)",
+            "bpy.context.object.keyframe_insert(data_path='location', frame=1)",
+            "bpy.context.object.location = (3, 0, 0)",
+            "bpy.context.object.keyframe_insert(data_path='location', frame=20)",
+            "bpy.ops.mesh.primitive_cube_add(location=(5, 0, 0))",
+            "cube2 = bpy.context.object",
+            "mat2 = bpy.data.materials.new(name='Mat_Blue')",
+            "mat2.use_nodes = True",
+            "mat2.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value = (0.0, 0.0, 1.0, 1.0)",
+            "cube2.data.materials.append(mat2)",
+            "bpy.context.scene.frame_set(20)"
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "material_exists": "Mat_Red"
+    },
+    "initial_state": "blank"
+  },
+  "gui_expectations": {
+    "success_surface": "viewport_and_timeline",
+    "visible_change_summary": "Two cubes are visible with distinct colors, the first cube is shown at its animated end position, and timeline keyframes are visible.",
+    "checkpoint_visibility": {
+      "first_cube_exists": "visible_in_viewport",
+      "first_cube_at_target": "visible_in_viewport",
+      "first_cube_uses_red_material": "visible_in_material_preview",
+      "second_cube_exists": "visible_in_viewport",
+      "second_cube_at_target": "visible_in_viewport",
+      "second_cube_uses_blue_material": "visible_in_material_preview",
+      "scene_object_count_5": "visible_in_viewport",
+      "first_cube_keyframes": "visible_in_timeline",
+      "default_cube_at_target": "visible_in_viewport",
+      "default_cube_red_material": "visible_in_material_preview",
+      "default_cube_keyframes": "visible_in_timeline",
+      "new_cube_at_target": "visible_in_viewport",
+      "new_cube_blue_material": "visible_in_material_preview",
+      "default_path_scene_object_count_4": "visible_in_viewport",
+      "animated_red_cube": "visible_in_viewport",
+      "blue_cube": "visible_in_viewport",
+      "two_mesh_objects": "visible_in_viewport"
+    }
+  }
+}

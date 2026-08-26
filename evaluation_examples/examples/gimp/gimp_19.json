@@ -1,0 +1,176 @@
+{
+  "id": "gimp_19",
+  "software": "gimp",
+  "difficulty": "complex",
+  "description": "Clean up and resize the starter image.",
+  "instruction": "Delete watermark_text, crop the default image to width=600 height=400 from x=40 y=40, then resize it to width=300 height=200.",
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "delete_layer",
+            "id": "watermark_text"
+          },
+          {
+            "action": "crop_image",
+            "x": 40,
+            "y": 40,
+            "width": 600,
+            "height": 400
+          },
+          {
+            "action": "resize_image",
+            "width": 300,
+            "height": 200
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "gimp"
+  ],
+  "snapshot": "gimp_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "The watermark is removed and the image becomes a small 300x200 crop.",
+    "checkpoint_visibility": {
+      "watermark_removed": "visible_on_canvas",
+      "image_width": "visible_on_canvas",
+      "image_height": "visible_on_canvas",
+      "logo_x": "visible_on_canvas",
+      "logo_y": "visible_on_canvas",
+      "logo_width": "visible_on_canvas",
+      "logo_height": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "watermark_removed",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_not_exists": "watermark_text"
+            }
+          },
+          {
+            "id": "image_width",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "image",
+                "key": "width",
+                "expected": 300
+              }
+            }
+          },
+          {
+            "id": "image_height",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "image",
+                "key": "height",
+                "expected": 200
+              }
+            }
+          },
+          {
+            "id": "logo_x",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "logo_block",
+                "key": "x",
+                "expected": 0
+              }
+            }
+          },
+          {
+            "id": "logo_y",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "logo_block",
+                "key": "y",
+                "expected": 0
+              }
+            }
+          },
+          {
+            "id": "logo_width",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "logo_block",
+                "key": "width",
+                "expected": 70
+              }
+            }
+          },
+          {
+            "id": "logo_height",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "logo_block",
+                "key": "height",
+                "expected": 45
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "complex",
+    "description": "Clean up and resize the starter image.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "delete_layer",
+              "id": "watermark_text"
+            },
+            {
+              "action": "crop_image",
+              "x": 40,
+              "y": 40,
+              "width": 600,
+              "height": 400
+            },
+            {
+              "action": "resize_image",
+              "width": 300,
+              "height": 200
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

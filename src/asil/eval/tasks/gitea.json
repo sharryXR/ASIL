@@ -1,0 +1,787 @@
+{
+  "software": "gitea",
+  "tasks": [
+    {
+      "id": "gitea_01",
+      "software": "gitea",
+      "difficulty": "simple",
+      "description": "Create a new public repository named 'test-repo'",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/user/repos",
+            "body": {
+              "name": "test-repo",
+              "description": "A test repository",
+              "private": false,
+              "auto_init": true,
+              "default_branch": "main"
+            }
+          }
+        }
+      ],
+      "validation": {
+        "element_exists": "repo:asil_admin/test-repo"
+      }
+    },
+    {
+      "id": "gitea_02",
+      "software": "gitea",
+      "difficulty": "simple",
+      "description": "Create an issue titled 'Bug: login fails on mobile'",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+            "body": {
+              "title": "Bug: login fails on mobile",
+              "body": "Users report that logging in via mobile browser results in a 500 error.",
+              "type": "issue"
+            }
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_contains": {
+              "id": "issue:1",
+              "key": "title",
+              "expected": "Bug: login fails on mobile"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "gitea_03",
+      "software": "gitea",
+      "difficulty": "simple",
+      "description": "List all repositories for the authenticated user",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "GET",
+            "endpoint": "/api/v1/repos/search?limit=50",
+            "body": {}
+          }
+        }
+      ],
+      "validation": {
+        "count_at_least": 1
+      }
+    },
+    {
+      "id": "gitea_04",
+      "software": "gitea",
+      "difficulty": "simple",
+      "description": "Delete the repository 'old-project'",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "DELETE",
+            "endpoint": "/api/v1/repos/{{owner}}/old-project",
+            "body": {}
+          }
+        }
+      ],
+      "validation": {
+        "element_not_exists": "repo:asil_admin/old-project"
+      }
+    },
+    {
+      "id": "gitea_05",
+      "software": "gitea",
+      "difficulty": "simple",
+      "description": "Close issue #1",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "PATCH",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues/1",
+            "body": {
+              "state": "closed"
+            }
+          }
+        }
+      ],
+      "validation": {
+        "element_value": {
+          "id": "issue:1",
+          "key": "state",
+          "expected": "closed"
+        }
+      },
+      "initial_state": "with_issues"
+    },
+    {
+      "id": "gitea_06",
+      "software": "gitea",
+      "difficulty": "medium",
+      "description": "Create a pull request from 'feature/login-fix' to 'main'",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/pulls",
+            "body": {
+              "title": "Fix login on mobile",
+              "body": "This PR resolves the mobile login bug reported in issue #1.",
+              "head": "feature/login-fix",
+              "base": "main"
+            }
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_contains": {
+              "id": "pr:1",
+              "key": "head",
+              "expected": "feature/login-fix"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "gitea_07",
+      "software": "gitea",
+      "difficulty": "medium",
+      "description": "Create a label 'bug' with red color #ee0701",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/labels",
+            "body": {
+              "name": "bug",
+              "color": "#ee0701",
+              "description": "Something is not working"
+            }
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_value": {
+              "id": "label:1",
+              "key": "name",
+              "expected": "bug"
+            }
+          },
+          {
+            "element_value": {
+              "id": "label:1",
+              "key": "color",
+              "expected": "#ee0701"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "gitea_08",
+      "software": "gitea",
+      "difficulty": "medium",
+      "description": "Create a milestone named 'v1.0' with due date 2026-06-30",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/milestones",
+            "body": {
+              "title": "v1.0",
+              "description": "Initial release milestone",
+              "due_on": "2026-06-30T00:00:00Z"
+            }
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "any_element_value": {
+              "type": "milestone",
+              "key": "title",
+              "expected": "v1.0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "gitea_09",
+      "software": "gitea",
+      "difficulty": "complex",
+      "description": "Update repository settings: disable wiki, enable issues, set description to 'Updated project description'",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "PATCH",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}",
+            "body": {
+              "description": "Updated project description",
+              "has_issues": true,
+              "has_wiki": false,
+              "has_projects": true
+            }
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_value": {
+              "id": "repo:asil_admin/test-repo",
+              "key": "has_wiki",
+              "expected": false
+            }
+          },
+          {
+            "element_value": {
+              "id": "repo:asil_admin/test-repo",
+              "key": "has_issues",
+              "expected": true
+            }
+          },
+          {
+            "element_contains": {
+              "id": "repo:asil_admin/test-repo",
+              "key": "description",
+              "expected": "Updated project description"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "gitea_10",
+      "software": "gitea",
+      "difficulty": "complex",
+      "description": "Create milestone 'v2.0', create two issues linked to it ('Add dark mode' and 'Fix pagination bug'), verify milestone has open issues",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/milestones",
+            "body": {
+              "title": "v2.0",
+              "description": "Second release milestone"
+            }
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+            "body": {
+              "title": "Add dark mode",
+              "body": "Implement dark mode toggle in settings.",
+              "milestone": 1
+            }
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+            "body": {
+              "title": "Fix pagination bug",
+              "body": "Page 2 returns duplicate results.",
+              "milestone": 1
+            }
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "any_element_value": {
+              "type": "milestone",
+              "key": "title",
+              "expected": "v2.0"
+            }
+          },
+          {
+            "element_contains": {
+              "id": "issue:1",
+              "key": "title",
+              "expected": "Add dark mode"
+            }
+          },
+          {
+            "element_contains": {
+              "id": "issue:2",
+              "key": "title",
+              "expected": "Fix pagination bug"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "gitea_11",
+      "software": "gitea",
+      "difficulty": "simple",
+      "description": "Add a comment 'Confirmed on iOS 16' to issue #1",
+      "initial_state": "with_issues",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues/1/comments",
+            "body": {
+              "body": "Confirmed on iOS 16"
+            }
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "any_element_contains": {
+              "type": "comment",
+              "key": "body",
+              "expected": "Confirmed on iOS 16"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "gitea_12",
+      "software": "gitea",
+      "difficulty": "simple",
+      "description": "Reopen the closed issue #1",
+      "initial_state": "with_closed_issue",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "PATCH",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues/1",
+            "body": {
+              "state": "open"
+            }
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_value": {
+              "id": "issue:1",
+              "key": "state",
+              "expected": "open"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "gitea_13",
+      "software": "gitea",
+      "difficulty": "medium",
+      "description": "Create a label named 'enhancement' with color #84b6eb, then assign it to issue #1",
+      "initial_state": "with_issues",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/labels",
+            "body": {
+              "name": "enhancement",
+              "color": "#84b6eb"
+            }
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues/1/labels",
+            "body": {
+              "labels": ["enhancement"]
+            }
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_contains": {
+              "id": "issue:1",
+              "key": "labels",
+              "expected": "enhancement"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "gitea_14",
+      "software": "gitea",
+      "difficulty": "medium",
+      "description": "Assign issue #1 to user 'dev_user'",
+      "initial_state": "with_issues",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "PATCH",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues/1",
+            "body": {
+              "assignees": ["dev_user"]
+            }
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_contains": {
+              "id": "issue:1",
+              "key": "assignees",
+              "expected": "dev_user"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "gitea_15",
+      "software": "gitea",
+      "difficulty": "medium",
+      "description": "Edit issue #1 to change its title to 'Critical: login fails on mobile'",
+      "initial_state": "with_issues",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "PATCH",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues/1",
+            "body": {
+              "title": "Critical: login fails on mobile"
+            }
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_contains": {
+              "id": "issue:1",
+              "key": "title",
+              "expected": "Critical: login fails on mobile"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "gitea_16",
+      "software": "gitea",
+      "difficulty": "medium",
+      "description": "Create a release tagged 'v1.0.0' with name 'Initial Release'",
+      "initial_state": "default",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/releases",
+            "body": {
+              "tag_name": "v1.0.0",
+              "name": "Initial Release",
+              "body": "First stable release.",
+              "draft": false,
+              "prerelease": false,
+              "target_commitish": "main"
+            }
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "any_element_value": {
+              "type": "release",
+              "key": "tag_name",
+              "expected": "v1.0.0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "gitea_17",
+      "software": "gitea",
+      "difficulty": "complex",
+      "description": "Create a label 'wontfix' with color #ffffff, create an issue 'Deprecated feature request', then assign the label to the issue",
+      "initial_state": "default",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/labels",
+            "body": {
+              "name": "wontfix",
+              "color": "#ffffff"
+            }
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+            "body": {
+              "title": "Deprecated feature request",
+              "body": "This feature is no longer planned."
+            }
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues/1/labels",
+            "body": {
+              "labels": ["wontfix"]
+            }
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "element_contains": {
+              "id": "issue:1",
+              "key": "labels",
+              "expected": "wontfix"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "gitea_18",
+      "software": "gitea",
+      "difficulty": "complex",
+      "description": "Create a pull request from 'feature/login-fix' to 'main', then merge it",
+      "initial_state": "default",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/pulls",
+            "body": {
+              "title": "Fix: resolve mobile login issue",
+              "head": "feature/login-fix",
+              "base": "main",
+              "body": "Fixes the mobile login bug."
+            }
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/pulls/1/merge",
+            "body": {
+              "Do": "merge",
+              "MergeMessageField": "Merge fix: resolve mobile login issue"
+            }
+          }
+        }
+      ],
+      "validation": {
+        "element_not_exists": "pr:1"
+      }
+    },
+    {
+      "id": "gitea_19",
+      "software": "gitea",
+      "difficulty": "complex",
+      "description": "Create a milestone 'Sprint 1', create issue 'Implement login page' linked to it, then close the issue",
+      "initial_state": "default",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/milestones",
+            "body": {
+              "title": "Sprint 1",
+              "description": "First sprint tasks"
+            }
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+            "body": {
+              "title": "Implement login page",
+              "body": "Build the login UI.",
+              "milestone": 1
+            }
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "PATCH",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues/1",
+            "body": {
+              "state": "closed"
+            }
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "any_element_value": {
+              "type": "milestone",
+              "key": "title",
+              "expected": "Sprint 1"
+            }
+          },
+          {
+            "element_value": {
+              "id": "issue:1",
+              "key": "state",
+              "expected": "closed"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "gitea_20",
+      "software": "gitea",
+      "difficulty": "complex",
+      "description": "Create milestone 'v3.0', create two issues linked to it ('Feature A' and 'Feature B'), close 'Feature A', verify milestone has 1 open and 1 closed issue",
+      "initial_state": "default",
+      "actions": [
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/milestones",
+            "body": {
+              "title": "v3.0",
+              "description": "Version 3.0 milestone"
+            }
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+            "body": {
+              "title": "Feature A",
+              "body": "Implement feature A.",
+              "milestone": 1
+            }
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "POST",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+            "body": {
+              "title": "Feature B",
+              "body": "Implement feature B.",
+              "milestone": 1
+            }
+          }
+        },
+        {
+          "action_type": "api_call",
+          "target": "gitea_rest",
+          "params": {
+            "method": "PATCH",
+            "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues/1",
+            "body": {
+              "state": "closed"
+            }
+          }
+        }
+      ],
+      "validation": {
+        "conditions": [
+          {
+            "any_element_value": {
+              "type": "milestone",
+              "key": "open_issues",
+              "expected": 1
+            }
+          },
+          {
+            "any_element_value": {
+              "type": "milestone",
+              "key": "closed_issues",
+              "expected": 1
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

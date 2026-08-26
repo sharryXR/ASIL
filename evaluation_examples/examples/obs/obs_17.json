@@ -1,0 +1,87 @@
+{
+  "id": "obs_17",
+  "instruction": "Enable Studio Mode and set preview scene to 'BRB'",
+  "source": "asil_benchmark_v1",
+  "snapshot": "obs_default_scene",
+  "config": [],
+  "related_apps": [
+    "obs"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "obs_17_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "obs_17_studio_mode_enabled",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "studio_mode",
+                "key": "enabled",
+                "expected": true
+              }
+            }
+          },
+          {
+            "id": "obs_17_preview_brb",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "preview_scene",
+                "key": "name",
+                "expected": "BRB"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "obs",
+    "difficulty": "medium",
+    "description": "Enable Studio Mode and set preview scene to 'BRB'",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "SetStudioModeEnabled",
+          "args": {
+            "studioModeEnabled": true
+          }
+        }
+      },
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "SetCurrentPreviewScene",
+          "args": {
+            "sceneName": "BRB"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "current_scene": "Main Scene"
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "preview_and_studio_controls",
+    "visible_change_summary": "Studio Mode is enabled, BRB appears in preview, and the program output stays on Main Scene.",
+    "checkpoint_visibility": {
+      "obs_17_studio_mode_enabled": "visible_in_obs_window",
+      "obs_17_preview_brb": "visible_in_obs_window"
+    }
+  }
+}

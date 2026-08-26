@@ -1,0 +1,57 @@
+Bootstrap: docker
+From: gitea/gitea:1.21
+
+%post
+    set -e
+    mkdir -p /opt/asil
+    cat > /opt/asil/start_gitea.sh <<'EOF'
+#!/bin/sh
+set -e
+
+HOST="${HOST:-127.0.0.1}"
+PORT="${PORT:-3000}"
+RUN_USER="$(id -un 2>/dev/null || echo git)"
+
+mkdir -p /data/gitea/conf /data/gitea/log /data/git/repositories
+cat > /data/gitea/conf/app.ini <<INI
+APP_NAME = ASIL Gitea
+RUN_USER = ${RUN_USER}
+WORK_PATH = /data/gitea
+
+[repository]
+ROOT = /data/git/repositories
+
+[server]
+APP_DATA_PATH = /data/gitea
+HTTP_ADDR = ${HOST}
+HTTP_PORT = ${PORT}
+ROOT_URL = http://${HOST}:${PORT}/
+DISABLE_SSH = true
+LFS_START_SERVER = false
+OFFLINE_MODE = true
+
+[database]
+DB_TYPE = sqlite3
+PATH = /data/gitea/gitea.db
+
+[security]
+INSTALL_LOCK = true
+SECRET_KEY = asil-singularity-secret-key
+INTERNAL_TOKEN = asil-singularity-internal-token
+
+[service]
+DISABLE_REGISTRATION = false
+REQUIRE_SIGNIN_VIEW = false
+
+[log]
+MODE = console
+LEVEL = Warn
+ROOT_PATH = /data/gitea/log
+INI
+
+exec /usr/local/bin/gitea web --config /data/gitea/conf/app.ini
+EOF
+    chmod +x /opt/asil/start_gitea.sh
+
+%runscript
+    exec /opt/asil/start_gitea.sh "$@"

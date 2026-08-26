@@ -1,0 +1,171 @@
+{
+  "schema_version": "1.0",
+  "claim": "Recurring access-path evidence across fifteen implemented applications; not retrospective softwaregen generation provenance.",
+  "applications": [
+    {
+      "software_id": "inkscape",
+      "display_name": "Inkscape",
+      "pattern": "file_backed",
+      "read_paths": ["SVG XML with namespace-aware element and attribute parsing"],
+      "action_paths": ["reviewed SVG node and attribute mutation"],
+      "observation_source": "SVG document structure",
+      "deployment_tier": "bridge_assisted",
+      "adapter_path": "src/asil/adapters/inkscape.py",
+      "limitations": ["visual composition may require rendered-image review"]
+    },
+    {
+      "software_id": "libreoffice",
+      "display_name": "LibreOffice Calc",
+      "pattern": "file_backed",
+      "read_paths": ["ODS ZIP package and content.xml"],
+      "action_paths": ["reviewed ODF cell and formula mutation"],
+      "observation_source": "ODF spreadsheet XML",
+      "deployment_tier": "bridge_assisted",
+      "adapter_path": "src/asil/adapters/libreoffice.py",
+      "limitations": ["complex layout and macros require application-specific handling"]
+    },
+    {
+      "software_id": "libreoffice_writer",
+      "display_name": "LibreOffice Writer",
+      "pattern": "file_backed",
+      "read_paths": ["ODT ZIP package and content.xml"],
+      "action_paths": ["reviewed ODF paragraph and style mutation"],
+      "observation_source": "ODF document XML",
+      "deployment_tier": "bridge_assisted",
+      "adapter_path": "src/asil/adapters/libreoffice_writer.py",
+      "limitations": ["page layout needs renderer-backed inspection"]
+    },
+    {
+      "software_id": "libreoffice_impress",
+      "display_name": "LibreOffice Impress",
+      "pattern": "file_backed",
+      "read_paths": ["ODP ZIP package and content.xml"],
+      "action_paths": ["reviewed slide, shape, and text mutation"],
+      "observation_source": "ODF presentation XML",
+      "deployment_tier": "bridge_assisted",
+      "adapter_path": "src/asil/adapters/libreoffice_impress.py",
+      "limitations": ["visual slide composition remains partly perceptual"]
+    },
+    {
+      "software_id": "drawio",
+      "display_name": "Draw.io",
+      "pattern": "file_backed",
+      "read_paths": ["Draw.io mxGraph XML"],
+      "action_paths": ["reviewed diagram cell and edge mutation"],
+      "observation_source": "diagram graph XML",
+      "deployment_tier": "bridge_assisted",
+      "adapter_path": "src/asil/adapters/drawio.py",
+      "limitations": ["layout aesthetics may require visual review"]
+    },
+    {
+      "software_id": "jupyterlab",
+      "display_name": "JupyterLab",
+      "pattern": "file_backed",
+      "read_paths": ["ipynb JSON and workspace files"],
+      "action_paths": ["reviewed notebook cell and file operations"],
+      "observation_source": "notebook JSON",
+      "deployment_tier": "bridge_assisted",
+      "adapter_path": "src/asil/adapters/jupyterlab.py",
+      "limitations": ["kernel execution and rich outputs need controlled runtime handling"]
+    },
+    {
+      "software_id": "blender",
+      "display_name": "Blender",
+      "pattern": "native_script",
+      "read_paths": ["Blender Python bpy scene inspection"],
+      "action_paths": ["reviewed bpy semantic scripts"],
+      "observation_source": "native scene graph dump",
+      "deployment_tier": "bridge_assisted",
+      "adapter_path": "src/asil/adapters/blender.py",
+      "limitations": ["rendered appearance and geometry aesthetics may remain perceptual"]
+    },
+    {
+      "software_id": "gimp",
+      "display_name": "GIMP",
+      "pattern": "native_script",
+      "read_paths": ["GIMP native project/layer bridge"],
+      "action_paths": ["reviewed image and layer operations"],
+      "observation_source": "native image/layer state",
+      "deployment_tier": "bridge_assisted",
+      "adapter_path": "src/asil/adapters/gimp.py",
+      "limitations": ["photo aesthetics and unavailable edit history require hybrid visual handling"]
+    },
+    {
+      "software_id": "kdenlive",
+      "display_name": "Kdenlive",
+      "pattern": "native_script",
+      "read_paths": ["native MLT project graph"],
+      "action_paths": ["reviewed timeline and project mutations"],
+      "observation_source": "MLT timeline graph",
+      "deployment_tier": "bridge_assisted",
+      "adapter_path": "src/asil/adapters/kdenlive.py",
+      "limitations": ["media playback and fine visual timing need application-specific validation"]
+    },
+    {
+      "software_id": "audacity",
+      "display_name": "Audacity",
+      "pattern": "native_script",
+      "read_paths": ["Audacity scripting pipe and project state"],
+      "action_paths": ["reviewed scripting-pipe commands"],
+      "observation_source": "native audio project state",
+      "deployment_tier": "bridge_assisted",
+      "adapter_path": "src/asil/adapters/audacity.py",
+      "limitations": ["subjective audio quality remains perceptual"]
+    },
+    {
+      "software_id": "obs",
+      "display_name": "OBS Studio",
+      "pattern": "service_api",
+      "read_paths": ["OBS WebSocket state queries"],
+      "action_paths": ["OBS WebSocket requests"],
+      "observation_source": "WebSocket service state",
+      "deployment_tier": "bridge_assisted",
+      "adapter_path": "src/asil/adapters/obs.py",
+      "limitations": ["generic runtime currently requires a reviewed WebSocket bridge"]
+    },
+    {
+      "software_id": "gitea",
+      "display_name": "Gitea",
+      "pattern": "service_api",
+      "read_paths": ["Gitea REST JSON endpoints"],
+      "action_paths": ["Gitea REST create/update/delete operations"],
+      "observation_source": "REST API JSON",
+      "deployment_tier": "direct_declarative",
+      "adapter_path": "src/asil/adapters/gitea.py",
+      "limitations": ["profile grants only explicitly evidenced endpoint coverage"]
+    },
+    {
+      "software_id": "code_server",
+      "display_name": "code-server",
+      "pattern": "service_api",
+      "read_paths": ["workspace filesystem and HTTP service state"],
+      "action_paths": ["reviewed workspace and service operations"],
+      "observation_source": "workspace and service state",
+      "deployment_tier": "bridge_assisted",
+      "adapter_path": "src/asil/adapters/code_server.py",
+      "limitations": ["editor UI state requires application-specific synchronization"]
+    },
+    {
+      "software_id": "thunderbird",
+      "display_name": "Thunderbird",
+      "pattern": "service_api",
+      "read_paths": ["mail profile and service-backed message state"],
+      "action_paths": ["reviewed message, folder, and account operations"],
+      "observation_source": "mail store and service state",
+      "deployment_tier": "bridge_assisted",
+      "adapter_path": "src/asil/adapters/thunderbird.py",
+      "limitations": ["provider-specific authentication and UI state need reviewed integration"]
+    },
+    {
+      "software_id": "nautilus",
+      "display_name": "Nautilus",
+      "pattern": "service_api",
+      "read_paths": ["filesystem metadata and desktop service state"],
+      "action_paths": ["reviewed filesystem and desktop operations"],
+      "observation_source": "filesystem and desktop state",
+      "deployment_tier": "bridge_assisted",
+      "adapter_path": "src/asil/adapters/nautilus.py",
+      "limitations": ["desktop selection and view state require GUI synchronization"]
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "id": "drawio_05",
+  "software": "drawio",
+  "difficulty": "simple",
+  "description": "Delete the submit connector.",
+  "instruction": "Delete the connector flow_1 between Start and Review.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "diagram",
+      "params": {
+        "operations": [
+          {
+            "action": "delete_element",
+            "id": "flow_1"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "drawio"
+  ],
+  "snapshot": "drawio_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "diagram_canvas",
+    "visible_change_summary": "The connector from Start to Review disappears.",
+    "checkpoint_visibility": {
+      "flow_removed": "visible_on_diagram"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "flow_removed",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_not_exists": "connector:flow_1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "drawio",
+    "difficulty": "simple",
+    "description": "Delete the submit connector.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "diagram",
+        "params": {
+          "operations": [
+            {
+              "action": "delete_element",
+              "id": "flow_1"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "id": "audacity_19",
+  "instruction": "Rename Voiceover to Main Narration, remove Music Bed, and add a new track named Ambience.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "audacity_default_project",
+  "config": [],
+  "related_apps": [
+    "audacity"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "audacity_19_main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "voice_renamed",
+            "weight": 0.34,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "track:track_voice",
+                "key": "name",
+                "expected": "Main Narration"
+              }
+            }
+          },
+          {
+            "id": "music_removed",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "no_element_matches": {
+                "type": "track",
+                "id": "track:track_music"
+              }
+            }
+          },
+          {
+            "id": "ambience_added",
+            "weight": 0.33,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "track",
+                "id": "track:track_ambience",
+                "value": {
+                  "name": "Ambience"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "audacity",
+    "difficulty": "simple",
+    "description": "Rename Voiceover to Main Narration, remove Music Bed, and add a new track named Ambience.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "set_track_value",
+              "track_id": "track_voice",
+              "field": "name",
+              "value": "Main Narration"
+            },
+            {
+              "action": "delete_track",
+              "track_id": "track_music"
+            },
+            {
+              "action": "add_track",
+              "track_id": "track_ambience",
+              "name": "Ambience",
+              "kind": "audio",
+              "mute": false,
+              "solo": false,
+              "gain_db": 0.0,
+              "pan": 0.0,
+              "height_px": 132,
+              "clips": []
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "track:track_voice",
+        "key": "name",
+        "expected": "Main Narration"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "multitrack_timeline",
+    "visible_change_summary": "Voiceover becomes Main Narration, Music Bed disappears, and Ambience appears.",
+    "checkpoint_visibility": {
+      "voice_renamed": "visible_in_track_headers",
+      "music_removed": "visible_in_track_headers",
+      "ambience_added": "visible_in_track_headers"
+    }
+  }
+}

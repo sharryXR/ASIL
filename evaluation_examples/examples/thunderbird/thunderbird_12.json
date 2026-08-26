@@ -1,0 +1,113 @@
+{
+  "id": "thunderbird_12",
+  "instruction": "Update the open draft so it is addressed to legal@acme.test with the subject \"Contract redline\" and the body \"The latest contract redline is ready for Friday review.\", then leave the compose window open.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "thunderbird_compose_focus",
+  "config": [],
+  "related_apps": [
+    "thunderbird"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "thunderbird_12_main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "draft_to",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "compose:draft",
+                "key": "to",
+                "expected": "legal@acme.test"
+              }
+            }
+          },
+          {
+            "id": "draft_subject",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "compose:draft",
+                "key": "subject",
+                "expected": "Contract redline"
+              }
+            }
+          },
+          {
+            "id": "draft_body",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "compose:draft",
+                "key": "body",
+                "expected": "The latest contract redline is ready for Friday review."
+              }
+            }
+          },
+          {
+            "id": "draft_open",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "compose:draft",
+                "key": "is_open",
+                "expected": true
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "thunderbird",
+    "difficulty": "simple",
+    "description": "Update the open draft so it is addressed to legal@acme.test with the subject \"Contract redline\" and the body \"The latest contract redline is ready for Friday review.\", then leave the compose window open.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "thunderbird",
+        "params": {
+          "operations": [
+            {
+              "action": "update_draft",
+              "changes": {
+                "to": "legal@acme.test",
+                "subject": "Contract redline",
+                "body": "The latest contract redline is ready for Friday review."
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "compose:draft",
+        "key": "subject",
+        "expected": "Contract redline"
+      }
+    },
+    "initial_state": "compose_focus"
+  },
+  "gui_expectations": {
+    "success_surface": "compose_window",
+    "visible_change_summary": "A compose window is open with the Contract redline draft visible.",
+    "checkpoint_visibility": {
+      "draft_to": "visible_in_compose_window",
+      "draft_subject": "visible_in_compose_window",
+      "draft_body": "visible_in_compose_window",
+      "draft_open": "visible_in_compose_window"
+    }
+  }
+}

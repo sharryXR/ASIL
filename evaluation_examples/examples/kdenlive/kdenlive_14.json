@@ -1,0 +1,66 @@
+{
+  "id": "kdenlive_14",
+  "instruction": "Remove the City B-Roll clip from V2.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "kdenlive_default_project",
+  "config": [],
+  "related_apps": ["kdenlive"],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "kdenlive_14_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "kdenlive_14_clip_removed",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "no_element_matches": {
+                "type": "timeline_clip",
+                "id": "timeline_clip:tl_broll"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "kdenlive",
+    "difficulty": "simple",
+    "description": "Remove the City B-Roll clip from V2.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "delete",
+              "xpath": "/kdenliveProject/timeline/track[@id='video_overlay']/clipref[@id='tl_broll']"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "no_element_matches": {
+        "type": "timeline_clip",
+        "id": "timeline_clip:tl_broll"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "timeline",
+    "visible_change_summary": "The City B-Roll block disappears from V2.",
+    "checkpoint_visibility": {
+      "kdenlive_14_clip_removed": "visible_in_timeline_clip_block"
+    }
+  }
+}

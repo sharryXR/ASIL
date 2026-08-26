@@ -1,0 +1,398 @@
+{
+  "id": "libreoffice_16",
+  "instruction": "Create a student grade sheet with columns (Student, Chinese, Math, English, Physics, Chemistry). Use any realistic sample data, add exactly 6 complete student rows, keep student names non-empty and unique, and keep every score numeric in the range 0-100.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "libreoffice_calc_default",
+  "config": [],
+  "related_apps": [
+    "libreoffice"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "libreoffice_16_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "libreoffice_16_headers",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_headers": {
+                "sheet": "Sheet1",
+                "row": 1,
+                "expected": [
+                  "Student",
+                  "Chinese",
+                  "Math",
+                  "English",
+                  "Physics",
+                  "Chemistry"
+                ]
+              }
+            }
+          },
+          {
+            "id": "libreoffice_16_rows",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_complete_rows": {
+                "sheet": "Sheet1",
+                "columns": [
+                  "A",
+                  "B",
+                  "C",
+                  "D",
+                  "E",
+                  "F"
+                ],
+                "start_row": 2,
+                "expected_rows": 6
+              }
+            }
+          },
+          {
+            "id": "libreoffice_16_unique_names",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_column_unique": {
+                "sheet": "Sheet1",
+                "column": "A",
+                "start_row": 2,
+                "end_row": 7
+              }
+            }
+          },
+          {
+            "id": "libreoffice_16_name_text",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_column_type": {
+                "sheet": "Sheet1",
+                "column": "A",
+                "start_row": 2,
+                "end_row": 7,
+                "expected": "text"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_16_scores",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_column_type": {
+                "sheet": "Sheet1",
+                "columns": [
+                  "B",
+                  "C",
+                  "D",
+                  "E",
+                  "F"
+                ],
+                "start_row": 2,
+                "end_row": 7,
+                "expected": "number",
+                "min": 0,
+                "max": 100
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "libreoffice",
+    "difficulty": "medium",
+    "description": "Create a student grade sheet: columns (Student, Chinese, Math, English, Physics, Chemistry) with 6 students and their scores",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{ods_path}}",
+        "params": {
+          "operations": [
+            {
+              "sheet": "Sheet1",
+              "cell": "A1",
+              "value": "Student",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B1",
+              "value": "Chinese",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C1",
+              "value": "Math",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D1",
+              "value": "English",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E1",
+              "value": "Physics",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F1",
+              "value": "Chemistry",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A2",
+              "value": "Zhang Wei",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B2",
+              "value": "92",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C2",
+              "value": "88",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D2",
+              "value": "95",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E2",
+              "value": "85",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F2",
+              "value": "90",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A3",
+              "value": "Li Na",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B3",
+              "value": "88",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C3",
+              "value": "95",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D3",
+              "value": "82",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E3",
+              "value": "91",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F3",
+              "value": "87",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A4",
+              "value": "Wang Fang",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B4",
+              "value": "76",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C4",
+              "value": "82",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D4",
+              "value": "90",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E4",
+              "value": "78",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F4",
+              "value": "84",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A5",
+              "value": "Chen Ming",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B5",
+              "value": "95",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C5",
+              "value": "78",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D5",
+              "value": "85",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E5",
+              "value": "92",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F5",
+              "value": "88",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A6",
+              "value": "Liu Yang",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B6",
+              "value": "80",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C6",
+              "value": "91",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D6",
+              "value": "77",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E6",
+              "value": "86",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F6",
+              "value": "93",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A7",
+              "value": "Zhao Jing",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B7",
+              "value": "85",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C7",
+              "value": "87",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D7",
+              "value": "93",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E7",
+              "value": "80",
+              "value_type": "float"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F7",
+              "value": "86",
+              "value_type": "float"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "Sheet1!F7",
+        "key": null,
+        "expected": "86"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "spreadsheet",
+    "visible_change_summary": "Create a student grade sheet with columns (Student, Chinese, Math, English, Physics, Chemistry). Use any realistic sample data, add exactly 6 complete student rows, keep student names non-empty and unique, and keep every score numeric in the range 0-100.",
+    "checkpoint_visibility": {
+      "libreoffice_16_headers": "visible_in_sheet",
+      "libreoffice_16_rows": "visible_in_sheet",
+      "libreoffice_16_unique_names": "visible_in_sheet",
+      "libreoffice_16_name_text": "visible_in_sheet",
+      "libreoffice_16_scores": "visible_in_sheet"
+    }
+  }
+}

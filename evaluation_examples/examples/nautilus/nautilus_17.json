@@ -1,0 +1,14 @@
+{
+  "id": "nautilus_17",
+  "instruction": "Copy `milestones.txt` from `Projects/beta` into `Archive`, then open `Archive`.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "nautilus_workspace_default",
+  "config": [],
+  "related_apps": ["nautilus"],
+  "evaluator": {"selection": "best_score", "paths": [{"path_id": "nautilus_17_primary_path", "exclusive_group": "success_paths", "checkpoints": [{"id": "nautilus_17_location", "weight": 0.5, "gui_visible_required": true, "rule": {"element_value": {"id": "location", "key": "path", "expected": "Archive"}}}, {"id": "nautilus_17_entry", "weight": 0.5, "gui_visible_required": true, "rule": {"any_element_matches": {"type": "directory_entry", "value": {"path": "Archive/milestones.txt"}}}}]}]},
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {"software": "nautilus", "difficulty": "medium", "description": "Copy the beta milestones file into Archive and show the Archive copy.", "actions": [{"action_type": "invoke_function", "target": "nautilus", "params": {"operations": [{"action": "copy_entry", "path": "milestones.txt", "destination_dir": "../../Archive"}, {"action": "open_directory", "path": "../../Archive"}]}}], "validation": {"conditions": [{"element_value": {"id": "location", "key": "path", "expected": "Archive"}}, {"any_element_matches": {"type": "directory_entry", "value": {"path": "Archive/milestones.txt"}}}]}, "initial_state": "projects_beta"},
+  "gui_expectations": {"success_surface": "file_list", "visible_change_summary": "Archive is open and contains a visible copy of milestones.txt.", "checkpoint_visibility": {"nautilus_17_location": "visible_in_location_bar", "nautilus_17_entry": "visible_in_file_list"}}
+}

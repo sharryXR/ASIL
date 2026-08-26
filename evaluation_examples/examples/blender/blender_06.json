@@ -1,0 +1,85 @@
+{
+  "id": "blender_06",
+  "instruction": "Add a red diffuse material to the default cube",
+  "source": "asil_benchmark_v1",
+  "snapshot": "blender_default_scene",
+  "config": [],
+  "related_apps": [
+    "blender"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "blender_06_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "cube_exists",
+            "weight": 0.4,
+            "rule": {
+              "object_exists": "Cube"
+            },
+            "gui_visible_required": true
+          },
+          {
+            "id": "cube_material_is_red",
+            "weight": 0.6,
+            "rule": {
+              "object_material_color": {
+                "id": "Cube",
+                "expected": [
+                  1,
+                  0,
+                  0,
+                  1
+                ]
+              }
+            },
+            "gui_visible_required": true
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "blender",
+    "difficulty": "medium",
+    "description": "Add a red diffuse material to the default cube",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "bpy",
+        "params": {
+          "script": [
+            "import bpy",
+            "mat = bpy.data.materials.new(name='RedMaterial')",
+            "mat.use_nodes = True",
+            "bsdf = mat.node_tree.nodes['Principled BSDF']",
+            "bsdf.inputs['Base Color'].default_value = (1.0, 0.0, 0.0, 1.0)",
+            "cube = bpy.data.objects['Cube']",
+            "bpy.context.view_layer.objects.active = cube",
+            "cube.select_set(True)",
+            "cube.data.materials.clear()",
+            "cube.data.materials.append(mat)"
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "material_exists": "RedMaterial"
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "viewport_and_material_properties",
+    "visible_change_summary": "The default cube is visibly shaded red without adding a second cube.",
+    "checkpoint_visibility": {
+      "cube_exists": "visible_in_viewport",
+      "cube_material_is_red": "visible_in_material_preview"
+    }
+  }
+}

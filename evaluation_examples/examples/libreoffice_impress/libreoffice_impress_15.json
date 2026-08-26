@@ -1,0 +1,120 @@
+{
+  "id": "libreoffice_impress_15",
+  "software": "libreoffice_impress",
+  "difficulty": "complex",
+  "description": "Update slide 1 title to \"Program Review\", replace its body with \"Review the partner launch checklist.\", rename slide 2 to \"Dependencies\", and add the line \"Escalate the vendor contract gap.\" to slide 2.",
+  "instruction": "Update slide 1 title to \"Program Review\", set its first body line to \"Review the partner launch checklist.\", rename slide 2 to \"Dependencies\", and add the second line \"Escalate the vendor contract gap.\" to slide 2.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "{{odp_path}}",
+      "params": {
+        "operations": [
+          {
+            "action": "set_slide_title",
+            "slide_index": 1,
+            "text": "Program Review"
+          },
+          {
+            "action": "set_slide_body",
+            "slide_index": 1,
+            "body_index": 1,
+            "text": "Review the partner launch checklist."
+          },
+          {
+            "action": "set_slide_title",
+            "slide_index": 2,
+            "text": "Dependencies"
+          },
+          {
+            "action": "append_slide_body",
+            "slide_index": 2,
+            "text": "Escalate the vendor contract gap."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "snapshot": "impress_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "slide_canvas",
+    "visible_change_summary": "The deck shows Program Review, Dependencies, and the vendor-contract escalation line.",
+    "checkpoint_visibility": {
+      "slide1_title": "visible_on_slide",
+      "slide1_body": "visible_on_slide",
+      "slide2_title": "visible_on_slide",
+      "slide2_body2": "visible_on_slide"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "slide1_title",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:1:title",
+                "key": "text_content",
+                "expected": "Program Review"
+              }
+            }
+          },
+          {
+            "id": "slide1_body",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:1:body:1",
+                "key": "text_content",
+                "expected": "Review the partner launch checklist."
+              }
+            }
+          },
+          {
+            "id": "slide2_title",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:title",
+                "key": "text_content",
+                "expected": "Dependencies"
+              }
+            }
+          },
+          {
+            "id": "slide2_body2",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "slide:2:body:2",
+                "key": "text_content",
+                "expected": "Escalate the vendor contract gap."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "render_target": {
+    "mode": "contact_sheet",
+    "slide_indices": [
+      1,
+      2
+    ]
+  }
+}

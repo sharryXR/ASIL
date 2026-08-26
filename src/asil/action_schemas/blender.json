@@ -1,0 +1,105 @@
+{
+  "software": "Blender",
+  "supported_action_types": ["invoke_function"],
+  "target": "bpy",
+  "description": "Executes Python scripts using Blender's bpy API. Each action provides a list of Python code lines to run inside Blender.",
+  "actions": [
+    {
+      "name": "execute_script",
+      "description": "Run a Blender Python script. The script lines are joined and executed via `blender --background --python`. Always start with 'import bpy'.",
+      "params_schema": {
+        "script": ["line1", "line2", "..."]
+      },
+      "examples": [
+        {
+          "description": "Create a cube at origin",
+          "action": {
+            "action_type": "invoke_function",
+            "target": "bpy",
+            "params": {
+              "script": [
+                "import bpy",
+                "bpy.ops.mesh.primitive_cube_add(location=(0, 0, 0))"
+              ]
+            }
+          }
+        },
+        {
+          "description": "Add a red material to the active object",
+          "action": {
+            "action_type": "invoke_function",
+            "target": "bpy",
+            "params": {
+              "script": [
+                "import bpy",
+                "mat = bpy.data.materials.new(name='RedMaterial')",
+                "mat.use_nodes = True",
+                "bsdf = mat.node_tree.nodes['Principled BSDF']",
+                "bsdf.inputs['Base Color'].default_value = (1.0, 0.0, 0.0, 1.0)",
+                "bpy.context.object.data.materials.append(mat)"
+              ]
+            }
+          }
+        },
+        {
+          "description": "Set render resolution to 1920x1080",
+          "action": {
+            "action_type": "invoke_function",
+            "target": "bpy",
+            "params": {
+              "script": [
+                "import bpy",
+                "bpy.context.scene.render.resolution_x = 1920",
+                "bpy.context.scene.render.resolution_y = 1080",
+                "bpy.context.scene.render.resolution_percentage = 100"
+              ]
+            }
+          }
+        },
+        {
+          "description": "Delete all objects in the scene",
+          "action": {
+            "action_type": "invoke_function",
+            "target": "bpy",
+            "params": {
+              "script": [
+                "import bpy",
+                "bpy.ops.object.select_all(action='SELECT')",
+                "bpy.ops.object.delete()"
+              ]
+            }
+          }
+        },
+        {
+          "description": "Add a point light",
+          "action": {
+            "action_type": "invoke_function",
+            "target": "bpy",
+            "params": {
+              "script": [
+                "import bpy",
+                "bpy.ops.object.light_add(type='POINT', location=(3, 3, 5))",
+                "bpy.context.object.data.energy = 1000"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "done_action": {
+    "description": "Return this action when the task is fully complete.",
+    "example": {"action_type": "done", "target": "", "params": {}}
+  },
+  "tips": [
+    "Always start scripts with 'import bpy'",
+    "Use bpy.ops.mesh.primitive_*_add() to create meshes (cube, sphere, cylinder, plane, etc.)",
+    "Use bpy.ops.object.light_add(type='POINT'|'SUN'|'SPOT'|'AREA') for lights",
+    "Use bpy.ops.object.camera_add() for cameras — set bpy.context.scene.camera to make it active",
+    "Access the active object with bpy.context.object",
+    "Set keyframes with obj.keyframe_insert(data_path='location', frame=N)",
+    "Multiple lines execute sequentially in one script — no need for multiple actions",
+    "CRITICAL: Use EXACTLY the object name specified in the Success Criteria",
+    "CRITICAL: After your action, check if the Success Criteria object/material exists in the observation — if yes, return done"
+  ]
+}

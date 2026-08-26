@@ -1,0 +1,119 @@
+{
+  "id": "multi_apps_027",
+  "software": "multi_apps",
+  "source": "asil_multi_apps_generated",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: rename meeting-notes.md to meeting-notes-multi_027.md; write 'MA-027 spreadsheet signoff' in Sheet1 D10.",
+  "related_apps": [
+    "nautilus",
+    "libreoffice"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "nautilus_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "nautilus",
+                "rule": {
+                  "element_exists": "workspace:meeting-notes-multi_027.md"
+                }
+              }
+            }
+          },
+          {
+            "id": "libreoffice_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "libreoffice",
+                "rule": {
+                  "element_value": {
+                    "id": "Sheet1!D10",
+                    "expected": "MA-027 spreadsheet signoff"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "nautilus_checkpoint": "visible_in_nautilus",
+      "libreoffice_checkpoint": "visible_in_libreoffice"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "medium",
+    "description": "File Workspace cross-app task for nautilus, libreoffice.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "nautilus": "default",
+      "libreoffice": "default"
+    },
+    "primary_app": "nautilus",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "nautilus",
+              "action": {
+                "action_type": "invoke_function",
+                "target": "nautilus",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "rename_entry",
+                      "path": "meeting-notes.md",
+                      "new_name": "meeting-notes-multi_027.md"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "libreoffice",
+              "action": {
+                "action_type": "modify_file",
+                "target": "spreadsheet",
+                "params": {
+                  "operations": [
+                    {
+                      "sheet": "Sheet1",
+                      "cell": "D10",
+                      "value": "MA-027 spreadsheet signoff",
+                      "value_type": "string"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "file_workspace"
+  }
+}

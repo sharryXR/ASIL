@@ -1,0 +1,58 @@
+{
+  "id": "obs_18",
+  "instruction": "Start recording",
+  "source": "asil_benchmark_v1",
+  "snapshot": "obs_default_scene",
+  "config": [],
+  "related_apps": [
+    "obs"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "obs_18_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "obs_18_recording_live",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "record_active": true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "obs",
+    "difficulty": "medium",
+    "description": "Start recording",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "StartRecord",
+          "args": {}
+        }
+      }
+    ],
+    "validation": {
+      "record_active": true
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "program_view",
+    "visible_change_summary": "Recording indicator turns on in OBS.",
+    "checkpoint_visibility": {
+      "obs_18_recording_live": "visible_in_obs_ui"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "id": "jupyterlab_01",
+  "software": "jupyterlab",
+  "difficulty": "simple",
+  "description": "Refresh the analysis notebook output to show 42.",
+  "instruction": "Open notebooks/analysis.ipynb and update the second cell output so it visibly shows 42.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {"action": "open_file", "path": "notebooks/analysis.ipynb"},
+          {"action": "set_cell_output", "path": "notebooks/analysis.ipynb", "cell_index": 1, "output": "42", "execution_count": 2}
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": ["jupyterlab"],
+  "snapshot": "jupyterlab_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "notebook",
+    "visible_change_summary": "The analysis notebook shows 42 as the visible output of the code cell.",
+    "checkpoint_visibility": {
+      "output": "visible_in_notebook_output"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "output",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "cell:notebooks/analysis.ipynb:1",
+                "key": "output",
+                "expected": "42"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "jupyterlab",
+    "difficulty": "simple",
+    "description": "Refresh the analysis notebook output to show 42.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {"action": "open_file", "path": "notebooks/analysis.ipynb"},
+            {"action": "set_cell_output", "path": "notebooks/analysis.ipynb", "cell_index": 1, "output": "42", "execution_count": 2}
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

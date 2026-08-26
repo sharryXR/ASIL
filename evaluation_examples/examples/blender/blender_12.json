@@ -1,0 +1,96 @@
+{
+  "id": "blender_12",
+  "instruction": "Create an icosphere and add a blue material",
+  "source": "asil_benchmark_v1",
+  "snapshot": "blender_default_scene",
+  "config": [],
+  "related_apps": [
+    "blender"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "blender_12_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "icosphere_with_blue_material",
+            "weight": 0.6,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "mesh",
+                "metadata": {
+                  "materials": [
+                    {
+                      "name": "BlueMaterial",
+                      "color": [
+                        0,
+                        0,
+                        1,
+                        1
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "id": "single_mesh_object",
+            "weight": 0.4,
+            "gui_visible_required": true,
+            "rule": {
+              "count_elements_matching": {
+                "type": "mesh",
+                "expected": 1
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "blender",
+    "difficulty": "medium",
+    "description": "Create an icosphere and add a blue material",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "bpy",
+        "params": {
+          "script": [
+            "import bpy",
+            "bpy.ops.mesh.primitive_ico_sphere_add(location=(0, 0, 0))",
+            "mat = bpy.data.materials.new(name='BlueMaterial')",
+            "mat.use_nodes = True",
+            "bsdf = mat.node_tree.nodes['Principled BSDF']",
+            "bsdf.inputs['Base Color'].default_value = (0.0, 0.0, 1.0, 1.0)",
+            "bpy.context.object.data.materials.append(mat)"
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "material_exists": "BlueMaterial"
+    },
+    "initial_state": "blank"
+  },
+  "gui_expectations": {
+    "success_surface": "viewport_and_material_properties",
+    "visible_change_summary": "An icosphere appears with a visibly blue material.",
+    "checkpoint_visibility": {
+      "icosphere_exists": "visible_in_viewport",
+      "icosphere_at_origin": "visible_in_viewport",
+      "icosphere_uses_blue_material": "visible_in_viewport",
+      "scene_object_count_5": "visible_in_viewport",
+      "icosphere_with_blue_material": "visible_in_viewport",
+      "single_mesh_object": "visible_in_viewport"
+    }
+  }
+}

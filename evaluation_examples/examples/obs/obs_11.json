@@ -1,0 +1,60 @@
+{
+  "id": "obs_11",
+  "instruction": "Switch to scene named 'BRB'",
+  "source": "asil_benchmark_v1",
+  "snapshot": "obs_default_scene",
+  "config": [],
+  "related_apps": [
+    "obs"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "obs_11_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "obs_11_scene_brb",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "current_scene": "BRB"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "obs",
+    "difficulty": "simple",
+    "description": "Switch to scene named 'BRB'",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "SetCurrentProgramScene",
+          "args": {
+            "sceneName": "BRB"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "current_scene": "BRB"
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "program_view",
+    "visible_change_summary": "Program scene switches to BRB.",
+    "checkpoint_visibility": {
+      "obs_11_scene_brb": "visible_in_obs_ui"
+    }
+  }
+}

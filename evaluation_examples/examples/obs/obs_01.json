@@ -1,0 +1,60 @@
+{
+  "id": "obs_01",
+  "instruction": "Switch to scene named 'Main Scene'",
+  "source": "asil_benchmark_v1",
+  "snapshot": "obs_studio_default",
+  "config": [],
+  "related_apps": [
+    "obs"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "obs_01_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "obs_01_scene",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "current_scene": "Main Scene"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "obs",
+    "difficulty": "simple",
+    "description": "Switch to scene named 'Main Scene'",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "SetCurrentProgramScene",
+          "args": {
+            "sceneName": "Main Scene"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "current_scene": "Main Scene"
+    },
+    "initial_state": "scene_intermission"
+  },
+  "gui_expectations": {
+    "success_surface": "program_view",
+    "visible_change_summary": "Program view switches to the 'Main Scene' scene.",
+    "checkpoint_visibility": {
+      "obs_01_scene": "visible_in_obs_ui"
+    }
+  }
+}

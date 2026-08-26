@@ -1,0 +1,155 @@
+{
+  "id": "multi_apps_077",
+  "software": "multi_apps",
+  "source": "asil_multi_apps_generated",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: write 'MA-077 spreadsheet signoff' in Sheet1 D10; create reports/multi_077_handoff.md with the handoff note; rename meeting-notes.md to meeting-notes-multi_077.md. Use these exact checkpoint text values where applicable: code_server: 'MA-077 code handoff complete'.",
+  "related_apps": [
+    "libreoffice",
+    "code_server",
+    "nautilus"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "libreoffice_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "libreoffice",
+                "rule": {
+                  "element_value": {
+                    "id": "Sheet1!D10",
+                    "expected": "MA-077 spreadsheet signoff"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "code_server_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "code_server",
+                "rule": {
+                  "element_contains": {
+                    "id": "file:reports/multi_077_handoff.md",
+                    "key": "content",
+                    "expected": "MA-077 code handoff complete"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "nautilus_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "nautilus",
+                "rule": {
+                  "element_exists": "workspace:meeting-notes-multi_077.md"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "libreoffice_checkpoint": "visible_in_libreoffice",
+      "code_server_checkpoint": "visible_in_code_server",
+      "nautilus_checkpoint": "visible_in_nautilus"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "complex",
+    "description": "Mixed Release cross-app task for libreoffice, code_server, nautilus.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "libreoffice": "default",
+      "code_server": "default",
+      "nautilus": "default"
+    },
+    "primary_app": "libreoffice",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "libreoffice",
+              "action": {
+                "action_type": "modify_file",
+                "target": "spreadsheet",
+                "params": {
+                  "operations": [
+                    {
+                      "sheet": "Sheet1",
+                      "cell": "D10",
+                      "value": "MA-077 spreadsheet signoff",
+                      "value_type": "string"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "code_server",
+              "action": {
+                "action_type": "modify_file",
+                "target": "workspace",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "create_file",
+                      "path": "reports/multi_077_handoff.md",
+                      "content": "MA-077 code handoff complete\n"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "nautilus",
+              "action": {
+                "action_type": "invoke_function",
+                "target": "nautilus",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "rename_entry",
+                      "path": "meeting-notes.md",
+                      "new_name": "meeting-notes-multi_077.md"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "mixed_release"
+  }
+}

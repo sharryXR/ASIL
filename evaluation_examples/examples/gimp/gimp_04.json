@@ -1,0 +1,84 @@
+{
+  "id": "gimp_04",
+  "software": "gimp",
+  "difficulty": "simple",
+  "description": "Change the existing logo block to navy.",
+  "instruction": "Change the existing logo block layer so its fill color becomes #123d7a.",
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "update_layer",
+            "id": "logo_block",
+            "changes": {
+              "fill": "#123d7a"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "gimp"
+  ],
+  "snapshot": "gimp_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "The existing logo block changes from red to navy.",
+    "checkpoint_visibility": {
+      "logo_fill": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "logo_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "logo_block",
+                "key": "fill",
+                "expected": "#123d7a"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "simple",
+    "description": "Change the existing logo block to navy.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "update_layer",
+              "id": "logo_block",
+              "changes": {
+                "fill": "#123d7a"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

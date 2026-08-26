@@ -1,0 +1,103 @@
+{
+  "id": "gimp_07",
+  "software": "gimp",
+  "difficulty": "medium",
+  "description": "Move and resize the logo block.",
+  "instruction": "Move the logo_block layer to x=500 y=360 and resize it to width=180 height=110.",
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "update_layer",
+            "id": "logo_block",
+            "changes": {
+              "x": 500,
+              "y": 360,
+              "width": 180,
+              "height": 110
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "gimp"
+  ],
+  "snapshot": "gimp_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "The logo block moves to the lower-right area and becomes larger.",
+    "checkpoint_visibility": {
+      "logo_position": "visible_on_canvas",
+      "logo_size": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "logo_position",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "logo_block",
+                "key": "x",
+                "expected": 500
+              }
+            }
+          },
+          {
+            "id": "logo_size",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "logo_block",
+                "key": "width",
+                "expected": 180
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "medium",
+    "description": "Move and resize the logo block.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "update_layer",
+              "id": "logo_block",
+              "changes": {
+                "x": 500,
+                "y": 360,
+                "width": 180,
+                "height": 110
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

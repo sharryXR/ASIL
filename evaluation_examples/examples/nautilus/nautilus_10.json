@@ -1,0 +1,14 @@
+{
+  "id": "nautilus_10",
+  "instruction": "Open the `Archive` folder.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "nautilus_workspace_default",
+  "config": [],
+  "related_apps": ["nautilus"],
+  "evaluator": {"selection": "best_score", "paths": [{"path_id": "nautilus_10_primary_path", "exclusive_group": "success_paths", "checkpoints": [{"id": "nautilus_10_location", "weight": 0.5, "gui_visible_required": true, "rule": {"element_value": {"id": "location", "key": "path", "expected": "Archive"}}}, {"id": "nautilus_10_entry", "weight": 0.5, "gui_visible_required": true, "rule": {"any_element_matches": {"type": "directory_entry", "value": {"path": "Archive/old-invoice.txt"}}}}]}]},
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {"software": "nautilus", "difficulty": "simple", "description": "Open the Archive folder.", "actions": [{"action_type": "invoke_function", "target": "nautilus", "params": {"operations": [{"action": "open_directory", "path": "Archive"}]}}], "validation": {"conditions": [{"element_value": {"id": "location", "key": "path", "expected": "Archive"}}, {"any_element_matches": {"type": "directory_entry", "value": {"path": "Archive/old-invoice.txt"}}}]}, "initial_state": "default"},
+  "gui_expectations": {"success_surface": "file_list", "visible_change_summary": "The Archive folder is open and old-invoice.txt is visible.", "checkpoint_visibility": {"nautilus_10_location": "visible_in_location_bar", "nautilus_10_entry": "visible_in_file_list"}}
+}

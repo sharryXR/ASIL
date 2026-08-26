@@ -1,0 +1,87 @@
+{
+  "id": "jupyterlab_10",
+  "software": "jupyterlab",
+  "difficulty": "medium",
+  "description": "Update the notebook calculation to average 9.",
+  "instruction": "Open notebooks/analysis.ipynb, change the second cell source to \"average = 18 / 2\", and set its visible output to 9.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {"action": "open_file", "path": "notebooks/analysis.ipynb"},
+          {"action": "set_cell_source", "path": "notebooks/analysis.ipynb", "cell_index": 1, "source": "average = 18 / 2"},
+          {"action": "set_cell_output", "path": "notebooks/analysis.ipynb", "cell_index": 1, "output": "9", "execution_count": 4}
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": ["jupyterlab"],
+  "snapshot": "jupyterlab_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "notebook",
+    "visible_change_summary": "The notebook shows an average calculation with output 9.",
+    "checkpoint_visibility": {
+      "avg_source": "visible_in_notebook_cell",
+      "avg_output": "visible_in_notebook_output"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "avg_source",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "cell:notebooks/analysis.ipynb:1",
+                "key": "source",
+                "expected": "average = 18 / 2"
+              }
+            }
+          },
+          {
+            "id": "avg_output",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "cell:notebooks/analysis.ipynb:1",
+                "key": "output",
+                "expected": "9"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "jupyterlab",
+    "difficulty": "medium",
+    "description": "Update the notebook calculation to average 9.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {"action": "open_file", "path": "notebooks/analysis.ipynb"},
+            {"action": "set_cell_source", "path": "notebooks/analysis.ipynb", "cell_index": 1, "source": "average = 18 / 2"},
+            {"action": "set_cell_output", "path": "notebooks/analysis.ipynb", "cell_index": 1, "output": "9", "execution_count": 4}
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

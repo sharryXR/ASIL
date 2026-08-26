@@ -1,0 +1,329 @@
+{
+  "id": "libreoffice_14",
+  "instruction": "Create a weekly class schedule with columns (Time, Monday, Tuesday, Wednesday, Thursday, Friday). Use exactly these time slots in column A: 08:00, 09:30, 11:00, 13:00. Fill the weekday cells with any non-empty realistic class names.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "libreoffice_calc_default",
+  "config": [],
+  "related_apps": [
+    "libreoffice"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "libreoffice_14_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "libreoffice_14_headers",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_headers": {
+                "sheet": "Sheet1",
+                "row": 1,
+                "expected": [
+                  "Time",
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday"
+                ]
+              }
+            }
+          },
+          {
+            "id": "libreoffice_14_rows",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_complete_rows": {
+                "sheet": "Sheet1",
+                "columns": [
+                  "A",
+                  "B",
+                  "C",
+                  "D",
+                  "E",
+                  "F"
+                ],
+                "start_row": 2,
+                "expected_rows": 4
+              }
+            }
+          },
+          {
+            "id": "libreoffice_14_time_sequence",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_column_sequence": {
+                "sheet": "Sheet1",
+                "column": "A",
+                "start_row": 2,
+                "expected": [
+                  "08:00",
+                  "09:30",
+                  "11:00",
+                  "13:00"
+                ]
+              }
+            }
+          },
+          {
+            "id": "libreoffice_14_time_type",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_column_type": {
+                "sheet": "Sheet1",
+                "column": "A",
+                "start_row": 2,
+                "end_row": 5,
+                "expected": "time"
+              }
+            }
+          },
+          {
+            "id": "libreoffice_14_class_text",
+            "weight": 0.2,
+            "gui_visible_required": true,
+            "rule": {
+              "spreadsheet_column_type": {
+                "sheet": "Sheet1",
+                "columns": [
+                  "B",
+                  "C",
+                  "D",
+                  "E",
+                  "F"
+                ],
+                "start_row": 2,
+                "end_row": 5,
+                "expected": "text"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "libreoffice",
+    "difficulty": "medium",
+    "description": "Create a weekly class schedule: columns (Time, Monday, Tuesday, Wednesday, Thursday, Friday), 4 time slots from 08:00 to 13:00",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{ods_path}}",
+        "params": {
+          "operations": [
+            {
+              "sheet": "Sheet1",
+              "cell": "A1",
+              "value": "Time",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B1",
+              "value": "Monday",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C1",
+              "value": "Tuesday",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D1",
+              "value": "Wednesday",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E1",
+              "value": "Thursday",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F1",
+              "value": "Friday",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A2",
+              "value": "08:00",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B2",
+              "value": "Math",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C2",
+              "value": "Physics",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D2",
+              "value": "Math",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E2",
+              "value": "Chemistry",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F2",
+              "value": "English",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A3",
+              "value": "09:30",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B3",
+              "value": "English",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C3",
+              "value": "Math",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D3",
+              "value": "History",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E3",
+              "value": "Physics",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F3",
+              "value": "Art",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A4",
+              "value": "11:00",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B4",
+              "value": "Chemistry",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C4",
+              "value": "English",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D4",
+              "value": "Physics",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E4",
+              "value": "Math",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F4",
+              "value": "PE",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "A5",
+              "value": "13:00",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "B5",
+              "value": "History",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "C5",
+              "value": "Art",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "D5",
+              "value": "English",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "E5",
+              "value": "History",
+              "value_type": "string"
+            },
+            {
+              "sheet": "Sheet1",
+              "cell": "F5",
+              "value": "Math",
+              "value_type": "string"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "Sheet1!F5",
+        "key": null,
+        "expected": "Math"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "spreadsheet",
+    "visible_change_summary": "Create a weekly class schedule with columns (Time, Monday, Tuesday, Wednesday, Thursday, Friday). Use exactly these time slots in column A: 08:00, 09:30, 11:00, 13:00. Fill the weekday cells with any non-empty realistic class names.",
+    "checkpoint_visibility": {
+      "libreoffice_14_headers": "visible_in_sheet",
+      "libreoffice_14_rows": "visible_in_sheet",
+      "libreoffice_14_time_sequence": "visible_in_sheet",
+      "libreoffice_14_time_type": "visible_in_sheet",
+      "libreoffice_14_class_text": "visible_in_sheet"
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "software": "Nautilus",
+  "supported_action_types": ["invoke_function"],
+  "target": "Use target `nautilus` for all file-manager actions.",
+  "description": "Manage a seeded Nautilus workspace through visible file-manager outcomes such as navigation, search, hidden-file visibility, bookmarks, and file organization within the workspace.",
+  "actions": [
+    {
+      "name": "manage_workspace",
+      "description": "Navigate folders, search, toggle hidden files, and reorganize files inside the seeded Nautilus workspace.",
+      "params_schema": {
+        "type": "object",
+        "required": ["operations"],
+        "properties": {
+          "operations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["action"],
+              "properties": {
+                "action": {
+                  "type": "string",
+                  "enum": [
+                    "open_directory",
+                    "go_back",
+                    "set_hidden_visibility",
+                    "set_view_mode",
+                    "search_entries",
+                    "clear_search",
+                    "add_bookmark",
+                    "rename_entry",
+                    "move_entry",
+                    "copy_entry",
+                    "trash_entry"
+                  ]
+                },
+                "path": {"type": "string"},
+                "destination_dir": {"type": "string"},
+                "new_name": {"type": "string"},
+                "query": {"type": "string"},
+                "enabled": {"type": "boolean"},
+                "mode": {"type": "string", "enum": ["list", "grid"]}
+              }
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "description": "Open the alpha project folder and rename the draft plan file",
+          "action": {
+            "action_type": "invoke_function",
+            "target": "nautilus",
+            "params": {
+              "operations": [
+                {"action": "open_directory", "path": "Projects/alpha"},
+                {"action": "rename_entry", "path": "draft-plan.md", "new_name": "release-plan.md"}
+              ]
+            }
+          }
+        },
+        {
+          "description": "Search for notes and reveal hidden files in the current folder",
+          "action": {
+            "action_type": "invoke_function",
+            "target": "nautilus",
+            "params": {
+              "operations": [
+                {"action": "search_entries", "query": "notes"},
+                {"action": "set_hidden_visibility", "enabled": true}
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "done_action": {
+    "description": "Return this action when the Nautilus task is fully complete.",
+    "example": {
+      "action_type": "done",
+      "target": "",
+      "params": {}
+    }
+  },
+  "tips": [
+    "Paths are relative to the currently open folder unless they explicitly include parent segments like ../ or a top-level folder name. Use / to refer to the benchmark Home/workspace root when that root is visibly open in the UI.",
+    "Keep actions aligned to visible outcomes in the window: current folder, visible entries, search query, bookmark sidebar, and hidden-file visibility.",
+    "Use one invoke_function action with sequential operations when a task needs rename/copy/open or bookmark/open as a single short workflow."
+  ]
+}

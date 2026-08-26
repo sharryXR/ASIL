@@ -1,0 +1,87 @@
+{
+  "id": "kdenlive_13",
+  "instruction": "Place the existing Intro Wide clip on V2 starting at frame 96 for 90 frames.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "kdenlive_default_project",
+  "config": [],
+  "related_apps": ["kdenlive"],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "kdenlive_13_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "kdenlive_13_timeline_block",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "timeline_clip",
+                "id": "timeline_clip:tl_intro_overlay_96",
+                "value": {
+                  "track_id": "video_overlay",
+                  "position": 96,
+                  "duration": 90,
+                  "clip_title": "Intro Wide"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "kdenlive",
+    "difficulty": "simple",
+    "description": "Place the existing Intro Wide clip on V2 starting at frame 96 for 90 frames.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "/kdenliveProject/timeline/track[@id='video_overlay']",
+              "tag": "clipref",
+              "attributes": {
+                "id": "tl_intro_overlay_96",
+                "clip_id": "clip_intro",
+                "start": "96",
+                "duration": "90",
+                "in": "0",
+                "out": "90"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "any_element_matches": {
+        "type": "timeline_clip",
+        "id": "timeline_clip:tl_intro_overlay_96",
+        "value": {
+          "track_id": "video_overlay",
+          "position": 96,
+          "duration": 90,
+          "clip_title": "Intro Wide"
+        }
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "timeline",
+    "visible_change_summary": "A new Intro Wide block appears on V2 near frame 96.",
+    "checkpoint_visibility": {
+      "kdenlive_13_timeline_block": "visible_in_timeline_clip_block"
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "id": "blender_04",
+  "instruction": "Delete all default objects from the scene",
+  "source": "asil_benchmark_v1",
+  "snapshot": "blender_default_scene",
+  "config": [],
+  "related_apps": [
+    "blender"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+      "path_id": "blender_04_primary_path",
+      "exclusive_group": "success_paths",
+      "checkpoints": [
+        {
+          "id": "cube_removed",
+          "weight": 0.25,
+          "gui_visible_required": true,
+          "rule": {
+            "element_not_exists": "Cube"
+          }
+        },
+        {
+          "id": "camera_removed",
+          "weight": 0.25,
+          "gui_visible_required": true,
+          "rule": {
+            "element_not_exists": "Camera"
+          }
+        },
+        {
+          "id": "light_removed",
+          "weight": 0.25,
+          "gui_visible_required": true,
+          "rule": {
+            "element_not_exists": "Point Light"
+          }
+        },
+        {
+          "id": "scene_object_count_0",
+          "weight": 0.25,
+          "gui_visible_required": true,
+          "rule": {
+            "scene_object_count": 0
+          }
+        }
+      ]
+    }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "blender",
+    "difficulty": "simple",
+    "description": "Delete all default objects from the scene",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "bpy",
+        "params": {
+          "script": [
+            "import bpy",
+            "bpy.ops.object.select_all(action='SELECT')",
+            "bpy.ops.object.delete()"
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "scene_object_count": 0
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "viewport",
+    "visible_change_summary": "Delete all default objects from the scene",
+    "checkpoint_visibility": {
+      "cube_removed": "visible_in_viewport",
+      "camera_removed": "visible_in_viewport",
+      "light_removed": "visible_in_viewport",
+      "scene_object_count_0": "visible_in_viewport"
+    }
+  }
+}

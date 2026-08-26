@@ -1,0 +1,333 @@
+{
+  "id": "gimp_realwork_hard_001",
+  "software": "gimp",
+  "difficulty": "complex",
+  "description": "Create a real-photo open-house social banner for a cafe storefront.",
+  "instruction": "Create an 800x600 cafe open-house banner from the real coffee street photo. Crop the photo to the storefront area, reduce saturation, increase contrast, add a dark navy bottom information band, add the title OPEN HOUSE, and add the detail SATURDAY 10 AM - 2 PM.",
+  "source": "asil_realwork_hard_v1",
+  "snapshot": "gimp_default",
+  "config": [],
+  "related_apps": [
+    "gimp"
+  ],
+  "actions": [
+    {
+      "action_type": "invoke_function",
+      "target": "gimp",
+      "params": {
+        "operations": [
+          {
+            "action": "add_image_layer",
+            "id": "street_photo",
+            "label": "Street Photo",
+            "asset_path": "evaluation_examples/assets/realwork_images/coffee_street_960.jpg",
+            "x": 0,
+            "y": 0,
+            "width": 800,
+            "height": 600,
+            "crop": {
+              "x": 40,
+              "y": 20,
+              "width": 860,
+              "height": 650
+            },
+            "filters": {
+              "contrast": 1.18,
+              "saturation": 0.82,
+              "brightness": 0.95
+            }
+          },
+          {
+            "action": "add_layer",
+            "id": "info_band",
+            "label": "Info Band",
+            "kind": "rectangle",
+            "x": 0,
+            "y": 420,
+            "width": 800,
+            "height": 180,
+            "fill": "#102a43",
+            "opacity": 0.82
+          },
+          {
+            "action": "add_text_layer",
+            "id": "banner_title",
+            "label": "Banner Title",
+            "text": "OPEN HOUSE",
+            "x": 44,
+            "y": 446,
+            "font_size": 48,
+            "color": "#ffffff"
+          },
+          {
+            "action": "add_text_layer",
+            "id": "banner_detail",
+            "label": "Banner Detail",
+            "text": "SATURDAY 10 AM - 2 PM",
+            "x": 48,
+            "y": 520,
+            "font_size": 28,
+            "color": "#f6d365"
+          }
+        ]
+      }
+    }
+  ],
+  "initial_state": "blank",
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "The real storefront photo is edited into a social banner with a dark information band and event text.",
+    "checkpoint_visibility": {
+      "canvas_size": "visible_on_canvas",
+      "photo_asset": "visible_on_canvas",
+      "photo_width": "visible_on_canvas",
+      "photo_height": "visible_on_canvas",
+      "photo_filters": "visible_on_canvas",
+      "overlay_fill": "visible_on_canvas",
+      "overlay_opacity": "visible_on_canvas",
+      "title_text": "visible_on_canvas",
+      "title_position": "visible_on_canvas",
+      "detail_text": "visible_on_canvas",
+      "detail_position": "visible_on_canvas",
+      "rendered_region": "visible_on_canvas"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "canvas_size",
+            "weight": 0.8,
+            "gui_visible_required": true,
+            "rule": {
+              "image_size": {
+                "width": 800,
+                "height": 600
+              }
+            }
+          },
+          {
+            "id": "photo_asset",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "street_photo",
+                "key": "asset_path",
+                "expected": "evaluation_examples/assets/realwork_images/coffee_street_960.jpg"
+              }
+            }
+          },
+          {
+            "id": "photo_width",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "street_photo",
+                "key": "width",
+                "expected": 800
+              }
+            }
+          },
+          {
+            "id": "photo_height",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "street_photo",
+                "key": "height",
+                "expected": 600
+              }
+            }
+          },
+          {
+            "id": "photo_filters",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "street_photo",
+                "key": "filters",
+                "expected": {
+                  "contrast": 1.18,
+                  "saturation": 0.82,
+                  "brightness": 0.95
+                }
+              }
+            }
+          },
+          {
+            "id": "overlay_fill",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "info_band",
+                "key": "fill",
+                "expected": "#102a43"
+              }
+            }
+          },
+          {
+            "id": "overlay_opacity",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "info_band",
+                "key": "opacity",
+                "expected": 0.82
+              }
+            }
+          },
+          {
+            "id": "title_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "banner_title",
+                "key": "text",
+                "expected": "OPEN HOUSE"
+              }
+            }
+          },
+          {
+            "id": "title_position",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "banner_title",
+                "key": "x",
+                "expected": 44
+              }
+            }
+          },
+          {
+            "id": "detail_text",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "banner_detail",
+                "key": "text",
+                "expected": "SATURDAY 10 AM - 2 PM"
+              }
+            }
+          },
+          {
+            "id": "detail_position",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "banner_detail",
+                "key": "y",
+                "expected": 520
+              }
+            }
+          },
+          {
+            "id": "rendered_region",
+            "weight": 0.8,
+            "gui_visible_required": true,
+            "rule": {
+              "image_region_stat": {
+                "box": [
+                  20,
+                  455,
+                  760,
+                  110
+                ],
+                "metric": "luminance",
+                "min": 20,
+                "max": 160
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gimp",
+    "difficulty": "complex",
+    "category": "realwork_hard",
+    "description": "Create a real-photo open-house social banner for a cafe storefront.",
+    "actions": [
+      {
+        "action_type": "invoke_function",
+        "target": "gimp",
+        "params": {
+          "operations": [
+            {
+              "action": "add_image_layer",
+              "id": "street_photo",
+              "label": "Street Photo",
+              "asset_path": "evaluation_examples/assets/realwork_images/coffee_street_960.jpg",
+              "x": 0,
+              "y": 0,
+              "width": 800,
+              "height": 600,
+              "crop": {
+                "x": 40,
+                "y": 20,
+                "width": 860,
+                "height": 650
+              },
+              "filters": {
+                "contrast": 1.18,
+                "saturation": 0.82,
+                "brightness": 0.95
+              }
+            },
+            {
+              "action": "add_layer",
+              "id": "info_band",
+              "label": "Info Band",
+              "kind": "rectangle",
+              "x": 0,
+              "y": 420,
+              "width": 800,
+              "height": 180,
+              "fill": "#102a43",
+              "opacity": 0.82
+            },
+            {
+              "action": "add_text_layer",
+              "id": "banner_title",
+              "label": "Banner Title",
+              "text": "OPEN HOUSE",
+              "x": 44,
+              "y": 446,
+              "font_size": 48,
+              "color": "#ffffff"
+            },
+            {
+              "action": "add_text_layer",
+              "id": "banner_detail",
+              "label": "Banner Detail",
+              "text": "SATURDAY 10 AM - 2 PM",
+              "x": 48,
+              "y": 520,
+              "font_size": 28,
+              "color": "#f6d365"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "blank"
+  }
+}

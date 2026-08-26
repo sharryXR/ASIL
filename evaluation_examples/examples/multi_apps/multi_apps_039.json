@@ -1,0 +1,173 @@
+{
+  "id": "multi_apps_039",
+  "software": "multi_apps",
+  "source": "asil_multi_apps_generated",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: add a GIMP text layer containing 'MA-039 asset'; add an Inkscape text object labeled MA-039; add a draw.io shape labeled 'MA-039 flow'.",
+  "related_apps": [
+    "gimp",
+    "inkscape",
+    "drawio"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "gimp_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "gimp",
+                "rule": {
+                  "element_contains": {
+                    "id": "gimp_multi_039",
+                    "key": "text",
+                    "expected": "MA-039 asset"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "inkscape_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "inkscape",
+                "rule": {
+                  "element_exists": "ink_multi_039"
+                }
+              }
+            }
+          },
+          {
+            "id": "drawio_checkpoint",
+            "weight": 0.333333,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "drawio",
+                "rule": {
+                  "element_contains": {
+                    "id": "shape:draw_multi_039",
+                    "key": "label",
+                    "expected": "MA-039 flow"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "gimp_checkpoint": "visible_in_gimp",
+      "inkscape_checkpoint": "visible_in_inkscape",
+      "drawio_checkpoint": "visible_in_drawio"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "complex",
+    "description": "Design Assets cross-app task for gimp, inkscape, drawio.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "gimp": "default",
+      "inkscape": "default",
+      "drawio": "default"
+    },
+    "primary_app": "gimp",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "gimp",
+              "action": {
+                "action_type": "invoke_function",
+                "target": "gimp",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_text_layer",
+                      "id": "gimp_multi_039",
+                      "label": "MA-039 asset",
+                      "text": "MA-039 asset",
+                      "x": 79,
+                      "y": 89,
+                      "font_size": 26,
+                      "color": "#0f766e"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "inkscape",
+              "action": {
+                "action_type": "modify_file",
+                "target": "test.svg",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_element",
+                      "parent_xpath": "//svg:g[@id='layer1']",
+                      "tag": "text",
+                      "attributes": {
+                        "id": "ink_multi_039",
+                        "x": "119",
+                        "y": "129",
+                        "style": "font-size:24px;fill:#0f766e",
+                        "text_content": "MA-039"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "drawio",
+              "action": {
+                "action_type": "modify_file",
+                "target": "diagram",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_shape",
+                      "id": "draw_multi_039",
+                      "label": "MA-039 flow",
+                      "shape_kind": "rounded",
+                      "x": 119,
+                      "y": 159,
+                      "width": 150,
+                      "height": 70,
+                      "fill": "#d1fae5"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "design_assets"
+  }
+}

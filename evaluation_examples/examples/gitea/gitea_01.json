@@ -1,0 +1,78 @@
+{
+  "id": "gitea_01",
+  "instruction": "Create a new public repository named 'project-showcase'",
+  "source": "asil_benchmark_v1",
+  "snapshot": "gitea_instance_default",
+  "config": [],
+  "related_apps": [
+    "gitea"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "gitea_01_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "gitea_01_1",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "repo:asil_admin/project-showcase"
+            }
+          },
+          {
+            "id": "gitea_01_2",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "repo:asil_admin/project-showcase",
+                "key": "private",
+                "expected": false
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gitea",
+    "difficulty": "simple",
+    "description": "Create a new public repository named 'project-showcase'",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/user/repos",
+          "body": {
+            "name": "project-showcase",
+            "description": "A public showcase repository",
+            "private": false,
+            "auto_init": true,
+            "default_branch": "main"
+          }
+        }
+      }
+    ],
+    "validation": {
+      "element_exists": "repo:asil_admin/test-repo"
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "web_page",
+    "visible_change_summary": "Create a new public repository named 'test-repo'",
+    "checkpoint_visibility": {
+      "gitea_01_1": "visible_on_web_page",
+      "gitea_01_2": "visible_on_web_page"
+    }
+  }
+}

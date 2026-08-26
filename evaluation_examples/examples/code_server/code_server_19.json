@@ -1,0 +1,107 @@
+{
+  "id": "code_server_19",
+  "software": "code_server",
+  "difficulty": "complex",
+  "description": "Refactor the main app and add a package marker.",
+  "instruction": "Open src/app.py, replace its content with \"def main() -> str:\n    return \"Deployment ready\"\n\", and create src/__init__.py with \"__all__ = [\"main\"]\n\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {
+            "action": "open_file",
+            "path": "src/app.py"
+          },
+          {
+            "action": "set_file_text",
+            "path": "src/app.py",
+            "content": "def main() -> str:\n    return \"Deployment ready\"\n"
+          },
+          {
+            "action": "create_file",
+            "path": "src/__init__.py",
+            "content": "__all__ = [\"main\"]\n"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "code_server"
+  ],
+  "snapshot": "code_server_default",
+  "initial_state": "src_focus",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "app.py now returns Deployment ready and a package marker file exists.",
+    "checkpoint_visibility": {
+      "app_content": "visible_in_editor",
+      "init_exists": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "app_content",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "file:src/app.py",
+                "key": "content",
+                "expected": "Deployment ready"
+              }
+            }
+          },
+          {
+            "id": "init_exists",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "file:src/__init__.py"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "code_server",
+    "difficulty": "complex",
+    "description": "Refactor the main app and add a package marker.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {
+              "action": "open_file",
+              "path": "src/app.py"
+            },
+            {
+              "action": "set_file_text",
+              "path": "src/app.py",
+              "content": "def main() -> str:\n    return \"Deployment ready\"\n"
+            },
+            {
+              "action": "create_file",
+              "path": "src/__init__.py",
+              "content": "__all__ = [\"main\"]\n"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "src_focus"
+  }
+}

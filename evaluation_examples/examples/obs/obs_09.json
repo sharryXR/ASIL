@@ -1,0 +1,104 @@
+{
+  "id": "obs_09",
+  "instruction": "Perform scene transition: switch preview to 'Intermission', trigger studio mode transition, then switch to program",
+  "source": "asil_benchmark_v1",
+  "snapshot": "obs_studio_default",
+  "config": [],
+  "related_apps": [
+    "obs"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "obs_09_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "obs_09_studio_mode_enabled",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "studio_mode",
+                "key": "enabled",
+                "expected": true
+              }
+            }
+          },
+          {
+            "id": "obs_09_preview_intermission",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "preview_scene",
+                "key": "name",
+                "expected": "Intermission"
+              }
+            }
+          },
+          {
+            "id": "obs_09_transition_to_intermission",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "current_scene": "Intermission"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "obs",
+    "difficulty": "complex",
+    "description": "Perform scene transition: switch preview to 'Intermission', trigger studio mode transition, then switch to program",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "SetStudioModeEnabled",
+          "args": {
+            "studioModeEnabled": true
+          }
+        }
+      },
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "SetCurrentPreviewScene",
+          "args": {
+            "sceneName": "Intermission"
+          }
+        }
+      },
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "TriggerStudioModeTransition",
+          "args": {}
+        }
+      }
+    ],
+    "validation": {
+      "current_scene": "Intermission"
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "preview_and_program",
+    "visible_change_summary": "Studio Mode preview and program outputs both show the Intermission transition outcome.",
+    "checkpoint_visibility": {
+      "obs_09_studio_mode_enabled": "visible_in_studio_controls",
+      "obs_09_preview_intermission": "visible_in_preview_panel",
+      "obs_09_transition_to_intermission": "visible_in_obs_ui"
+    }
+  }
+}

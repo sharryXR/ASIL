@@ -1,0 +1,76 @@
+{
+  "id": "jupyterlab_07",
+  "software": "jupyterlab",
+  "difficulty": "medium",
+  "description": "Rename the summary note to notes.md.",
+  "instruction": "Rename notebooks/summary.md to notebooks/notes.md and open the renamed file.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {"action": "rename_path", "path": "notebooks/summary.md", "new_path": "notebooks/notes.md"},
+          {"action": "open_file", "path": "notebooks/notes.md"}
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": ["jupyterlab"],
+  "snapshot": "jupyterlab_default",
+  "initial_state": "summary_focus",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "The renamed notes.md file is open in the editor.",
+    "checkpoint_visibility": {
+      "notes_open": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "notes_open",
+            "weight": 0.6,
+            "gui_visible_required": true,
+            "rule": {
+              "element_exists": "editor:notebooks/notes.md"
+            }
+          },
+          {
+            "id": "old_removed",
+            "weight": 0.4,
+            "gui_visible_required": false,
+            "rule": {
+              "element_not_exists": "file:notebooks/summary.md"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "jupyterlab",
+    "difficulty": "medium",
+    "description": "Rename the summary note to notes.md.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {"action": "rename_path", "path": "notebooks/summary.md", "new_path": "notebooks/notes.md"},
+            {"action": "open_file", "path": "notebooks/notes.md"}
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "summary_focus"
+  }
+}

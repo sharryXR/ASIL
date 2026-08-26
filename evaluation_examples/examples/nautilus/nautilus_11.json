@@ -1,0 +1,14 @@
+{
+  "id": "nautilus_11",
+  "instruction": "Rename `draft-plan.md` to `release-plan.md` inside `Projects/alpha`.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "nautilus_workspace_default",
+  "config": [],
+  "related_apps": ["nautilus"],
+  "evaluator": {"selection": "best_score", "paths": [{"path_id": "nautilus_11_primary_path", "exclusive_group": "success_paths", "checkpoints": [{"id": "nautilus_11_release", "weight": 0.5, "gui_visible_required": true, "rule": {"any_element_matches": {"type": "directory_entry", "value": {"path": "Projects/alpha/release-plan.md"}}}}, {"id": "nautilus_11_draft_removed", "weight": 0.5, "gui_visible_required": true, "rule": {"no_element_matches": {"type": "directory_entry", "value": {"path": "Projects/alpha/draft-plan.md"}}}}]}]},
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {"software": "nautilus", "difficulty": "simple", "description": "Rename the alpha project plan file.", "actions": [{"action_type": "invoke_function", "target": "nautilus", "params": {"operations": [{"action": "rename_entry", "path": "draft-plan.md", "new_name": "release-plan.md"}]}}], "validation": {"conditions": [{"any_element_matches": {"type": "directory_entry", "value": {"path": "Projects/alpha/release-plan.md"}}}, {"no_element_matches": {"type": "directory_entry", "value": {"path": "Projects/alpha/draft-plan.md"}}}]}, "initial_state": "projects_alpha"},
+  "gui_expectations": {"success_surface": "file_list", "visible_change_summary": "The alpha folder now shows release-plan.md instead of draft-plan.md.", "checkpoint_visibility": {"nautilus_11_release": "visible_in_file_list", "nautilus_11_draft_removed": "visible_in_file_list"}}
+}

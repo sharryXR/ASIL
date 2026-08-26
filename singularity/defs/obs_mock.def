@@ -1,0 +1,39 @@
+Bootstrap: docker
+From: python:3.11-slim
+
+%files
+    docker/obs_mock_server.py /opt/asil/obs_mock_server.py
+
+%post
+    set -e
+    pip install --no-cache-dir websockets
+    cat > /opt/asil/start_obs_mock.py <<'EOF'
+import asyncio
+import importlib.util
+import os
+from pathlib import Path
+
+import websockets
+
+
+module_path = Path("/opt/asil/obs_mock_server.py")
+spec = importlib.util.spec_from_file_location("obs_mock_server", module_path)
+module = importlib.util.module_from_spec(spec)
+assert spec is not None and spec.loader is not None
+spec.loader.exec_module(module)
+
+
+async def main():
+    host = os.environ.get("HOST", "127.0.0.1")
+    port = int(os.environ.get("PORT", "4455"))
+    print(f"[obs-mock] Starting OBS WebSocket mock on ws://{host}:{port}", flush=True)
+    async with websockets.serve(module.handler, host, port):
+        await asyncio.Future()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+EOF
+
+%runscript
+    exec python /opt/asil/start_obs_mock.py "$@"

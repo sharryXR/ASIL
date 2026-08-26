@@ -1,0 +1,123 @@
+{
+  "id": "kdenlive_18",
+  "instruction": "Add a new video track named 'CTA Cue' and place the existing Opening Title clip on it at frame 420 for 48 frames.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "kdenlive_default_project",
+  "config": [],
+  "related_apps": ["kdenlive"],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "kdenlive_18_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "kdenlive_18_new_track",
+            "weight": 0.4,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "track:video_cta_cue",
+                "key": "name",
+                "expected": "CTA Cue"
+              }
+            }
+          },
+          {
+            "id": "kdenlive_18_clip_block",
+            "weight": 0.6,
+            "gui_visible_required": true,
+            "rule": {
+              "any_element_matches": {
+                "type": "timeline_clip",
+                "id": "timeline_clip:tl_cta_title",
+                "value": {
+                  "track_id": "video_cta_cue",
+                  "position": 420,
+                  "duration": 48,
+                  "clip_title": "Opening Title"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "kdenlive",
+    "difficulty": "medium",
+    "description": "Add a new video track named 'CTA Cue' and place the existing Opening Title clip on it at frame 420 for 48 frames.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "add_element",
+              "parent_xpath": "/kdenliveProject/timeline",
+              "tag": "track",
+              "attributes": {
+                "id": "video_cta_cue",
+                "kind": "video",
+                "name": "CTA Cue",
+                "muted": "0",
+                "locked": "0"
+              }
+            },
+            {
+              "action": "add_element",
+              "parent_xpath": "/kdenliveProject/timeline/track[@id='video_cta_cue']",
+              "tag": "clipref",
+              "attributes": {
+                "id": "tl_cta_title",
+                "clip_id": "clip_title",
+                "start": "420",
+                "duration": "48",
+                "in": "0",
+                "out": "48"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "all_of": [
+        {
+          "element_value": {
+            "id": "track:video_cta_cue",
+            "key": "name",
+            "expected": "CTA Cue"
+          }
+        },
+        {
+          "any_element_matches": {
+            "type": "timeline_clip",
+            "id": "timeline_clip:tl_cta_title",
+            "value": {
+              "track_id": "video_cta_cue",
+              "position": 420,
+              "duration": 48,
+              "clip_title": "Opening Title"
+            }
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "timeline",
+    "visible_change_summary": "A new video track labeled 'CTA Cue' appears with an Opening Title block near frame 420.",
+    "checkpoint_visibility": {
+      "kdenlive_18_new_track": "visible_in_track_header",
+      "kdenlive_18_clip_block": "visible_in_timeline_clip_block"
+    }
+  }
+}

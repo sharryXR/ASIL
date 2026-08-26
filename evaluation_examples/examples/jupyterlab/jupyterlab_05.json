@@ -1,0 +1,72 @@
+{
+  "id": "jupyterlab_05",
+  "software": "jupyterlab",
+  "difficulty": "simple",
+  "description": "Adjust the helper formatting string.",
+  "instruction": "Open src/helpers.py and replace \"Total={total}\" with \"Total: {total}\".",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {"action": "open_file", "path": "src/helpers.py"},
+          {"action": "replace_text", "path": "src/helpers.py", "old": "Total={total}", "new": "Total: {total}"}
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": ["jupyterlab"],
+  "snapshot": "jupyterlab_default",
+  "initial_state": "src_focus",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "The helper function now formats totals with a colon.",
+    "checkpoint_visibility": {
+      "helper_format": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "helper_format",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "editor:src/helpers.py",
+                "key": "content",
+                "expected": "Total: {total}"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "jupyterlab",
+    "difficulty": "simple",
+    "description": "Adjust the helper formatting string.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {"action": "open_file", "path": "src/helpers.py"},
+            {"action": "replace_text", "path": "src/helpers.py", "old": "Total={total}", "new": "Total: {total}"}
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "src_focus"
+  }
+}

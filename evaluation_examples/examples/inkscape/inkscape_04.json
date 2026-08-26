@@ -1,0 +1,73 @@
+{
+  "id": "inkscape_04",
+  "instruction": "Delete the circle centered at (200,150) with radius 40.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "inkscape_svg_default",
+  "config": [],
+  "related_apps": [
+    "inkscape"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "inkscape_04_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "inkscape_04_1",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "no_element_matches": {
+                "type": "circle",
+                "value": {
+                  "cx": "200",
+                  "cy": "150",
+                  "r": "40"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "inkscape",
+    "difficulty": "simple",
+    "description": "Delete the circle centered at (200,150) with radius 40.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{svg_path}}",
+        "params": {
+          "operations": [
+            {
+              "action": "delete",
+              "xpath": "//*[@id='circle1']"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_not_exists": "circle1"
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "canvas",
+    "visible_change_summary": "Remove the circle from the canvas.",
+    "checkpoint_visibility": {
+      "inkscape_04_1": "visible_on_canvas"
+    }
+  }
+}

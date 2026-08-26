@@ -1,0 +1,94 @@
+{
+  "id": "drawio_04",
+  "software": "drawio",
+  "difficulty": "simple",
+  "description": "Add an End terminator.",
+  "instruction": "Add an ellipse End at x=760 y=140 width=120 height=70 fill #fee2e2 stroke #dc2626.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "diagram",
+      "params": {
+        "operations": [
+          {
+            "action": "add_shape",
+            "id": "end",
+            "label": "End",
+            "shape_kind": "ellipse",
+            "x": 760,
+            "y": 140,
+            "width": 120,
+            "height": 70,
+            "fill": "#fee2e2",
+            "stroke": "#dc2626"
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": [
+    "drawio"
+  ],
+  "snapshot": "drawio_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "diagram_canvas",
+    "visible_change_summary": "An End ellipse appears at the far right of the diagram.",
+    "checkpoint_visibility": {
+      "end_shape": "visible_on_diagram"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "end_shape",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "shape:end",
+                "key": "shape_kind",
+                "expected": "ellipse"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "drawio",
+    "difficulty": "simple",
+    "description": "Add an End terminator.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "diagram",
+        "params": {
+          "operations": [
+            {
+              "action": "add_shape",
+              "id": "end",
+              "label": "End",
+              "shape_kind": "ellipse",
+              "x": 760,
+              "y": 140,
+              "width": 120,
+              "height": 70,
+              "fill": "#fee2e2",
+              "stroke": "#dc2626"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

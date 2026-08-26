@@ -1,0 +1,68 @@
+{
+  "id": "obs_04",
+  "instruction": "Mute the Desktop Audio source",
+  "source": "asil_benchmark_v1",
+  "snapshot": "obs_studio_default",
+  "config": [],
+  "related_apps": [
+    "obs"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "obs_04_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "obs_04_desktop_muted",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "input_muted": {
+                "name": "Desktop Audio",
+                "expected": true
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "obs",
+    "difficulty": "simple",
+    "description": "Mute the Desktop Audio source",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "SetInputMute",
+          "args": {
+            "inputName": "Desktop Audio",
+            "inputMuted": true
+          }
+        }
+      }
+    ],
+    "validation": {
+      "current_scene": "Main Scene",
+      "input_muted": {
+        "name": "Desktop Audio",
+        "expected": true
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "program_view",
+    "visible_change_summary": "Desktop Audio shows a muted state in the mixer.",
+    "checkpoint_visibility": {
+      "obs_04_desktop_muted": "visible_in_obs_window"
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "id": "multi_apps_047",
+  "software": "multi_apps",
+  "source": "asil_multi_apps_generated",
+  "snapshot": "multi_apps_default",
+  "instruction": "Coordinate the involved applications: add a Kdenlive marker commented 'MA-047 edit marker'; switch OBS scene collection to Podcast.",
+  "related_apps": [
+    "kdenlive",
+    "obs"
+  ],
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "config": [],
+  "evaluator": {
+    "paths": [
+      {
+        "path_id": "all_apps_completed",
+        "exclusive_group": "default",
+        "checkpoints": [
+          {
+            "id": "kdenlive_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "kdenlive",
+                "rule": {
+                  "element_contains": {
+                    "id": "marker:kd_multi_047",
+                    "key": "comment",
+                    "expected": "MA-047 edit marker"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "obs_checkpoint",
+            "weight": 0.5,
+            "gui_visible_required": true,
+            "rule": {
+              "app_rule": {
+                "app": "obs",
+                "rule": {
+                  "scene_collection": "Podcast"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "selection": "best_score"
+  },
+  "gui_expectations": {
+    "success_surface": "multi_window",
+    "visible_change_summary": "Each participating app shows its own visible artifact or state change for the shared task token.",
+    "checkpoint_visibility": {
+      "kdenlive_checkpoint": "visible_in_kdenlive",
+      "obs_checkpoint": "visible_in_obs"
+    }
+  },
+  "_asil": {
+    "software": "multi_apps",
+    "difficulty": "medium",
+    "description": "Media Publishing cross-app task for kdenlive, obs.",
+    "initial_state": "default",
+    "app_initial_states": {
+      "kdenlive": "default",
+      "obs": "default"
+    },
+    "primary_app": "kdenlive",
+    "actions": [
+      {
+        "action_type": "batch",
+        "target": "multi_apps",
+        "params": {
+          "actions": [
+            {
+              "app": "kdenlive",
+              "action": {
+                "action_type": "modify_file",
+                "target": "project",
+                "params": {
+                  "operations": [
+                    {
+                      "action": "add_element",
+                      "parent_xpath": "./guides",
+                      "tag": "marker",
+                      "attributes": {
+                        "id": "kd_multi_047",
+                        "frame": "137",
+                        "comment": "MA-047 edit marker",
+                        "color": "#0f766e"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "app": "obs",
+              "action": {
+                "action_type": "api_call",
+                "target": "obs-websocket",
+                "params": {
+                  "method": "SetCurrentSceneCollection",
+                  "args": {
+                    "sceneCollectionName": "Podcast"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "category": "media_publishing"
+  }
+}

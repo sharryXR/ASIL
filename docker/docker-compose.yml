@@ -1,0 +1,233 @@
+services:
+  # ─────────────────────────────────────────────
+  # Gitea — self-hosted Git service
+  # ─────────────────────────────────────────────
+  gitea:
+    image: gitea/gitea@sha256:0056032dc8c6ab70583e4a105b9ee0dc72dce4f4fbc8022c98bcec46b0273883
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - GITEA__server__ROOT_URL=http://gitea:3000/
+      - GITEA__server__HTTP_PORT=3000
+      - GITEA__server__LFS_START_SERVER=false
+      - GITEA__database__DB_TYPE=sqlite3
+      - GITEA__database__PATH=/data/gitea/gitea.db
+      - GITEA__security__INSTALL_LOCK=true
+      - GITEA__service__DISABLE_REGISTRATION=false
+      - GITEA__log__LEVEL=Warn
+    expose:
+      - "3000"
+    volumes:
+      - gitea-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:3000/api/v1/version"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+    networks:
+      - asil-net
+
+  # ─────────────────────────────────────────────
+  # Gitea initializer — runs once, creates admin user + test repo
+  # Uses pure REST API (no docker exec needed)
+  # ─────────────────────────────────────────────
+  gitea-init:
+    image: curlimages/curl@sha256:c03110c736db81bbe1be0296f1f1608c81b954b01626bdfb0a8f84e5bd00ff3c
+    user: "0:0"
+    depends_on:
+      gitea:
+        condition: service_healthy
+    volumes:
+      - ./gitea-init.sh:/gitea-init.sh:ro
+      - gitea-token:/shared
+    entrypoint: ["sh", "/gitea-init.sh"]
+    environment:
+      - GITEA_URL=http://gitea:3000
+      - GITEA_ADMIN=asil_admin
+      - GITEA_PASSWORD=asil_password
+      - GITEA_REPO=test-repo
+    networks:
+      - asil-net
+
+  # ─────────────────────────────────────────────
+  # OBS mock — lightweight WebSocket server that
+  # simulates obs-websocket protocol v5 for testing.
+  # ─────────────────────────────────────────────
+  obs-mock:
+    image: asil-obs-mock:local
+    build:
+      context: .
+      dockerfile: Dockerfile.obs-mock
+      args:
+        ASIL_GIT_COMMIT: ${ASIL_GIT_COMMIT:-unknown}
+        ASIL_CONSTRAINTS_SHA256: ${ASIL_CONSTRAINTS_SHA256:-unknown}
+        ASIL_SOURCE_SHA256: ${ASIL_SOURCE_SHA256:-unknown}
+    expose:
+      - "4455"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; s=socket.socket(); s.connect(('127.0.0.1',4455)); s.close()"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+    networks:
+      - asil-net
+
+  # ─────────────────────────────────────────────
+  # code-server — real web IDE page capture for
+  # expansion-program workspace screenshots.
+  # ─────────────────────────────────────────────
+  code-server:
+    image: codercom/code-server@sha256:e6702766518b961c7e3c41095c129c7c9a82b041578c53326c52fa363a057727
+    user: root
+    entrypoint: ["/bin/bash", "-lc"]
+    command:
+      - |
+        set -e
+        mkdir -p /shared-workspaces/code-server-user-data/User /shared-workspaces/code-server-workspace
+        cat > /shared-workspaces/code-server-user-data/User/settings.json <<'EOF'
+        {
+          "workbench.startupEditor": "none",
+          "workbench.welcomePage.walkthroughs.openOnInstall": false,
+          "workbench.tips.enabled": false,
+          "telemetry.telemetryLevel": "off",
+          "security.workspace.trust.enabled": false,
+          "extensions.autoCheckUpdates": false,
+          "extensions.autoUpdate": false,
+          "update.mode": "none"
+        }
+        EOF
+        chown -R 1000:1000 /shared-workspaces/code-server-user-data /shared-workspaces/code-server-workspace
+        exec su coder -c 'code-server --auth none --bind-addr 0.0.0.0:8080 --disable-workspace-trust --disable-telemetry --disable-update-check --user-data-dir /shared-workspaces/code-server-user-data /shared-workspaces/code-server-workspace'
+    volumes:
+      - app-workspaces:/shared-workspaces
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://127.0.0.1:8080/"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+    networks:
+      - asil-net
+
+  # ─────────────────────────────────────────────
+  # JupyterLab — real notebook page capture for
+  # expansion-program screenshot alignment.
+  # ─────────────────────────────────────────────
+  jupyterlab:
+    image: jupyter/minimal-notebook@sha256:1c4c8b6c7c27059c353d4e80523c2696e34723fde67d27418873ebeb42032551
+    user: root
+    command:
+      [
+        "bash",
+        "-lc",
+        "mkdir -p /shared-workspaces/jupyterlab-workspace && start-notebook.py --ServerApp.token='' --ServerApp.password='' --ServerApp.root_dir=/shared-workspaces/jupyterlab-workspace --ServerApp.allow_origin='*'"
+      ]
+    volumes:
+      - app-workspaces:/shared-workspaces
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8888/lab').read()"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 15s
+    networks:
+      - asil-net
+
+  # ─────────────────────────────────────────────
+  # draw.io / diagrams.net — real browser editor
+  # page capture for diagram tasks.
+  # ─────────────────────────────────────────────
+  drawio:
+    image: jgraph/drawio@sha256:d46e87bcd015763f0fbaef9cd62b9181ff69052fcf6d12b24e4d879100e22980
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://127.0.0.1:8080/ >/dev/null 2>&1 || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 15s
+    networks:
+      - asil-net
+
+  # ─────────────────────────────────────────────
+  # Main evaluation runner (optional — can also run on host)
+  # Contains: Python + ASIL + Inkscape + LibreOffice + Blender
+  # Usage: docker compose run eval python scripts/run_evaluation.py --software inkscape libreoffice blender obs gitea
+  # ─────────────────────────────────────────────
+  eval:
+    image: asil-eval:local
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.eval
+      args:
+        ASIL_GIT_COMMIT: ${ASIL_GIT_COMMIT:-unknown}
+        ASIL_CONSTRAINTS_SHA256: ${ASIL_CONSTRAINTS_SHA256:-unknown}
+        ASIL_SOURCE_SHA256: ${ASIL_SOURCE_SHA256:-unknown}
+        PLAYWRIGHT_DOWNLOAD_CONNECTION_TIMEOUT: ${PLAYWRIGHT_DOWNLOAD_CONNECTION_TIMEOUT:-120000}
+        PLAYWRIGHT_DOWNLOAD_TOTAL_TIMEOUT: ${PLAYWRIGHT_DOWNLOAD_TOTAL_TIMEOUT:-180s}
+        PLAYWRIGHT_FALLBACK_HOST: ${PLAYWRIGHT_FALLBACK_HOST:-https://npmmirror.com/mirrors/chrome-for-testing}
+    init: true
+    profiles: ["eval"]   # Only started explicitly: docker compose --profile eval run eval ...
+    volumes:
+      - ../results:/results
+      - ../src:/app/src
+      - ../scripts:/app/scripts
+      - ../evaluation_examples:/app/evaluation_examples
+      - gitea-token:/shared:ro
+      - app-workspaces:/shared-workspaces
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - OPENAI_API_BASE=${OPENAI_API_BASE:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - ASIL_GUI_LLM_TIMEOUT_S=${ASIL_GUI_LLM_TIMEOUT_S:-}
+      - ASIL_GUI_LLM_CALL_TIMEOUT_S=${ASIL_GUI_LLM_CALL_TIMEOUT_S:-}
+      - ASIL_GUI_LLM_RETRIES=${ASIL_GUI_LLM_RETRIES:-}
+      - ASIL_GUI_LLM_RETRY_BASE_S=${ASIL_GUI_LLM_RETRY_BASE_S:-}
+      - ASIL_GUI_LLM_RETRY_CAP_S=${ASIL_GUI_LLM_RETRY_CAP_S:-}
+      - ASIL_GUI_LLM_RETRY_JITTER_S=${ASIL_GUI_LLM_RETRY_JITTER_S:-}
+      - ASIL_GUI_INIT_WATCHDOG_S=${ASIL_GUI_INIT_WATCHDOG_S:-}
+      - ASIL_GUI_AGENT_BACKEND=${ASIL_GUI_AGENT_BACKEND:-}
+      - ASIL_GUI_REASONING_EFFORT=${ASIL_GUI_REASONING_EFFORT:-}
+      - ASIL_HYBRID_VISION=${ASIL_HYBRID_VISION:-}
+      - ASIL_HYBRID_MAX_TOKENS=${ASIL_HYBRID_MAX_TOKENS:-}
+      - GITEA_URL=http://gitea:3000
+      - GITEA_ADMIN=asil_admin
+      - GITEA_PASSWORD=asil_password
+      - GITEA_TOKEN_FILE=/shared/gitea_token.txt
+      - GITEA_OWNER=asil_admin
+      - GITEA_REPO=test-repo
+      - OBS_WS_HOST=${EVAL_OBS_WS_HOST:-obs-mock}
+      - OBS_WS_PORT=${EVAL_OBS_WS_PORT:-4444}
+      - OBS_WS_PASSWORD=
+      - OBS_WS_PROTOCOL=${EVAL_OBS_WS_PROTOCOL:-auto}
+      - OBS_REAL_GUI=${EVAL_OBS_REAL_GUI:-true}
+      - CODE_SERVER_URL=http://code-server:8080
+      - CODE_SERVER_WORKSPACE_ROOT=/shared-workspaces
+      - JUPYTERLAB_URL=http://jupyterlab:8888
+      - JUPYTERLAB_WORKSPACE_ROOT=/shared-workspaces
+      - DRAWIO_URL=http://drawio:8080
+      - ASIL_SANDBOX=true
+    depends_on:
+      gitea-init:
+        condition: service_completed_successfully
+      obs-mock:
+        condition: service_healthy
+      code-server:
+        condition: service_healthy
+      jupyterlab:
+        condition: service_healthy
+      drawio:
+        condition: service_healthy
+    networks:
+      - asil-net
+    command: ["python", "-m", "pytest", "tests/", "-v", "--tb=short"]
+
+networks:
+  asil-net:
+    driver: bridge
+
+volumes:
+  gitea-data:
+  gitea-token:
+  app-workspaces:

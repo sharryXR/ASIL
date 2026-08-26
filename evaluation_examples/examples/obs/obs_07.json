@@ -1,0 +1,59 @@
+{
+  "id": "obs_07",
+  "instruction": "Stop recording",
+  "source": "asil_benchmark_v1",
+  "snapshot": "obs_studio_default",
+  "config": [],
+  "related_apps": [
+    "obs"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "obs_07_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "obs_07_record_off",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "record_active": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "obs",
+    "difficulty": "medium",
+    "description": "Stop recording",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "obs-websocket",
+        "params": {
+          "method": "StopRecord",
+          "args": {}
+        }
+      }
+    ],
+    "validation": {
+      "current_scene": "Main Scene",
+      "record_active": false
+    },
+    "initial_state": "recording_active"
+  },
+  "gui_expectations": {
+    "success_surface": "program_view",
+    "visible_change_summary": "Recording status is off in OBS.",
+    "checkpoint_visibility": {
+      "obs_07_record_off": "visible_in_obs_window"
+    }
+  }
+}

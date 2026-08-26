@@ -1,0 +1,72 @@
+{
+  "id": "jupyterlab_13",
+  "software": "jupyterlab",
+  "difficulty": "medium",
+  "description": "Add a runbook markdown file.",
+  "instruction": "Create docs/runbook.md with \"# Runbook\\n- Refresh notebook outputs\\n- Publish the summary\\n\" and open it.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {"action": "create_file", "path": "docs/runbook.md", "content": "# Runbook\n- Refresh notebook outputs\n- Publish the summary\n"},
+          {"action": "open_file", "path": "docs/runbook.md"}
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": ["jupyterlab"],
+  "snapshot": "jupyterlab_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "editor",
+    "visible_change_summary": "The runbook document is open with publish steps.",
+    "checkpoint_visibility": {
+      "runbook": "visible_in_editor"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "runbook",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "editor:docs/runbook.md",
+                "key": "content",
+                "expected": "Publish the summary"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "jupyterlab",
+    "difficulty": "medium",
+    "description": "Add a runbook markdown file.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {"action": "create_file", "path": "docs/runbook.md", "content": "# Runbook\n- Refresh notebook outputs\n- Publish the summary\n"},
+            {"action": "open_file", "path": "docs/runbook.md"}
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

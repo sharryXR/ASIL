@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "software_id": "gitea",
+  "provider": "openai",
+  "model": "gpt-5.4",
+  "api_calls": 1,
+  "generation_elapsed_s": 24.83277502655983,
+  "observation_view_count": 1,
+  "operation_count": 2,
+  "ready": true,
+  "artifact_file_hashes_match": true,
+  "artifact_sha256": {
+    "action_schema.json": "f4520a77adfce5510b291851c305d5022071fee2bfbd5a4f2a76927d3c1ff66d",
+    "adapter.py": "47db0e21b91ae74565b5f1d349043a0bf5236e7db0f9e0489a89598ee113b59e",
+    "extension.json": "d4fe985c9bc5a6eff65ccaea526b9cad18912e1b2aacd8ef824eb2c5f76ab6e3"
+  },
+  "bundle_sha256": "bf137e8a41a1683f9cb53d0a0682b915e7de498ce3f18bb6dc815ea4c6f6f7bb",
+  "plan_sha256": "a39e783b14aa17361485dc8b3dcde48703b502085bc9765a9515a6c3c8ead7a1",
+  "profile_sha256": "e9b2b68e9f2214c9696ede635c64a4cb8c771f700b771d374e05a87921d6743c",
+  "audit": {
+    "ok": true,
+    "error_count": 0,
+    "warning_count": 0,
+    "findings": []
+  },
+  "host": {
+    "passed": 3,
+    "reports": 3,
+    "action_reports": 2,
+    "validated_state_changes": 2,
+    "element_counts": [2, 3, 2]
+  },
+  "docker": {
+    "passed": 3,
+    "reports": 3,
+    "action_reports": 2,
+    "validated_state_changes": 2,
+    "element_counts": [2, 3, 2]
+  },
+  "evidence_reference_coverage": {
+    "available": 4,
+    "used": 4,
+    "coverage": 1.0,
+    "missing_evidence_ids": [],
+    "unused_evidence_ids": []
+  },
+  "qualification": {
+    "eligible": true,
+    "tier": "direct_declarative",
+    "available_observation_transports": ["http_json"],
+    "available_action_transports": ["http_json"],
+    "blockers": [],
+    "required_human_work": [
+      "interface evidence and runtime permission review",
+      "task and evaluator design",
+      "GUI synchronization and rendering when required",
+      "application-specific and unsupported semantics"
+    ]
+  },
+  "claim_boundary": "Assisted onboarding applies to evidenced open interfaces; qualification does not prove a complete application integration and does not automate tasks, evaluators, rendering, or opaque/perceptual semantics.",
+  "limitations": [
+    "This validation profile intentionally covers only repositories and is not a replacement for the full handwritten Gitea adapter.",
+    "GUI session startup, synchronization, screenshots, benchmark tasks, and evaluator paths remain manually reviewed integration work.",
+    "Authentication is supplied only by the runtime environment and is not embedded in plans, prompts, reports, or traces."
+  ]
+}

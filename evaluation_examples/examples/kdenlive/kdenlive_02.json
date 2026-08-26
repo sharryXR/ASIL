@@ -1,0 +1,69 @@
+{
+  "id": "kdenlive_02",
+  "instruction": "Rename the A1 track to 'Dialog Stem'.",
+  "source": "asil_benchmark_v1",
+  "snapshot": "kdenlive_default_project",
+  "config": [],
+  "related_apps": ["kdenlive"],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "kdenlive_02_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "kdenlive_02_track_name",
+            "weight": 1.0,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "track:audio_main",
+                "key": "name",
+                "expected": "Dialog Stem"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "kdenlive",
+    "difficulty": "simple",
+    "description": "Rename the A1 track to 'Dialog Stem'.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "{{project_path}}",
+        "params": {
+          "operations": [
+            {
+              "xpath": "/kdenliveProject/timeline/track[@id='audio_main']",
+              "attribute": "name",
+              "value": "Dialog Stem"
+            }
+          ]
+        }
+      }
+    ],
+    "validation": {
+      "element_value": {
+        "id": "track:audio_main",
+        "key": "name",
+        "expected": "Dialog Stem"
+      }
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "timeline",
+    "visible_change_summary": "The audio track header changes to 'Dialog Stem'.",
+    "checkpoint_visibility": {
+      "kdenlive_02_track_name": "visible_in_track_header"
+    }
+  }
+}

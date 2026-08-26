@@ -1,0 +1,114 @@
+{
+  "software": "code-server",
+  "supported_action_types": ["modify_file", "navigate"],
+  "target": "workspace",
+  "description": "Manipulates a code-server workspace through filesystem-backed editor actions. Use modify_file for edits and navigate to switch the active file tab.",
+  "actions": [
+    {
+      "name": "modify_workspace",
+      "description": "Apply one or more workspace operations in sequence.",
+      "params_schema": {
+        "operations": [
+          {
+            "action": "open_file | create_file | set_file_text | append_text | replace_text | rename_path | delete_path",
+            "path": "relative/path/from/workspace",
+            "content": "new file contents",
+            "text": "text to append",
+            "old": "existing text",
+            "new": "replacement text",
+            "new_path": "new/relative/path"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "description": "Open the main application file",
+          "action": {
+            "action_type": "modify_file",
+            "target": "workspace",
+            "params": {
+              "operations": [
+                {
+                  "action": "open_file",
+                  "path": "src/app.py"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Replace a greeting string inside a file",
+          "action": {
+            "action_type": "modify_file",
+            "target": "workspace",
+            "params": {
+              "operations": [
+                {
+                  "action": "replace_text",
+                  "path": "src/app.py",
+                  "old": "Hello from ASIL",
+                  "new": "Hello from code-server"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Create a new markdown note",
+          "action": {
+            "action_type": "modify_file",
+            "target": "workspace",
+            "params": {
+              "operations": [
+                {
+                  "action": "create_file",
+                  "path": "notes/today.md",
+                  "content": "# Today\nShip the slice.\n"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Rename a workspace file",
+          "action": {
+            "action_type": "modify_file",
+            "target": "workspace",
+            "params": {
+              "operations": [
+                {
+                  "action": "rename_path",
+                  "path": "notes/backlog.md",
+                  "new_path": "notes/roadmap.md"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Switch to another file using navigate",
+          "action": {
+            "action_type": "navigate",
+            "target": "config/settings.json",
+            "params": {}
+          }
+        }
+      ]
+    }
+  ],
+  "done_action": {
+    "description": "Return this action when the task is fully complete.",
+    "example": {
+      "action_type": "done",
+      "target": "",
+      "params": {}
+    }
+  },
+  "tips": [
+    "All paths are relative to the workspace root.",
+    "Open a file before editing it if you want the final visible editor state to match the task.",
+    "Use replace_text for precise edits and set_file_text when rewriting a file from scratch.",
+    "Create missing parent folders implicitly by creating the file at the desired path.",
+    "Use navigate when you only need to switch the active tab without modifying content."
+  ]
+}

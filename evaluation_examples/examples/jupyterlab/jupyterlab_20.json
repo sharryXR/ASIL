@@ -1,0 +1,111 @@
+{
+  "id": "jupyterlab_20",
+  "software": "jupyterlab",
+  "difficulty": "complex",
+  "description": "Prepare the workspace for release review.",
+  "instruction": "Open notebooks/analysis.ipynb and change the second cell source to \"release_total = 12 * 7\" with visible output 84. Then create notes/release.md with \"# Release\\n- Validate notebook\\n- Publish summary\\n\" and update README.md so it says Share release review.",
+  "actions": [
+    {
+      "action_type": "modify_file",
+      "target": "workspace",
+      "params": {
+        "operations": [
+          {"action": "open_file", "path": "notebooks/analysis.ipynb"},
+          {"action": "set_cell_source", "path": "notebooks/analysis.ipynb", "cell_index": 1, "source": "release_total = 12 * 7"},
+          {"action": "set_cell_output", "path": "notebooks/analysis.ipynb", "cell_index": 1, "output": "84", "execution_count": 7},
+          {"action": "create_file", "path": "notes/release.md", "content": "# Release\n- Validate notebook\n- Publish summary\n"},
+          {"action": "replace_text", "path": "README.md", "old": "Share findings", "new": "Share release review"}
+        ]
+      }
+    }
+  ],
+  "validation": {},
+  "related_apps": ["jupyterlab"],
+  "snapshot": "jupyterlab_default",
+  "initial_state": "default",
+  "gui_expectations": {
+    "success_surface": "notebook",
+    "visible_change_summary": "The notebook shows the release_total calculation with output 84, and the workspace also contains release review support files.",
+    "checkpoint_visibility": {
+      "release_source": "visible_in_notebook_cell",
+      "release_output": "visible_in_notebook_output"
+    }
+  },
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "main",
+        "exclusive_group": "success",
+        "checkpoints": [
+          {
+            "id": "release_source",
+            "weight": 0.4,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "cell:notebooks/analysis.ipynb:1",
+                "key": "source",
+                "expected": "release_total = 12 * 7"
+              }
+            }
+          },
+          {
+            "id": "release_output",
+            "weight": 0.3,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "cell:notebooks/analysis.ipynb:1",
+                "key": "output",
+                "expected": "84"
+              }
+            }
+          },
+          {
+            "id": "release_note_exists",
+            "weight": 0.15,
+            "gui_visible_required": false,
+            "rule": {
+              "element_exists": "file:notes/release.md"
+            }
+          },
+          {
+            "id": "readme_updated",
+            "weight": 0.15,
+            "gui_visible_required": false,
+            "rule": {
+              "element_contains": {
+                "id": "file:README.md",
+                "key": "content",
+                "expected": "Share release review"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "_asil": {
+    "software": "jupyterlab",
+    "difficulty": "complex",
+    "description": "Prepare the workspace for release review.",
+    "actions": [
+      {
+        "action_type": "modify_file",
+        "target": "workspace",
+        "params": {
+          "operations": [
+            {"action": "open_file", "path": "notebooks/analysis.ipynb"},
+            {"action": "set_cell_source", "path": "notebooks/analysis.ipynb", "cell_index": 1, "source": "release_total = 12 * 7"},
+            {"action": "set_cell_output", "path": "notebooks/analysis.ipynb", "cell_index": 1, "output": "84", "execution_count": 7},
+            {"action": "create_file", "path": "notes/release.md", "content": "# Release\n- Validate notebook\n- Publish summary\n"},
+            {"action": "replace_text", "path": "README.md", "old": "Share findings", "new": "Share release review"}
+          ]
+        }
+      }
+    ],
+    "validation": {},
+    "initial_state": "default"
+  }
+}

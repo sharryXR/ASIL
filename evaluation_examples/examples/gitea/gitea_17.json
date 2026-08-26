@@ -1,0 +1,138 @@
+{
+  "id": "gitea_17",
+  "instruction": "Create a label 'wontfix' with color #ffffff, create an issue 'Deprecated feature request', then assign the label to the issue",
+  "source": "asil_benchmark_v1",
+  "snapshot": "gitea_instance_default",
+  "config": [],
+  "related_apps": [
+    "gitea"
+  ],
+  "evaluator": {
+    "selection": "best_score",
+    "paths": [
+      {
+        "path_id": "gitea_17_primary_path",
+        "exclusive_group": "success_paths",
+        "checkpoints": [
+          {
+            "id": "gitea_17_1",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "label:1",
+                "key": "name",
+                "expected": "wontfix"
+              }
+            }
+          },
+          {
+            "id": "gitea_17_2",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_value": {
+                "id": "label:1",
+                "key": "color",
+                "expected": "#ffffff"
+              }
+            }
+          },
+          {
+            "id": "gitea_17_3",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "issue:1",
+                "key": "title",
+                "expected": "Deprecated feature request"
+              }
+            }
+          },
+          {
+            "id": "gitea_17_4",
+            "weight": 0.25,
+            "gui_visible_required": true,
+            "rule": {
+              "element_contains": {
+                "id": "issue:1",
+                "key": "labels",
+                "expected": "wontfix"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low",
+  "_asil": {
+    "software": "gitea",
+    "difficulty": "complex",
+    "description": "Create a label 'wontfix' with color #ffffff, create an issue 'Deprecated feature request', then assign the label to the issue",
+    "actions": [
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/labels",
+          "body": {
+            "name": "wontfix",
+            "color": "#ffffff"
+          }
+        }
+      },
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues",
+          "body": {
+            "title": "Deprecated feature request",
+            "body": "This feature is no longer planned."
+          }
+        }
+      },
+      {
+        "action_type": "api_call",
+        "target": "gitea_rest",
+        "params": {
+          "method": "POST",
+          "endpoint": "/api/v1/repos/{{owner}}/{{repo}}/issues/1/labels",
+          "body": {
+            "labels": [
+              "wontfix"
+            ]
+          }
+        }
+      }
+    ],
+    "validation": {
+      "conditions": [
+        {
+          "element_contains": {
+            "id": "issue:1",
+            "key": "labels",
+            "expected": "wontfix"
+          }
+        }
+      ]
+    },
+    "initial_state": "default"
+  },
+  "gui_expectations": {
+    "success_surface": "web_page",
+    "visible_change_summary": "Create a label 'wontfix' with color #ffffff, create an issue 'Deprecated feature request', then assign the label to the issue",
+    "checkpoint_visibility": {
+      "gitea_17_1": "visible_on_web_page",
+      "gitea_17_2": "visible_on_web_page",
+      "gitea_17_3": "visible_on_web_page",
+      "gitea_17_4": "visible_on_web_page"
+    }
+  }
+}
