@@ -166,6 +166,7 @@ def test_repository_readme_has_publication_links_and_citation() -> None:
         "Findings of EMNLP 2026",
         "docs/ASIL_EMNLP_2026_Findings.pdf",
         "https://huggingface.co/datasets/sharryXR/asil-benchmark",
+        "https://huggingface.co/datasets/sharryXR/asil-training-data",
         "https://huggingface.co/datasets/sharryXR/asil-benchmark-images",
         "https://huggingface.co/sharryXR/asil-qwen35-2b-sft",
         "https://huggingface.co/sharryXR/asil-qwen35-2b-rl",
@@ -178,4 +179,12 @@ def test_repository_readme_has_publication_links_and_citation() -> None:
     missing = [fragment for fragment in required_fragments if fragment not in readme]
 
     assert missing == []
+    assert "Models%20%26%20Data" not in readme
+    for resource_label in (
+        "Benchmark tasks",
+        "SFT and RL training data",
+        "Runtime images",
+        "Model collection",
+    ):
+        assert resource_label in readme
     assert (root / "docs/ASIL_EMNLP_2026_Findings.pdf").is_file()

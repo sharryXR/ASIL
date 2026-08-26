@@ -8,8 +8,10 @@
 
 <p align="center">
   <a href="docs/ASIL_EMNLP_2026_Findings.pdf"><img src="https://img.shields.io/badge/Paper-PDF-b31b1b.svg" alt="Paper PDF"></a>
-  <a href="https://huggingface.co/collections/sharryXR/asil-models-6a1e9faf39fe6ce4eb4626e1"><img src="https://img.shields.io/badge/Hugging%20Face-Models%20%26%20Data-FFD21E?logo=huggingface&amp;logoColor=000" alt="Hugging Face models and data"></a>
-  <a href="https://huggingface.co/datasets/sharryXR/asil-benchmark"><img src="https://img.shields.io/badge/Benchmark-380%20Tasks-2F6FEB" alt="ASIL benchmark"></a>
+  <a href="https://huggingface.co/collections/sharryXR/asil-models-6a1e9faf39fe6ce4eb4626e1"><img src="https://img.shields.io/badge/Hugging%20Face-Models-FFD21E?logo=huggingface&amp;logoColor=000" alt="ASIL models"></a>
+  <a href="https://huggingface.co/datasets/sharryXR/asil-benchmark"><img src="https://img.shields.io/badge/Benchmark-Tasks-2F6FEB" alt="ASIL benchmark tasks"></a>
+  <a href="https://huggingface.co/datasets/sharryXR/asil-training-data"><img src="https://img.shields.io/badge/Training%20Data-SFT%20%2B%20RL-7A3E9D" alt="ASIL training data"></a>
+  <a href="https://huggingface.co/datasets/sharryXR/asil-benchmark-images"><img src="https://img.shields.io/badge/Runtime%20Images-Singularity-2E8B57" alt="ASIL runtime images"></a>
   <a href="https://github.com/sharryXR/ASIL"><img src="https://img.shields.io/badge/GitHub-Code-181717?logo=github" alt="GitHub code"></a>
   <a href="#license-and-contact"><img src="https://img.shields.io/badge/License-Apache%202.0-2E8B57.svg" alt="Apache 2.0 license"></a>
 </p>
@@ -88,7 +90,8 @@ Included here:
 Training implementation, training-task generation, SFT demonstration
 generation, RL rollout/training code, paper sources, rebuttal records, and
 per-task evaluation trajectories or scores are intentionally not included.
-Prepared datasets and released checkpoints are hosted on Hugging Face.
+Benchmark tasks, training data, runtime images, and released checkpoints are
+hosted separately on Hugging Face.
 
 ## Install
 
@@ -226,8 +229,9 @@ provenance. Sanitized evidence is under `examples/softwaregen/`.
 
 | Resource | Link |
 | --- | --- |
-| Benchmark and prepared data | [sharryXR/asil-benchmark](https://huggingface.co/datasets/sharryXR/asil-benchmark) |
-| Singularity images | [sharryXR/asil-benchmark-images](https://huggingface.co/datasets/sharryXR/asil-benchmark-images) |
+| Benchmark tasks | [sharryXR/asil-benchmark](https://huggingface.co/datasets/sharryXR/asil-benchmark) |
+| SFT and RL training data | [sharryXR/asil-training-data](https://huggingface.co/datasets/sharryXR/asil-training-data) |
+| Runtime images | [sharryXR/asil-benchmark-images](https://huggingface.co/datasets/sharryXR/asil-benchmark-images) |
 | Qwen3.5-2B SFT | [sharryXR/asil-qwen35-2b-sft](https://huggingface.co/sharryXR/asil-qwen35-2b-sft) |
 | Qwen3.5-2B RL | [sharryXR/asil-qwen35-2b-rl](https://huggingface.co/sharryXR/asil-qwen35-2b-rl) |
 | Qwen3.5-9B SFT | [sharryXR/asil-qwen35-9b-sft](https://huggingface.co/sharryXR/asil-qwen35-9b-sft) |
