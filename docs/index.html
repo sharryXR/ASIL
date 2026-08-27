@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASIL - Agent-Software Interaction Layer</title>
+  <meta name="description" content="ASIL replaces screenshot-and-click control with structured software state and code-executable semantic actions across 15 applications and 380 benchmark tasks.">
+  <meta name="author" content="Rui Xie, Lu Chen">
+  <meta name="theme-color" content="#FBFAF7">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sharryxr.github.io/ASIL/">
+  <meta property="og:title" content="ASIL: Replacing Screenshot-and-Click with Structured State and Semantic Actions">
+  <meta property="og:description" content="An agent-native interface for operating real software through structured observations and semantic actions. Findings of EMNLP 2026.">
+  <meta property="og:image" content="https://sharryxr.github.io/ASIL/static/images/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ASIL - Agent-Software Interaction Layer">
+  <meta name="twitter:description" content="Structured state and semantic actions for software-operating agents across 15 applications and 380 tasks.">
+  <meta name="twitter:image" content="https://sharryxr.github.io/ASIL/static/images/og-image.jpg">
+
+  <link rel="icon" type="image/svg+xml" href="static/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+  <svg class="visually-hidden" aria-hidden="true" focusable="false">
+    <symbol id="icon-file" viewBox="0 0 24 24">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M14 2v6h6M8 13h8M8 17h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-github" viewBox="0 0 24 24">
+      <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.69c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.58 9.58 0 0 1 12 7.7a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v1.89c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-boxes" viewBox="0 0 24 24">
+      <path d="m12 2 4.5 2.5L12 7 7.5 4.5 12 2ZM7.5 4.5V10L12 12.5V7M16.5 4.5V10L12 12.5M6 12l4.5 2.5L6 17l-4.5-2.5L6 12Zm-4.5 2.5V20L6 22.5V17m4.5-2.5V20L6 22.5M18 12l4.5 2.5L18 17l-4.5-2.5L18 12Zm-4.5 2.5V20l4.5 2.5V17m4.5-2.5V20L18 22.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-database" viewBox="0 0 24 24">
+      <ellipse cx="12" cy="5" rx="8" ry="3" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-table" viewBox="0 0 24 24">
+      <rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M3 10h18M9 4v16" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+    <symbol id="icon-braces" viewBox="0 0 24 24">
+      <path d="M8 3H6a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2 2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2M16 3h2a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2 2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-package" viewBox="0 0 24 24">
+      <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      <path d="m4.5 7.8 7.5 4.3 7.5-4.3M12 12v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-moon" viewBox="0 0 24 24">
+      <path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5 8.5 8.5 0 1 0 20.5 14.3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24">
+      <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24">
+      <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+
+  <nav class="nav" aria-label="Primary navigation">
+    <div class="wrap">
+      <a href="#top" class="nav-logo asil-mark" aria-label="ASIL home"><span class="a">A</span><span class="s">S</span><span class="i">I</span><span class="l">L</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#comparison">Comparison</a>
+        <a href="#method">Method</a>
+        <a href="#asilization">ASILization</a>
+        <a href="#results">Results</a>
+        <a href="#resources">Resources</a>
+        <a href="#bibtex">BibTeX</a>
+      </div>
+      <div class="nav-actions">
+        <a class="icon-link" href="https://github.com/sharryXR/ASIL" target="_blank" rel="noopener" aria-label="ASIL code on GitHub" title="GitHub">
+          <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
+        </a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Use dark theme" title="Use dark theme">
+          <svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg>
+        </button>
+        <button class="nav-burger" id="navBurger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
+          <svg class="icon" aria-hidden="true"><use href="#icon-menu"></use></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <div class="wrap">
+        <span class="venue-pill">Findings of EMNLP 2026</span>
+        <h1 class="hero-mark asil-mark"><span class="visually-hidden">ASIL</span><span aria-hidden="true"><span class="a">A</span><span class="s">S</span><span class="i">I</span><span class="l">L</span></span></h1>
+        <p class="hero-expand"><b>Agent-Software Interaction Layer</b></p>
+        <p class="hero-title-full">Replacing Screenshot-and-Click with Structured State and Semantic Actions</p>
+
+        <p class="authors">
+          <a href="mailto:sharryXR@sjtu.edu.cn">Rui Xie</a><sup>1</sup>
+          &nbsp;&middot;&nbsp;
+          <a href="mailto:chenlusz@sjtu.edu.cn">Lu Chen</a><sup>1</sup>
+        </p>
+        <p class="affil"><sup>1</sup>Shanghai Jiao Tong University</p>
+        <p class="contact"><a href="mailto:sharryXR@sjtu.edu.cn">sharryXR@sjtu.edu.cn</a> &nbsp;&middot;&nbsp; <a href="mailto:chenlusz@sjtu.edu.cn">chenlusz@sjtu.edu.cn</a></p>
+
+        <div class="btn-row">
+          <a class="btn primary" href="ASIL_EMNLP_2026_Findings.pdf" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#icon-file"></use></svg>Paper
+          </a>
+          <a class="btn" href="https://github.com/sharryXR/ASIL" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>Code
+          </a>
+          <a class="btn" href="https://huggingface.co/collections/sharryXR/asil-models-6a1e9faf39fe6ce4eb4626e1" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#icon-boxes"></use></svg>Models
+          </a>
+          <a class="btn" href="https://huggingface.co/datasets/sharryXR/asil-benchmark" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#icon-database"></use></svg>Benchmark
+          </a>
+          <a class="btn" href="https://huggingface.co/datasets/sharryXR/asil-training-data" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#icon-table"></use></svg>Training Data
+          </a>
+          <a class="btn" href="#bibtex">
+            <svg class="icon" aria-hidden="true"><use href="#icon-braces"></use></svg>BibTeX
+          </a>
+        </div>
+
+        <p class="tldr-line"><b>TL;DR:</b> ASIL replaces visual motor control with structured software state and semantic actions. Closed models score above 80 overall, while repaired screenshot control reaches 6.6 and 26.6 on the same 380 tasks.</p>
+      </div>
+    </header>
+
+    <section id="comparison" class="comparison-section band" aria-labelledby="comparison-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="channel-rule"></div>
+          <p class="eyebrow">One task, two interfaces</p>
+          <h2 id="comparison-heading">What changes when the interface changes?</h2>
+          <p class="sub">Follow the same LibreOffice payroll task from instruction to outcome. GUI control operates through pixels and motor events; ASIL operates through task-relevant state and one semantic action.</p>
+        </div>
+
+        <div class="comparison-loop">
+          <ol class="loop-rail" role="tablist" aria-label="Comparison stages">
+            <li><button class="dot" type="button" data-step="0" role="tab" aria-selected="true" aria-controls="comparison-task"><span class="num">01</span>Task</button></li>
+            <li><button class="dot" type="button" data-step="1" role="tab" aria-selected="false" aria-controls="comparison-observe" tabindex="-1"><span class="num">02</span>Observe</button></li>
+            <li><button class="dot" type="button" data-step="2" role="tab" aria-selected="false" aria-controls="comparison-act" tabindex="-1"><span class="num">03</span>Act</button></li>
+            <li><button class="dot" type="button" data-step="3" role="tab" aria-selected="false" aria-controls="comparison-outcome" tabindex="-1"><span class="num">04</span>Outcome</button></li>
+          </ol>
+
+          <div class="loop-stage">
+            <figure class="panel is-active" id="comparison-task" data-step="0" role="tabpanel" aria-label="Task stage">
+              <div class="task-brief">
+                <span class="label">Task</span>
+                <p>Create a payroll sheet with nine specified columns and exactly ten complete employee rows. Net Pay must equal Base Salary + Position Allowance + Performance Bonus - Insurance - Tax.</p>
+              </div>
+              <div class="track-grid">
+                <article class="track gui">
+                  <div class="track-head"><span>GUI: Screenshot + Click</span><span class="count">same initial file</span></div>
+                  <div class="track-media screenshot"><img src="static/images/gui-step-0.webp" alt="Initial LibreOffice Calc payroll task before GUI interaction" width="1600" height="981"></div>
+                  <div class="track-foot">Receives the task instruction and a screenshot of the visible spreadsheet surface.</div>
+                </article>
+                <article class="track asil">
+                  <div class="track-head"><span>ASIL: State + Semantic Action</span><span class="count">same initial file</span></div>
+                  <div class="track-media screenshot"><img src="static/images/gui-step-0.webp" alt="The same initial LibreOffice Calc payroll task before ASIL interaction" width="1600" height="981"></div>
+                  <div class="track-foot">Receives the identical task, initial artifact, and final-state evaluator.</div>
+                </article>
+              </div>
+            </figure>
+
+            <figure class="panel" id="comparison-observe" data-step="1" role="tabpanel" aria-label="Observation stage" hidden>
+              <div class="task-brief">
+                <span class="label">Observe</span>
+                <p>The GUI reveals a rendered projection. ASIL exposes the document state needed to reason about sheets, cells, values, and constraints.</p>
+              </div>
+              <div class="track-grid">
+                <article class="track gui">
+                  <div class="track-head"><span>GUI Observation</span><span class="count">pixels</span></div>
+                  <div class="track-media screenshot"><img src="static/images/gui-step-0.webp" alt="LibreOffice screenshot used as a GUI observation" width="1600" height="981"></div>
+                  <pre class="track-code">observation = screenshot(width=1600, height=981)
+hidden_state = unavailable</pre>
+                  <div class="track-foot">Only the currently rendered surface is directly observable.</div>
+                </article>
+                <article class="track asil">
+                  <div class="track-head"><span>ASIL Observation</span><span class="count">structured JSON</span></div>
+                  <div class="track-media"><img src="static/images/structured-state.webp" alt="ASIL structured state panel showing software objects and properties" width="686" height="408"></div>
+                  <pre class="track-code">source: file_parse
+sheet: Sheet1  |  populated_cells: 4</pre>
+                  <div class="track-foot">Task-relevant state is compact, inspectable, and independent of screen layout.</div>
+                </article>
+              </div>
+            </figure>
+
+            <figure class="panel" id="comparison-act" data-step="2" role="tabpanel" aria-label="Action stage" hidden>
+              <div class="task-brief">
+                <span class="label">Act</span>
+                <p>The same semantic intent expands into a long coordinate-sensitive GUI sequence, or one validated document operation under ASIL.</p>
+              </div>
+              <div class="track-grid">
+                <article class="track gui">
+                  <div class="track-head"><span>GUI Action Sequence</span><span class="count">event 8 of 15</span></div>
+                  <div class="track-media screenshot"><img src="static/images/gui-step-8.webp" alt="LibreOffice after eight GUI motor events" width="1600" height="981"></div>
+                  <pre class="track-code">click(cell) -> type(text) -> press(tab)
+repeat across rows and columns</pre>
+                  <div class="track-foot">Low-level events accumulate grounding and formatting error.</div>
+                </article>
+                <article class="track asil">
+                  <div class="track-head"><span>ASIL Semantic Action</span><span class="count">1 action</span></div>
+                  <div class="track-media"><img src="static/images/semantic-action.webp" alt="ASIL semantic action panel showing a code-executable software operation" width="686" height="408"></div>
+                  <pre class="track-code">{"action":"modify_file",
+ "operations":99, "target":"test.ods"}</pre>
+                  <div class="track-foot">The action is schema-checked before realizing the requested state transition.</div>
+                </article>
+              </div>
+            </figure>
+
+            <figure class="panel" id="comparison-outcome" data-step="3" role="tabpanel" aria-label="Outcome stage" hidden>
+              <div class="task-brief">
+                <span class="label">Outcome</span>
+                <p>The evaluator checks the final spreadsheet state rather than the action history. The screenshot-driven run exhausts its budget; ASIL passes after one semantic action.</p>
+              </div>
+              <div class="track-grid">
+                <article class="track gui">
+                  <div class="track-head"><span>GUI Outcome</span><span class="count">15 motor events</span></div>
+                  <div class="track-media screenshot"><img class="zoomable" src="static/images/gui-step-15.webp" alt="Malformed LibreOffice payroll sheet after fifteen GUI actions" width="1600" height="981"></div>
+                  <div class="track-foot outcome-line"><span>Literal tabs and newlines remain in the sheet.</span><span class="verdict fail">FAIL 0.0</span></div>
+                </article>
+                <article class="track asil">
+                  <div class="track-head"><span>ASIL Outcome</span><span class="count">1 semantic action</span></div>
+                  <div class="track-media screenshot"><img class="zoomable" src="static/images/asil-result.webp" alt="Correct ten-row LibreOffice payroll sheet produced by ASIL" width="1600" height="993"></div>
+                  <div class="track-foot outcome-line"><span>All required rows and formulas are valid.</span><span class="verdict pass">PASS 1.0</span></div>
+                </article>
+              </div>
+            </figure>
+          </div>
+
+          <div class="loop-controls">
+            <button class="play-pause" id="loopPlayPause" type="button" aria-label="Pause comparison">Pause</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-section reveal" aria-label="ASIL at a glance">
+      <div class="wrap">
+        <div class="stats">
+          <div class="stat"><div class="num tnum">15</div><div class="lbl">real software<br>applications</div></div>
+          <div class="stat"><div class="num tnum">380</div><div class="lbl">shared benchmark<br>tasks</div></div>
+          <div class="stat"><div class="num tnum">&lt;5</div><div class="lbl">average ASIL actions<br>per task</div></div>
+          <div class="stat"><div class="num tnum">3</div><div class="lbl">access-path<br>families</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="abstract" class="band reveal" aria-labelledby="abstract-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="channel-rule"></div>
+          <p class="eyebrow">Abstract</p>
+          <h2 id="abstract-heading">An agent-native interface for real software</h2>
+        </div>
+        <div class="prose abstract-prose">
+          <p>Screenshot-and-click is an inefficient interface for software-operating agents: screenshots are state-incomplete, while GUI actions are brittle, semantically weak, and poorly matched to long-horizon planning.</p>
+          <p>ASIL exposes software through structured JSON observations and code-executable semantic actions, using the deepest feasible open access path for each application. The implementation spans 15 applications, 300 single-application tasks, and 80 multi-application tasks. Closed models exceed 80 overall while executing fewer than five ASIL actions per task; repaired 50-step screenshot control reaches 6.6 and 26.6 for GPT-5.4 and sonnet4.6. The structured modality also supports compact, verifiable data for SFT and evaluator-backed on-policy RL.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" aria-labelledby="problem-heading">
+      <div class="wrap problem-layout">
+        <div class="problem-copy">
+          <div class="channel-rule"></div>
+          <p class="eyebrow">The interface mismatch</p>
+          <h2 id="problem-heading">A software agent should not have to imitate a human hand</h2>
+          <p>Modern agents already reason in text and code, yet graphical software forces them through a presentation layer designed for people. One semantic intent becomes a sequence of clicks, drags, key presses, and repeated visual grounding.</p>
+          <p>ASIL changes the observation-action contract while preserving the task, initial artifact, and software-aware evaluator.</p>
+        </div>
+        <div class="interface-contrast">
+          <div class="interface-row gui">
+            <span class="label">Screenshot-and-click</span>
+            <p><code>pixels -&gt; coordinates -&gt; motor events</code><br>Visible projection, long action horizon, layout-sensitive execution.</p>
+          </div>
+          <div class="interface-row asil">
+            <span class="label">ASIL contract</span>
+            <p><code>structured state -&gt; semantic action -&gt; check</code><br>Task-relevant objects, executable intent, replayable validation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="method" class="band reveal" aria-labelledby="method-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="channel-rule"></div>
+          <p class="eyebrow">Method</p>
+          <h2 id="method-heading">Use the deepest feasible software access path</h2>
+          <p class="sub">ASIL normalizes reviewed file parsers, native scripts, structured commands, and service APIs into one agent-facing observation-action protocol.</p>
+        </div>
+
+        <figure class="figure-block">
+          <div class="figframe zoomable">
+            <img src="static/images/asil-overview.webp" alt="ASIL overview contrasting screenshot-and-click GUI control with structured state and semantic actions" width="1683" height="935" loading="lazy">
+          </div>
+          <figcaption class="cap"><b>GUI and ASIL expose the same software task through different contracts.</b> ASIL reads task-relevant state, executes a semantic operation through the application's deepest stable access path, and checks the resulting software state.</figcaption>
+        </figure>
+
+        <div class="contract-grid">
+          <article class="contract file">
+            <h3>File-backed</h3>
+            <p>Parse open document and project formats, then apply reviewed structural mutations.</p>
+            <span class="micro">6 implementations: Inkscape, LibreOffice, draw.io, JupyterLab</span>
+          </article>
+          <article class="contract script">
+            <h3>Native script</h3>
+            <p>Use the application's own scripting environment or editable project graph.</p>
+            <span class="micro">4 implementations: Blender, GIMP, Kdenlive, Audacity</span>
+          </article>
+          <article class="contract service">
+            <h3>Service / API</h3>
+            <p>Bridge REST, WebSocket, filesystem, or desktop-service state into the shared contract.</p>
+            <span class="micro">5 implementations: OBS, Gitea, code-server, Thunderbird, Nautilus</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="asilization" class="reveal" aria-labelledby="asilization-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="channel-rule"></div>
+          <p class="eyebrow">Semi-automatic ASILization</p>
+          <h2 id="asilization-heading">Turn reviewed interface evidence into an auditable adapter candidate</h2>
+          <p class="sub">The public onboarding framework automates repeatable assembly and validation after a human has identified a trustworthy observation and action path.</p>
+        </div>
+
+        <ol class="onboarding-flow">
+          <li><h3>Qualify</h3><p>Classify direct, bridge-assisted, or out-of-scope access from cited evidence.</p></li>
+          <li><h3>Generate</h3><p>Compile a typed interface plan into an extension bundle and action schema.</p></li>
+          <li><h3>Audit</h3><p>Fail closed on invalid evidence, permissions, transport, or operation contracts.</p></li>
+          <li><h3>Probe</h3><p>Run observation-first host and Docker checks with explicit action gates.</p></li>
+          <li><h3>Report</h3><p>Recompute hashes, provenance, audit results, and validated state changes.</p></li>
+        </ol>
+
+        <div class="onboarding-proof">
+          <article class="proof-block">
+            <h3>Measured Gitea onboarding</h3>
+            <p>One GPT-5.4 call compiled a reviewed 97-line API profile into one observation view and two semantic actions.</p>
+            <div class="proof-metrics"><span>24.8 seconds</span><span>0 audit errors</span><span>3/3 host probes</span><span>3/3 Docker probes</span></div>
+          </article>
+          <article class="proof-block review">
+            <h3>Human review remains explicit</h3>
+            <p>Interface discovery, parser or native-bridge implementation, evaluator design, GUI synchronization, rendering, and final benchmark acceptance are not delegated to the generator.</p>
+          </article>
+        </div>
+
+        <p class="doc-link"><a class="btn small" href="software-extension-architecture.md">Read the extension architecture</a></p>
+      </div>
+    </section>
+
+    <section id="results" class="band reveal" aria-labelledby="results-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="channel-rule"></div>
+          <p class="eyebrow">Results</p>
+          <h2 id="results-heading">The interface changes the operating regime</h2>
+          <p class="sub">Strict success on the shared 380-task benchmark. GUI rows are shown only where the accepted paper reports matched repaired controls.</p>
+        </div>
+
+        <div class="tbl-card">
+          <div class="tbl-scroll">
+            <table class="results">
+              <caption>Main benchmark overall score (%). GUI@50 uses a repaired native-computer-use runtime and a 50-step budget.</caption>
+              <thead>
+                <tr><th class="left">Model</th><th class="left">Interface</th><th>Budget</th><th>Overall (380)</th></tr>
+              </thead>
+              <tbody>
+                <tr class="highlight"><td class="left model">Kimi K2.5</td><td class="left"><span class="mode-asil">ASIL</span></td><td>&lt;5 avg.</td><td class="score-cell"><span class="scorebar" style="--score:84.8%"></span><span class="best-score">84.8</span></td></tr>
+                <tr class="group-start"><td class="left model">GPT-5.4</td><td class="left"><span class="mode-asil">ASIL</span></td><td>15 max</td><td class="score-cell"><span class="scorebar" style="--score:81.6%"></span>81.6</td></tr>
+                <tr class="gui-row"><td class="left model">GPT-5.4</td><td class="left"><span class="mode-gui">Screenshot GUI</span></td><td>50 max</td><td class="score-cell"><span class="scorebar" style="--score:6.6%"></span>6.6</td></tr>
+                <tr class="group-start"><td class="left model">sonnet4.6</td><td class="left"><span class="mode-asil">ASIL</span></td><td>15 max</td><td class="score-cell"><span class="scorebar" style="--score:81.2%"></span>81.2</td></tr>
+                <tr class="gui-row"><td class="left model">sonnet4.6</td><td class="left"><span class="mode-gui">Screenshot GUI</span></td><td>50 max</td><td class="score-cell"><span class="scorebar" style="--score:26.6%"></span>26.6</td></tr>
+                <tr class="gui-row"><td class="left model">sonnet4.6</td><td class="left"><span class="mode-gui">Screenshot GUI</span></td><td>&le;15</td><td class="score-cell"><span class="scorebar" style="--score:17.9%"></span>17.9</td></tr>
+                <tr class="group-start"><td class="left model">Qwen3.6-plus</td><td class="left"><span class="mode-asil">ASIL</span></td><td>15 max</td><td class="score-cell"><span class="scorebar" style="--score:81.1%"></span>81.1</td></tr>
+                <tr><td class="left model">Qwen3.5-27B</td><td class="left"><span class="mode-asil">ASIL</span></td><td>15 max</td><td class="score-cell"><span class="scorebar" style="--score:75.8%"></span>75.8</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <blockquote class="callout">ASIL exceeds LibreOffice's UNO API by 28-38 strict points on matched tasks, while matching draw.io's MCP content contract for GPT-5.4. The result is an interface claim, not a claim that every ASIL access path dominates every mature native interface.</blockquote>
+
+        <div class="section-head training-head">
+          <p class="eyebrow">Training under ASIL</p>
+          <h2>Structured traces make small-scale post-training effective</h2>
+          <p class="sub">The same evaluator filters demonstrations, supplies rollout rewards, and evaluates the resulting checkpoints on all 380 tasks.</p>
+        </div>
+
+        <div class="training-grid">
+          <article class="training-block">
+            <h3>Qwen3.5-2B</h3>
+            <div class="training-stage"><span>Base</span><div class="training-bar"><span style="--score:58.0%"></span></div><b>58.0</b></div>
+            <div class="training-stage sft"><span>SFT</span><div class="training-bar"><span style="--score:72.1%"></span></div><b>72.1</b></div>
+            <div class="training-stage rl"><span>RL</span><div class="training-bar"><span style="--score:74.4%"></span></div><b>74.4</b></div>
+          </article>
+          <article class="training-block">
+            <h3>Qwen3.5-9B</h3>
+            <div class="training-stage"><span>Base</span><div class="training-bar"><span style="--score:66.6%"></span></div><b>66.6</b></div>
+            <div class="training-stage sft"><span>SFT</span><div class="training-bar"><span style="--score:80.4%"></span></div><b>80.4</b></div>
+            <div class="training-stage rl"><span>RL</span><div class="training-bar"><span style="--score:82.2%"></span></div><b>82.2</b></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="qualitative" class="reveal" aria-labelledby="qualitative-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="channel-rule"></div>
+          <p class="eyebrow">Application coverage</p>
+          <h2 id="qualitative-heading">One contract across creative, office, developer, and desktop software</h2>
+          <p class="sub">Representative real software surfaces selected from evaluated benchmark runs. Open any image to inspect it at full size.</p>
+        </div>
+
+        <div class="coverage-grid">
+          <figure class="coverage-item" data-zoomable tabindex="0"><img src="static/images/coverage/blender.webp" alt="Representative Blender benchmark interface" width="960" height="540" loading="lazy"><figcaption>Blender</figcaption></figure>
+          <figure class="coverage-item" data-zoomable tabindex="0"><img src="static/images/coverage/gimp.webp" alt="Representative GIMP benchmark interface" width="960" height="540" loading="lazy"><figcaption>GIMP</figcaption></figure>
+          <figure class="coverage-item" data-zoomable tabindex="0"><img src="static/images/coverage/inkscape.webp" alt="Representative Inkscape benchmark interface" width="960" height="540" loading="lazy"><figcaption>Inkscape</figcaption></figure>
+          <figure class="coverage-item" data-zoomable tabindex="0"><img src="static/images/coverage/kdenlive.webp" alt="Representative Kdenlive benchmark interface" width="960" height="540" loading="lazy"><figcaption>Kdenlive</figcaption></figure>
+          <figure class="coverage-item" data-zoomable tabindex="0"><img src="static/images/coverage/audacity.webp" alt="Representative Audacity benchmark interface" width="960" height="540" loading="lazy"><figcaption>Audacity</figcaption></figure>
+          <figure class="coverage-item" data-zoomable tabindex="0"><img src="static/images/coverage/calc.webp" alt="Representative LibreOffice Calc benchmark interface" width="960" height="540" loading="lazy"><figcaption>Calc</figcaption></figure>
+          <figure class="coverage-item" data-zoomable tabindex="0"><img src="static/images/coverage/impress.webp" alt="Representative LibreOffice Impress benchmark interface" width="960" height="540" loading="lazy"><figcaption>Impress</figcaption></figure>
+          <figure class="coverage-item" data-zoomable tabindex="0"><img src="static/images/coverage/writer.webp" alt="Representative LibreOffice Writer benchmark interface" width="960" height="540" loading="lazy"><figcaption>Writer</figcaption></figure>
+          <figure class="coverage-item" data-zoomable tabindex="0"><img src="static/images/coverage/drawio.webp" alt="Representative draw.io benchmark interface" width="960" height="540" loading="lazy"><figcaption>Draw.io</figcaption></figure>
+          <figure class="coverage-item" data-zoomable tabindex="0"><img src="static/images/coverage/code.webp" alt="Representative code-server benchmark interface" width="960" height="540" loading="lazy"><figcaption>Code</figcaption></figure>
+          <figure class="coverage-item" data-zoomable tabindex="0"><img src="static/images/coverage/jupyter.webp" alt="Representative JupyterLab benchmark interface" width="960" height="540" loading="lazy"><figcaption>JupyterLab</figcaption></figure>
+          <figure class="coverage-item" data-zoomable tabindex="0"><img src="static/images/coverage/gitea.webp" alt="Representative Gitea benchmark interface" width="960" height="540" loading="lazy"><figcaption>Gitea</figcaption></figure>
+          <figure class="coverage-item" data-zoomable tabindex="0"><img src="static/images/coverage/thunderbird.webp" alt="Representative Thunderbird benchmark interface" width="960" height="540" loading="lazy"><figcaption>Thunderbird</figcaption></figure>
+          <figure class="coverage-item" data-zoomable tabindex="0"><img src="static/images/coverage/nautilus.webp" alt="Representative Nautilus benchmark interface" width="960" height="540" loading="lazy"><figcaption>Nautilus</figcaption></figure>
+          <figure class="coverage-item" data-zoomable tabindex="0"><img src="static/images/coverage/obs.webp" alt="Representative OBS Studio benchmark interface" width="960" height="540" loading="lazy"><figcaption>OBS Studio</figcaption></figure>
+          <figure class="coverage-item" data-zoomable tabindex="0"><img src="static/images/coverage/multi_app.webp" alt="Representative multi-application benchmark workflow" width="960" height="540" loading="lazy"><figcaption>Multi-App</figcaption></figure>
+        </div>
+        <p class="gallery-note">The gallery illustrates benchmark coverage; it does not represent a release of per-task evaluation trajectories.</p>
+      </div>
+    </section>
+
+    <section id="resources" class="band reveal" aria-labelledby="resources-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="channel-rule"></div>
+          <p class="eyebrow">Open resources</p>
+          <h2 id="resources-heading">Build, train, and evaluate with ASIL</h2>
+          <p class="sub">Code, released checkpoints, benchmark tasks, and training data are maintained as separate public resources.</p>
+        </div>
+
+        <div class="res-cards">
+          <article class="res-card code">
+            <span class="resource-icon"><svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg></span>
+            <h3>Code</h3>
+            <p>Runtime protocol, 15 application adapters, evaluators, baselines, containers, and the assisted onboarding framework.</p>
+            <span class="micro">Apache-2.0 / inference + evaluation</span>
+            <a class="btn small" href="https://github.com/sharryXR/ASIL" target="_blank" rel="noopener">View on GitHub</a>
+          </article>
+          <article class="res-card models">
+            <span class="resource-icon"><svg class="icon" aria-hidden="true"><use href="#icon-boxes"></use></svg></span>
+            <h3>Models</h3>
+            <p>Selected Qwen3.5-2B and Qwen3.5-9B SFT and RL checkpoints reported in the paper.</p>
+            <span class="micro">2B + 9B / SFT + RL</span>
+            <a class="btn small" href="https://huggingface.co/collections/sharryXR/asil-models-6a1e9faf39fe6ce4eb4626e1" target="_blank" rel="noopener">Browse models</a>
+          </article>
+          <article class="res-card benchmark">
+            <span class="resource-icon"><svg class="icon" aria-hidden="true"><use href="#icon-database"></use></svg></span>
+            <h3>Benchmark</h3>
+            <p>Task definitions for the 380-task main benchmark, the 80-task hard suite, and the easy60 comparison band.</p>
+            <span class="micro">300 single-app + 80 multi-app</span>
+            <a class="btn small" href="https://huggingface.co/datasets/sharryXR/asil-benchmark" target="_blank" rel="noopener">Browse benchmark</a>
+            <a class="secondary-link" href="https://huggingface.co/datasets/sharryXR/asil-benchmark-images" target="_blank" rel="noopener">Runtime images</a>
+          </article>
+          <article class="res-card training">
+            <span class="resource-icon"><svg class="icon" aria-hidden="true"><use href="#icon-table"></use></svg></span>
+            <h3>Training Data</h3>
+            <p>Prepared supervised and rollout-curriculum data used for the released ASIL post-training experiments.</p>
+            <span class="micro">SFT data + RL curriculum</span>
+            <a class="btn small" href="https://huggingface.co/datasets/sharryXR/asil-training-data" target="_blank" rel="noopener">Browse training data</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="bibtex" class="reveal" aria-labelledby="bibtex-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="channel-rule"></div>
+          <p class="eyebrow">Citation</p>
+          <h2 id="bibtex-heading">BibTeX</h2>
+        </div>
+        <div class="bibtex-wrap">
+          <button class="copy-btn" id="copyBib" type="button" aria-label="Copy BibTeX citation">Copy</button>
+<pre class="bibtex" id="bibText">@inproceedings{xie2026asil,
+  <span class="key">title</span>     = {{ASIL}: Replacing Screenshot-and-Click with
+               Structured State and Semantic Actions},
+  <span class="key">author</span>    = {Xie, Rui and Chen, Lu},
+  <span class="key">booktitle</span> = {Findings of the Association for Computational
+               Linguistics: EMNLP 2026},
+  <span class="key">year</span>      = {2026}
+}</pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="asil-mark"><span class="visually-hidden">ASIL</span><span aria-hidden="true"><span class="a">A</span><span class="s">S</span><span class="i">I</span><span class="l">L</span></span></div>
+      <div class="footer-links">
+        <a href="ASIL_EMNLP_2026_Findings.pdf" target="_blank" rel="noopener">Paper</a>
+        <a href="https://github.com/sharryXR/ASIL" target="_blank" rel="noopener">Code</a>
+        <a href="https://huggingface.co/collections/sharryXR/asil-models-6a1e9faf39fe6ce4eb4626e1" target="_blank" rel="noopener">Models</a>
+        <a href="https://huggingface.co/datasets/sharryXR/asil-benchmark" target="_blank" rel="noopener">Benchmark</a>
+        <a href="https://huggingface.co/datasets/sharryXR/asil-training-data" target="_blank" rel="noopener">Training Data</a>
+      </div>
+      <p>Rui Xie and Lu Chen &middot; Shanghai Jiao Tong University</p>
+      <p class="fine">Released under the Apache License 2.0.</p>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview" hidden>
+    <button class="close" type="button" aria-label="Close image preview"><svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg></button>
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="">
+  </div>
+
+  <script src="static/js/main.js"></script>
+</body>
+</html>

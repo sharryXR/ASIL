@@ -7,6 +7,7 @@
 </p>
 
 <p align="center">
+  <a href="https://sharryxr.github.io/ASIL/"><img src="https://img.shields.io/badge/Project-Page-2563EB.svg" alt="ASIL project page"></a>
   <a href="docs/ASIL_EMNLP_2026_Findings.pdf"><img src="https://img.shields.io/badge/Paper-PDF-b31b1b.svg" alt="Paper PDF"></a>
   <a href="https://huggingface.co/collections/sharryXR/asil-models-6a1e9faf39fe6ce4eb4626e1"><img src="https://img.shields.io/badge/Hugging%20Face-Models-FFD21E?logo=huggingface&amp;logoColor=000" alt="ASIL models"></a>
   <a href="https://huggingface.co/datasets/sharryXR/asil-benchmark"><img src="https://img.shields.io/badge/Benchmark-Tasks-2F6FEB" alt="ASIL benchmark tasks"></a>
@@ -22,6 +23,7 @@
 </p>
 
 <p align="center">
+  <a href="https://sharryxr.github.io/ASIL/">Project Page</a> |
   <a href="docs/ASIL_EMNLP_2026_Findings.pdf">Paper</a> |
   <a href="#overview">Overview</a> |
   <a href="#headline-results">Results</a> |
@@ -58,15 +60,23 @@ camera-ready PDF and will be updated to arXiv after the preprint is released.
 
 ## Headline Results
 
-Main 380-task benchmark scores from the accepted paper:
+Main ASIL scores on the 380-task benchmark from the accepted paper:
+
+| Model | ASIL |
+| --- | ---: |
+| Kimi K2.5 | **84.8** |
+| GPT-5.4 | 81.6 |
+| sonnet4.6 | 81.2 |
+| Qwen3.6-plus | 81.1 |
+| Qwen3.5-27B | 75.8 |
+
+Matched repaired screenshot-control comparisons reported in the paper:
 
 | Model | ASIL | Screenshot GUI | ASIL - GUI |
 | --- | ---: | ---: | ---: |
-| Kimi K2.5 | **84.8** | 4.9 | +79.9 |
-| GPT-5.4 | 81.6 | 8.4 | +73.2 |
-| sonnet4.6 | 81.2 | 5.6 | +75.6 |
-| Qwen3.6-plus | 81.1 | 2.9 | +78.2 |
-| Qwen3.5-27B | 75.8 | 4.7 | +71.1 |
+| GPT-5.4 | 81.6 | 6.6 (`GUI@50`) | +75.0 |
+| sonnet4.6 | 81.2 | 26.6 (`GUI@50`) | +54.6 |
+| sonnet4.6 | 81.2 | 17.9 (`GUI@<=15`) | +63.3 |
 
 Small-scale training under the ASIL modality:
 
