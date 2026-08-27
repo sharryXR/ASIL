@@ -72,11 +72,11 @@ Main ASIL scores on the 380-task benchmark from the accepted paper:
 
 Matched repaired screenshot-control comparisons reported in the paper:
 
-| Model | ASIL | Screenshot GUI | ASIL - GUI |
-| --- | ---: | ---: | ---: |
-| GPT-5.4 | 81.6 | 6.6 (`GUI@50`) | +75.0 |
-| sonnet4.6 | 81.2 | 26.6 (`GUI@50`) | +54.6 |
-| sonnet4.6 | 81.2 | 17.9 (`GUI@<=15`) | +63.3 |
+| Model | ASIL Budget | ASIL | GUI Budget | Screenshot GUI | ASIL - GUI |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| GPT-5.4 | 15max | 81.6 | 50max | 6.6 | +75.0 |
+| sonnet4.6 | 15max | 81.2 | 50max | 26.6 | +54.6 |
+| sonnet4.6 | 15max | 81.2 | 15max | 17.9 | +63.3 |
 
 Small-scale training under the ASIL modality:
 
