@@ -164,6 +164,7 @@ def test_repository_readme_has_publication_links_and_citation() -> None:
     required_fragments = (
         "ASIL: Replacing Screenshot-and-Click with Structured State and Semantic Actions",
         "Findings of EMNLP 2026",
+        "https://arxiv.org/abs/2608.26991",
         "docs/ASIL_EMNLP_2026_Findings.pdf",
         "https://huggingface.co/datasets/sharryXR/asil-benchmark",
         "https://huggingface.co/datasets/sharryXR/asil-training-data",

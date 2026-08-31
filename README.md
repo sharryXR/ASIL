@@ -8,7 +8,8 @@
 
 <p align="center">
   <a href="https://sharryxr.github.io/ASIL/"><img src="https://img.shields.io/badge/Project-Page-2563EB.svg" alt="ASIL project page"></a>
-  <a href="docs/ASIL_EMNLP_2026_Findings.pdf"><img src="https://img.shields.io/badge/Paper-PDF-b31b1b.svg" alt="Paper PDF"></a>
+  <a href="https://arxiv.org/abs/2608.26991"><img src="https://img.shields.io/badge/arXiv-2608.26991-b31b1b.svg" alt="arXiv preprint"></a>
+  <a href="docs/ASIL_EMNLP_2026_Findings.pdf"><img src="https://img.shields.io/badge/PDF-Camera--Ready-2563EB.svg" alt="Camera-ready PDF"></a>
   <a href="https://huggingface.co/collections/sharryXR/asil-models-6a1e9faf39fe6ce4eb4626e1"><img src="https://img.shields.io/badge/Hugging%20Face-Models-FFD21E?logo=huggingface&amp;logoColor=000" alt="ASIL models"></a>
   <a href="https://huggingface.co/datasets/sharryXR/asil-benchmark"><img src="https://img.shields.io/badge/Benchmark-Tasks-2F6FEB" alt="ASIL benchmark tasks"></a>
   <a href="https://huggingface.co/datasets/sharryXR/asil-training-data"><img src="https://img.shields.io/badge/Training%20Data-SFT%20%2B%20RL-7A3E9D" alt="ASIL training data"></a>
@@ -24,7 +25,8 @@
 
 <p align="center">
   <a href="https://sharryxr.github.io/ASIL/">Project Page</a> |
-  <a href="docs/ASIL_EMNLP_2026_Findings.pdf">Paper</a> |
+  <a href="https://arxiv.org/abs/2608.26991">Paper</a> |
+  <a href="docs/ASIL_EMNLP_2026_Findings.pdf">PDF</a> |
   <a href="#overview">Overview</a> |
   <a href="#headline-results">Results</a> |
   <a href="#install">Install</a> |
@@ -55,8 +57,8 @@ SFT and evaluator-backed on-policy RL.
 This release contains the runtime protocol, 15-application adapters, GUI and
 native-interface baselines, independent raw-state validation,
 Docker/Singularity environments, and the assisted software onboarding
-framework described in the paper. The Paper link currently serves the accepted
-camera-ready PDF and will be updated to arXiv after the preprint is released.
+framework described in the paper. The Paper link points to the arXiv preprint,
+and the accepted camera-ready PDF is also included under `docs/`.
 
 ## Headline Results
 
